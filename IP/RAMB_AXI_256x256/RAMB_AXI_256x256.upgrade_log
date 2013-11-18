@@ -1,0 +1,16 @@
+Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------
+| Tool Version : Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
+| Date         : Mon Oct 28 10:11:15 2013
+| Host         : MCmicro running 64-bit CentOS release 6.4 (Final)
+| Command      : upgrade_ip
+| Device       : xc7k325tffg900-2
+-----------------------------------------------------------------------------------
+
+Upgrade Log for IP 'RAMB_AXI_256x256'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of RAMB_AXI_256x256 (xilinx.com:ip:blk_mem_gen:8.0) from (Rev. 1) to (Rev. 2)
+
