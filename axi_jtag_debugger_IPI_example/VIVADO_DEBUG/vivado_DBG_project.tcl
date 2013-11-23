@@ -6,5 +6,5 @@ set_property PROGRAM.FILE {../vivado_prj/project_X/project_X.runs/impl_1/jtag_db
 set_property PROBES.FILE {../vivado_prj/project_X/project_X.runs/impl_1/debug_nets.ltx} [lindex [get_hw_devices] 0]
 program_hw_devices [lindex [get_hw_devices] 0]
 refresh_hw_device [lindex [get_hw_devices] 0]
-source ../src/peek_poke.tcl
+source ../../src/peek_poke.tcl
 vio_init
