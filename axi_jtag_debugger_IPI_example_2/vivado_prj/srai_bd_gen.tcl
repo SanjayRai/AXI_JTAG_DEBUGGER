@@ -355,7 +355,7 @@ proc create_root_design { parentCell } {
 
   # Create instance: axi_mem_intercon, and set properties
   set axi_mem_intercon [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_mem_intercon ]
-  set_property -dict [ list CONFIG.NUM_MI {2} CONFIG.NUM_SI {2}  ] $axi_mem_intercon
+  set_property -dict [ list CONFIG.M00_HAS_REGSLICE {4} CONFIG.M01_HAS_REGSLICE {4} CONFIG.NUM_MI {2} CONFIG.NUM_SI {2} CONFIG.S00_HAS_REGSLICE {4} CONFIG.S01_HAS_REGSLICE {4}  ] $axi_mem_intercon
 
   # Create instance: blk_mem_gen_0, and set properties
   set blk_mem_gen_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.0 blk_mem_gen_0 ]
@@ -367,7 +367,7 @@ proc create_root_design { parentCell } {
 
   # Create instance: jtag_axi_debugger_ip_0_axi_periph, and set properties
   set jtag_axi_debugger_ip_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 jtag_axi_debugger_ip_0_axi_periph ]
-  set_property -dict [ list CONFIG.NUM_MI {1}  ] $jtag_axi_debugger_ip_0_axi_periph
+  set_property -dict [ list CONFIG.NUM_MI {1} CONFIG.S00_HAS_REGSLICE {4}  ] $jtag_axi_debugger_ip_0_axi_periph
 
   # Create instance: mig_7series_0, and set properties
   set mig_7series_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:2.0 mig_7series_0 ]
