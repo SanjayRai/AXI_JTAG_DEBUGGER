@@ -38,9 +38,7 @@ set_property display_name {M_AXI4_MM} [ipx::get_address_space m_axi4_mm [ipx::cu
 set_property supported_families {{virtex7} {Pre-Production} {qvirtex7} {Pre-Production} {kintex7} {Pre-Production} {kintex7l} {Pre-Production} {qkintex7} {Pre-Production} {qkintex7l} {Pre-Production} {artix7} {Pre-Production} {artix7l} {Pre-Production} {aartix7} {Pre-Production} {qartix7} {Pre-Production} {zynq} {Pre-Production} {qzynq} {Pre-Production} {azynq} {Pre-Production}} [ipx::current_core]
 set_property company_url {www.xilinx.com} [ipx::current_core]
 ipx::add_bus_parameter {FREQ_HZ} [ipx::get_bus_interface m_axi4_lite [ipx::current_core]]
-set_property value {200000000} [ipx::get_bus_parameter FREQ_HZ [ipx::get_bus_interface m_axi4_lite [ipx::current_core]]]
 ipx::add_bus_parameter {FREQ_HZ} [ipx::get_bus_interface m_axi4_mm [ipx::current_core]]
-set_property value {200000000} [ipx::get_bus_parameter FREQ_HZ [ipx::get_bus_interface m_axi4_mm [ipx::current_core]]]
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
 ipx::save_core [ipx::current_core]
