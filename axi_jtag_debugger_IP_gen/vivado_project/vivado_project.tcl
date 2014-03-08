@@ -19,14 +19,16 @@ import_files -force -norecurse {
 
 set_property top jtag_axi_debugger_ip [get_filesets sources_1]
 
-set ROOT_DIR [pwd]
-
-ipx::package_project -root_dir $ROOT_DIR
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
+
+proc run_rest {} {
+set ROOT_DIR [pwd]
+ipx::package_project -root_dir $ROOT_DIR
 set_property vendor {sanjayr} [ipx::current_core]
 set_property vendor_display_name {sanjayr} [ipx::current_core]
 set_property taxonomy {{/AXI_Infrastructure}} [ipx::current_core]
+ipx::infer_bus_interfaces {{xilinx.com:interface:aximm:1.0}} [ipx::current_core]
 set_property value_validation_list {{1024} {512} {256} {128} {64} {32}} [ipx::get_user_parameter AXI4_MM_DATA_WIDTH [ipx::current_core]]
 set_property value_validation_list {{64} {32}} [ipx::get_user_parameter AXI4_LITE_DATA_WIDTH [ipx::current_core]]
 set_property display_name {AXI4 MM Data Width} [ipx::get_user_parameter AXI4_MM_DATA_WIDTH [ipx::current_core]]
@@ -44,3 +46,4 @@ update_compile_order -fileset sim_1
 ipx::save_core [ipx::current_core]
 ipx::check_integrity -quiet [ipx::current_core]
 ipx::archive_core {./jtag_axi_debugger_ip.zip} [ipx::current_core]
+}

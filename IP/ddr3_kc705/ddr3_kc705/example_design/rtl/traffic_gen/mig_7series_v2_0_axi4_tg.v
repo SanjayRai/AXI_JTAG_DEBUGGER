@@ -86,9 +86,9 @@ module mig_7series_v2_0_axi4_tg #(
 
      parameter PRBS_SADDR_MASK_POS      = 32'h00002000,
 
-     parameter DBG_WR_STS_WIDTH         = 32,
+     parameter DBG_WR_STS_WIDTH         = 40,
 
-     parameter DBG_RD_STS_WIDTH         = 32,
+     parameter DBG_RD_STS_WIDTH         = 40,
   
      parameter ENFORCE_RD_WR            = 0,
 

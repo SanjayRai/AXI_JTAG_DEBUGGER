@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2013 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2014 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -55,64 +55,64 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 jtag_axi_debugger_ip_mmx256 your_instance_name (
-  .sys_clk(sys_clk),                                        // input sys_clk
-  .jtag_axi_debugger_ip_ERROR(jtag_axi_debugger_ip_ERROR),  // output jtag_axi_debugger_ip_ERROR
-  .GP_OUT_32_A(GP_OUT_32_A),                                // output [31 : 0] GP_OUT_32_A
-  .GP_OUT_32_B(GP_OUT_32_B),                                // output [31 : 0] GP_OUT_32_B
-  .GP_IN_32_A(GP_IN_32_A),                                  // input [31 : 0] GP_IN_32_A
-  .GP_IN_32_B(GP_IN_32_B),                                  // input [31 : 0] GP_IN_32_B
-  .m_axi4_lite_awaddr(m_axi4_lite_awaddr),                  // output [31 : 0] m_axi4_lite_awaddr
-  .m_axi4_lite_awprot(m_axi4_lite_awprot),                  // output [2 : 0] m_axi4_lite_awprot
-  .m_axi4_lite_awvalid(m_axi4_lite_awvalid),                // output m_axi4_lite_awvalid
-  .m_axi4_lite_awready(m_axi4_lite_awready),                // input m_axi4_lite_awready
-  .m_axi4_lite_wdata(m_axi4_lite_wdata),                    // output [31 : 0] m_axi4_lite_wdata
-  .m_axi4_lite_wstrb(m_axi4_lite_wstrb),                    // output [3 : 0] m_axi4_lite_wstrb
-  .m_axi4_lite_wlast(m_axi4_lite_wlast),                    // output m_axi4_lite_wlast
-  .m_axi4_lite_wvalid(m_axi4_lite_wvalid),                  // output m_axi4_lite_wvalid
-  .m_axi4_lite_wready(m_axi4_lite_wready),                  // input m_axi4_lite_wready
-  .m_axi4_lite_bready(m_axi4_lite_bready),                  // output m_axi4_lite_bready
-  .m_axi4_lite_bresp(m_axi4_lite_bresp),                    // input [1 : 0] m_axi4_lite_bresp
-  .m_axi4_lite_bvalid(m_axi4_lite_bvalid),                  // input m_axi4_lite_bvalid
-  .m_axi4_lite_araddr(m_axi4_lite_araddr),                  // output [31 : 0] m_axi4_lite_araddr
-  .m_axi4_lite_arprot(m_axi4_lite_arprot),                  // output [2 : 0] m_axi4_lite_arprot
-  .m_axi4_lite_arvalid(m_axi4_lite_arvalid),                // output m_axi4_lite_arvalid
-  .m_axi4_lite_arready(m_axi4_lite_arready),                // input m_axi4_lite_arready
-  .m_axi4_lite_rready(m_axi4_lite_rready),                  // output m_axi4_lite_rready
-  .m_axi4_lite_rdata(m_axi4_lite_rdata),                    // input [31 : 0] m_axi4_lite_rdata
-  .m_axi4_lite_rresp(m_axi4_lite_rresp),                    // input [1 : 0] m_axi4_lite_rresp
-  .m_axi4_lite_rlast(m_axi4_lite_rlast),                    // input m_axi4_lite_rlast
-  .m_axi4_lite_rvalid(m_axi4_lite_rvalid),                  // input m_axi4_lite_rvalid
-  .m_axi4_mm_awid(m_axi4_mm_awid),                          // output [3 : 0] m_axi4_mm_awid
-  .m_axi4_mm_awaddr(m_axi4_mm_awaddr),                      // output [31 : 0] m_axi4_mm_awaddr
-  .m_axi4_mm_awlen(m_axi4_mm_awlen),                        // output [7 : 0] m_axi4_mm_awlen
-  .m_axi4_mm_awsize(m_axi4_mm_awsize),                      // output [2 : 0] m_axi4_mm_awsize
-  .m_axi4_mm_awburst(m_axi4_mm_awburst),                    // output [1 : 0] m_axi4_mm_awburst
-  .m_axi4_mm_awcache(m_axi4_mm_awcache),                    // output [3 : 0] m_axi4_mm_awcache
-  .m_axi4_mm_awprot(m_axi4_mm_awprot),                      // output [2 : 0] m_axi4_mm_awprot
-  .m_axi4_mm_awvalid(m_axi4_mm_awvalid),                    // output m_axi4_mm_awvalid
-  .m_axi4_mm_awready(m_axi4_mm_awready),                    // input m_axi4_mm_awready
-  .m_axi4_mm_wdata(m_axi4_mm_wdata),                        // output [255 : 0] m_axi4_mm_wdata
-  .m_axi4_mm_wstrb(m_axi4_mm_wstrb),                        // output [31 : 0] m_axi4_mm_wstrb
-  .m_axi4_mm_wlast(m_axi4_mm_wlast),                        // output m_axi4_mm_wlast
-  .m_axi4_mm_wvalid(m_axi4_mm_wvalid),                      // output m_axi4_mm_wvalid
-  .m_axi4_mm_wready(m_axi4_mm_wready),                      // input m_axi4_mm_wready
-  .m_axi4_mm_bready(m_axi4_mm_bready),                      // output m_axi4_mm_bready
-  .m_axi4_mm_bresp(m_axi4_mm_bresp),                        // input [1 : 0] m_axi4_mm_bresp
-  .m_axi4_mm_bvalid(m_axi4_mm_bvalid),                      // input m_axi4_mm_bvalid
-  .m_axi4_mm_arid(m_axi4_mm_arid),                          // output [3 : 0] m_axi4_mm_arid
-  .m_axi4_mm_araddr(m_axi4_mm_araddr),                      // output [31 : 0] m_axi4_mm_araddr
-  .m_axi4_mm_arlen(m_axi4_mm_arlen),                        // output [7 : 0] m_axi4_mm_arlen
-  .m_axi4_mm_arsize(m_axi4_mm_arsize),                      // output [2 : 0] m_axi4_mm_arsize
-  .m_axi4_mm_arburst(m_axi4_mm_arburst),                    // output [1 : 0] m_axi4_mm_arburst
-  .m_axi4_mm_arcache(m_axi4_mm_arcache),                    // output [3 : 0] m_axi4_mm_arcache
-  .m_axi4_mm_arprot(m_axi4_mm_arprot),                      // output [2 : 0] m_axi4_mm_arprot
-  .m_axi4_mm_arvalid(m_axi4_mm_arvalid),                    // output m_axi4_mm_arvalid
-  .m_axi4_mm_arready(m_axi4_mm_arready),                    // input m_axi4_mm_arready
-  .m_axi4_mm_rready(m_axi4_mm_rready),                      // output m_axi4_mm_rready
-  .m_axi4_mm_rdata(m_axi4_mm_rdata),                        // input [255 : 0] m_axi4_mm_rdata
-  .m_axi4_mm_rresp(m_axi4_mm_rresp),                        // input [1 : 0] m_axi4_mm_rresp
-  .m_axi4_mm_rlast(m_axi4_mm_rlast),                        // input m_axi4_mm_rlast
-  .m_axi4_mm_rvalid(m_axi4_mm_rvalid)                      // input m_axi4_mm_rvalid
+  .sys_clk(sys_clk),                                        // input wire sys_clk
+  .jtag_axi_debugger_ip_ERROR(jtag_axi_debugger_ip_ERROR),  // output wire jtag_axi_debugger_ip_ERROR
+  .GP_OUT_32_A(GP_OUT_32_A),                                // output wire [31 : 0] GP_OUT_32_A
+  .GP_OUT_32_B(GP_OUT_32_B),                                // output wire [31 : 0] GP_OUT_32_B
+  .GP_IN_32_A(GP_IN_32_A),                                  // input wire [31 : 0] GP_IN_32_A
+  .GP_IN_32_B(GP_IN_32_B),                                  // input wire [31 : 0] GP_IN_32_B
+  .m_axi4_lite_awaddr(m_axi4_lite_awaddr),                  // output wire [31 : 0] m_axi4_lite_awaddr
+  .m_axi4_lite_awprot(m_axi4_lite_awprot),                  // output wire [2 : 0] m_axi4_lite_awprot
+  .m_axi4_lite_awvalid(m_axi4_lite_awvalid),                // output wire m_axi4_lite_awvalid
+  .m_axi4_lite_awready(m_axi4_lite_awready),                // input wire m_axi4_lite_awready
+  .m_axi4_lite_wdata(m_axi4_lite_wdata),                    // output wire [31 : 0] m_axi4_lite_wdata
+  .m_axi4_lite_wstrb(m_axi4_lite_wstrb),                    // output wire [3 : 0] m_axi4_lite_wstrb
+  .m_axi4_lite_wlast(m_axi4_lite_wlast),                    // output wire m_axi4_lite_wlast
+  .m_axi4_lite_wvalid(m_axi4_lite_wvalid),                  // output wire m_axi4_lite_wvalid
+  .m_axi4_lite_wready(m_axi4_lite_wready),                  // input wire m_axi4_lite_wready
+  .m_axi4_lite_bready(m_axi4_lite_bready),                  // output wire m_axi4_lite_bready
+  .m_axi4_lite_bresp(m_axi4_lite_bresp),                    // input wire [1 : 0] m_axi4_lite_bresp
+  .m_axi4_lite_bvalid(m_axi4_lite_bvalid),                  // input wire m_axi4_lite_bvalid
+  .m_axi4_lite_araddr(m_axi4_lite_araddr),                  // output wire [31 : 0] m_axi4_lite_araddr
+  .m_axi4_lite_arprot(m_axi4_lite_arprot),                  // output wire [2 : 0] m_axi4_lite_arprot
+  .m_axi4_lite_arvalid(m_axi4_lite_arvalid),                // output wire m_axi4_lite_arvalid
+  .m_axi4_lite_arready(m_axi4_lite_arready),                // input wire m_axi4_lite_arready
+  .m_axi4_lite_rready(m_axi4_lite_rready),                  // output wire m_axi4_lite_rready
+  .m_axi4_lite_rdata(m_axi4_lite_rdata),                    // input wire [31 : 0] m_axi4_lite_rdata
+  .m_axi4_lite_rresp(m_axi4_lite_rresp),                    // input wire [1 : 0] m_axi4_lite_rresp
+  .m_axi4_lite_rlast(m_axi4_lite_rlast),                    // input wire m_axi4_lite_rlast
+  .m_axi4_lite_rvalid(m_axi4_lite_rvalid),                  // input wire m_axi4_lite_rvalid
+  .m_axi4_mm_awid(m_axi4_mm_awid),                          // output wire [3 : 0] m_axi4_mm_awid
+  .m_axi4_mm_awaddr(m_axi4_mm_awaddr),                      // output wire [31 : 0] m_axi4_mm_awaddr
+  .m_axi4_mm_awlen(m_axi4_mm_awlen),                        // output wire [7 : 0] m_axi4_mm_awlen
+  .m_axi4_mm_awsize(m_axi4_mm_awsize),                      // output wire [2 : 0] m_axi4_mm_awsize
+  .m_axi4_mm_awburst(m_axi4_mm_awburst),                    // output wire [1 : 0] m_axi4_mm_awburst
+  .m_axi4_mm_awcache(m_axi4_mm_awcache),                    // output wire [3 : 0] m_axi4_mm_awcache
+  .m_axi4_mm_awprot(m_axi4_mm_awprot),                      // output wire [2 : 0] m_axi4_mm_awprot
+  .m_axi4_mm_awvalid(m_axi4_mm_awvalid),                    // output wire m_axi4_mm_awvalid
+  .m_axi4_mm_awready(m_axi4_mm_awready),                    // input wire m_axi4_mm_awready
+  .m_axi4_mm_wdata(m_axi4_mm_wdata),                        // output wire [255 : 0] m_axi4_mm_wdata
+  .m_axi4_mm_wstrb(m_axi4_mm_wstrb),                        // output wire [31 : 0] m_axi4_mm_wstrb
+  .m_axi4_mm_wlast(m_axi4_mm_wlast),                        // output wire m_axi4_mm_wlast
+  .m_axi4_mm_wvalid(m_axi4_mm_wvalid),                      // output wire m_axi4_mm_wvalid
+  .m_axi4_mm_wready(m_axi4_mm_wready),                      // input wire m_axi4_mm_wready
+  .m_axi4_mm_bready(m_axi4_mm_bready),                      // output wire m_axi4_mm_bready
+  .m_axi4_mm_bresp(m_axi4_mm_bresp),                        // input wire [1 : 0] m_axi4_mm_bresp
+  .m_axi4_mm_bvalid(m_axi4_mm_bvalid),                      // input wire m_axi4_mm_bvalid
+  .m_axi4_mm_arid(m_axi4_mm_arid),                          // output wire [3 : 0] m_axi4_mm_arid
+  .m_axi4_mm_araddr(m_axi4_mm_araddr),                      // output wire [31 : 0] m_axi4_mm_araddr
+  .m_axi4_mm_arlen(m_axi4_mm_arlen),                        // output wire [7 : 0] m_axi4_mm_arlen
+  .m_axi4_mm_arsize(m_axi4_mm_arsize),                      // output wire [2 : 0] m_axi4_mm_arsize
+  .m_axi4_mm_arburst(m_axi4_mm_arburst),                    // output wire [1 : 0] m_axi4_mm_arburst
+  .m_axi4_mm_arcache(m_axi4_mm_arcache),                    // output wire [3 : 0] m_axi4_mm_arcache
+  .m_axi4_mm_arprot(m_axi4_mm_arprot),                      // output wire [2 : 0] m_axi4_mm_arprot
+  .m_axi4_mm_arvalid(m_axi4_mm_arvalid),                    // output wire m_axi4_mm_arvalid
+  .m_axi4_mm_arready(m_axi4_mm_arready),                    // input wire m_axi4_mm_arready
+  .m_axi4_mm_rready(m_axi4_mm_rready),                      // output wire m_axi4_mm_rready
+  .m_axi4_mm_rdata(m_axi4_mm_rdata),                        // input wire [255 : 0] m_axi4_mm_rdata
+  .m_axi4_mm_rresp(m_axi4_mm_rresp),                        // input wire [1 : 0] m_axi4_mm_rresp
+  .m_axi4_mm_rlast(m_axi4_mm_rlast),                        // input wire m_axi4_mm_rlast
+  .m_axi4_mm_rvalid(m_axi4_mm_rvalid)                      // input wire m_axi4_mm_rvalid
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

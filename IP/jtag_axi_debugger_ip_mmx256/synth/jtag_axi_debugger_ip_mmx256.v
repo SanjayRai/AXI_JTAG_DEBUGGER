@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2013 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2014 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,7 +50,7 @@
 // IP VLNV: sanjayr:user:jtag_axi_debugger_ip:1.0
 // IP Revision: 1
 
-(* X_CORE_INFO = "jtag_axi_debugger_ip,Vivado 2013.3" *)
+(* X_CORE_INFO = "jtag_axi_debugger_ip,Vivado 2013.4" *)
 (* CHECK_LICENSE_TYPE = "jtag_axi_debugger_ip_mmx256,jtag_axi_debugger_ip,{}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module jtag_axi_debugger_ip_mmx256 (
@@ -114,116 +114,64 @@ module jtag_axi_debugger_ip_mmx256 (
   m_axi4_mm_rvalid
 );
 
-input sys_clk;
-output jtag_axi_debugger_ip_ERROR;
-output [31 : 0] GP_OUT_32_A;
-output [31 : 0] GP_OUT_32_B;
-input [31 : 0] GP_IN_32_A;
-input [31 : 0] GP_IN_32_B;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite AWADDR" *)
-output [31 : 0] m_axi4_lite_awaddr;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite AWPROT" *)
-output [2 : 0] m_axi4_lite_awprot;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite AWVALID" *)
-output m_axi4_lite_awvalid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite AWREADY" *)
-input m_axi4_lite_awready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite WDATA" *)
-output [31 : 0] m_axi4_lite_wdata;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite WSTRB" *)
-output [3 : 0] m_axi4_lite_wstrb;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite WLAST" *)
-output m_axi4_lite_wlast;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite WVALID" *)
-output m_axi4_lite_wvalid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite WREADY" *)
-input m_axi4_lite_wready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite BREADY" *)
-output m_axi4_lite_bready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite BRESP" *)
-input [1 : 0] m_axi4_lite_bresp;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite BVALID" *)
-input m_axi4_lite_bvalid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite ARADDR" *)
-output [31 : 0] m_axi4_lite_araddr;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite ARPROT" *)
-output [2 : 0] m_axi4_lite_arprot;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite ARVALID" *)
-output m_axi4_lite_arvalid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite ARREADY" *)
-input m_axi4_lite_arready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite RREADY" *)
-output m_axi4_lite_rready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite RDATA" *)
-input [31 : 0] m_axi4_lite_rdata;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite RRESP" *)
-input [1 : 0] m_axi4_lite_rresp;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite RLAST" *)
-input m_axi4_lite_rlast;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_lite RVALID" *)
-input m_axi4_lite_rvalid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm AWID" *)
-output [3 : 0] m_axi4_mm_awid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm AWADDR" *)
-output [31 : 0] m_axi4_mm_awaddr;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm AWLEN" *)
-output [7 : 0] m_axi4_mm_awlen;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm AWSIZE" *)
-output [2 : 0] m_axi4_mm_awsize;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm AWBURST" *)
-output [1 : 0] m_axi4_mm_awburst;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm AWCACHE" *)
-output [3 : 0] m_axi4_mm_awcache;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm AWPROT" *)
-output [2 : 0] m_axi4_mm_awprot;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm AWVALID" *)
-output m_axi4_mm_awvalid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm AWREADY" *)
-input m_axi4_mm_awready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm WDATA" *)
-output [255 : 0] m_axi4_mm_wdata;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm WSTRB" *)
-output [31 : 0] m_axi4_mm_wstrb;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm WLAST" *)
-output m_axi4_mm_wlast;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm WVALID" *)
-output m_axi4_mm_wvalid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm WREADY" *)
-input m_axi4_mm_wready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm BREADY" *)
-output m_axi4_mm_bready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm BRESP" *)
-input [1 : 0] m_axi4_mm_bresp;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm BVALID" *)
-input m_axi4_mm_bvalid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm ARID" *)
-output [3 : 0] m_axi4_mm_arid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm ARADDR" *)
-output [31 : 0] m_axi4_mm_araddr;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm ARLEN" *)
-output [7 : 0] m_axi4_mm_arlen;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm ARSIZE" *)
-output [2 : 0] m_axi4_mm_arsize;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm ARBURST" *)
-output [1 : 0] m_axi4_mm_arburst;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm ARCACHE" *)
-output [3 : 0] m_axi4_mm_arcache;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm ARPROT" *)
-output [2 : 0] m_axi4_mm_arprot;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm ARVALID" *)
-output m_axi4_mm_arvalid;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm ARREADY" *)
-input m_axi4_mm_arready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm RREADY" *)
-output m_axi4_mm_rready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm RDATA" *)
-input [255 : 0] m_axi4_mm_rdata;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm RRESP" *)
-input [1 : 0] m_axi4_mm_rresp;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm RLAST" *)
-input m_axi4_mm_rlast;
-(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 m_axi4_mm RVALID" *)
-input m_axi4_mm_rvalid;
+input wire sys_clk;
+output wire jtag_axi_debugger_ip_ERROR;
+output wire [31 : 0] GP_OUT_32_A;
+output wire [31 : 0] GP_OUT_32_B;
+input wire [31 : 0] GP_IN_32_A;
+input wire [31 : 0] GP_IN_32_B;
+output wire [31 : 0] m_axi4_lite_awaddr;
+output wire [2 : 0] m_axi4_lite_awprot;
+output wire m_axi4_lite_awvalid;
+input wire m_axi4_lite_awready;
+output wire [31 : 0] m_axi4_lite_wdata;
+output wire [3 : 0] m_axi4_lite_wstrb;
+output wire m_axi4_lite_wlast;
+output wire m_axi4_lite_wvalid;
+input wire m_axi4_lite_wready;
+output wire m_axi4_lite_bready;
+input wire [1 : 0] m_axi4_lite_bresp;
+input wire m_axi4_lite_bvalid;
+output wire [31 : 0] m_axi4_lite_araddr;
+output wire [2 : 0] m_axi4_lite_arprot;
+output wire m_axi4_lite_arvalid;
+input wire m_axi4_lite_arready;
+output wire m_axi4_lite_rready;
+input wire [31 : 0] m_axi4_lite_rdata;
+input wire [1 : 0] m_axi4_lite_rresp;
+input wire m_axi4_lite_rlast;
+input wire m_axi4_lite_rvalid;
+output wire [3 : 0] m_axi4_mm_awid;
+output wire [31 : 0] m_axi4_mm_awaddr;
+output wire [7 : 0] m_axi4_mm_awlen;
+output wire [2 : 0] m_axi4_mm_awsize;
+output wire [1 : 0] m_axi4_mm_awburst;
+output wire [3 : 0] m_axi4_mm_awcache;
+output wire [2 : 0] m_axi4_mm_awprot;
+output wire m_axi4_mm_awvalid;
+input wire m_axi4_mm_awready;
+output wire [255 : 0] m_axi4_mm_wdata;
+output wire [31 : 0] m_axi4_mm_wstrb;
+output wire m_axi4_mm_wlast;
+output wire m_axi4_mm_wvalid;
+input wire m_axi4_mm_wready;
+output wire m_axi4_mm_bready;
+input wire [1 : 0] m_axi4_mm_bresp;
+input wire m_axi4_mm_bvalid;
+output wire [3 : 0] m_axi4_mm_arid;
+output wire [31 : 0] m_axi4_mm_araddr;
+output wire [7 : 0] m_axi4_mm_arlen;
+output wire [2 : 0] m_axi4_mm_arsize;
+output wire [1 : 0] m_axi4_mm_arburst;
+output wire [3 : 0] m_axi4_mm_arcache;
+output wire [2 : 0] m_axi4_mm_arprot;
+output wire m_axi4_mm_arvalid;
+input wire m_axi4_mm_arready;
+output wire m_axi4_mm_rready;
+input wire [255 : 0] m_axi4_mm_rdata;
+input wire [1 : 0] m_axi4_mm_rresp;
+input wire m_axi4_mm_rlast;
+input wire m_axi4_mm_rvalid;
 
   jtag_axi_debugger_ip #(
     .AXI4_LITE_DATA_WIDTH(32),

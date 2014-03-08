@@ -48,14 +48,7 @@
 
 module vio_axi_jtag_dbg (
 clk,
-probe_in0,
-probe_in1,
-probe_in2,
-probe_in3,
-probe_in4,
-probe_in5,
-probe_in6,
-probe_in7,
+probe_in0,probe_in1,probe_in2,probe_in3,probe_in4,probe_in5,probe_in6,probe_in7,
 probe_out0,
 probe_out1,
 probe_out2,
@@ -95,33 +88,33 @@ input [3 : 0] probe_in5;
 input [31 : 0] probe_in6;
 input [31 : 0] probe_in7;
 
-output [0 : 0] probe_out0;
-output [0 : 0] probe_out1;
-output [0 : 0] probe_out2;
-output [0 : 0] probe_out3;
-output [0 : 0] probe_out4;
-output [0 : 0] probe_out5;
-output [15 : 0] probe_out6;
-output [15 : 0] probe_out7;
-output [31 : 0] probe_out8;
-output [31 : 0] probe_out9;
-output [31 : 0] probe_out10;
-output [3 : 0] probe_out11;
-output [0 : 0] probe_out12;
-output [0 : 0] probe_out13;
-output [0 : 0] probe_out14;
-output [0 : 0] probe_out15;
-output [0 : 0] probe_out16;
-output [0 : 0] probe_out17;
-output [15 : 0] probe_out18;
-output [15 : 0] probe_out19;
-output [31 : 0] probe_out20;
-output [31 : 0] probe_out21;
-output [31 : 0] probe_out22;
-output [3 : 0] probe_out23;
-output [0 : 0] probe_out24;
-output [31 : 0] probe_out25;
-output [31 : 0] probe_out26;
+output reg [0 : 0] probe_out0 = 'h0 ;
+output reg [0 : 0] probe_out1 = 'h0 ;
+output reg [0 : 0] probe_out2 = 'h0 ;
+output reg [0 : 0] probe_out3 = 'h0 ;
+output reg [0 : 0] probe_out4 = 'h0 ;
+output reg [0 : 0] probe_out5 = 'h0 ;
+output reg [15 : 0] probe_out6 = 'h0 ;
+output reg [15 : 0] probe_out7 = 'h0 ;
+output reg [31 : 0] probe_out8 = 'h0 ;
+output reg [31 : 0] probe_out9 = 'h0 ;
+output reg [31 : 0] probe_out10 = 'h0 ;
+output reg [3 : 0] probe_out11 = 'h0 ;
+output reg [0 : 0] probe_out12 = 'h0 ;
+output reg [0 : 0] probe_out13 = 'h0 ;
+output reg [0 : 0] probe_out14 = 'h0 ;
+output reg [0 : 0] probe_out15 = 'h0 ;
+output reg [0 : 0] probe_out16 = 'h0 ;
+output reg [0 : 0] probe_out17 = 'h0 ;
+output reg [15 : 0] probe_out18 = 'h0 ;
+output reg [15 : 0] probe_out19 = 'h0 ;
+output reg [31 : 0] probe_out20 = 'h0 ;
+output reg [31 : 0] probe_out21 = 'h0 ;
+output reg [31 : 0] probe_out22 = 'h0 ;
+output reg [3 : 0] probe_out23 = 'h0 ;
+output reg [0 : 0] probe_out24 = 'h0 ;
+output reg [31 : 0] probe_out25 = 'h0 ;
+output reg [31 : 0] probe_out26 = 'h0 ;
 
 
 endmodule

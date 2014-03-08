@@ -247,6 +247,15 @@ module fifo_generator_v11_0
     parameter C_APPLICATION_TYPE_RDCH        = 0,
     parameter C_APPLICATION_TYPE_AXIS        = 0,
 
+    // AXI Built-in FIFO Primitive Type
+    // 512x36, 1kx18, 2kx9, 4kx4, etc
+    parameter C_PRIM_FIFO_TYPE_WACH          = "512x36",
+    parameter C_PRIM_FIFO_TYPE_WDCH          = "512x36",
+    parameter C_PRIM_FIFO_TYPE_WRCH          = "512x36",
+    parameter C_PRIM_FIFO_TYPE_RACH          = "512x36",
+    parameter C_PRIM_FIFO_TYPE_RDCH          = "512x36",
+    parameter C_PRIM_FIFO_TYPE_AXIS          = "512x36",
+
     // Enable ECC
     // 0 = ECC disabled
     // 1 = ECC enabled
@@ -388,6 +397,8 @@ module fifo_generator_v11_0
     output                              prog_empty,
     output                              sbiterr,
     output                              dbiterr,
+    output                              wr_rst_busy,
+    output                              rd_rst_busy,
 
 
     // AXI Global Signal
@@ -1192,14 +1203,15 @@ module fifo_generator_v11_0
         .PROG_FULL                (PROG_FULL),
         .PROG_EMPTY               (PROG_EMPTY),
         .SBITERR                  (SBITERR),
-        .DBITERR                  (DBITERR)
+        .DBITERR                  (DBITERR),
+        .wr_rst_busy              (wr_rst_busy),
+        .rd_rst_busy              (rd_rst_busy)
        );
   end endgenerate
 
-//  localparam C_AXI_LEN_WIDTH    = 8;
+  localparam IS_8SERIES         = (C_FAMILY == "virtex8" || C_FAMILY == "kintex8") ? 1 : 0;
   localparam C_AXI_SIZE_WIDTH   = 3;
   localparam C_AXI_BURST_WIDTH  = 2;
-//  localparam C_AXI_LOCK_WIDTH   = 2;
   localparam C_AXI_CACHE_WIDTH  = 4;
   localparam C_AXI_PROT_WIDTH   = 3;
   localparam C_AXI_QOS_WIDTH    = 4;
@@ -1264,10 +1276,10 @@ module fifo_generator_v11_0
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
-        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_AXIS == 1 || C_IMPLEMENTATION_TYPE_AXIS == 11) ? 1 :
-                                         (C_IMPLEMENTATION_TYPE_AXIS == 2 || C_IMPLEMENTATION_TYPE_AXIS == 12) ? 2 : 4),
-        .C_IMPLEMENTATION_TYPE		((C_IMPLEMENTATION_TYPE_AXIS == 1 || C_IMPLEMENTATION_TYPE_AXIS == 2) ? 0 :
-                                         (C_IMPLEMENTATION_TYPE_AXIS == 11 || C_IMPLEMENTATION_TYPE_AXIS == 12) ? 2 : 5),
+        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_AXIS == 1  || C_IMPLEMENTATION_TYPE_AXIS == 11) ? 1 :
+                                         (C_IMPLEMENTATION_TYPE_AXIS == 2  || C_IMPLEMENTATION_TYPE_AXIS == 12) ? 2 : 4),
+        .C_IMPLEMENTATION_TYPE		((C_IMPLEMENTATION_TYPE_AXIS == 1  || C_IMPLEMENTATION_TYPE_AXIS == 2) ? 0 :
+                                         (C_IMPLEMENTATION_TYPE_AXIS == 11 || C_IMPLEMENTATION_TYPE_AXIS == 12) ? 2 : 6),
         .C_PRELOAD_REGS			(1), // always FWFT for AXI
         .C_PRELOAD_LATENCY		(0), // always FWFT for AXI
         .C_DIN_WIDTH			(C_DIN_WIDTH_AXIS),
@@ -1370,13 +1382,15 @@ module fifo_generator_v11_0
         .WR_DATA_COUNT            (AXIS_WR_DATA_COUNT),
         .SBITERR                  (AXIS_SBITERR),
         .DBITERR                  (AXIS_DBITERR),
+        .wr_rst_busy              (wr_rst_busy_axis),
+        .rd_rst_busy              (rd_rst_busy_axis),
   
         .BACKUP                   (BACKUP),
         .BACKUP_MARKER            (BACKUP_MARKER),
         .INT_CLK                  (INT_CLK)
        );
 
-    assign axis_s_axis_tready    = ~axis_full;
+    assign axis_s_axis_tready    = (IS_8SERIES == 0) ? ~axis_full : (C_IMPLEMENTATION_TYPE_AXIS == 5 || C_IMPLEMENTATION_TYPE_AXIS == 13) ? ~(axis_full | wr_rst_busy_axis) : ~axis_full;
     assign axis_m_axis_tvalid    = (C_APPLICATION_TYPE_AXIS != 1) ? ~axis_empty : ~axis_empty & axis_pkt_read;
     assign S_AXIS_TREADY         = axis_s_axis_tready;
     assign M_AXIS_TVALID         = axis_m_axis_tvalid;
@@ -1635,8 +1649,10 @@ module fifo_generator_v11_0
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
-        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_WACH == 1 || C_IMPLEMENTATION_TYPE_WACH == 11) ? 1 : 2),
-        .C_IMPLEMENTATION_TYPE		(C_IMPLEMENTATION_TYPE_WACH <= 6 ? 0 : 2), // CCBI
+        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_WACH == 1  || C_IMPLEMENTATION_TYPE_WACH == 11) ? 1 :
+                                         (C_IMPLEMENTATION_TYPE_WACH == 2  || C_IMPLEMENTATION_TYPE_WACH == 12) ? 2 : 4),
+        .C_IMPLEMENTATION_TYPE		((C_IMPLEMENTATION_TYPE_WACH == 1  || C_IMPLEMENTATION_TYPE_WACH == 2) ? 0 :
+                                         (C_IMPLEMENTATION_TYPE_WACH == 11 || C_IMPLEMENTATION_TYPE_WACH == 12) ? 2 : 6),
         .C_PRELOAD_REGS			(1), // always FWFT for AXI
         .C_PRELOAD_LATENCY		(0), // always FWFT for AXI
         .C_DIN_WIDTH			(C_DIN_WIDTH_WACH),
@@ -1739,13 +1755,15 @@ module fifo_generator_v11_0
         .WR_DATA_COUNT            (AXI_AW_WR_DATA_COUNT),
         .SBITERR                  (AXI_AW_SBITERR),
         .DBITERR                  (AXI_AW_DBITERR),
+        .wr_rst_busy              (wr_rst_busy_wach),
+        .rd_rst_busy              (rd_rst_busy_wach),
   
         .BACKUP                   (BACKUP),
         .BACKUP_MARKER            (BACKUP_MARKER),
         .INT_CLK                  (INT_CLK)
        );
 
-    assign wach_s_axi_awready   = ~wach_full;
+    assign wach_s_axi_awready    = (IS_8SERIES == 0) ? ~wach_full : (C_IMPLEMENTATION_TYPE_WACH == 5 || C_IMPLEMENTATION_TYPE_WACH == 13) ? ~(wach_full | wr_rst_busy_wach) : ~wach_full;
     assign wach_m_axi_awvalid   = ~wach_empty;
     assign S_AXI_AWREADY        = wach_s_axi_awready;
 
@@ -1848,8 +1866,10 @@ module fifo_generator_v11_0
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
-        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_WDCH == 1 || C_IMPLEMENTATION_TYPE_WDCH == 11) ? 1 : 2),
-        .C_IMPLEMENTATION_TYPE		(C_IMPLEMENTATION_TYPE_WDCH <= 6 ? 0 : 2), // CCBI
+        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_WDCH == 1  || C_IMPLEMENTATION_TYPE_WDCH == 11) ? 1 :
+                                         (C_IMPLEMENTATION_TYPE_WDCH == 2  || C_IMPLEMENTATION_TYPE_WDCH == 12) ? 2 : 4),
+        .C_IMPLEMENTATION_TYPE		((C_IMPLEMENTATION_TYPE_WDCH == 1  || C_IMPLEMENTATION_TYPE_WDCH == 2) ? 0 :
+                                         (C_IMPLEMENTATION_TYPE_WDCH == 11 || C_IMPLEMENTATION_TYPE_WDCH == 12) ? 2 : 6),
         .C_PRELOAD_REGS			(1), // always FWFT for AXI
         .C_PRELOAD_LATENCY		(0), // always FWFT for AXI
         .C_DIN_WIDTH			(C_DIN_WIDTH_WDCH),
@@ -1952,13 +1972,15 @@ module fifo_generator_v11_0
         .WR_DATA_COUNT            (AXI_W_WR_DATA_COUNT),
         .SBITERR                  (AXI_W_SBITERR),
         .DBITERR                  (AXI_W_DBITERR),
+        .wr_rst_busy              (wr_rst_busy_wdch),
+        .rd_rst_busy              (rd_rst_busy_wdch),
   
         .BACKUP                   (BACKUP),
         .BACKUP_MARKER            (BACKUP_MARKER),
         .INT_CLK                  (INT_CLK)
        );
 
-    assign wdch_s_axi_wready = ~wdch_full;
+    assign wdch_s_axi_wready     = (IS_8SERIES == 0) ? ~wdch_full : (C_IMPLEMENTATION_TYPE_WDCH == 5 || C_IMPLEMENTATION_TYPE_WDCH == 13) ? ~(wdch_full | wr_rst_busy_wdch) : ~wdch_full;
     assign wdch_m_axi_wvalid = ~wdch_empty;
     assign S_AXI_WREADY      = wdch_s_axi_wready;
     assign M_AXI_WVALID      = wdch_m_axi_wvalid;
@@ -2008,8 +2030,10 @@ module fifo_generator_v11_0
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
-        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_WRCH == 1 || C_IMPLEMENTATION_TYPE_WRCH == 11) ? 1 : 2),
-        .C_IMPLEMENTATION_TYPE		(C_IMPLEMENTATION_TYPE_WRCH <= 6 ? 0 : 2), // CCBI
+        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_WRCH == 1  || C_IMPLEMENTATION_TYPE_WRCH == 11) ? 1 :
+                                         (C_IMPLEMENTATION_TYPE_WRCH == 2  || C_IMPLEMENTATION_TYPE_WRCH == 12) ? 2 : 4),
+        .C_IMPLEMENTATION_TYPE		((C_IMPLEMENTATION_TYPE_WRCH == 1  || C_IMPLEMENTATION_TYPE_WRCH == 2) ? 0 :
+                                         (C_IMPLEMENTATION_TYPE_WRCH == 11 || C_IMPLEMENTATION_TYPE_WRCH == 12) ? 2 : 6),
         .C_PRELOAD_REGS			(1), // always FWFT for AXI
         .C_PRELOAD_LATENCY		(0), // always FWFT for AXI
         .C_DIN_WIDTH			(C_DIN_WIDTH_WRCH),
@@ -2112,6 +2136,8 @@ module fifo_generator_v11_0
         .WR_DATA_COUNT            (AXI_B_WR_DATA_COUNT),
         .SBITERR                  (AXI_B_SBITERR),
         .DBITERR                  (AXI_B_DBITERR),
+        .wr_rst_busy              (wr_rst_busy_wrch),
+        .rd_rst_busy              (rd_rst_busy_wrch),
   
         .BACKUP                   (BACKUP),
         .BACKUP_MARKER            (BACKUP_MARKER),
@@ -2119,7 +2145,7 @@ module fifo_generator_v11_0
        );
 
     assign wrch_s_axi_bvalid = ~wrch_empty;
-    assign wrch_m_axi_bready = ~wrch_full;
+    assign wrch_m_axi_bready     = (IS_8SERIES == 0) ? ~wrch_full : (C_IMPLEMENTATION_TYPE_WRCH == 5 || C_IMPLEMENTATION_TYPE_WRCH == 13) ? ~(wrch_full | wr_rst_busy_wrch) : ~wrch_full;
     assign S_AXI_BVALID      = wrch_s_axi_bvalid;
     assign M_AXI_BREADY      = wrch_m_axi_bready;
 
@@ -2381,8 +2407,10 @@ module fifo_generator_v11_0
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
-        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_RACH == 1 || C_IMPLEMENTATION_TYPE_RACH == 11) ? 1 : 2),
-        .C_IMPLEMENTATION_TYPE		(C_IMPLEMENTATION_TYPE_RACH <= 6 ? 0 : 2), // CCBI
+        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_RACH == 1  || C_IMPLEMENTATION_TYPE_RACH == 11) ? 1 :
+                                         (C_IMPLEMENTATION_TYPE_RACH == 2  || C_IMPLEMENTATION_TYPE_RACH == 12) ? 2 : 4),
+        .C_IMPLEMENTATION_TYPE		((C_IMPLEMENTATION_TYPE_RACH == 1  || C_IMPLEMENTATION_TYPE_RACH == 2) ? 0 :
+                                         (C_IMPLEMENTATION_TYPE_RACH == 11 || C_IMPLEMENTATION_TYPE_RACH == 12) ? 2 : 6),
         .C_PRELOAD_REGS			(1), // always FWFT for AXI
         .C_PRELOAD_LATENCY		(0), // always FWFT for AXI
         .C_DIN_WIDTH			(C_DIN_WIDTH_RACH),
@@ -2485,13 +2513,15 @@ module fifo_generator_v11_0
         .WR_DATA_COUNT            (AXI_AR_WR_DATA_COUNT),
         .SBITERR                  (AXI_AR_SBITERR),
         .DBITERR                  (AXI_AR_DBITERR),
+        .wr_rst_busy              (wr_rst_busy_rach),
+        .rd_rst_busy              (rd_rst_busy_rach),
   
         .BACKUP                   (BACKUP),
         .BACKUP_MARKER            (BACKUP_MARKER),
         .INT_CLK                  (INT_CLK)
        );
 
-    assign rach_s_axi_arready = ~rach_full;
+    assign rach_s_axi_arready    = (IS_8SERIES == 0) ? ~rach_full : (C_IMPLEMENTATION_TYPE_RACH == 5 || C_IMPLEMENTATION_TYPE_RACH == 13) ? ~(rach_full | wr_rst_busy_rach) : ~rach_full;
     assign rach_m_axi_arvalid = ~rach_empty;
     assign S_AXI_ARREADY      = rach_s_axi_arready;
 
@@ -2607,8 +2637,10 @@ module fifo_generator_v11_0
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
-        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_RDCH == 1 || C_IMPLEMENTATION_TYPE_RDCH == 11) ? 1 : 2),
-        .C_IMPLEMENTATION_TYPE		(C_IMPLEMENTATION_TYPE_RDCH <= 6 ? 0 : 2), // CCBI
+        .C_MEMORY_TYPE			((C_IMPLEMENTATION_TYPE_RDCH == 1  || C_IMPLEMENTATION_TYPE_RDCH == 11) ? 1 :
+                                         (C_IMPLEMENTATION_TYPE_RDCH == 2  || C_IMPLEMENTATION_TYPE_RDCH == 12) ? 2 : 4),
+        .C_IMPLEMENTATION_TYPE		((C_IMPLEMENTATION_TYPE_RDCH == 1  || C_IMPLEMENTATION_TYPE_RDCH == 2) ? 0 :
+                                         (C_IMPLEMENTATION_TYPE_RDCH == 11 || C_IMPLEMENTATION_TYPE_RDCH == 12) ? 2 : 6),
         .C_PRELOAD_REGS			(1), // always FWFT for AXI
         .C_PRELOAD_LATENCY		(0), // always FWFT for AXI
         .C_DIN_WIDTH			(C_DIN_WIDTH_RDCH),
@@ -2711,6 +2743,8 @@ module fifo_generator_v11_0
         .WR_DATA_COUNT            (AXI_R_WR_DATA_COUNT),
         .SBITERR                  (AXI_R_SBITERR),
         .DBITERR                  (AXI_R_DBITERR),
+        .wr_rst_busy              (wr_rst_busy_rdch),
+        .rd_rst_busy              (rd_rst_busy_rdch),
   
         .BACKUP                   (BACKUP),
         .BACKUP_MARKER            (BACKUP_MARKER),
@@ -2718,7 +2752,7 @@ module fifo_generator_v11_0
        );
 
     assign rdch_s_axi_rvalid = ~rdch_empty;
-    assign rdch_m_axi_rready = ~rdch_full;
+    assign rdch_m_axi_rready     = (IS_8SERIES == 0) ? ~rdch_full : (C_IMPLEMENTATION_TYPE_RDCH == 5 || C_IMPLEMENTATION_TYPE_RDCH == 13) ? ~(rdch_full | wr_rst_busy_rdch) : ~rdch_full;
     assign S_AXI_RVALID      = rdch_s_axi_rvalid;
     assign M_AXI_RREADY      = rdch_m_axi_rready;
 
@@ -2985,7 +3019,7 @@ module FIFO_GENERATOR_v11_0_CONV_VER
     parameter  C_DOUT_RST_VAL                 = "",
     parameter  C_DOUT_WIDTH                   = 8,
     parameter  C_ENABLE_RLOCS                 = 0,
-    parameter  C_FAMILY                       = "virtex6", //Not allowed in Verilog model
+    parameter  C_FAMILY                       = "virtex7", //Not allowed in Verilog model
     parameter  C_FULL_FLAGS_RST_VAL           = 1,
     parameter  C_HAS_ALMOST_EMPTY             = 0,
     parameter  C_HAS_ALMOST_FULL              = 0,
@@ -3081,7 +3115,9 @@ module FIFO_GENERATOR_v11_0_CONV_VER
    output                              PROG_FULL,
    output                              PROG_EMPTY,
    output                              SBITERR,
-   output                              DBITERR
+   output                              DBITERR,
+   output                              wr_rst_busy,
+   output                              rd_rst_busy
   );
 
 /*
@@ -3259,18 +3295,35 @@ module FIFO_GENERATOR_v11_0_CONV_VER
   // 3 = Low Latency Asynchronous FIFO
   localparam C_VERILOG_IMPL = (C_FIFO_TYPE == 3) ? 2 :
                               (C_IMPLEMENTATION_TYPE == 2) ? 1 : 0;
+  localparam IS_8SERIES         = (C_FAMILY == "virtex8" || C_FAMILY == "kintex8") ? 1 : 0;
 
   //Internal reset signals
   reg                                rd_rst_asreg    = 0;
   reg                                rd_rst_asreg_d1 = 0;
   reg                                rd_rst_asreg_d2 = 0;
+  reg                                rd_rst_asreg_d3 = 0;
   reg                                rd_rst_reg      = 0;
   wire                               rd_rst_comb;
+  reg                                wr_rst_d0       = 0;
+  reg                                wr_rst_d1       = 0;
+  reg                                wr_rst_d2       = 0;
+  reg                                rd_rst_d0       = 0;
   reg                                rd_rst_d1       = 0;
+  reg                                rd_rst_d2       = 0;
+  reg                                rd_rst_d3       = 0;
+  reg                                wrrst_done      = 0;
+  reg                                rdrst_done      = 0;
   reg                                wr_rst_asreg    = 0;
   reg                                wr_rst_asreg_d1 = 0;
   reg                                wr_rst_asreg_d2 = 0;
+  reg                                wr_rst_asreg_d3 = 0;
+  reg                                rd_rst_wr_d0    = 0;
+  reg                                rd_rst_wr_d1    = 0;
+  reg                                rd_rst_wr_d2    = 0;
   reg                                wr_rst_reg      = 0;
+  reg                                rst_active_i    = 1'b1;
+  reg                                rst_delayed_d1  = 1'b1;
+  reg                                rst_delayed_d2  = 1'b1;
   wire                               wr_rst_comb;
   wire                               wr_rst_i;
   wire                               rd_rst_i;
@@ -3350,6 +3403,7 @@ case (C_VERILOG_IMPL)
   //Common Clock Behavioral Model
   fifo_generator_v11_0_bhv_ver_ss
   #(
+    .C_FAMILY                            (C_FAMILY),
     .C_DATA_COUNT_WIDTH                  (C_DATA_COUNT_WIDTH),            
     .C_DIN_WIDTH                         (C_DIN_WIDTH),                   
     .C_DOUT_RST_VAL                      (C_DOUT_RST_VAL),                
@@ -3432,6 +3486,7 @@ end
   //Independent Clocks Behavioral Model
   fifo_generator_v11_0_bhv_ver_as
   #(
+    .C_FAMILY                          (C_FAMILY),
     .C_DATA_COUNT_WIDTH                (C_DATA_COUNT_WIDTH),
     .C_DIN_WIDTH                       (C_DIN_WIDTH),
     .C_DOUT_RST_VAL                    (C_DOUT_RST_VAL),
@@ -3550,6 +3605,7 @@ default : begin : block1
   //Independent Clocks Behavioral Model
   fifo_generator_v11_0_bhv_ver_as
   #(
+    .C_FAMILY                          (C_FAMILY),
     .C_DATA_COUNT_WIDTH                (C_DATA_COUNT_WIDTH),
     .C_DIN_WIDTH                       (C_DIN_WIDTH),
     .C_DOUT_RST_VAL                    (C_DOUT_RST_VAL),
@@ -4185,10 +4241,15 @@ endgenerate
           rst_reg    <= 1'b0;
         end
         assign rst_2_sync = wr_rst_delayed;
-      end else if (C_HAS_RST == 1 && C_COMMON_CLOCK == 0) begin : gic_rst
+        assign wr_rst_busy = 1'b0;
+        assign rd_rst_busy = 1'b0;
+      // end gnrst_sync
+      end else if (IS_8SERIES == 0 && C_HAS_RST == 1 && C_COMMON_CLOCK == 0) begin : g7s_ic_rst
         assign wr_rst_comb      = !wr_rst_asreg_d2 && wr_rst_asreg;
         assign rd_rst_comb      = !rd_rst_asreg_d2 && rd_rst_asreg;
         assign rst_2_sync = rst_delayed;
+        assign wr_rst_busy = 1'b0;
+        assign rd_rst_busy = 1'b0;
 
         always @(posedge WR_CLK or posedge rst_delayed) begin
           if (rst_delayed == 1'b1) begin
@@ -4232,42 +4293,127 @@ endgenerate
           rd_rst_asreg_d2 <= #`TCQ rd_rst_asreg_d1;
         end
         
-         always @(posedge RD_CLK or posedge rd_rst_comb) begin
+        always @(posedge RD_CLK or posedge rd_rst_comb) begin
           if (rd_rst_comb == 1'b1) begin
             rd_rst_reg <= #`TCQ 1'b1;
           end else begin
             rd_rst_reg <= #`TCQ 1'b0;
           end    
         end   
-      end else if (C_HAS_RST == 1 && C_COMMON_CLOCK == 1) begin : gcc_rst
+      // end g7s_ic_rst
+      end else if (IS_8SERIES == 0 && C_HAS_RST == 1 && C_COMMON_CLOCK == 1) begin : g7s_cc_rst
         assign rst_comb      = !rst_asreg_d2 && rst_asreg;     
         assign rst_2_sync = rst_delayed;
+        assign wr_rst_busy = 1'b0;
+        assign rd_rst_busy = 1'b0;
  
         always @(posedge CLK or posedge rst_delayed) begin
-           if (rst_delayed == 1'b1) begin
-             rst_asreg <= #`TCQ 1'b1;
-           end else begin
-             if (rst_asreg_d1 == 1'b1) begin
-               rst_asreg <= #`TCQ 1'b0;
-             end else begin
-               rst_asreg <= #`TCQ rst_asreg;
-             end
-           end    
+          if (rst_delayed == 1'b1) begin
+            rst_asreg <= #`TCQ 1'b1;
+          end else begin
+            if (rst_asreg_d1 == 1'b1) begin
+              rst_asreg <= #`TCQ 1'b0;
+            end else begin
+              rst_asreg <= #`TCQ rst_asreg;
+            end
+          end    
         end   
         
         always @(posedge CLK) begin
-           rst_asreg_d1 <= #`TCQ rst_asreg;
-           rst_asreg_d2 <= #`TCQ rst_asreg_d1;
+          rst_asreg_d1 <= #`TCQ rst_asreg;
+          rst_asreg_d2 <= #`TCQ rst_asreg_d1;
         end
-      
+
         always @(posedge CLK or posedge rst_comb) begin
-           if (rst_comb == 1'b1) begin
+          if (rst_comb == 1'b1) begin
+            rst_reg <= #`TCQ 1'b1;
+          end else begin
+            rst_reg <= #`TCQ 1'b0;
+          end    
+        end   
+      // end g7s_cc_rst
+      end else if (IS_8SERIES == 1 && C_HAS_RST == 1 && C_COMMON_CLOCK == 0) begin : g8s_ic_rst
+        assign rst_2_sync     = rst_delayed;
+        assign rst_active     = wr_rst_reg | wr_rst_d2 | rd_rst_wr_d1;
+        assign wr_rst_busy    = (C_MEMORY_TYPE != 4) ? wr_rst_reg : rst_active_i;
+        assign rd_rst_busy    = rd_rst_reg;
+        always @* rst_full_ff_i  <= wr_rst_reg;
+        always @* rst_full_gen_i <= C_FULL_FLAGS_RST_VAL == 1 ? rst_active_i : 0;
+
+        always @(posedge WR_CLK) begin
+          rst_delayed_d1 <= #`TCQ rst_delayed;
+          rst_delayed_d2 <= #`TCQ rst_delayed_d1;
+          if (wr_rst_reg || rst_delayed_d2) begin
+            rst_active_i <= #`TCQ 1'b1;
+          end else begin
+            rst_active_i <= #`TCQ rst_active;
+          end    
+        end   
+
+        always @(posedge WR_CLK) begin
+          if (~rst_active && rst_delayed) begin
+            wr_rst_reg <= #`TCQ 1'b1;
+          end else if (wr_rst_reg && wrrst_done && rdrst_done) begin
+            wr_rst_reg <= #`TCQ 1'b0;
+          end else begin
+            wr_rst_reg <= #`TCQ wr_rst_reg;
+          end
+        end   
+      
+        always @(posedge WR_CLK) begin
+          wr_rst_d0       <= #`TCQ wr_rst_reg;
+          wr_rst_d1       <= #`TCQ wr_rst_d0;
+          wr_rst_d2       <= #`TCQ wr_rst_d1;
+          rd_rst_wr_d0    <= #`TCQ rd_rst_d3;
+          rd_rst_wr_d1    <= #`TCQ rd_rst_wr_d0;
+          rd_rst_wr_d2    <= #`TCQ rd_rst_wr_d1;
+          if (~wr_rst_d2 && wr_rst_d1) begin
+            wrrst_done   <= #`TCQ 1'b1;
+          end else if (wrrst_done && rdrst_done) begin
+            wrrst_done   <= #`TCQ 1'b0;
+          end    
+          if (~rd_rst_wr_d2 && rd_rst_wr_d1) begin
+            rdrst_done   <= #`TCQ 1'b1;
+          end else if (wrrst_done && rdrst_done) begin
+            rdrst_done   <= #`TCQ 1'b0;
+          end    
+        end
+
+        always @(posedge RD_CLK) begin
+          rd_rst_d0   <= #`TCQ wr_rst_reg;
+          rd_rst_reg  <= #`TCQ rd_rst_d0;
+          rd_rst_d1   <= #`TCQ rd_rst_reg;
+          rd_rst_d2   <= #`TCQ rd_rst_d1;
+          rd_rst_d3   <= #`TCQ rd_rst_d2;
+        end
+      // end g8s_ic_rst
+      end else if (IS_8SERIES == 1 && C_HAS_RST == 1 && C_COMMON_CLOCK == 1) begin : g8s_cc_rst
+        assign rst_2_sync = rst_delayed;
+        assign wr_rst_busy = (C_MEMORY_TYPE != 4) ? wr_rst_reg : rst_active_i;
+        assign rd_rst_busy = rst_reg;
+        always @* rst_full_ff_i  <= rst_reg;
+        always @* rst_full_gen_i <= C_FULL_FLAGS_RST_VAL == 1 ? rst_active_i : 0;
+
+        always @(posedge CLK) begin
+          rst_delayed_d1 <= #`TCQ rst_delayed;
+          rst_delayed_d2 <= #`TCQ rst_delayed_d1;
+          if (rst_reg || rst_delayed_d2) begin
+            rst_active_i <= #`TCQ 1'b1;
+          end else begin
+            rst_active_i <= #`TCQ rst_reg;
+          end    
+        end   
+        always @(posedge CLK) begin
+           if (~rst_reg && rst_delayed) begin
              rst_reg <= #`TCQ 1'b1;
-           end else begin
+           end else if (rst_reg) begin
              rst_reg <= #`TCQ 1'b0;
+           end else begin
+             rst_reg <= #`TCQ rst_reg;
            end    
         end   
       end
+      // end g8s_cc_rst
   endgenerate 
 
   reg rst_d1 = 1'b0;
@@ -4275,7 +4421,7 @@ endgenerate
   reg rst_d3 = 1'b0;
   reg rst_d4 = 1'b0;
   generate
-    if ((C_HAS_RST == 1 || C_HAS_SRST == 1 || C_ENABLE_RST_SYNC == 0) && C_FULL_FLAGS_RST_VAL == 1) begin : grstd1
+    if ((C_HAS_RST == 1 || C_HAS_SRST == 1 || C_ENABLE_RST_SYNC == 0) && C_FULL_FLAGS_RST_VAL == 1 && IS_8SERIES == 0) begin : grstd1
     // RST_FULL_GEN replaces the reset falling edge detection used to de-assert
     // FULL, ALMOST_FULL & PROG_FULL flags if C_FULL_FLAGS_RST_VAL = 1.
 
@@ -4306,10 +4452,10 @@ endgenerate
       always @* rst_full_ff_i  <= (C_HAS_SRST == 0) ? rst_d2 : 1'b0 ;
       always @* rst_full_gen_i <= rst_d4;
 
-    end else if ((C_HAS_RST == 1 || C_HAS_SRST == 1 || C_ENABLE_RST_SYNC == 0) && C_FULL_FLAGS_RST_VAL == 0) begin : gnrst_full
+    end else if ((C_HAS_RST == 1 || C_HAS_SRST == 1 || C_ENABLE_RST_SYNC == 0) && C_FULL_FLAGS_RST_VAL == 0 && IS_8SERIES == 0) begin : gnrst_full
       always @* rst_full_ff_i  <= (C_COMMON_CLOCK == 0) ? wr_rst_i : rst_i;
     end
-  endgenerate
+  endgenerate // grstd1
 
 endmodule //FIFO_GENERATOR_v11_0_CONV_VER
 
@@ -4341,6 +4487,7 @@ module fifo_generator_v11_0_bhv_ver_as
    * Declare user parameters and their defaults
    ***************************************************************************/
   #(
+    parameter  C_FAMILY                       = "virtex7",
     parameter  C_DATA_COUNT_WIDTH             = 2,
     parameter  C_DIN_WIDTH                    = 8,
     parameter  C_DOUT_RST_VAL                 = "",
@@ -4435,6 +4582,7 @@ module fifo_generator_v11_0_bhv_ver_as
    /***************************************************************************
     * Parameters used as constants
     **************************************************************************/
+   localparam IS_8SERIES         = (C_FAMILY == "virtex8" || C_FAMILY == "kintex8") ? 1 : 0;
    //When RST is present, set FULL reset value to '1'.
    //If core has no RST, make sure FULL powers-on as '0'.
    localparam C_DEPTH_RATIO_WR =  
@@ -4602,9 +4750,7 @@ module fifo_generator_v11_0_bhv_ver_as
        if (RST_FULL_FF) begin
          FULL             <= #`TCQ C_FULL_FLAGS_RST_VAL;
          ALMOST_FULL      <= #`TCQ C_FULL_FLAGS_RST_VAL;
-         wr_data_count_int <= #`TCQ {C_WR_DATA_COUNT_WIDTH{1'b0}};
        end else begin
-         wr_data_count_int <= #`TCQ {(wr_pntr[C_WR_PNTR_WIDTH-1:0] - adj_rd_pntr_wr[C_WR_PNTR_WIDTH-1:0]), 1'b0};
          if (full_int) begin
            FULL           <= #`TCQ 1'b1;
          end else begin
@@ -4619,6 +4765,14 @@ module fifo_generator_v11_0_bhv_ver_as
            else
              ALMOST_FULL  <= #`TCQ 1'b0;
          end
+       end // wr_rst_i
+     end // always
+   always @ (posedge WR_CLK or posedge wr_rst_i)
+     begin
+       if (wr_rst_i) begin
+         wr_data_count_int <= #`TCQ {C_WR_DATA_COUNT_WIDTH{1'b0}};
+       end else begin
+         wr_data_count_int <= #`TCQ {(wr_pntr[C_WR_PNTR_WIDTH-1:0] - adj_rd_pntr_wr[C_WR_PNTR_WIDTH-1:0]), 1'b0};
        end // wr_rst_i
      end // always
 
@@ -5281,19 +5435,27 @@ module fifo_generator_v11_0_bhv_ver_as
     *  (handled separately because they don't support rst)
     **************************************************************************/
    generate
-      if (C_HAS_OVERFLOW==1) begin : blockOF2
-   always @(posedge WR_CLK) begin
-     ideal_overflow    <= #`TCQ WR_EN & FULL;
-   end
-      end
+     if (C_HAS_OVERFLOW == 1 && IS_8SERIES == 0) begin : g7s_ovflw
+       always @(posedge WR_CLK) begin
+         ideal_overflow    <= #`TCQ WR_EN & FULL;
+       end
+     end else if (C_HAS_OVERFLOW == 1 && IS_8SERIES == 1) begin : g8s_ovflw
+       always @(posedge WR_CLK) begin
+         ideal_overflow    <= #`TCQ WR_EN & (FULL | wr_rst_i);
+       end
+     end
    endgenerate
 
    generate
-      if (C_HAS_UNDERFLOW==1) begin : blockUF2
-   always @(posedge RD_CLK) begin
-     ideal_underflow    <= #`TCQ EMPTY & RD_EN;
-   end
-      end
+     if (C_HAS_UNDERFLOW == 1 && IS_8SERIES == 0) begin : g7s_unflw
+       always @(posedge RD_CLK) begin
+         ideal_underflow    <= #`TCQ EMPTY & RD_EN;
+       end
+     end else if (C_HAS_UNDERFLOW == 1 && IS_8SERIES == 1) begin : g8s_unflw
+       always @(posedge RD_CLK) begin
+         ideal_underflow    <= #`TCQ (rd_rst_i | EMPTY) & RD_EN;
+       end
+     end
    endgenerate
 
    /**************************************************************************
@@ -5506,16 +5668,24 @@ module fifo_generator_v11_0_bhv_ver_as
      assign pf_thr_negate_val = C_PROG_FULL_THRESH_NEGATE_VAL;
    end endgenerate
 
-   always @(posedge WR_CLK or posedge RST_FULL_FF) begin : gen_pf
+   always @(posedge WR_CLK or posedge wr_rst_i) begin
 
-     if (RST_FULL_FF == 1'b1) begin
+     if (wr_rst_i == 1'b1) begin
        diff_pntr         <= 0;
-       ideal_prog_full   <= #`TCQ C_FULL_FLAGS_RST_VAL;
      end else begin
        if (ram_wr_en)
          diff_pntr <= #`TCQ (wr_pntr - adj_rd_pntr_wr + 2'h1);
        else if (!ram_wr_en)
          diff_pntr <= #`TCQ (wr_pntr - adj_rd_pntr_wr);
+    end
+  end
+
+
+   always @(posedge WR_CLK or posedge RST_FULL_FF) begin : gen_pf
+
+     if (RST_FULL_FF == 1'b1) begin
+       ideal_prog_full   <= #`TCQ C_FULL_FLAGS_RST_VAL;
+     end else begin
 
        if (RST_FULL_GEN)
          ideal_prog_full   <= #`TCQ 0;
@@ -6147,6 +6317,7 @@ module fifo_generator_v11_0_bhv_ver_ss
    * Declare user parameters and their defaults
    *************************************************************************/
   #(
+    parameter  C_FAMILY                       = "virtex7",
     parameter  C_DATA_COUNT_WIDTH             = 2,
     parameter  C_DIN_WIDTH                    = 8,
     parameter  C_DOUT_RST_VAL                 = "",
@@ -6235,6 +6406,7 @@ module fifo_generator_v11_0_bhv_ver_ss
    /***************************************************************************
     * Parameters used as constants
     **************************************************************************/
+   localparam IS_8SERIES         = (C_FAMILY == "virtex8" || C_FAMILY == "kintex8") ? 1 : 0;
    //When RST is present, set FULL reset value to '1'.
    //If core has no RST, make sure FULL powers-on as '0'.
    //The reset value assignments for FULL, ALMOST_FULL, and PROG_FULL are not 
@@ -6550,15 +6722,23 @@ module fifo_generator_v11_0_bhv_ver_ss
     * Overflow and Underflow Flag calculation
     *  (handled separately because they don't support rst)
     **************************************************************************/
-   generate if (C_HAS_OVERFLOW==1) begin : blockOF20
+   generate if (C_HAS_OVERFLOW == 1 && IS_8SERIES == 0) begin : g7s_ovflw
      always @(posedge CLK) begin
        ideal_overflow    <= #`TCQ WR_EN & full_i;
      end
+   end else if (C_HAS_OVERFLOW == 1 && IS_8SERIES == 1) begin : g8s_ovflw
+     always @(posedge CLK) begin
+       ideal_overflow    <= #`TCQ WR_EN & (rst_i | full_i);
+     end
    end endgenerate // blockOF20
  
-   generate if (C_HAS_UNDERFLOW==1) begin : blockUF20
+   generate if (C_HAS_UNDERFLOW == 1 && IS_8SERIES == 0) begin : g7s_unflw
      always @(posedge CLK) begin
        ideal_underflow   <= #`TCQ empty_i & RD_EN;
+     end
+   end else if (C_HAS_UNDERFLOW == 1 && IS_8SERIES == 1) begin : g8s_unflw
+     always @(posedge CLK) begin
+       ideal_underflow   <= #`TCQ (rst_i | empty_i) & RD_EN;
      end
    end endgenerate // blockUF20
 
@@ -6584,8 +6764,8 @@ module fifo_generator_v11_0_bhv_ver_ss
    //-----------------------------------------------------------------------------
    // Write and Read pointer generation
    //-----------------------------------------------------------------------------
-   always @(posedge CLK or posedge RST_FULL_FF) begin
-     if (RST_FULL_FF) begin
+   always @(posedge CLK or posedge rst_i) begin
+     if (rst_i) begin
        wr_pntr         <= 0;
        rd_pntr         <= 0;
      end else begin
@@ -6627,7 +6807,7 @@ module fifo_generator_v11_0_bhv_ver_ss
    generate if (C_FIFO_TYPE < 2 && C_MEMORY_TYPE < 2) begin : gnll_bm_dout
      always@ (read_allow or rd_pntr or dout_tmp_q) dout_tmp <= (read_allow) ? memory[rd_pntr] : dout_tmp_q;
      always @(posedge CLK) begin
-       if (RST_FULL_FF || srst_i) begin
+       if (rst_i || srst_i) begin
          if (C_USE_DOUT_RST == 1)
            ideal_dout <= #`TCQ dout_reset_val;
        end else begin
@@ -6658,8 +6838,8 @@ module fifo_generator_v11_0_bhv_ver_ss
    // synchronous for Non-low latency FIFO
    //-----------------------------------------------------------------------------
    generate if (C_FIFO_TYPE < 2 && (C_MEMORY_TYPE == 2 || C_MEMORY_TYPE == 3)) begin : gnll_dm_dout
-     always @(posedge CLK or posedge RST_FULL_FF) begin
-       if (RST_FULL_FF) begin
+     always @(posedge CLK or posedge rst_i) begin
+       if (rst_i) begin
          if (C_USE_DOUT_RST == 1)
            ideal_dout <= #`TCQ dout_reset_val;
        end else begin
@@ -6692,8 +6872,8 @@ module fifo_generator_v11_0_bhv_ver_ss
    // Generate diff_pntr_pe for PROG_EMPTY generation
    //-----------------------------------------------------------------------------
    generate if (C_PROG_FULL_TYPE != 0 || C_PROG_EMPTY_TYPE != 0) begin : reg_write_allow
-     always @(posedge CLK or posedge RST_FULL_FF) begin
-       if (RST_FULL_FF) begin
+     always @(posedge CLK ) begin
+       if (rst_i) begin
          write_allow_q   <= 1'b0;
          read_allow_q    <= 1'b0;
          diff_pntr       <= 0;
@@ -6763,8 +6943,8 @@ module fifo_generator_v11_0_bhv_ver_ss
    assign leaving_empty  = (ecomp0 & write_allow);
    assign ram_empty_comb = going_empty | (~leaving_empty & empty_i);
 
-   always @(posedge CLK or posedge RST_FULL_FF) begin
-     if (RST_FULL_FF)
+   always @(posedge CLK or posedge rst_i) begin
+     if (rst_i)
        empty_i  <= 1'b1;
      else if (srst_i)
        empty_i  <= #`TCQ 1'b1;
@@ -6775,8 +6955,8 @@ module fifo_generator_v11_0_bhv_ver_ss
    //-----------------------------------------------------------------------------
    // Generate WR_ACK flag
    //-----------------------------------------------------------------------------
-   always @(posedge CLK or posedge RST_FULL_FF) begin
-     if (RST_FULL_FF)
+   always @(posedge CLK or posedge rst_i) begin
+     if (rst_i)
        ideal_wr_ack  <= 1'b0;
      else if (srst_i)
        ideal_wr_ack  <= #`TCQ 1'b0;
@@ -6789,8 +6969,8 @@ module fifo_generator_v11_0_bhv_ver_ss
    //-----------------------------------------------------------------------------
    // Generate VALID flag
    //-----------------------------------------------------------------------------
-   always @(posedge CLK or posedge RST_FULL_FF) begin
-     if (RST_FULL_FF)
+   always @(posedge CLK or posedge rst_i) begin
+     if (rst_i)
        ideal_valid  <= 1'b0;
      else if (srst_i)
        ideal_valid  <= #`TCQ 1'b0;
@@ -6842,8 +7022,8 @@ module fifo_generator_v11_0_bhv_ver_ss
      assign leaving_aempty  = (ecomp1 & write_allow & ~read_allow);
      assign ram_aempty_comb = going_aempty | (~leaving_aempty & almost_empty_i);
 
-     always @(posedge CLK or posedge RST_FULL_FF) begin
-       if (RST_FULL_FF)
+     always @(posedge CLK or posedge rst_i) begin
+       if (rst_i)
          almost_empty_i  <= 1'b1;
        else if (srst_i)
          almost_empty_i  <= #`TCQ 1'b1;
@@ -7593,7 +7773,7 @@ endmodule
 
 module fifo_generator_v11_0_axic_reg_slice #
   (
-   parameter C_FAMILY     = "virtex6",
+   parameter C_FAMILY     = "virtex7",
    parameter C_DATA_WIDTH = 32,
    parameter C_REG_CONFIG = 32'h00000000
    )

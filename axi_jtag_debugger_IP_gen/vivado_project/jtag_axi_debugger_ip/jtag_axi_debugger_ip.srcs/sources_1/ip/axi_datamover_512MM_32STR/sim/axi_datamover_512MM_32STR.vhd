@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2013 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2014 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:axi_datamover:5.1
--- IP Revision: 0
+-- IP Revision: 1
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -359,7 +359,7 @@ BEGIN
       C_S2MM_BTT_USED => 16,
       C_S2MM_SUPPORT_INDET_BTT => 1,
       C_S2MM_ADDR_PIPE_DEPTH => 4,
-      C_FAMILY => "virtex7",
+      C_FAMILY => "kintex7",
       C_MM2S_INCLUDE_SF => 1,
       C_S2MM_INCLUDE_SF => 0,
       C_ENABLE_CACHE_USER => 0,

@@ -505,7 +505,7 @@ assign rd_addr_w = {wr_data_addr, wr_data_offset};
   output [2*nCK_PER_CLK-1:0] raw_not_ecc;
   generate
     if (ECC_TEST == "OFF") assign raw_not_ecc = {2*nCK_PER_CLK{1'b0}};
-    else assign raw_not_ecc = wr_buf_out_data[WR_BUF_WIDTH-1-:4];
+    else assign raw_not_ecc = wr_buf_out_data[WR_BUF_WIDTH-1-:(2*nCK_PER_CLK)];
   endgenerate
 
 endmodule // ui_wr_data

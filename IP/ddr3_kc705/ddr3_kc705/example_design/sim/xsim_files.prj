@@ -128,6 +128,7 @@ verilog  work  ../../user_design/rtl/ecc/mig_7series_v2_0_ecc_buf.v
 verilog  work  ../../user_design/rtl/ecc/mig_7series_v2_0_ecc_dec_fix.v
 verilog  work  ../../user_design/rtl/ecc/mig_7series_v2_0_ecc_gen.v
 verilog  work  ../../user_design/rtl/ecc/mig_7series_v2_0_ecc_merge_enc.v
+verilog  work  ../../user_design/rtl/ecc/mig_7series_v2_0_fi_xor.v
 verilog  work  ../../user_design/rtl/ip_top/mig_7series_v2_0_mem_intfc.v
 verilog  work  ../../user_design/rtl/ip_top/mig_7series_v2_0_memc_ui_top_axi.v
 verilog  work  ../../user_design/rtl/phy/mig_7series_v2_0_ddr_byte_group_io.v
@@ -156,6 +157,7 @@ verilog  work  ../../user_design/rtl/ui/mig_7series_v2_0_ui_rd_data.v
 verilog  work  ../../user_design/rtl/ui/mig_7series_v2_0_ui_top.v
 verilog  work  ../../user_design/rtl/ui/mig_7series_v2_0_ui_wr_data.v
 verilog  work  ../../user_design/rtl/ddr3_kc705.v
+verilog  work  ../../user_design/rtl/ddr3_kc705_mig_sim.v
 verilog  work  $XILINX/verilog/src/glbl.v
 verilog  work  ./sim_tb_top.v
 verilog  work  ./wiredly.v

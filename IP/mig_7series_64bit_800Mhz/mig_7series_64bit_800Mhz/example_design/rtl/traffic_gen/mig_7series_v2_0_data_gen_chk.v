@@ -146,7 +146,7 @@ module mig_7series_v2_0_data_gen_chk # (
   always @(posedge clk)
     if (wrd_cntr_rst)
       wrd_cntr <= 8'h00;
-    else if (rdata_vld & !msmatch_err)
+    else if (rdata_vld)
       wrd_cntr <= wrd_cntr + 8'h01;
   
   genvar i;

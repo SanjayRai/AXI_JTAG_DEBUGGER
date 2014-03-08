@@ -186,7 +186,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.M_AXI4_LITE.FREQ_HZ">200000000</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.M_AXI4_LITE.FREQ_HZ"/>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -451,7 +451,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.M_AXI4_MM.FREQ_HZ">200000000</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.M_AXI4_MM.FREQ_HZ"/>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -1665,10 +1665,10 @@
       <xilinx:vendorDisplayName>sanjayr</xilinx:vendorDisplayName>
       <xilinx:vendorURL>http://www.xilinx.com</xilinx:vendorURL>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2013-11-17T20:56:38Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2014-03-07T02:59:08Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2013.3</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2013.4</xilinx:xilinxVersion>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

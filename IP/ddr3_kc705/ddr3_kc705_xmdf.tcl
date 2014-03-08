@@ -252,6 +252,10 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path ddr3_kc705/u
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type verilog
 incr fcount
 
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path ddr3_kc705/user_design/rtl/ddr3_kc705_mig.v
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type verilog
+incr fcount
+
 utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path ddr3_kc705/user_design/rtl/ecc/mig_7series_v2_0_ecc_buf.v
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type verilog
 incr fcount
@@ -265,6 +269,10 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount type verilog
 incr fcount
 
 utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path ddr3_kc705/user_design/rtl/ecc/mig_7series_v2_0_ecc_merge_enc.v
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type verilog
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path ddr3_kc705/user_design/rtl/ecc/mig_7series_v2_0_fi_xor.v
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type verilog
 incr fcount
 

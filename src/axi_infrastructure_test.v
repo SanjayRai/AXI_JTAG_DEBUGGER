@@ -150,13 +150,7 @@ IBUFDS ibufg (
      GP_IN_32_B_reg <= (GP_OUT_32_A - GP_OUT_32_B);
    end
 
-ddr3_kc705 # (
-
-   .RST_ACT_LOW                   (0)
-                                     // =1 for active low reset,
-                                     // =0 for active high.
-   )
-  u_ddr3_kc705 (
+ddr3_kc705 u_ddr3_kc705 (
        
 // Memory interface ports
        .ddr3_addr                      (ddr3_addr),

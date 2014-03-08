@@ -191,6 +191,9 @@ output  reg   [DATA_BUF_OFFSET_WIDTH-1:0] wr_data_offset /* synthesis syn_maxfan
 
     input                                     correct_en,   
     input         [2*nCK_PER_CLK-1:0]         raw_not_ecc,
+
+    input	  [DQS_WIDTH - 1:0]	      fi_xor_we,
+    input	  [DQ_WIDTH -1 :0 ]	      fi_xor_wrdata,
     
     output        [MC_ERR_ADDR_WIDTH-1:0]     ecc_err_addr,
     output        [2*nCK_PER_CLK-1:0]         ecc_single,
@@ -825,6 +828,8 @@ output  reg   [DATA_BUF_OFFSET_WIDTH-1:0] wr_data_offset /* synthesis syn_maxfan
       
       wire [CODE_WIDTH*ECC_WIDTH-1:0] h_rows;
       wire [2*nCK_PER_CLK*DATA_WIDTH-1:0] rd_merge_data;
+      wire [2*nCK_PER_CLK*DQ_WIDTH-1:0] mc_wrdata_i;
+
       
       // Merge and encode
       mig_7series_v2_0_ecc_merge_enc #
@@ -842,7 +847,7 @@ output  reg   [DATA_BUF_OFFSET_WIDTH-1:0] wr_data_offset /* synthesis syn_maxfan
         ecc_merge_enc0
           (
             // Outputs
-            .mc_wrdata              (mc_wrdata),
+            .mc_wrdata              (mc_wrdata_i),
             .mc_wrdata_mask         (mc_wrdata_mask),
             // Inputs
             .clk                    (clk),
@@ -920,6 +925,38 @@ output  reg   [DATA_BUF_OFFSET_WIDTH-1:0] wr_data_offset /* synthesis syn_maxfan
             // Outputs
             .h_rows                 (h_rows)
           );
+
+
+
+      if (ECC == "ON") begin : gen_fi_xor_inst
+        reg mc_wrdata_en_r; 
+        wire mc_wrdata_en_i;
+
+        always @(posedge clk) begin
+          mc_wrdata_en_r <= mc_wrdata_en;
+        end
+
+        assign mc_wrdata_en_i = mc_wrdata_en_r;
+
+        mig_7series_v2_0_fi_xor #(
+          .DQ_WIDTH (DQ_WIDTH),
+          .DQS_WIDTH (DQS_WIDTH),
+          .nCK_PER_CLK (nCK_PER_CLK)
+        )
+        fi_xor0
+        (
+          .clk (clk),
+          .wrdata_in (mc_wrdata_i),
+          .wrdata_out (mc_wrdata),
+          .wrdata_en (mc_wrdata_en_i),
+          .fi_xor_we (fi_xor_we),
+          .fi_xor_wrdata (fi_xor_wrdata)
+        );
+     end
+     else begin : gen_wrdata_passthru
+       assign mc_wrdata = mc_wrdata_i;
+     end
+
 
   `ifdef DISPLAY_H_MATRIX
 

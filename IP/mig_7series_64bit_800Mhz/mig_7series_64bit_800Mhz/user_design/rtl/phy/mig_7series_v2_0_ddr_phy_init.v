@@ -94,7 +94,7 @@ module mig_7series_v2_0_ddr_phy_init #
    parameter CLK_PERIOD   = 3000,        // Logic (internal) clk period (in ps)
    parameter USE_ODT_PORT = 0,           // 0 - No ODT output from FPGA
                                          // 1 - ODT output from FPGA
-   parameter DDR3_VDD_OP_VOLT = 150,     // Voltage mode used for DDR3
+   parameter DDR3_VDD_OP_VOLT = "150",     // Voltage mode used for DDR3
                                          // 150 - 1.50 V
                                          // 135 - 1.35 V
                                          // 125 - 1.25 V
@@ -390,14 +390,17 @@ module mig_7series_v2_0_ddr_phy_init #
   // Address = 010. Data = 0000
   localparam REG_RC2 = 8'b00000010;
    
-  // RC3 timing control word. Setting the data to 0000
-  localparam REG_RC3 = 8'b00000011;
+  // RC3 timing control word. Setting the data based on number of RANKS (inturn the number of loads)
+  // This setting is specific to RDIMMs from Micron Technology
+  localparam REG_RC3 = (RANKS >= 2) ? 8'b00101011 : 8'b00000011;
 
-  // RC4 timing control work. Setting the data to 0000 
-  localparam REG_RC4 = 8'b00000100;
+  // RC4 timing control work. Setting the data based on number of RANKS (inturn the number of loads)
+  // This setting is specific to RDIMMs from Micron Technology
+  localparam REG_RC4 = (RANKS >= 2) ? 8'b00101100 : 8'b00000100;
     
-  // RC5 timing control work. Setting the data to 0000 
-  localparam REG_RC5 = 8'b00000101;   
+  // RC5 timing control work. Setting the data based on number of RANKS (inturn the number of loads)
+  // This setting is specific to RDIMMs from Micron Technology
+  localparam REG_RC5 = (RANKS >= 2) ? 8'b00101101 : 8'b00000101;   
   
   // RC10 timing control work. Setting the data to 0000 
   localparam [3:0] FREQUENCY_ENCODING = (tCK >= 1072 && tCK < 1250) ? 4'b0100 : 
@@ -4323,9 +4326,18 @@ endgenerate
           bank_w         = REG_RC1[7:5];
         end
         4'h2: address_w[4:0] = REG_RC2[4:0];
-        4'h3: address_w[4:0] = REG_RC3[4:0];
-        4'h4: address_w[4:0] = REG_RC4[4:0];
-        4'h5: address_w[4:0] = REG_RC5[4:0];
+        4'h3: begin
+          address_w[4:0] = REG_RC3[4:0];
+          bank_w         = REG_RC3[7:5];
+        end
+        4'h4: begin
+          address_w[4:0] = REG_RC4[4:0];
+          bank_w         = REG_RC4[7:5];
+        end
+        4'h5: begin
+          address_w[4:0] = REG_RC5[4:0];
+          bank_w         = REG_RC5[7:5];
+        end
         4'h6: begin
           address_w[4:0] = REG_RC10[4:0];
           bank_w         = REG_RC10[7:5];

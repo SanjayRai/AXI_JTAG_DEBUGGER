@@ -105,6 +105,7 @@ ENTITY fifo_generator_v11_0_bhv_as IS
     ---------------------------------------------------------------------------
     -- Generic Declarations
     ---------------------------------------------------------------------------
+    C_FAMILY                       : string  := "virtex7";
     C_DIN_WIDTH                    : integer := 8;
     C_DOUT_RST_VAL                 : string  := "";
     C_DOUT_WIDTH                   : integer := 8;
@@ -1091,10 +1092,7 @@ BEGIN
       IF (RST_FULL_FF = '1') THEN
         full_comb              <= int_2_std_logic(C_FULL_FLAGS_RST_VAL) AFTER C_TCQ;
         ALMOST_FULL            <= int_2_std_logic(C_FULL_FLAGS_RST_VAL) AFTER C_TCQ;
-        wr_data_count_int      <= (OTHERS => '0') AFTER C_TCQ;
       ELSIF (WR_CLK'event AND WR_CLK = '1') THEN
-        wr_data_count_int      <= ((wr_pntr(C_WR_PNTR_WIDTH-1 DOWNTO 0) -
-                                  adj_rd_pntr_wr(C_WR_PNTR_WIDTH-1 DOWNTO 0)) & '0') AFTER C_TCQ;
         IF (full_int) THEN
           full_comb  <= '1' AFTER C_TCQ;
         ELSE
@@ -1111,7 +1109,17 @@ BEGIN
         END IF;
       END IF;
     END PROCESS full_proc;
- 
+
+    wdci_proc : PROCESS (WR_CLK, wr_rst_i)
+    BEGIN
+      IF (wr_rst_i = '1') THEN
+        wr_data_count_int      <= (OTHERS => '0') AFTER C_TCQ;
+      ELSIF (WR_CLK'event AND WR_CLK = '1') THEN
+        wr_data_count_int      <= ((wr_pntr(C_WR_PNTR_WIDTH-1 DOWNTO 0) -
+                                  adj_rd_pntr_wr(C_WR_PNTR_WIDTH-1 DOWNTO 0)) & '0') AFTER C_TCQ;
+      END IF;
+    END PROCESS wdci_proc;
+
     -------------------------------------------------------------------------------
     -- Counter that determines the FWFT read duration.
     -------------------------------------------------------------------------------
@@ -1471,11 +1479,9 @@ BEGIN
       END IF;
     END PROCESS proc_pf_input;
  
-    proc_pf: PROCESS(WR_CLK, RST_FULL_FF)
+    proc_wdc: PROCESS(WR_CLK, wr_rst_i)
     BEGIN
- 
-      IF (RST_FULL_FF = '1') THEN
-        prog_full_reg      <= int_2_std_logic(C_FULL_FLAGS_RST_VAL);
+      IF (wr_rst_i = '1') THEN
         diff_pntr_wr       <= 0;
       ELSIF (WR_CLK'event AND WR_CLK = '1') THEN
  
@@ -1484,6 +1490,15 @@ BEGIN
         ELSIF (ram_wr_en = '1') THEN
           diff_pntr_wr <= conv_integer(wr_pntr - adj_rd_pntr_wr) + 1 after C_TCQ;
         END IF;
+      END IF;  -- WR_CLK
+    END PROCESS proc_wdc;
+ 
+    proc_pf: PROCESS(WR_CLK, RST_FULL_FF)
+    BEGIN
+ 
+      IF (RST_FULL_FF = '1') THEN
+        prog_full_reg      <= int_2_std_logic(C_FULL_FLAGS_RST_VAL);
+      ELSIF (WR_CLK'event AND WR_CLK = '1') THEN
  
         IF (RST_FULL_GEN = '1') THEN
           prog_full_reg <= '0' after C_TCQ;
@@ -1630,24 +1645,44 @@ BEGIN
     -- overflow_i generation: Asynchronous FIFO
     -----------------------------------------------------------------------------
     govflw: IF (C_HAS_OVERFLOW = 1) GENERATE
-      povflw: PROCESS (WR_CLK)
-      BEGIN
-        IF WR_CLK'event AND WR_CLK = '1' THEN
-           overflow_i  <= full_comb AND WR_EN after C_TCQ;
-        END IF;
-      END PROCESS povflw;
+      g7s_ovflw: IF (NOT (C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+        povflw: PROCESS (WR_CLK)
+        BEGIN
+          IF WR_CLK'event AND WR_CLK = '1' THEN
+             overflow_i  <= full_comb AND WR_EN after C_TCQ;
+          END IF;
+        END PROCESS povflw;
+      END GENERATE g7s_ovflw;
+      g8s_ovflw: IF ((C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+        povflw: PROCESS (WR_CLK)
+        BEGIN
+          IF WR_CLK'event AND WR_CLK = '1' THEN
+             overflow_i  <= (wr_rst_i OR full_comb) AND WR_EN after C_TCQ;
+          END IF;
+        END PROCESS povflw;
+      END GENERATE g8s_ovflw;
     END GENERATE govflw;
  
     -----------------------------------------------------------------------------
     -- underflow_i generation: Asynchronous FIFO
     -----------------------------------------------------------------------------
     gunflw: IF (C_HAS_UNDERFLOW = 1) GENERATE
-      punflw: PROCESS (RD_CLK)
-      BEGIN
-        IF RD_CLK'event AND RD_CLK = '1' THEN
-          underflow_i <= empty_comb and RD_EN after C_TCQ;
-        END IF;
-      END PROCESS punflw;
+      g7s_unflw: IF (NOT (C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+        punflw: PROCESS (RD_CLK)
+        BEGIN
+          IF RD_CLK'event AND RD_CLK = '1' THEN
+            underflow_i <= empty_comb and RD_EN after C_TCQ;
+          END IF;
+        END PROCESS punflw;
+      END GENERATE g7s_unflw;
+      g8s_unflw: IF ((C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+        punflw: PROCESS (RD_CLK)
+        BEGIN
+          IF RD_CLK'event AND RD_CLK = '1' THEN
+            underflow_i <= (rd_rst_i OR empty_comb) and RD_EN after C_TCQ;
+          END IF;
+        END PROCESS punflw;
+      END GENERATE g8s_unflw;
     END GENERATE gunflw;
  
     -----------------------------------------------------------------------------
@@ -1897,6 +1932,7 @@ ENTITY fifo_generator_v11_0_bhv_ss IS
     --------------------------------------------------------------------------------
     -- Generic Declarations (alphabetical)
     --------------------------------------------------------------------------------
+    C_FAMILY                       : string  := "virtex7";
     C_DATA_COUNT_WIDTH             : integer := 2;  
     C_DIN_WIDTH                    : integer := 8;  
     C_DOUT_RST_VAL                 : string  := ""; 
@@ -2126,6 +2162,19 @@ ARCHITECTURE behavioral OF fifo_generator_v11_0_bhv_ss IS
       RETURN retval;
     END if_then_else;
 
+    FUNCTION if_then_else (
+      condition : boolean; 
+      true_case : std_logic_vector;
+      false_case : std_logic_vector) 
+    RETURN std_logic_vector IS
+    BEGIN
+      IF NOT condition THEN
+        RETURN false_case;
+      ELSE
+        RETURN true_case;
+      END IF;
+    END if_then_else;
+
   --------------------------------------------------------------------------------
   -- Constant Declaration
   --------------------------------------------------------------------------------
@@ -2138,6 +2187,10 @@ ARCHITECTURE behavioral OF fifo_generator_v11_0_bhv_ss IS
                                                    C_DIN_WIDTH+2, C_DIN_WIDTH);
   CONSTANT OF_INIT_VAL : std_logic := if_then_else((C_HAS_OVERFLOW = 1 AND C_OVERFLOW_LOW = 1),'1','0');
   CONSTANT UF_INIT_VAL : std_logic := if_then_else((C_HAS_UNDERFLOW = 1 AND C_UNDERFLOW_LOW = 1),'1','0');
+  CONSTANT DO_ALL_ZERO : std_logic_vector(C_DOUT_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+  CONSTANT RST_VAL     : std_logic_vector(C_DOUT_WIDTH-1 DOWNTO 0) := hexstr_to_std_logic_vec(C_DOUT_RST_VAL, C_DOUT_WIDTH);
+  CONSTANT RST_VALUE   : std_logic_vector(C_DOUT_WIDTH-1 DOWNTO 0) 
+                         := if_then_else(C_USE_DOUT_RST = 1, RST_VAL, DO_ALL_ZERO);
 
   TYPE mem_array IS ARRAY (0 TO C_FIFO_DEPTH-1) OF STD_LOGIC_VECTOR(C_DATA_WIDTH-1 DOWNTO 0);
   -------------------------------------------------------------------------------
@@ -2178,8 +2231,7 @@ ARCHITECTURE behavioral OF fifo_generator_v11_0_bhv_ss IS
   SIGNAL prog_full_noreg : std_logic := '0'; 
   SIGNAL prog_empty_reg  : std_logic := '1';
   SIGNAL prog_empty_noreg: std_logic := '1';
-  SIGNAL dout_i          : std_logic_vector(C_DOUT_WIDTH-1 DOWNTO 0) 
-                         := (OTHERS => '0');
+  SIGNAL dout_i          : std_logic_vector(C_DOUT_WIDTH-1 DOWNTO 0) := RST_VALUE;
   SIGNAL sbiterr_i       : std_logic := '0'; 
   SIGNAL dbiterr_i       : std_logic := '0'; 
   SIGNAL ram_rd_en_d1    : std_logic := '0';
@@ -2287,9 +2339,9 @@ BEGIN
     write_allow <= WR_EN AND (NOT full_i);
     read_allow  <= RD_EN AND (NOT empty_i);
 
-    wrptr_proc : PROCESS (CLK, RST_FULL_FF)
+    wrptr_proc : PROCESS (CLK, rst_i)
     BEGIN
-      IF (RST_FULL_FF = '1') THEN
+      IF (rst_i = '1') THEN
         wr_pntr   <= (OTHERS => '0');
       ELSIF (CLK'event AND CLK = '1') THEN
         IF (srst_i = '1') THEN 
@@ -2322,9 +2374,9 @@ BEGIN
       END PROCESS wr_mem;
     END GENERATE gnecc_mem;
 
-    rdptr_proc : PROCESS (CLK, RST_FULL_FF)
+    rdptr_proc : PROCESS (CLK, rst_i)
     BEGIN
-      IF (RST_FULL_FF = '1') THEN
+      IF (rst_i = '1') THEN
         rd_pntr   <= (OTHERS => '0');
       ELSIF (CLK'event AND CLK = '1') THEN
         IF (srst_i = '1') THEN 
@@ -2360,7 +2412,7 @@ BEGIN
           VARIABLE dout_tmp : STD_LOGIC_VECTOR(C_DATA_WIDTH - 1 DOWNTO 0) := (OTHERS => '0');
         BEGIN
           IF (CLK'event AND CLK = '1') THEN
-            IF (RST_FULL_FF = '1' OR srst_i = '1') THEN 
+            IF (rst_i = '1' OR srst_i = '1') THEN 
               IF (C_USE_DOUT_RST = 1) THEN         
                 dout_i <= hexstr_to_std_logic_vec(C_DOUT_RST_VAL, C_DOUT_WIDTH) AFTER C_TCQ;
               END IF;
@@ -2394,9 +2446,9 @@ BEGIN
       -- Generate DOUT for DRAM
       -------------------------------------------------------------------------------
       gdm_dout: IF (C_MEMORY_TYPE = 2 OR C_MEMORY_TYPE = 3) GENERATE
-        rd_mem : PROCESS (CLK, RST_FULL_FF)
+        rd_mem : PROCESS (CLK, rst_i)
         BEGIN
-          IF (RST_FULL_FF = '1') THEN
+          IF (rst_i = '1') THEN
             IF (C_USE_DOUT_RST = 1) THEN         
               dout_i <= hexstr_to_std_logic_vec(C_DOUT_RST_VAL, C_DOUT_WIDTH);
             END IF;
@@ -2472,9 +2524,9 @@ BEGIN
     leaving_empty  <= (ecomp0 AND write_allow);
     ram_empty_comb <= going_empty OR (NOT leaving_empty AND empty_i);
 
-    empty_proc : PROCESS (CLK, RST_FULL_FF)
+    empty_proc : PROCESS (CLK, rst_i)
     BEGIN
-      IF (RST_FULL_FF = '1') THEN
+      IF (rst_i = '1') THEN
         empty_i   <= '1';
       ELSIF (CLK'event AND CLK = '1') THEN
         IF (srst_i = '1') THEN 
@@ -2500,9 +2552,9 @@ BEGIN
       leaving_aempty <= (ecomp1 AND write_allow AND NOT read_allow);
       ram_aempty_comb <= going_aempty OR (NOT leaving_aempty AND almost_empty_i);
 
-      ae_proc : PROCESS (CLK, RST_FULL_FF)
+      ae_proc : PROCESS (CLK, rst_i)
       BEGIN
-        IF (RST_FULL_FF = '1') THEN
+        IF (rst_i = '1') THEN
           almost_empty_i   <= '1';
         ELSIF (CLK'event AND CLK = '1') THEN
           IF (srst_i = '1') THEN 
@@ -2549,9 +2601,9 @@ BEGIN
     read_only    <= read_allow    AND NOT write_allow;
     read_only_q  <= read_allow_q  AND NOT write_allow_q;
 
-      wr_rd_q_proc : PROCESS (CLK, RST_FULL_FF)
+      wr_rd_q_proc : PROCESS (CLK)
       BEGIN
-        IF (RST_FULL_FF = '1') THEN
+        IF (rst_i = '1') THEN
           write_allow_q   <= '0';
           read_allow_q    <= '0';
           diff_pntr       <= (OTHERS => '0');
@@ -2830,24 +2882,44 @@ BEGIN
   -- overflow_i generation: Synchronous FIFO
 -------------------------------------------------------------------------------
   govflw: IF (C_HAS_OVERFLOW = 1) GENERATE
-    povflw: PROCESS (CLK)
-    BEGIN
-      IF CLK'event AND CLK = '1' THEN
-        overflow_i  <= full_i AND WR_EN after C_TCQ;
-      END IF;
-    END PROCESS povflw;
+    g7s_ovflw: IF (NOT (C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+      povflw: PROCESS (CLK)
+      BEGIN
+        IF CLK'event AND CLK = '1' THEN
+          overflow_i  <= full_i AND WR_EN after C_TCQ;
+        END IF;
+      END PROCESS povflw;
+    END GENERATE g7s_ovflw;
+    g8s_ovflw: IF ((C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+      povflw: PROCESS (CLK)
+      BEGIN
+        IF CLK'event AND CLK = '1' THEN
+          overflow_i  <= (rst_i OR full_i) AND WR_EN after C_TCQ;
+        END IF;
+      END PROCESS povflw;
+    END GENERATE g8s_ovflw;
   END GENERATE govflw;
 
 -------------------------------------------------------------------------------
   -- underflow_i generation: Synchronous FIFO
 -------------------------------------------------------------------------------
   gunflw: IF (C_HAS_UNDERFLOW = 1) GENERATE
-    punflw: PROCESS (CLK)
-    BEGIN
-      IF CLK'event AND CLK = '1' THEN
-        underflow_i <= empty_i and RD_EN after C_TCQ;
-      END IF;
-    END PROCESS punflw;
+    g7s_unflw: IF (NOT (C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+      punflw: PROCESS (CLK)
+      BEGIN
+        IF CLK'event AND CLK = '1' THEN
+          underflow_i <= empty_i and RD_EN after C_TCQ;
+        END IF;
+      END PROCESS punflw;
+    END GENERATE g7s_unflw;
+    g8s_unflw: IF ((C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+      punflw: PROCESS (CLK)
+      BEGIN
+        IF CLK'event AND CLK = '1' THEN
+          underflow_i <= (rst_i OR empty_i) and RD_EN after C_TCQ;
+        END IF;
+      END PROCESS punflw;
+    END GENERATE g8s_unflw;
   END GENERATE gunflw;
 
 -------------------------------------------------------------------------------
@@ -3652,7 +3724,9 @@ ENTITY fifo_generator_v11_0_conv IS
     PROG_FULL                 : OUT std_logic;
     PROG_EMPTY                : OUT std_logic;
     SBITERR                   : OUT std_logic := '0';
-    DBITERR                   : OUT std_logic := '0'
+    DBITERR                   : OUT std_logic := '0';
+    WR_RST_BUSY               : OUT std_logic := '0';
+    RD_RST_BUSY               : OUT std_logic := '0'
     );
 
 END fifo_generator_v11_0_conv;
@@ -3842,6 +3916,7 @@ ARCHITECTURE behavioral OF fifo_generator_v11_0_conv IS
       --------------------------------------------------------------------------------
       -- Generic Declarations
       --------------------------------------------------------------------------------
+      C_FAMILY                       : string  := "virtex7";
       C_DIN_WIDTH                    :    integer := 8;
       C_DOUT_RST_VAL                 :    string  := "";
       C_DOUT_WIDTH                   :    integer := 8;
@@ -3936,6 +4011,7 @@ ARCHITECTURE behavioral OF fifo_generator_v11_0_conv IS
     --------------------------------------------------------------------------------
     -- Generic Declarations (alphabetical)
     --------------------------------------------------------------------------------
+    C_FAMILY                       : string  := "virtex7";
     C_DATA_COUNT_WIDTH             : integer := 2;
     C_DIN_WIDTH                    : integer := 8;
     C_DOUT_RST_VAL                 : string  := "";
@@ -4211,6 +4287,7 @@ BEGIN
   gen_ss : IF ((C_IMPLEMENTATION_TYPE = 0) OR (C_IMPLEMENTATION_TYPE = 1) OR (C_MEMORY_TYPE = 4)) GENERATE
     fgss : fifo_generator_v11_0_bhv_ss
       GENERIC MAP (
+        C_FAMILY                       => C_FAMILY,
         C_DATA_COUNT_WIDTH             => C_DATA_COUNT_WIDTH,
         C_DIN_WIDTH                    => C_DIN_WIDTH,
         C_DOUT_RST_VAL                 => C_DOUT_RST_VAL,
@@ -4293,6 +4370,7 @@ BEGIN
 
     fgas : fifo_generator_v11_0_bhv_as
       GENERIC MAP (
+        C_FAMILY                       => C_FAMILY,
         C_DIN_WIDTH                    => C_DIN_WIDTH,
         C_DOUT_RST_VAL                 => C_DOUT_RST_VAL,
         C_DOUT_WIDTH                   => C_DOUT_WIDTH,
@@ -4902,69 +4980,144 @@ BEGIN
         SIGNAL wr_rst_comb     : std_logic:= '0';
         SIGNAL wr_rst_reg      : std_logic:= '0';
       BEGIN
-        PROCESS (WR_CLK, rst_delayed)
-        BEGIN
-          IF (rst_delayed = '1') THEN
-            wr_rst_asreg <=   '1' after C_TCQ;
-          ELSIF (WR_CLK'event and WR_CLK = '1') THEN
-            IF (wr_rst_asreg_d1 = '1') THEN
-              wr_rst_asreg <= '0' after C_TCQ;
+        g7s_ic_rst: IF (NOT (C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+          PROCESS (WR_CLK, rst_delayed)
+          BEGIN
+            IF (rst_delayed = '1') THEN
+              wr_rst_asreg <=   '1' after C_TCQ;
+            ELSIF (WR_CLK'event and WR_CLK = '1') THEN
+              IF (wr_rst_asreg_d1 = '1') THEN
+                wr_rst_asreg <= '0' after C_TCQ;
+              END IF;
             END IF;
-          END IF;
-      
-          IF (WR_CLK'event and WR_CLK = '1') THEN
-            wr_rst_asreg_d1 <= wr_rst_asreg after C_TCQ;
-            wr_rst_asreg_d2 <= wr_rst_asreg_d1 after C_TCQ;
-          END IF;
-        END PROCESS;
         
-        PROCESS (wr_rst_asreg, wr_rst_asreg_d2)
-        BEGIN
-          wr_rst_comb <= NOT wr_rst_asreg_d2 AND wr_rst_asreg;
-        END PROCESS;
-      
-        PROCESS (WR_CLK, wr_rst_comb)
-        BEGIN
-          IF (wr_rst_comb = '1') THEN
-            wr_rst_reg <= '1' after C_TCQ;
-          ELSIF (WR_CLK'event and WR_CLK = '1') THEN
-            wr_rst_reg <= '0' after C_TCQ;
-          END IF;
-        END PROCESS;
-        
-        PROCESS (RD_CLK, rst_delayed)
-        BEGIN
-          IF (rst_delayed = '1') THEN
-            rd_rst_asreg <=   '1' after C_TCQ;
-          ELSIF (RD_CLK'event and RD_CLK = '1') THEN
-            IF (rd_rst_asreg_d1 = '1') THEN
-              rd_rst_asreg <= '0' after C_TCQ;
+            IF (WR_CLK'event and WR_CLK = '1') THEN
+              wr_rst_asreg_d1 <= wr_rst_asreg after C_TCQ;
+              wr_rst_asreg_d2 <= wr_rst_asreg_d1 after C_TCQ;
             END IF;
-          END IF;
-      
-          IF (RD_CLK'event and RD_CLK = '1') THEN
-            rd_rst_asreg_d1 <= rd_rst_asreg after C_TCQ;
-            rd_rst_asreg_d2 <= rd_rst_asreg_d1 after C_TCQ;
-          END IF;
-        END PROCESS;
+          END PROCESS;
+          
+          PROCESS (wr_rst_asreg, wr_rst_asreg_d2)
+          BEGIN
+            wr_rst_comb <= NOT wr_rst_asreg_d2 AND wr_rst_asreg;
+          END PROCESS;
+
+          PROCESS (WR_CLK, wr_rst_comb)
+          BEGIN
+            IF (wr_rst_comb = '1') THEN
+              wr_rst_reg <= '1' after C_TCQ;
+            ELSIF (WR_CLK'event and WR_CLK = '1') THEN
+              wr_rst_reg <= '0' after C_TCQ;
+            END IF;
+          END PROCESS;
+          
+          PROCESS (RD_CLK, rst_delayed)
+          BEGIN
+            IF (rst_delayed = '1') THEN
+              rd_rst_asreg <=   '1' after C_TCQ;
+            ELSIF (RD_CLK'event and RD_CLK = '1') THEN
+              IF (rd_rst_asreg_d1 = '1') THEN
+                rd_rst_asreg <= '0' after C_TCQ;
+              END IF;
+            END IF;
         
-        PROCESS (rd_rst_asreg, rd_rst_asreg_d2)
-        BEGIN
-          rd_rst_comb <= NOT rd_rst_asreg_d2 AND rd_rst_asreg;
-        END PROCESS;
-      
-        PROCESS (RD_CLK, rd_rst_comb)
-        BEGIN
-          IF (rd_rst_comb = '1') THEN
-            rd_rst_reg <= '1' after C_TCQ;
-          ELSIF (RD_CLK'event and RD_CLK = '1') THEN
-            rd_rst_reg <= '0' after C_TCQ;
-          END IF;
-        END PROCESS;
+            IF (RD_CLK'event and RD_CLK = '1') THEN
+              rd_rst_asreg_d1 <= rd_rst_asreg after C_TCQ;
+              rd_rst_asreg_d2 <= rd_rst_asreg_d1 after C_TCQ;
+            END IF;
+          END PROCESS;
+          
+          PROCESS (rd_rst_asreg, rd_rst_asreg_d2)
+          BEGIN
+            rd_rst_comb <= NOT rd_rst_asreg_d2 AND rd_rst_asreg;
+          END PROCESS;
+        
+          PROCESS (RD_CLK, rd_rst_comb)
+          BEGIN
+            IF (rd_rst_comb = '1') THEN
+              rd_rst_reg <= '1' after C_TCQ;
+            ELSIF (RD_CLK'event and RD_CLK = '1') THEN
+              rd_rst_reg <= '0' after C_TCQ;
+            END IF;
+          END PROCESS;
+  
+          wr_rst_i <= wr_rst_reg;
+          rd_rst_i <= rd_rst_reg;
+          wr_rst_busy <= '0';
+          rd_rst_busy <= '0';
 
-        wr_rst_i <= wr_rst_reg;
-        rd_rst_i <= rd_rst_reg;
+        END GENERATE g7s_ic_rst;
 
+        g8s_ic_rst: IF (C_FAMILY = "virtex8" OR C_FAMILY = "kintex8") GENERATE
+          SIGNAL wr_rst_reg_d   : STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');
+          SIGNAL rd_rst_d       : STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');
+          SIGNAL rd_rst_wr      : STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');
+          SIGNAL wr_rst_reg     : STD_LOGIC := '0';
+          SIGNAL rd_rst_reg     : STD_LOGIC := '0';
+          SIGNAL d_asreg        : STD_LOGIC := '0';
+          SIGNAL wrrst_done     : STD_LOGIC := '0';
+          SIGNAL rdrst_done     : STD_LOGIC := '0';
+          SIGNAL rst_active     : STD_LOGIC := '0';
+          SIGNAL rst_active_i   : STD_LOGIC := '1';
+          SIGNAL rst_delayed_d1 : STD_LOGIC := '1';
+          SIGNAL rst_delayed_d2 : STD_LOGIC := '1';
+        BEGIN
+          rst_active     <= wr_rst_reg OR wr_rst_reg_d(2) OR rd_rst_wr(1);
+          wr_rst_busy    <= wr_rst_reg WHEN (C_MEMORY_TYPE /= 4) ELSE rst_active_i;
+          rd_rst_busy    <= rd_rst_reg;
+          rst_full_ff_i  <= wr_rst_reg;
+          rst_full_gen_i <= rst_active_i WHEN (C_FULL_FLAGS_RST_VAL = 1) ELSE '0';
+
+          PROCESS (WR_CLK)
+          BEGIN
+            IF (WR_CLK'event and WR_CLK = '1') THEN
+              rst_delayed_d1 <= rst_delayed after C_TCQ;
+              rst_delayed_d2 <= rst_delayed_d1 after C_TCQ;
+              IF (wr_rst_reg = '1' OR rst_delayed_d2 = '1') THEN
+                rst_active_i <= '1' after C_TCQ;
+              ELSE
+                rst_active_i <= rst_active after C_TCQ;
+              END IF;
+            END IF;
+          END PROCESS;
+          pwrst: PROCESS (WR_CLK)
+          BEGIN
+            IF (WR_CLK'event AND WR_CLK = '1') THEN
+              wr_rst_reg_d    <= wr_rst_reg_d(1 DOWNTO 0) & wr_rst_reg after C_TCQ;
+              rd_rst_wr   <= rd_rst_wr(1 DOWNTO 0) & rd_rst_d(2) after C_TCQ;
+              IF (rst_active = '0' AND rst_delayed = '1') THEN
+                 wr_rst_reg <= '1' after C_TCQ;
+              ELSE
+                 IF (wr_rst_reg = '1' AND wrrst_done = '1' AND rdrst_done = '1') THEN
+                    wr_rst_reg <= '0' after C_TCQ;
+                 ELSE
+                    wr_rst_reg <= wr_rst_reg after C_TCQ;
+                 END IF;
+              END IF;
+              IF (wr_rst_reg_d(2) = '0' AND wr_rst_reg_d(1) = '1') THEN
+                wrrst_done <= '1' after C_TCQ;
+              ELSIF (wrrst_done = '1' AND rdrst_done = '1') THEN
+                wrrst_done <= '0' after C_TCQ;
+              END IF;
+              IF (rd_rst_wr(2) = '0' AND rd_rst_wr(1) = '1') THEN
+                rdrst_done <= '1' after C_TCQ;
+              ELSIF (wrrst_done = '1' AND rdrst_done = '1') THEN
+                rdrst_done <= '0' after C_TCQ;
+              END IF;
+            END IF;
+          END PROCESS;
+          prrst: PROCESS (RD_CLK)
+          BEGIN
+            IF (RD_CLK'event AND RD_CLK = '1') THEN
+              rd_rst_d   <= rd_rst_d(1 DOWNTO 0) & rd_rst_i after C_TCQ;
+              d_asreg    <= wr_rst_reg after C_TCQ;
+              rd_rst_reg <= d_asreg after C_TCQ;
+            END IF;
+          END PROCESS;
+        
+          wr_rst_i <= wr_rst_reg;
+          rd_rst_i <= rd_rst_reg;
+        END GENERATE g8s_ic_rst;
       END GENERATE gic_rst;
 
       gcc_rst : IF (C_COMMON_CLOCK = 1) GENERATE
@@ -4974,39 +5127,83 @@ BEGIN
         SIGNAL rst_comb       : std_logic := '0';
         SIGNAL rst_reg        : std_logic := '0';
       BEGIN
-        PROCESS (CLK, rst_delayed)
-        BEGIN
-          IF (rst_delayed = '1') THEN
-            rst_asreg <=   '1' after C_TCQ;
-          ELSIF (CLK'event and CLK = '1') THEN
-            IF (rst_asreg_d1 = '1') THEN
-              rst_asreg <= '0' after C_TCQ;
-            ELSE
-              rst_asreg <= rst_asreg after C_TCQ;
+        g7s_cc_rst: IF (NOT (C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) GENERATE
+          PROCESS (CLK, rst_delayed)
+          BEGIN
+            IF (rst_delayed = '1') THEN
+              rst_asreg <=   '1' after C_TCQ;
+            ELSIF (CLK'event and CLK = '1') THEN
+              IF (rst_asreg_d1 = '1') THEN
+                rst_asreg <= '0' after C_TCQ;
+              ELSE
+                rst_asreg <= rst_asreg after C_TCQ;
+              END IF;
             END IF;
-          END IF;
-      
-          IF (CLK'event and CLK = '1') THEN
-            rst_asreg_d1 <= rst_asreg after C_TCQ;
-            rst_asreg_d2 <= rst_asreg_d1 after C_TCQ;
-          END IF;
-        END PROCESS;
         
-        PROCESS (rst_asreg, rst_asreg_d2)
-        BEGIN
-          rst_comb <= NOT rst_asreg_d2 AND rst_asreg;
-        END PROCESS;
-      
-        PROCESS (CLK, rst_comb)
-        BEGIN
-          IF (rst_comb = '1') THEN
-            rst_reg <= '1' after C_TCQ;
-          ELSIF (CLK'event and CLK = '1') THEN
-            rst_reg <= '0' after C_TCQ;
-          END IF;
-        END PROCESS;
+            IF (CLK'event and CLK = '1') THEN
+              rst_asreg_d1 <= rst_asreg after C_TCQ;
+              rst_asreg_d2 <= rst_asreg_d1 after C_TCQ;
+            END IF;
+          END PROCESS;
+          
+          PROCESS (rst_asreg, rst_asreg_d2)
+          BEGIN
+            rst_comb <= NOT rst_asreg_d2 AND rst_asreg;
+          END PROCESS;
+        
+          PROCESS (CLK, rst_comb)
+          BEGIN
+            IF (rst_comb = '1') THEN
+              rst_reg <= '1' after C_TCQ;
+            ELSIF (CLK'event and CLK = '1') THEN
+              rst_reg <= '0' after C_TCQ;
+            END IF;
+          END PROCESS;
+          rst_i <= rst_reg;
+          wr_rst_busy <= '0';
+          rd_rst_busy <= '0';
+        END GENERATE g7s_cc_rst;
 
-        rst_i <= rst_reg;
+        g8s_cc_rst: IF (C_FAMILY = "virtex8" OR C_FAMILY = "kintex8") GENERATE
+          SIGNAL wr_rst_reg : STD_LOGIC := '0';
+          SIGNAL rst_active_i   : STD_LOGIC := '1';
+          SIGNAL rst_delayed_d1 : STD_LOGIC := '1';
+          SIGNAL rst_delayed_d2 : STD_LOGIC := '1';
+        BEGIN
+          prst: PROCESS (CLK)
+          BEGIN
+            IF (CLK'event AND CLK = '1') THEN
+              IF (wr_rst_reg = '0' AND rst_delayed = '1') THEN
+                 wr_rst_reg <= '1';
+              ELSE
+                 IF (wr_rst_reg = '1') THEN
+                    wr_rst_reg <= '0';
+                 ELSE
+                    wr_rst_reg <= wr_rst_reg;
+                 END IF;
+              END IF;
+            END IF;
+          END PROCESS;
+          rst_i <= wr_rst_reg;
+          rd_rst_busy <= wr_rst_reg;
+          wr_rst_busy <= wr_rst_reg WHEN (C_MEMORY_TYPE /= 4) ELSE rst_active_i;
+          rst_full_ff_i  <= wr_rst_reg;
+          rst_full_gen_i <= rst_active_i WHEN (C_FULL_FLAGS_RST_VAL = 1) ELSE '0';
+
+
+          PROCESS (CLK)
+          BEGIN
+            IF (CLK'event and CLK = '1') THEN
+              rst_delayed_d1 <= rst_delayed after C_TCQ;
+              rst_delayed_d2 <= rst_delayed_d1 after C_TCQ;
+              IF (wr_rst_reg = '1' OR rst_delayed_d2 = '1') THEN
+                rst_active_i <= '1' after C_TCQ;
+              ELSE
+                rst_active_i <= wr_rst_reg after C_TCQ;
+              END IF;
+            END IF;
+          END PROCESS;
+        END GENERATE g8s_cc_rst;
 
       END GENERATE gcc_rst;
     END GENERATE grst;
@@ -5028,7 +5225,7 @@ BEGIN
   rst_2_sync <= rst_delayed WHEN (C_ENABLE_RST_SYNC = 1) ELSE wr_rst_delayed;
   clk_2_sync <= CLK WHEN (C_COMMON_CLOCK = 1) ELSE WR_CLK;
  
-  grstd1 : IF (C_HAS_RST = 1 OR C_HAS_SRST = 1 OR C_ENABLE_RST_SYNC = 0) GENERATE
+  grstd1 : IF ((NOT (C_FAMILY = "virtex8" OR C_FAMILY = "kintex8")) AND (C_HAS_RST = 1 OR C_HAS_SRST = 1 OR C_ENABLE_RST_SYNC = 0)) GENERATE
 
   -- RST_FULL_GEN replaces the reset falling edge detection used to de-assert
   -- FULL, ALMOST_FULL & PROG_FULL flags if C_FULL_FLAGS_RST_VAL = 1.
@@ -5339,7 +5536,7 @@ ENTITY fifo_generator_v11_0 IS
     C_DOUT_RST_VAL                          : string  := "";
     C_DOUT_WIDTH                            : integer := 8;
     C_ENABLE_RLOCS                          : integer := 0;
-    C_FAMILY                                : string  := "virtex6";
+    C_FAMILY                                : string  := "virtex7";
     C_FULL_FLAGS_RST_VAL                    : integer := 1;
     C_HAS_ALMOST_EMPTY                      : integer := 0;
     C_HAS_ALMOST_FULL                       : integer := 0;
@@ -5478,6 +5675,15 @@ ENTITY fifo_generator_v11_0 IS
     C_APPLICATION_TYPE_RACH                 : integer := 0;
     C_APPLICATION_TYPE_RDCH                 : integer := 0;
     C_APPLICATION_TYPE_AXIS                 : integer := 0;
+
+    -- AXI Built-in FIFO Primitive Type
+    -- 512x36, 1kx18, 2kx9, 4kx4, etc
+    C_PRIM_FIFO_TYPE_WACH                   : string  := "512x36";
+    C_PRIM_FIFO_TYPE_WDCH                   : string  := "512x36";
+    C_PRIM_FIFO_TYPE_WRCH                   : string  := "512x36";
+    C_PRIM_FIFO_TYPE_RACH                   : string  := "512x36";
+    C_PRIM_FIFO_TYPE_RDCH                   : string  := "512x36";
+    C_PRIM_FIFO_TYPE_AXIS                   : string  := "512x36";
 
     -- Enable ECC
     -- 0 = ECC disabled
@@ -5629,6 +5835,8 @@ ENTITY fifo_generator_v11_0 IS
     PROG_EMPTY                     : OUT std_logic := '1';
     SBITERR                        : OUT std_logic := '0';
     DBITERR                        : OUT std_logic := '0';
+    WR_RST_BUSY                    : OUT std_logic := '0';
+    RD_RST_BUSY                    : OUT std_logic := '0';
 
     -- AXI Global Signal
     M_ACLK                         : IN  std_logic := '0';
@@ -5965,7 +6173,10 @@ ARCHITECTURE behavioral OF fifo_generator_v11_0 IS
        PROG_FULL                 : OUT std_logic;
        PROG_EMPTY                : OUT std_logic;
        SBITERR                   : OUT std_logic := '0';
-       DBITERR                   : OUT std_logic := '0'
+       DBITERR                   : OUT std_logic := '0';
+       WR_RST_BUSY               : OUT std_logic := '0';
+       RD_RST_BUSY               : OUT std_logic := '0'
+
        );
 
    END COMPONENT;
@@ -6067,28 +6278,32 @@ ARCHITECTURE behavioral OF fifo_generator_v11_0 IS
   END map_ready_valid;
   SIGNAL inverted_reset : std_logic := '0';
   SIGNAL axi_rs_rst     : std_logic := '0';
+  CONSTANT IS_V8    : INTEGER := if_then_else((C_FAMILY = "virtex8"),1,0);
+  CONSTANT IS_K8    : INTEGER := if_then_else((C_FAMILY = "kintex8"),1,0);
+  CONSTANT IS_8SERIES       : INTEGER := if_then_else((IS_V8 = 1 OR IS_K8 = 1),1,0);
+
 BEGIN
 
   inverted_reset <= NOT S_ARESETN;  
 
   gaxi_rs_rst: IF (C_INTERFACE_TYPE > 0 AND (C_AXIS_TYPE = 1 OR C_WACH_TYPE = 1 OR
                    C_WDCH_TYPE = 1 OR C_WRCH_TYPE = 1 OR C_RACH_TYPE = 1 OR C_RDCH_TYPE = 1)) GENERATE
-    SIGNAL rst_d1 : STD_LOGIC := '1';
-    SIGNAL rst_d2 : STD_LOGIC := '1';
-  BEGIN
 
-    prst: PROCESS (inverted_reset, S_ACLK)
+      SIGNAL rst_d1 : STD_LOGIC := '1';
+      SIGNAL rst_d2 : STD_LOGIC := '1';
     BEGIN
-      IF (inverted_reset = '1') THEN
-        rst_d1         <= '1';
-        rst_d2         <= '1';
-      ELSIF (S_ACLK'event AND S_ACLK = '1') THEN
-        rst_d1         <= '0' AFTER TFF;
-        rst_d2         <= rst_d1 AFTER TFF;
-      END IF;
-    END PROCESS prst;
-
-    axi_rs_rst <= rst_d2;
+      prst: PROCESS (inverted_reset, S_ACLK)
+      BEGIN
+        IF (inverted_reset = '1') THEN
+          rst_d1         <= '1';
+          rst_d2         <= '1';
+        ELSIF (S_ACLK'event AND S_ACLK = '1') THEN
+          rst_d1         <= '0' AFTER TFF;
+          rst_d2         <= rst_d1 AFTER TFF;
+        END IF;
+      END PROCESS prst;
+  
+      axi_rs_rst <= rst_d2;
 
   END GENERATE gaxi_rs_rst;
 
@@ -6202,7 +6417,9 @@ BEGIN
         PROG_FULL             => PROG_FULL,
         PROG_EMPTY            => PROG_EMPTY,
         SBITERR               => SBITERR,
-        DBITERR               => DBITERR
+        DBITERR               => DBITERR,
+        WR_RST_BUSY           => WR_RST_BUSY,
+        RD_RST_BUSY           => RD_RST_BUSY 
         );
   END GENERATE gconvfifo; -- End of conventional FIFO
 
@@ -6229,6 +6446,8 @@ BEGIN
     SIGNAL axis_rd_en          : std_logic := '0';
     SIGNAL axis_dc             : STD_LOGIC_VECTOR(C_WR_PNTR_WIDTH_AXIS DOWNTO 0) := (OTHERS => '0');
     SIGNAL axis_pkt_read       : STD_LOGIC := '0';
+    SIGNAL wr_rst_busy_axis    : STD_LOGIC := '0';
+    SIGNAL rd_rst_busy_axis    : STD_LOGIC := '0';
 
     CONSTANT TDATA_OFFSET      : integer := if_then_else(C_HAS_AXIS_TDATA = 1,C_DIN_WIDTH_AXIS-C_AXIS_TDATA_WIDTH,C_DIN_WIDTH_AXIS);
     CONSTANT TSTRB_OFFSET      : integer := if_then_else(C_HAS_AXIS_TSTRB = 1,TDATA_OFFSET-C_AXIS_TSTRB_WIDTH,TDATA_OFFSET);
@@ -6318,7 +6537,7 @@ BEGIN
           C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_AXIS = 1 OR C_IMPLEMENTATION_TYPE_AXIS = 11),1,
                                                if_then_else((C_IMPLEMENTATION_TYPE_AXIS = 2 OR C_IMPLEMENTATION_TYPE_AXIS = 12),2,4)),
           C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_AXIS = 1 OR C_IMPLEMENTATION_TYPE_AXIS = 2),0,
-                                               if_then_else((C_IMPLEMENTATION_TYPE_AXIS = 11 OR C_IMPLEMENTATION_TYPE_AXIS = 12),2,5)),
+                                               if_then_else((C_IMPLEMENTATION_TYPE_AXIS = 11 OR C_IMPLEMENTATION_TYPE_AXIS = 12),2,6)),
           C_PRELOAD_REGS                    => 1, -- Always FWFT for AXI
           C_PRELOAD_LATENCY                 => 0, -- Always FWFT for AXI
           C_DIN_WIDTH                       => C_DIN_WIDTH_AXIS,
@@ -6425,10 +6644,23 @@ BEGIN
         RD_DATA_COUNT             => AXIS_RD_DATA_COUNT,
         WR_DATA_COUNT             => AXIS_WR_DATA_COUNT,
         SBITERR                   => AXIS_SBITERR,
-        DBITERR                   => AXIS_DBITERR
+        DBITERR                   => AXIS_DBITERR,
+        WR_RST_BUSY               => wr_rst_busy_axis,
+        RD_RST_BUSY               => rd_rst_busy_axis 
         );
 
-      axis_s_axis_tready    <= NOT axis_full;
+      g8s_axis_rdy: IF (IS_8SERIES = 1) GENERATE
+        g8s_bi_axis_rdy: IF (C_IMPLEMENTATION_TYPE_AXIS = 5 OR C_IMPLEMENTATION_TYPE_AXIS = 13) GENERATE
+          axis_s_axis_tready    <= NOT (axis_full OR wr_rst_busy_axis);
+        END GENERATE g8s_bi_axis_rdy;
+        g8s_nbi_axis_rdy: IF (NOT (C_IMPLEMENTATION_TYPE_AXIS = 5 OR C_IMPLEMENTATION_TYPE_AXIS = 13)) GENERATE
+          axis_s_axis_tready    <= NOT (axis_full);
+        END GENERATE g8s_nbi_axis_rdy;
+      END GENERATE g8s_axis_rdy;
+      g7s_axis_rdy: IF (IS_8SERIES = 0) GENERATE
+        axis_s_axis_tready    <= NOT (axis_full);
+      END GENERATE g7s_axis_rdy;
+
       axis_m_axis_tvalid    <= NOT axis_empty WHEN (C_APPLICATION_TYPE_AXIS /= 1) ELSE NOT axis_empty AND axis_pkt_read;
       S_AXIS_TREADY         <= axis_s_axis_tready;
       M_AXIS_TVALID         <= axis_m_axis_tvalid;
@@ -6590,6 +6822,12 @@ BEGIN
       SIGNAL awvalid_en          : std_logic := '0';
       SIGNAL awready_pkt         : std_logic := '0';
       SIGNAL wdch_we             : STD_LOGIC := '0';
+      SIGNAL wr_rst_busy_wach    : std_logic := '0';
+      SIGNAL wr_rst_busy_wdch    : std_logic := '0';
+      SIGNAL wr_rst_busy_wrch    : std_logic := '0';
+      SIGNAL rd_rst_busy_wach    : std_logic := '0';
+      SIGNAL rd_rst_busy_wdch    : std_logic := '0';
+      SIGNAL rd_rst_busy_wrch    : std_logic := '0';
 
       CONSTANT AWID_OFFSET       : integer := if_then_else(C_AXI_TYPE /= 2 AND C_HAS_AXI_ID = 1,C_DIN_WIDTH_WACH - C_AXI_ID_WIDTH,C_DIN_WIDTH_WACH);
       CONSTANT AWADDR_OFFSET     : integer := AWID_OFFSET - C_AXI_ADDR_WIDTH;
@@ -6818,8 +7056,10 @@ BEGIN
       GENERIC MAP (
           C_FAMILY                          => C_FAMILY,
           C_COMMON_CLOCK                    => C_COMMON_CLOCK,
-          C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_WACH = 1 OR C_IMPLEMENTATION_TYPE_WACH = 11),1,2),
-          C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_WACH <= 6),0,2), -- CCBI
+          C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_WACH = 1  OR C_IMPLEMENTATION_TYPE_WACH = 11),1,
+                                               if_then_else((C_IMPLEMENTATION_TYPE_WACH = 2  OR C_IMPLEMENTATION_TYPE_WACH = 12),2,4)),
+          C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_WACH = 1  OR C_IMPLEMENTATION_TYPE_WACH = 2),0,
+                                               if_then_else((C_IMPLEMENTATION_TYPE_WACH = 11 OR C_IMPLEMENTATION_TYPE_WACH = 12),2,6)),
           C_PRELOAD_REGS                    => 1, -- Always FWFT for AXI
           C_PRELOAD_LATENCY                 => 0, -- Always FWFT for AXI
           C_DIN_WIDTH                       => C_DIN_WIDTH_WACH,
@@ -6926,12 +7166,23 @@ BEGIN
         RD_DATA_COUNT             => AXI_AW_RD_DATA_COUNT,
         WR_DATA_COUNT             => AXI_AW_WR_DATA_COUNT,
         SBITERR                   => AXI_AW_SBITERR,
-        DBITERR                   => AXI_AW_DBITERR
+        DBITERR                   => AXI_AW_DBITERR,
+        WR_RST_BUSY               => wr_rst_busy_wach,
+        RD_RST_BUSY               => rd_rst_busy_wach 
         );
 
---      wach_s_axi_awready   <= map_ready_valid(C_PROG_FULL_TYPE_WACH,wach_full,wach_almost_full,wach_prog_full);
---      wach_m_axi_awvalid   <= map_ready_valid(C_PROG_EMPTY_TYPE_WACH,wach_empty,wach_almost_empty,wach_prog_empty);
-      wach_s_axi_awready   <= NOT wach_full;
+        g8s_wach_rdy: IF (IS_8SERIES = 1) GENERATE
+          g8s_bi_wach_rdy: IF (C_IMPLEMENTATION_TYPE_WACH = 5 OR C_IMPLEMENTATION_TYPE_WACH = 13) GENERATE
+            wach_s_axi_awready   <= NOT (wach_full OR wr_rst_busy_wach);
+          END GENERATE g8s_bi_wach_rdy;
+          g8s_nbi_wach_rdy: IF (NOT (C_IMPLEMENTATION_TYPE_WACH = 5 OR C_IMPLEMENTATION_TYPE_WACH = 13)) GENERATE
+            wach_s_axi_awready   <= NOT (wach_full);
+          END GENERATE g8s_nbi_wach_rdy;
+        END GENERATE g8s_wach_rdy;
+        g7s_wach_rdy: IF (IS_8SERIES = 0) GENERATE
+          wach_s_axi_awready   <= NOT (wach_full);
+        END GENERATE g7s_wach_rdy;
+
       wach_m_axi_awvalid   <= NOT wach_empty;
       S_AXI_AWREADY        <= wach_s_axi_awready;
       
@@ -7013,8 +7264,10 @@ BEGIN
       GENERIC MAP (
           C_FAMILY                          => C_FAMILY,
           C_COMMON_CLOCK                    => C_COMMON_CLOCK,
-          C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_WDCH = 1 OR C_IMPLEMENTATION_TYPE_WDCH = 11),1,2),
-          C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_WDCH <= 6),0,2), -- CCBI
+          C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_WDCH = 1  OR C_IMPLEMENTATION_TYPE_WDCH = 11),1,
+                                               if_then_else((C_IMPLEMENTATION_TYPE_WDCH = 2  OR C_IMPLEMENTATION_TYPE_WDCH = 12),2,4)),
+          C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_WDCH = 1  OR C_IMPLEMENTATION_TYPE_WDCH = 2),0,
+                                               if_then_else((C_IMPLEMENTATION_TYPE_WDCH = 11 OR C_IMPLEMENTATION_TYPE_WDCH = 12),2,6)),
           C_PRELOAD_REGS                    => 1, -- Always FWFT for AXI
           C_PRELOAD_LATENCY                 => 0, -- Always FWFT for AXI
           C_DIN_WIDTH                       => C_DIN_WIDTH_WDCH,
@@ -7121,12 +7374,23 @@ BEGIN
         RD_DATA_COUNT             => AXI_W_RD_DATA_COUNT,
         WR_DATA_COUNT             => AXI_W_WR_DATA_COUNT,
         SBITERR                   => AXI_W_SBITERR,
-        DBITERR                   => AXI_W_DBITERR
+        DBITERR                   => AXI_W_DBITERR,
+        WR_RST_BUSY               => wr_rst_busy_wdch,
+        RD_RST_BUSY               => rd_rst_busy_wdch 
         );
 
---      wdch_s_axi_wready    <= map_ready_valid(C_PROG_FULL_TYPE_WDCH,wdch_full,wdch_almost_full,wdch_prog_full);
---      wdch_m_axi_wvalid    <= map_ready_valid(C_PROG_EMPTY_TYPE_WDCH,wdch_empty,wdch_almost_empty,wdch_prog_empty);
-      wdch_s_axi_wready    <= NOT wdch_full;
+        g8s_wdch_rdy: IF (IS_8SERIES = 1) GENERATE
+          g8s_bi_wdch_rdy: IF (C_IMPLEMENTATION_TYPE_WDCH = 5 OR C_IMPLEMENTATION_TYPE_WDCH = 13) GENERATE
+            wdch_s_axi_wready    <= NOT (wdch_full OR wr_rst_busy_wdch);
+          END GENERATE g8s_bi_wdch_rdy;
+          g8s_nbi_wdch_rdy: IF (NOT (C_IMPLEMENTATION_TYPE_WDCH = 5 OR C_IMPLEMENTATION_TYPE_WDCH = 13)) GENERATE
+            wdch_s_axi_wready    <= NOT (wdch_full);
+          END GENERATE g8s_nbi_wdch_rdy;
+        END GENERATE g8s_wdch_rdy;
+        g7s_wdch_rdy: IF (IS_8SERIES = 0) GENERATE
+          wdch_s_axi_wready    <= NOT (wdch_full);
+        END GENERATE g7s_wdch_rdy;
+
       wdch_m_axi_wvalid    <= NOT wdch_empty;
       S_AXI_WREADY         <= wdch_s_axi_wready;
       M_AXI_WVALID         <= wdch_m_axi_wvalid;
@@ -7178,8 +7442,10 @@ BEGIN
       GENERIC MAP (
           C_FAMILY                          => C_FAMILY,
           C_COMMON_CLOCK                    => C_COMMON_CLOCK,
-          C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_WRCH = 1 OR C_IMPLEMENTATION_TYPE_WRCH = 11),1,2),
-          C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_WRCH <= 6),0,2), -- CCBI
+          C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_WRCH = 1  OR C_IMPLEMENTATION_TYPE_WRCH = 11),1,
+                                               if_then_else((C_IMPLEMENTATION_TYPE_WRCH = 2  OR C_IMPLEMENTATION_TYPE_WRCH = 12),2,4)),
+          C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_WRCH = 1  OR C_IMPLEMENTATION_TYPE_WRCH = 2),0,
+                                               if_then_else((C_IMPLEMENTATION_TYPE_WRCH = 11 OR C_IMPLEMENTATION_TYPE_WRCH = 12),2,6)),
           C_PRELOAD_REGS                    => 1, -- Always FWFT for AXI
           C_PRELOAD_LATENCY                 => 0, -- Always FWFT for AXI
           C_DIN_WIDTH                       => C_DIN_WIDTH_WRCH,
@@ -7286,13 +7552,24 @@ BEGIN
         RD_DATA_COUNT             => AXI_B_RD_DATA_COUNT,
         WR_DATA_COUNT             => AXI_B_WR_DATA_COUNT,
         SBITERR                   => AXI_B_SBITERR,
-        DBITERR                   => AXI_B_DBITERR
+        DBITERR                   => AXI_B_DBITERR,
+        WR_RST_BUSY               => wr_rst_busy_wrch,
+        RD_RST_BUSY               => rd_rst_busy_wrch 
         );
 
---      wrch_s_axi_bvalid    <= map_ready_valid(C_PROG_EMPTY_TYPE_WRCH,wrch_empty,wrch_almost_empty,wrch_prog_empty);
---      wrch_m_axi_bready    <= map_ready_valid(C_PROG_FULL_TYPE_WRCH,wrch_full,wrch_almost_full,wrch_prog_full);
       wrch_s_axi_bvalid    <= NOT wrch_empty;
-      wrch_m_axi_bready    <= NOT wrch_full;
+        g8s_wrch_rdy: IF (IS_8SERIES = 1) GENERATE
+          g8s_bi_wrch_rdy: IF (C_IMPLEMENTATION_TYPE_WRCH = 5 OR C_IMPLEMENTATION_TYPE_WRCH = 13) GENERATE
+            wrch_m_axi_bready    <= NOT (wrch_full OR wr_rst_busy_wrch);
+          END GENERATE g8s_bi_wrch_rdy;
+          g8s_nbi_wrch_rdy: IF (NOT (C_IMPLEMENTATION_TYPE_WRCH = 5 OR C_IMPLEMENTATION_TYPE_WRCH = 13)) GENERATE
+            wrch_m_axi_bready    <= NOT (wrch_full);
+          END GENERATE g8s_nbi_wrch_rdy;
+        END GENERATE g8s_wrch_rdy;
+        g7s_wrch_rdy: IF (IS_8SERIES = 0) GENERATE
+          wrch_m_axi_bready    <= NOT (wrch_full);
+        END GENERATE g7s_wrch_rdy;
+
       S_AXI_BVALID         <= wrch_s_axi_bvalid;
       M_AXI_BREADY         <= wrch_m_axi_bready;
 
@@ -7402,6 +7679,10 @@ BEGIN
       SIGNAL arvalid_en          : std_logic := '0';
       SIGNAL arready_pkt         : std_logic := '0';
       SIGNAL rdch_re             : STD_LOGIC := '0';
+      SIGNAL wr_rst_busy_rach    : STD_LOGIC := '0';
+      SIGNAL wr_rst_busy_rdch    : STD_LOGIC := '0';
+      SIGNAL rd_rst_busy_rach    : STD_LOGIC := '0';
+      SIGNAL rd_rst_busy_rdch    : STD_LOGIC := '0';
 
       CONSTANT ARID_OFFSET       : integer := if_then_else(C_AXI_TYPE /= 2 AND C_HAS_AXI_ID = 1,C_DIN_WIDTH_RACH - C_AXI_ID_WIDTH,C_DIN_WIDTH_RACH);
       CONSTANT ARADDR_OFFSET     : integer := ARID_OFFSET - C_AXI_ADDR_WIDTH;
@@ -7579,8 +7860,10 @@ BEGIN
         GENERIC MAP (
             C_FAMILY                          => C_FAMILY,
             C_COMMON_CLOCK                    => C_COMMON_CLOCK,
-            C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_RACH = 1 OR C_IMPLEMENTATION_TYPE_RACH = 11),1,2),
-            C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_RACH <= 6),0,2), -- CCBI
+            C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_RACH = 1  OR C_IMPLEMENTATION_TYPE_RACH = 11),1,
+                                                 if_then_else((C_IMPLEMENTATION_TYPE_RACH = 2  OR C_IMPLEMENTATION_TYPE_RACH = 12),2,4)),
+            C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_RACH = 1  OR C_IMPLEMENTATION_TYPE_RACH = 2),0,
+                                                 if_then_else((C_IMPLEMENTATION_TYPE_RACH = 11 OR C_IMPLEMENTATION_TYPE_RACH = 12),2,6)),
             C_PRELOAD_REGS                    => 1, -- Always FWFT for AXI
             C_PRELOAD_LATENCY                 => 0, -- Always FWFT for AXI
             C_DIN_WIDTH                       => C_DIN_WIDTH_RACH,
@@ -7687,12 +7970,23 @@ BEGIN
           RD_DATA_COUNT             => AXI_AR_RD_DATA_COUNT,
           WR_DATA_COUNT             => AXI_AR_WR_DATA_COUNT,
           SBITERR                   => AXI_AR_SBITERR,
-          DBITERR                   => AXI_AR_DBITERR
+          DBITERR                   => AXI_AR_DBITERR,
+          WR_RST_BUSY               => wr_rst_busy_rach,
+          RD_RST_BUSY               => rd_rst_busy_rach 
           );
 
---        rach_s_axi_arready   <= map_ready_valid(C_PROG_FULL_TYPE_RACH,rach_full,rach_almost_full,rach_prog_full);
---        rach_m_axi_arvalid   <= map_ready_valid(C_PROG_EMPTY_TYPE_RACH,rach_empty,rach_almost_empty,rach_prog_empty);
-        rach_s_axi_arready   <= NOT rach_full;
+        g8s_rach_rdy: IF (IS_8SERIES = 1) GENERATE
+          g8s_bi_rach_rdy: IF (C_IMPLEMENTATION_TYPE_RACH = 5 OR C_IMPLEMENTATION_TYPE_RACH = 13) GENERATE
+            rach_s_axi_arready   <= NOT (rach_full OR wr_rst_busy_rach);
+          END GENERATE g8s_bi_rach_rdy;
+          g8s_nbi_rach_rdy: IF (NOT (C_IMPLEMENTATION_TYPE_RACH = 5 OR C_IMPLEMENTATION_TYPE_RACH = 13)) GENERATE
+            rach_s_axi_arready   <= NOT (rach_full);
+          END GENERATE g8s_nbi_rach_rdy;
+        END GENERATE g8s_rach_rdy;
+        g7s_rach_rdy: IF (IS_8SERIES = 0) GENERATE
+          rach_s_axi_arready   <= NOT (rach_full);
+        END GENERATE g7s_rach_rdy;
+
         rach_m_axi_arvalid   <= NOT rach_empty;
         S_AXI_ARREADY        <= rach_s_axi_arready;
         
@@ -7775,8 +8069,10 @@ BEGIN
         GENERIC MAP (
             C_FAMILY                          => C_FAMILY,
             C_COMMON_CLOCK                    => C_COMMON_CLOCK,
-            C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_RDCH = 1 OR C_IMPLEMENTATION_TYPE_RDCH = 11),1,2),
-            C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_RDCH <= 6),0,2), -- CCBI
+            C_MEMORY_TYPE                     => if_then_else((C_IMPLEMENTATION_TYPE_RDCH = 1  OR C_IMPLEMENTATION_TYPE_RDCH = 11),1,
+                                                 if_then_else((C_IMPLEMENTATION_TYPE_RDCH = 2  OR C_IMPLEMENTATION_TYPE_RDCH = 12),2,4)),
+            C_IMPLEMENTATION_TYPE             => if_then_else((C_IMPLEMENTATION_TYPE_RDCH = 1  OR C_IMPLEMENTATION_TYPE_RDCH = 2),0,
+                                                 if_then_else((C_IMPLEMENTATION_TYPE_RDCH = 11 OR C_IMPLEMENTATION_TYPE_RDCH = 12),2,6)),
             C_PRELOAD_REGS                    => 1, -- Always FWFT for AXI
             C_PRELOAD_LATENCY                 => 0, -- Always FWFT for AXI
             C_DIN_WIDTH                       => C_DIN_WIDTH_RDCH,
@@ -7883,13 +8179,24 @@ BEGIN
           RD_DATA_COUNT             => AXI_R_RD_DATA_COUNT,
           WR_DATA_COUNT             => AXI_R_WR_DATA_COUNT,
           SBITERR                   => AXI_R_SBITERR,
-          DBITERR                   => AXI_R_DBITERR
+          DBITERR                   => AXI_R_DBITERR,
+          WR_RST_BUSY               => wr_rst_busy_rdch,
+          RD_RST_BUSY               => rd_rst_busy_rdch 
           );
   
---        rdch_s_axi_rvalid    <= map_ready_valid(C_PROG_EMPTY_TYPE_RDCH,rdch_empty,rdch_almost_empty,rdch_prog_empty);
---        rdch_m_axi_rready    <= map_ready_valid(C_PROG_FULL_TYPE_RDCH,rdch_full,rdch_almost_full,rdch_prog_full);
         rdch_s_axi_rvalid    <= NOT rdch_empty;
-        rdch_m_axi_rready    <= NOT rdch_full;
+
+        g8s_rdch_rdy: IF (IS_8SERIES = 1) GENERATE
+          g8s_bi_rdch_rdy: IF (C_IMPLEMENTATION_TYPE_RDCH = 5 OR C_IMPLEMENTATION_TYPE_RDCH = 13) GENERATE
+            rdch_m_axi_rready    <= NOT (rdch_full OR wr_rst_busy_rdch);
+          END GENERATE g8s_bi_rdch_rdy;
+          g8s_nbi_rdch_rdy: IF (NOT (C_IMPLEMENTATION_TYPE_RDCH = 5 OR C_IMPLEMENTATION_TYPE_RDCH = 13)) GENERATE
+            rdch_m_axi_rready    <= NOT (rdch_full);
+          END GENERATE g8s_nbi_rdch_rdy;
+        END GENERATE g8s_rdch_rdy;
+        g7s_rdch_rdy: IF (IS_8SERIES = 0) GENERATE
+          rdch_m_axi_rready    <= NOT (rdch_full);
+        END GENERATE g7s_rdch_rdy;
         S_AXI_RVALID         <= rdch_s_axi_rvalid;
         M_AXI_RREADY         <= rdch_m_axi_rready;
 

@@ -59,7 +59,7 @@
 // Device           : 7 Series
 // Design Name      : DDR3 SDRAM
 // Purpose          :
-//   Top-level  module. This module serves both as an example,
+//   Top-level  module. This module serves as an example,
 //   and allows the user to synthesize a self-contained design,
 //   which they can be used to test their hardware.
 //   In addition to the memory controller, the module instantiates:
@@ -77,28 +77,11 @@ module example_top #
    //***************************************************************************
    // Traffic Gen related parameters
    //***************************************************************************
-   parameter BL_WIDTH              = 10,
-   parameter PORT_MODE             = "BI_MODE",
-   parameter DATA_MODE             = 4'b0010,
-   parameter ADDR_MODE             = 4'b0011,
-   parameter TST_MEM_INSTR_MODE    = "R_W_INSTR_MODE",
-   parameter EYE_TEST              = "FALSE",
-                                     // set EYE_TEST = "TRUE" to probe memory
-                                     // signals. Traffic Generator will only
-                                     // write to one single location and no
-                                     // read transactions will be generated.
-   parameter DATA_PATTERN          = "DGEN_ALL",
-                                      // For small devices, choose one only.
-                                      // For large device, choose "DGEN_ALL"
-                                      // "DGEN_HAMMER", "DGEN_WALKING1",
-                                      // "DGEN_WALKING0","DGEN_ADDR","
-                                      // "DGEN_NEIGHBOR","DGEN_PRBS","DGEN_ALL"
-   parameter CMD_PATTERN           = "CGEN_ALL",
-                                      // "CGEN_PRBS","CGEN_FIXED","CGEN_BRAM",
-                                      // "CGEN_SEQUENTIAL", "CGEN_ALL"
+//   parameter BL_WIDTH              = 10,
+//   parameter ADDR_MODE             = 4'b0011,
    parameter BEGIN_ADDRESS         = 32'h00000000,
    parameter END_ADDRESS           = 32'h00ffffff,
-   parameter MEM_ADDR_ORDER        = "BANK_ROW_COLUMN",
+//   parameter MEM_ADDR_ORDER        = "BANK_ROW_COLUMN",
                                       //Possible Parameters
                                       //1.BANK_ROW_COLUMN : Address mapping is
                                       //                    in form of Bank Row Column.
@@ -107,10 +90,6 @@ module example_top #
                                       //3.TG_TEST : Scrambles Address bits
                                       //            for distributed Addressing.
    parameter PRBS_EADDR_MASK_POS   = 32'hff000000,
-   parameter CMD_WDT               = 'h3FF,
-   parameter WR_WDT                = 'h1FFF,
-   parameter RD_WDT                = 'h3FF,
-   parameter SEL_VICTIM_LINE       = 0,
    parameter ENFORCE_RD_WR         = 0,
    parameter ENFORCE_RD_WR_CMD     = 8'h11,
    parameter ENFORCE_RD_WR_PATTERN = 3'b000,
@@ -132,10 +111,10 @@ module example_top #
                                      // # of unique CS outputs per rank for phy
    parameter CKE_WIDTH             = 1,
                                      // # of CKE outputs to memory.
-   parameter DATA_BUF_ADDR_WIDTH   = 5,
-   parameter DQ_CNT_WIDTH          = 6,
+//   parameter DATA_BUF_ADDR_WIDTH   = 5,
+//   parameter DQ_CNT_WIDTH          = 6,
                                      // = ceil(log2(DQ_WIDTH))
-   parameter DQ_PER_DM             = 8,
+//   parameter DQ_PER_DM             = 8,
    parameter DM_WIDTH              = 8,
                                      // # of DM (data mask)
    parameter DQ_WIDTH              = 64,
@@ -146,6 +125,7 @@ module example_top #
    parameter DRAM_WIDTH            = 8,
                                      // # of DQ per DQS
    parameter ECC                   = "OFF",
+   parameter ECC_TEST              = "OFF",
    parameter nBANK_MACHS           = 4,
    parameter RANKS                 = 1,
                                      // # of Ranks.
@@ -158,52 +138,52 @@ module example_top #
                                      //     + ROW_WIDTH + COL_WIDTH;
                                      // Chip Select is always tied to low for
                                      // single rank devices
-   parameter USE_CS_PORT          = 1,
+//   parameter USE_CS_PORT          = 1,
                                      // # = 1, When Chip Select (CS#) output is enabled
                                      //   = 0, When Chip Select (CS#) output is disabled
                                      // If CS_N disabled, user must connect
                                      // DRAM CS_N input(s) to ground
-   parameter USE_DM_PORT           = 1,
+//   parameter USE_DM_PORT           = 1,
                                      // # = 1, When Data Mask option is enabled
                                      //   = 0, When Data Mask option is disbaled
                                      // When Data Mask option is disabled in
                                      // MIG Controller Options page, the logic
                                      // related to Data Mask should not get
                                      // synthesized
-   parameter USE_ODT_PORT          = 1,
+//   parameter USE_ODT_PORT          = 1,
                                      // # = 1, When ODT output is enabled
                                      //   = 0, When ODT output is disabled
                                      // Parameter configuration for Dynamic ODT support:
                                      // USE_ODT_PORT = 0, RTT_NOM = "DISABLED", RTT_WR = "60/120".
                                      // This configuration allows to save ODT pin mapping from FPGA.
                                      // The user can tie the ODT input of DRAM to HIGH.
-   parameter IS_CLK_SHARED          = "FALSE",
+//   parameter IS_CLK_SHARED          = "FALSE",
                                       // # = "true" when clock is shared
                                       //   = "false" when clock is not shared 
 
-   parameter PHY_CONTROL_MASTER_BANK = 1,
+//   parameter PHY_CONTROL_MASTER_BANK = 1,
                                      // The bank index where master PHY_CONTROL resides,
                                      // equal to the PLL residing bank
-   parameter MEM_DENSITY           = "1Gb",
+//   parameter MEM_DENSITY           = "1Gb",
                                      // Indicates the density of the Memory part
                                      // Added for the sake of Vivado simulations
-   parameter MEM_SPEEDGRADE        = "125",
+//   parameter MEM_SPEEDGRADE        = "125",
                                      // Indicates the Speed grade of Memory Part
                                      // Added for the sake of Vivado simulations
-   parameter MEM_DEVICE_WIDTH      = 8,
+//   parameter MEM_DEVICE_WIDTH      = 8,
                                      // Indicates the device width of the Memory Part
                                      // Added for the sake of Vivado simulations
 
    //***************************************************************************
    // The following parameters are mode register settings
    //***************************************************************************
-   parameter AL                    = "0",
+//   parameter AL                    = "0",
                                      // DDR3 SDRAM:
                                      // Additive Latency (Mode Register 1).
                                      // # = "0", "CL-1", "CL-2".
                                      // DDR2 SDRAM:
                                      // Additive Latency (Extended Mode Register).
-   parameter nAL                   = 0,
+//   parameter nAL                   = 0,
                                      // # Additive Latency in number of clock
                                      // cycles.
    parameter BURST_MODE            = "8",
@@ -213,42 +193,42 @@ module example_top #
                                      // DDR2 SDRAM:
                                      // Burst Length (Mode Register).
                                      // # = "8", "4".
-   parameter BURST_TYPE            = "SEQ",
+//   parameter BURST_TYPE            = "SEQ",
                                      // DDR3 SDRAM: Burst Type (Mode Register 0).
                                      // DDR2 SDRAM: Burst Type (Mode Register).
                                      // # = "SEQ" - (Sequential),
                                      //   = "INT" - (Interleaved).
-   parameter CL                    = 11,
+//   parameter CL                    = 11,
                                      // in number of clock cycles
                                      // DDR3 SDRAM: CAS Latency (Mode Register 0).
                                      // DDR2 SDRAM: CAS Latency (Mode Register).
-   parameter CWL                   = 8,
+//   parameter CWL                   = 8,
                                      // in number of clock cycles
                                      // DDR3 SDRAM: CAS Write Latency (Mode Register 2).
                                      // DDR2 SDRAM: Can be ignored
-   parameter OUTPUT_DRV            = "HIGH",
+//   parameter OUTPUT_DRV            = "HIGH",
                                      // Output Driver Impedance Control (Mode Register 1).
                                      // # = "HIGH" - RZQ/7,
                                      //   = "LOW" - RZQ/6.
-   parameter RTT_NOM               = "40",
+//   parameter RTT_NOM               = "40",
                                      // RTT_NOM (ODT) (Mode Register 1).
                                      //   = "120" - RZQ/2,
                                      //   = "60"  - RZQ/4,
                                      //   = "40"  - RZQ/6.
-   parameter RTT_WR                = "OFF",
+//   parameter RTT_WR                = "OFF",
                                      // RTT_WR (ODT) (Mode Register 2).
                                      // # = "OFF" - Dynamic ODT off,
                                      //   = "120" - RZQ/2,
                                      //   = "60"  - RZQ/4,
-   parameter ADDR_CMD_MODE         = "1T" ,
+//   parameter ADDR_CMD_MODE         = "1T" ,
                                      // # = "1T", "2T".
-   parameter REG_CTRL              = "OFF",
+//   parameter REG_CTRL              = "OFF",
                                      // # = "ON" - RDIMMs,
                                      //   = "OFF" - Components, SODIMMs, UDIMMs.
-   parameter CA_MIRROR             = "OFF",
+//   parameter CA_MIRROR             = "OFF",
                                      // C/A mirror opt for DDR3 dual rank
 
-   parameter VDD_OP_VOLT           = "150",
+//   parameter VDD_OP_VOLT           = "150",
                                      // # = "150" - 1.5V Vdd Memory part
                                      //   = "135" - 1.35V Vdd Memory part
 
@@ -278,35 +258,35 @@ module example_top #
    // Memory Timing Parameters. These parameters varies based on the selected
    // memory part.
    //***************************************************************************
-   parameter tCKE                  = 5000,
+//   parameter tCKE                  = 5000,
                                      // memory tCKE paramter in pS
-   parameter tFAW                  = 30000,
+//   parameter tFAW                  = 30000,
                                      // memory tRAW paramter in pS.
-   parameter tRAS                  = 35000,
+//   parameter tRAS                  = 35000,
                                      // memory tRAS paramter in pS.
-   parameter tRCD                  = 13125,
+//   parameter tRCD                  = 13125,
                                      // memory tRCD paramter in pS.
-   parameter tREFI                 = 7800000,
+//   parameter tREFI                 = 7800000,
                                      // memory tREFI paramter in pS.
-   parameter tRFC                  = 110000,
+//   parameter tRFC                  = 110000,
                                      // memory tRFC paramter in pS.
-   parameter tRP                   = 13125,
+//   parameter tRP                   = 13125,
                                      // memory tRP paramter in pS.
-   parameter tRRD                  = 6000,
+//   parameter tRRD                  = 6000,
                                      // memory tRRD paramter in pS.
-   parameter tRTP                  = 7500,
+//   parameter tRTP                  = 7500,
                                      // memory tRTP paramter in pS.
-   parameter tWTR                  = 7500,
+//   parameter tWTR                  = 7500,
                                      // memory tWTR paramter in pS.
-   parameter tZQI                  = 128_000_000,
+//   parameter tZQI                  = 128_000_000,
                                      // memory tZQI paramter in nS.
-   parameter tZQCS                 = 64,
+//   parameter tZQCS                 = 64,
                                      // memory tZQCS paramter in clock cycles.
 
    //***************************************************************************
    // Simulation parameters
    //***************************************************************************
-   parameter SIM_BYPASS_INIT_CAL   = "OFF",
+//   parameter SIM_BYPASS_INIT_CAL   = "OFF",
                                      // # = "OFF" -  Complete memory init &
                                      //              calibration sequence
                                      // # = "SKIP" - Not supported
@@ -322,152 +302,151 @@ module example_top #
    // Do not change any of these parameters directly by editing the RTL.
    // Any changes required should be done through GUI and the design regenerated.
    //***************************************************************************
-   parameter BYTE_LANES_B0         = 4'b1111,
+//   parameter BYTE_LANES_B0         = 4'b1111,
                                      // Byte lanes used in an IO column.
-   parameter BYTE_LANES_B1         = 4'b0111,
+//   parameter BYTE_LANES_B1         = 4'b0111,
                                      // Byte lanes used in an IO column.
-   parameter BYTE_LANES_B2         = 4'b1111,
+//   parameter BYTE_LANES_B2         = 4'b1111,
                                      // Byte lanes used in an IO column.
-   parameter BYTE_LANES_B3         = 4'b0000,
+//   parameter BYTE_LANES_B3         = 4'b0000,
                                      // Byte lanes used in an IO column.
-   parameter BYTE_LANES_B4         = 4'b0000,
+//   parameter BYTE_LANES_B4         = 4'b0000,
                                      // Byte lanes used in an IO column.
-   parameter DATA_CTL_B0           = 4'b1111,
+//   parameter DATA_CTL_B0           = 4'b1111,
                                      // Indicates Byte lane is data byte lane
                                      // or control Byte lane. '1' in a bit
                                      // position indicates a data byte lane and
                                      // a '0' indicates a control byte lane
-   parameter DATA_CTL_B1           = 4'b0000,
+//   parameter DATA_CTL_B1           = 4'b0000,
                                      // Indicates Byte lane is data byte lane
                                      // or control Byte lane. '1' in a bit
                                      // position indicates a data byte lane and
                                      // a '0' indicates a control byte lane
-   parameter DATA_CTL_B2           = 4'b1111,
+//   parameter DATA_CTL_B2           = 4'b1111,
                                      // Indicates Byte lane is data byte lane
                                      // or control Byte lane. '1' in a bit
                                      // position indicates a data byte lane and
                                      // a '0' indicates a control byte lane
-   parameter DATA_CTL_B3           = 4'b0000,
+//   parameter DATA_CTL_B3           = 4'b0000,
                                      // Indicates Byte lane is data byte lane
                                      // or control Byte lane. '1' in a bit
                                      // position indicates a data byte lane and
                                      // a '0' indicates a control byte lane
-   parameter DATA_CTL_B4           = 4'b0000,
+//   parameter DATA_CTL_B4           = 4'b0000,
                                      // Indicates Byte lane is data byte lane
                                      // or control Byte lane. '1' in a bit
                                      // position indicates a data byte lane and
                                      // a '0' indicates a control byte lane
-   parameter PHY_0_BITLANES        = 48'h3FE_3FE_3FE_2FF,
-   parameter PHY_1_BITLANES        = 48'h000_CB0_473_FFF,
-   parameter PHY_2_BITLANES        = 48'h3FE_3FE_3FE_2FF,
+//   parameter PHY_0_BITLANES        = 48'h3FE_3FE_3FE_2FF,
+//   parameter PHY_1_BITLANES        = 48'h000_CB0_473_FFF,
+//   parameter PHY_2_BITLANES        = 48'h3FE_3FE_3FE_2FF,
 
    // control/address/data pin mapping parameters
-   parameter CK_BYTE_MAP
-     = 144'h00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_11,
-   parameter ADDR_MAP
-     = 192'h000_000_111_110_109_108_107_106_10B_10A_105_104_103_102_101_100,
-   parameter BANK_MAP   = 36'h11A_115_114,
-   parameter CAS_MAP    = 12'h12A,
-   parameter CKE_ODT_BYTE_MAP = 8'h00,
-   parameter CKE_MAP    = 96'h000_000_000_000_000_000_000_116,
-   parameter ODT_MAP    = 96'h000_000_000_000_000_000_000_127,
-   parameter CS_MAP     = 120'h000_000_000_000_000_000_000_000_000_12B,
-   parameter PARITY_MAP = 12'h000,
-   parameter RAS_MAP    = 12'h125,
-   parameter WE_MAP     = 12'h124,
-   parameter DQS_BYTE_MAP
-     = 144'h00_00_00_00_00_00_00_00_00_00_03_02_01_00_23_22_21_20,
-   parameter DATA0_MAP  = 96'h200_209_206_203_204_205_202_207,
-   parameter DATA1_MAP  = 96'h219_218_214_215_217_212_216_213,
-   parameter DATA2_MAP  = 96'h225_224_229_226_223_222_228_227,
-   parameter DATA3_MAP  = 96'h238_236_234_233_235_237_232_239,
-   parameter DATA4_MAP  = 96'h005_003_000_009_007_006_004_002,
-   parameter DATA5_MAP  = 96'h013_012_018_019_015_014_017_016,
-   parameter DATA6_MAP  = 96'h023_027_022_029_024_025_028_026,
-   parameter DATA7_MAP  = 96'h039_037_033_032_035_034_038_036,
-   parameter DATA8_MAP  = 96'h000_000_000_000_000_000_000_000,
-   parameter DATA9_MAP  = 96'h000_000_000_000_000_000_000_000,
-   parameter DATA10_MAP = 96'h000_000_000_000_000_000_000_000,
-   parameter DATA11_MAP = 96'h000_000_000_000_000_000_000_000,
-   parameter DATA12_MAP = 96'h000_000_000_000_000_000_000_000,
-   parameter DATA13_MAP = 96'h000_000_000_000_000_000_000_000,
-   parameter DATA14_MAP = 96'h000_000_000_000_000_000_000_000,
-   parameter DATA15_MAP = 96'h000_000_000_000_000_000_000_000,
-   parameter DATA16_MAP = 96'h000_000_000_000_000_000_000_000,
-   parameter DATA17_MAP = 96'h000_000_000_000_000_000_000_000,
-   parameter MASK0_MAP  = 108'h000_031_021_011_001_231_221_211_201,
-   parameter MASK1_MAP  = 108'h000_000_000_000_000_000_000_000_000,
+//   parameter CK_BYTE_MAP
+//     = 144'h00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_11,
+//   parameter ADDR_MAP
+//     = 192'h000_000_111_110_109_108_107_106_10B_10A_105_104_103_102_101_100,
+//   parameter BANK_MAP   = 36'h11A_115_114,
+//   parameter CAS_MAP    = 12'h12A,
+//   parameter CKE_ODT_BYTE_MAP = 8'h00,
+//   parameter CKE_MAP    = 96'h000_000_000_000_000_000_000_116,
+//   parameter ODT_MAP    = 96'h000_000_000_000_000_000_000_127,
+//   parameter CS_MAP     = 120'h000_000_000_000_000_000_000_000_000_12B,
+//   parameter PARITY_MAP = 12'h000,
+//   parameter RAS_MAP    = 12'h125,
+//   parameter WE_MAP     = 12'h124,
+//   parameter DQS_BYTE_MAP
+//     = 144'h00_00_00_00_00_00_00_00_00_00_03_02_01_00_23_22_21_20,
+//   parameter DATA0_MAP  = 96'h200_209_206_203_204_205_202_207,
+//   parameter DATA1_MAP  = 96'h219_218_214_215_217_212_216_213,
+//   parameter DATA2_MAP  = 96'h225_224_229_226_223_222_228_227,
+//   parameter DATA3_MAP  = 96'h238_236_234_233_235_237_232_239,
+//   parameter DATA4_MAP  = 96'h005_003_000_009_007_006_004_002,
+//   parameter DATA5_MAP  = 96'h013_012_018_019_015_014_017_016,
+//   parameter DATA6_MAP  = 96'h023_027_022_029_024_025_028_026,
+//   parameter DATA7_MAP  = 96'h039_037_033_032_035_034_038_036,
+//   parameter DATA8_MAP  = 96'h000_000_000_000_000_000_000_000,
+//   parameter DATA9_MAP  = 96'h000_000_000_000_000_000_000_000,
+//   parameter DATA10_MAP = 96'h000_000_000_000_000_000_000_000,
+//   parameter DATA11_MAP = 96'h000_000_000_000_000_000_000_000,
+//   parameter DATA12_MAP = 96'h000_000_000_000_000_000_000_000,
+//   parameter DATA13_MAP = 96'h000_000_000_000_000_000_000_000,
+//   parameter DATA14_MAP = 96'h000_000_000_000_000_000_000_000,
+//   parameter DATA15_MAP = 96'h000_000_000_000_000_000_000_000,
+//   parameter DATA16_MAP = 96'h000_000_000_000_000_000_000_000,
+//   parameter DATA17_MAP = 96'h000_000_000_000_000_000_000_000,
+//   parameter MASK0_MAP  = 108'h000_031_021_011_001_231_221_211_201,
+//   parameter MASK1_MAP  = 108'h000_000_000_000_000_000_000_000_000,
 
-   parameter SLOT_0_CONFIG         = 8'b0000_0001,
+//   parameter SLOT_0_CONFIG         = 8'b0000_0001,
                                      // Mapping of Ranks.
-   parameter SLOT_1_CONFIG         = 8'b0000_0000,
+//   parameter SLOT_1_CONFIG         = 8'b0000_0000,
                                      // Mapping of Ranks.
 
    //***************************************************************************
    // IODELAY and PHY related parameters
    //***************************************************************************
-   parameter IBUF_LPWR_MODE        = "OFF",
+//   parameter IBUF_LPWR_MODE        = "OFF",
                                      // to phy_top
-   parameter DATA_IO_IDLE_PWRDWN   = "ON",
+//   parameter DATA_IO_IDLE_PWRDWN   = "ON",
                                      // # = "ON", "OFF"
-   parameter BANK_TYPE             = "HP_IO",
+//   parameter BANK_TYPE             = "HP_IO",
                                      // # = "HP_IO", "HPL_IO", "HR_IO", "HRL_IO"
-   parameter DATA_IO_PRIM_TYPE     = "HP_LP",
+//   parameter DATA_IO_PRIM_TYPE     = "HP_LP",
                                      // # = "HP_LP", "HR_LP", "DEFAULT"
-   parameter CKE_ODT_AUX           = "FALSE",
-   parameter USER_REFRESH          = "OFF",
-   parameter WRLVL                 = "ON",
+//   parameter CKE_ODT_AUX           = "FALSE",
+//   parameter USER_REFRESH          = "OFF",
+//   parameter WRLVL                 = "ON",
                                      // # = "ON" - DDR3 SDRAM
                                      //   = "OFF" - DDR2 SDRAM.
-   parameter ORDERING              = "NORM",
+//   parameter ORDERING              = "NORM",
                                      // # = "NORM", "STRICT", "RELAXED".
-   parameter CALIB_ROW_ADD         = 16'h0000,
+//   parameter CALIB_ROW_ADD         = 16'h0000,
                                      // Calibration row address will be used for
                                      // calibration read and write operations
-   parameter CALIB_COL_ADD         = 12'h000,
+//   parameter CALIB_COL_ADD         = 12'h000,
                                      // Calibration column address will be used for
                                      // calibration read and write operations
-   parameter CALIB_BA_ADD          = 3'h0,
+//   parameter CALIB_BA_ADD          = 3'h0,
                                      // Calibration bank address will be used for
                                      // calibration read and write operations
-   parameter TCQ                   = 100,
-   parameter IODELAY_GRP           = "MIG_7SERIES_64BIT_800MHZ_IODELAY_MIG",
+   parameter TCQ                   = 100,//   parameter IODELAY_GRP           = "MIG_7SERIES_64BIT_800MHZ_IODELAY_MIG",
                                      // It is associated to a set of IODELAYs with
                                      // an IDELAYCTRL that have same IODELAY CONTROLLER
                                      // clock frequency.
-   parameter SYSCLK_TYPE           = "NO_BUFFER",
+//   parameter SYSCLK_TYPE           = "NO_BUFFER",
                                      // System clock type DIFFERENTIAL, SINGLE_ENDED,
                                      // NO_BUFFER
-   parameter REFCLK_TYPE           = "USE_SYSTEM_CLOCK",
+//   parameter REFCLK_TYPE           = "USE_SYSTEM_CLOCK",
                                      // Reference clock type DIFFERENTIAL, SINGLE_ENDED,
                                      // NO_BUFFER, USE_SYSTEM_CLOCK
-   parameter SYS_RST_PORT          = "FALSE",
+//   parameter SYS_RST_PORT          = "FALSE",
                                      // "TRUE" - if pin is selected for sys_rst
                                      //          and IBUF will be instantiated.
                                      // "FALSE" - if pin is not selected for sys_rst
       
    parameter DRAM_TYPE             = "DDR3",
-   parameter CAL_WIDTH             = "HALF",
-   parameter STARVE_LIMIT          = 2,
+//   parameter CAL_WIDTH             = "HALF",
+//   parameter STARVE_LIMIT          = 2,
                                      // # = 2,3,4.
 
    //***************************************************************************
    // Referece clock frequency parameters
    //***************************************************************************
-   parameter REFCLK_FREQ           = 200.0,
+//   parameter REFCLK_FREQ           = 200.0,
                                      // IODELAYCTRL reference clock frequency
-   parameter DIFF_TERM_REFCLK      = "TRUE",
+//   parameter DIFF_TERM_REFCLK      = "TRUE",
                                      // Differential Termination for idelay
                                      // reference clock input pins
    //***************************************************************************
    // System clock frequency parameters
    //***************************************************************************
-   parameter tCK                   = 1250,
+//   parameter tCK                   = 1250,
                                      // memory tCK paramter.
                                      // # = Clock Period in pS.
    parameter nCK_PER_CLK           = 4,
                                      // # of memory CKs per fabric CLK
-   parameter DIFF_TERM_SYSCLK      = "TRUE",
+//   parameter DIFF_TERM_SYSCLK      = "TRUE",
                                      // Differential Termination for System
                                      // clock input pins
 
@@ -475,18 +454,12 @@ module example_top #
    //***************************************************************************
    // AXI4 Shim parameters
    //***************************************************************************
-   
-   parameter UI_EXTRA_CLOCKS = "FALSE",
-                                     // Generates extra clocks as
-                                     // 1/2, 1/4 and 1/8 of fabrick clock.
-                                     // Valid for DDR2/DDR3 AXI interfaces
-                                     // based on GUI selection
    parameter C_S_AXI_ID_WIDTH              = 4,
                                              // Width of all master and slave ID signals.
                                              // # = >= 1.
-   parameter C_S_AXI_MEM_SIZE              = "1073741824",
+//   parameter C_S_AXI_MEM_SIZE              = "1073741824",
                                      // Address Space required for this component
-   parameter C_S_AXI_ADDR_WIDTH            = 32,
+   parameter C_S_AXI_ADDR_WIDTH            = 30,
                                              // Width of S_AXI_AWADDR, S_AXI_ARADDR, M_AXI_AWADDR and
                                              // M_AXI_ARADDR for all SI/MI slots.
                                              // # = 32.
@@ -494,18 +467,18 @@ module example_top #
                                              // Width of WDATA and RDATA on SI slot.
                                              // Must be <= APP_DATA_WIDTH.
                                              // # = 32, 64, 128, 256.
-   parameter C_MC_nCK_PER_CLK              = 4,
+//   parameter C_MC_nCK_PER_CLK              = 4,
                                              // Indicates whether to instatiate upsizer
                                              // Range: 0, 1
    parameter C_S_AXI_SUPPORTS_NARROW_BURST = 1,
                                              // Indicates whether to instatiate upsizer
                                              // Range: 0, 1
-   parameter C_RD_WR_ARB_ALGORITHM          = "RD_PRI_REG",
+//   parameter C_RD_WR_ARB_ALGORITHM          = "RD_PRI_REG",
                                              // Indicates the Arbitration
                                              // Allowed values - "TDM", "ROUND_ROBIN",
                                              // "RD_PRI_REG", "RD_PRI_REG_STARVE_LIMIT"
                                              // "WRITE_PRIORITY", "WRITE_PRIORITY_REG"
-   parameter C_S_AXI_REG_EN0               = 20'h00000,
+//   parameter C_S_AXI_REG_EN0               = 20'h00000,
                                              // C_S_AXI_REG_EN0[00] = Reserved
                                              // C_S_AXI_REG_EN0[04] = AW CHANNEL REGISTER SLICE
                                              // C_S_AXI_REG_EN0[05] =  W CHANNEL REGISTER SLICE
@@ -515,7 +488,7 @@ module example_top #
                                              // C_S_AXI_REG_EN0[09] =  W CHANNEL UPSIZER REGISTER SLICE
                                              // C_S_AXI_REG_EN0[10] = AR CHANNEL UPSIZER REGISTER SLICE
                                              // C_S_AXI_REG_EN0[11] =  R CHANNEL UPSIZER REGISTER SLICE
-   parameter C_S_AXI_REG_EN1               = 20'h00000,
+//   parameter C_S_AXI_REG_EN1               = 20'h00000,
                                              // Instatiates register slices after the upsizer.
                                              // The type of register is specified for each channel
                                              // in a vector. 4 bits per channel are used.
@@ -539,15 +512,15 @@ module example_top #
                                              //   6 => INPUTS    = Slave and Master side inputs are
                                              //                    registrated.
                                              //   7 => ADDRESS   = Optimized for address channel
-   parameter C_S_AXI_CTRL_ADDR_WIDTH       = 32,
+//   parameter C_S_AXI_CTRL_ADDR_WIDTH       = 32,
                                              // Width of AXI-4-Lite address bus
-   parameter C_S_AXI_CTRL_DATA_WIDTH       = 32,
+//   parameter C_S_AXI_CTRL_DATA_WIDTH       = 32,
                                              // Width of AXI-4-Lite data buses
-   parameter C_S_AXI_BASEADDR              = 32'h0000_0000,
+//   parameter C_S_AXI_BASEADDR              = 32'h0000_0000,
                                              // Base address of AXI4 Memory Mapped bus.
-   parameter C_ECC_ONOFF_RESET_VALUE       = 1,
+//   parameter C_ECC_ONOFF_RESET_VALUE       = 1,
                                              // Controls ECC on/off value at startup/reset
-   parameter C_ECC_CE_COUNTER_WIDTH        = 8,
+//   parameter C_ECC_CE_COUNTER_WIDTH        = 8,
                                              // The external memory to controller clock ratio.
 
    //***************************************************************************
@@ -560,42 +533,40 @@ module example_top #
    //***************************************************************************
    // Temparature monitor parameter
    //***************************************************************************
-   parameter TEMP_MON_CONTROL      = "INTERNAL",
+//   parameter TEMP_MON_CONTROL      = "INTERNAL",
                                      // # = "INTERNAL", "EXTERNAL"
       
-   parameter RST_ACT_LOW           = 1
+   parameter RST_ACT_LOW           = 0
                                      // =1 for active low reset,
                                      // =0 for active high.
    )
   (
 
    // Inouts
-   inout [DQ_WIDTH-1:0]                         ddr3_dq,
-   inout [DQS_WIDTH-1:0]                        ddr3_dqs_n,
-   inout [DQS_WIDTH-1:0]                        ddr3_dqs_p,
+   inout [63:0]                         ddr3_dq,
+   inout [7:0]                        ddr3_dqs_n,
+   inout [7:0]                        ddr3_dqs_p,
 
    // Outputs
-   output [ROW_WIDTH-1:0]                       ddr3_addr,
-   output [BANK_WIDTH-1:0]                      ddr3_ba,
+   output [13:0]                       ddr3_addr,
+   output [2:0]                      ddr3_ba,
    output                                       ddr3_ras_n,
    output                                       ddr3_cas_n,
    output                                       ddr3_we_n,
    output                                       ddr3_reset_n,
-   output [CK_WIDTH-1:0]                        ddr3_ck_p,
-   output [CK_WIDTH-1:0]                        ddr3_ck_n,
-   output [CKE_WIDTH-1:0]                       ddr3_cke,
-   output [CS_WIDTH*nCS_PER_RANK-1:0]           ddr3_cs_n,
-   output [DM_WIDTH-1:0]                        ddr3_dm,
-   output [ODT_WIDTH-1:0]                       ddr3_odt,
+   output [0:0]                        ddr3_ck_p,
+   output [0:0]                        ddr3_ck_n,
+   output [0:0]                       ddr3_cke,
+   output [0:0]           ddr3_cs_n,
+   output [7:0]                        ddr3_dm,
+   output [0:0]                       ddr3_odt,
 
    // Inputs
+   
    // Single-ended system clock
    input                                        sys_clk_i,
-   
-   
    output                                       tg_compare_error,
    output                                       init_calib_complete,
-   
       
 
    // System reset - Default polarity of sys_rst pin is Active Low.
@@ -625,12 +596,12 @@ function integer clogb2 (input integer size);
   endfunction
 
 
-  localparam CMD_PIPE_PLUS1        = "ON";
+//  localparam CMD_PIPE_PLUS1        = "ON";
                                      // add pipeline stage between MC and PHY
   localparam DATA_WIDTH            = 64;
-  localparam ECC_TEST              = "OFF";
+//  localparam ECC_TEST              = "OFF";
   localparam RANK_WIDTH = clogb2(RANKS);
-  localparam tPRDI                 = 1_000_000;
+//  localparam tPRDI                 = 1_000_000;
                                      // memory tPRDI paramter in pS.
   localparam PAYLOAD_WIDTH         = (ECC_TEST == "OFF") ? DATA_WIDTH : DQ_WIDTH;
   localparam BURST_LENGTH          = STR_TO_INT(BURST_MODE);
@@ -643,8 +614,8 @@ function integer clogb2 (input integer size);
   localparam  TG_ADDR_WIDTH = ((CS_WIDTH == 1) ? 0 : RANK_WIDTH)
                                  + BANK_WIDTH + ROW_WIDTH + COL_WIDTH;
   localparam MASK_SIZE             = DATA_WIDTH/8;
-  localparam DBG_WR_STS_WIDTH      = 32;
-  localparam DBG_RD_STS_WIDTH      = 32;
+  localparam DBG_WR_STS_WIDTH      = 40;
+  localparam DBG_RD_STS_WIDTH      = 40;
       
 
   // Wire declarations
@@ -658,6 +629,7 @@ function integer clogb2 (input integer size);
   wire                              app_zq_ack;
   wire                              app_rd_data_valid;
   wire [APP_DATA_WIDTH-1:0]         app_rd_data;
+
   wire                              mem_pattern_init_done;
 
   wire                              cmd_err;
@@ -682,7 +654,7 @@ function integer clogb2 (input integer size);
   wire                              s_axi_awready;
    // Slave Interface Write Data Ports
   wire [C_S_AXI_DATA_WIDTH-1:0]     s_axi_wdata;
-  wire [C_S_AXI_DATA_WIDTH/8-1:0]   s_axi_wstrb;
+  wire [(C_S_AXI_DATA_WIDTH/8)-1:0]   s_axi_wstrb;
   wire                              s_axi_wlast;
   wire                              s_axi_wvalid;
   wire                              s_axi_wready;
@@ -720,156 +692,176 @@ function integer clogb2 (input integer size);
   wire [DBG_RD_STS_WIDTH-1:0]       dbg_rd_sts;
     // Debug port wire declarations
 
-  wire [255:0]                          ddr3_ila_basic_w;
-  reg  [255:0]                          ddr3_ila_basic;
-  wire [255:0]                          ddr3_ila_wrpath_w;
-  reg  [255:0]                          ddr3_ila_wrpath;
-  wire [1023:0]                         ddr3_ila_rdpath_w;
-  reg  [1023:0]                         ddr3_ila_rdpath;
+  wire [255:0]                            ddr3_ila_basic_w;
+  reg  [255:0]                            ddr3_ila_basic;
+  wire [255:0]                            ddr3_ila_wrpath_w;
+  reg  [255:0]                            ddr3_ila_wrpath;
+  wire [1023:0]                           ddr3_ila_rdpath_w;
+  reg  [1023:0]                           ddr3_ila_rdpath;
 
-  (* mark_debug = "TRUE" *) wire [4:0]                            dbg_dqs;
-  (* mark_debug = "TRUE" *) wire [8:0]                            dbg_bit;
+  (* mark_debug = "TRUE" *) wire          dbg_mem_pattern_init_done;
+  (* mark_debug = "TRUE" *) wire          dbg_tg_compare_error;
+  (* mark_debug = "TRUE" *) wire [47:0]   dbg_tg_wr_data_counts;
+  (* mark_debug = "TRUE" *) wire [47:0]   dbg_tg_rd_data_counts;
 
-  (* mark_debug = "TRUE" *) wire           dbg_init_calib_complete;
-  (* mark_debug = "TRUE" *) wire           dbg_wrlvl_start;
-  (* mark_debug = "TRUE" *) wire           dbg_wrlvl_done;
-  (* mark_debug = "TRUE" *) wire           dbg_wrlvl_err;
-  (* mark_debug = "TRUE" *) wire           dbg_pi_phaselock_start;
-  (* mark_debug = "TRUE" *) wire           dbg_pi_phaselocked_done;
-  (* mark_debug = "TRUE" *) wire           dbg_pi_phaselock_err;
-  (* mark_debug = "TRUE" *) wire           dbg_pi_dqsfound_start;
-  (* mark_debug = "TRUE" *) wire           dbg_pi_dqsfound_done;
-  (* mark_debug = "TRUE" *) wire           dbg_pi_dqsfound_err;
-  (* mark_debug = "TRUE" *) wire [1:0]     dbg_rdlvl_start;
-  (* mark_debug = "TRUE" *) wire [1:0]     dbg_rdlvl_done;
-  (* mark_debug = "TRUE" *) wire [1:0]     dbg_rdlvl_err;
-  (* mark_debug = "TRUE" *) wire           dbg_oclkdelay_calib_start;
-  (* mark_debug = "TRUE" *) wire           dbg_oclkdelay_calib_done;
-  (* mark_debug = "TRUE" *) wire           dbg_wrcal_start;
-  (* mark_debug = "TRUE" *) wire           dbg_wrcal_done;
-  (* mark_debug = "TRUE" *) wire           dbg_wrcal_err;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_phy_init_5_0;
-  (* mark_debug = "TRUE" *) wire           dbg_rddata_valid_r;
-  (* mark_debug = "TRUE" *) wire [63:0]    dbg_rddata_r;
-  (* mark_debug = "TRUE" *) wire           dbg_fine_adjust_done_r;
-  (* mark_debug = "TRUE" *) wire           dbg_cmd_wdt_err_w;
-  (* mark_debug = "TRUE" *) wire           dbg_rd_wdt_err_w;
-  (* mark_debug = "TRUE" *) wire           dbg_wr_wdt_err_w;
-  (* mark_debug = "TRUE" *) wire           dbg_tg_compare_error;
-  (* mark_debug = "TRUE" *) wire           dbg_cmp_data_valid;
-  (* mark_debug = "TRUE" *) wire           dbg_cmp_error;
-  (* mark_debug = "TRUE" *) wire [63:0]    dbg_cmp_data_r;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_dq_error_bytelane_cmp;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_cumlative_dq_lane_error;
-  (* mark_debug = "TRUE" *) wire [31:0]    dbg_cmp_addr_i;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_cmp_bl_i;
-  (* mark_debug = "TRUE" *) wire           dbg_mcb_cmd_full_i;
-  (* mark_debug = "TRUE" *) wire           dbg_mcb_wr_full_i;
-  (* mark_debug = "TRUE" *) wire           dbg_mcb_rd_empty_i;
-  (* mark_debug = "TRUE" *) wire [1:0]     dbg_ddrx_ila_rdpath_765_764;
-  (* mark_debug = "TRUE" *) wire [31:0]    dbg_axi_cmp_data;
-  (* mark_debug = "TRUE" *) wire [31:0]    dbg_axi_rdata_cmp;
+  (* mark_debug = "TRUE" *) wire [4:0]    dbg_dqs;
+  (* mark_debug = "TRUE" *) wire [8:0]    dbg_bit;
+
+  reg  [7:0]                              dbg_extn_trig_out_ack_r;
+  (* mark_debug = "TRUE" *) wire          dbg_extn_trig_out;
+  (* mark_debug = "TRUE" *) wire          dbg_extn_trig_out_ack;
+  (* mark_debug = "TRUE" *) wire          dbg_init_calib_complete;
+  (* mark_debug = "TRUE" *) wire          dbg_wrlvl_start;
+  (* mark_debug = "TRUE" *) wire          dbg_wrlvl_done;
+  (* mark_debug = "TRUE" *) wire          dbg_wrlvl_err;
+  (* mark_debug = "TRUE" *) wire          dbg_pi_phaselock_start;
+  (* mark_debug = "TRUE" *) wire          dbg_pi_phaselocked_done;
+  (* mark_debug = "TRUE" *) wire          dbg_pi_phaselock_err;
+  (* mark_debug = "TRUE" *) wire          dbg_pi_dqsfound_start;
+  (* mark_debug = "TRUE" *) wire          dbg_pi_dqsfound_done;
+  (* mark_debug = "TRUE" *) wire          dbg_pi_dqsfound_err;
+  (* mark_debug = "TRUE" *) wire [1:0]    dbg_rdlvl_start;
+  (* mark_debug = "TRUE" *) wire [1:0]    dbg_rdlvl_done;
+  (* mark_debug = "TRUE" *) wire [1:0]    dbg_rdlvl_err;
+  (* mark_debug = "TRUE" *) wire          dbg_oclkdelay_calib_start;
+  (* mark_debug = "TRUE" *) wire          dbg_oclkdelay_calib_done;
+  (* mark_debug = "TRUE" *) wire          dbg_wrcal_start;
+  (* mark_debug = "TRUE" *) wire          dbg_wrcal_done;
+  (* mark_debug = "TRUE" *) wire          dbg_wrcal_err;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_phy_init_5_0;
+  (* mark_debug = "TRUE" *) wire          dbg_rddata_valid_r;
+  (* mark_debug = "TRUE" *) wire [63:0]   dbg_rddata_r;
+  (* mark_debug = "TRUE" *) wire          dbg_fine_adjust_done_r;
+  (* mark_debug = "TRUE" *) wire          dbg_cmd_wdt_err_w;
+  (* mark_debug = "TRUE" *) wire          dbg_rd_wdt_err_w;
+  (* mark_debug = "TRUE" *) wire          dbg_wr_wdt_err_w;
+  (* mark_debug = "TRUE" *) wire          dbg_cmp_data_valid;
+  (* mark_debug = "TRUE" *) wire          dbg_cmp_error;
+  (* mark_debug = "TRUE" *) wire [63:0]   dbg_cmp_data_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_dq_error_bytelane_cmp;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_cumlative_dq_lane_error;
+  (* mark_debug = "TRUE" *) wire [31:0]   dbg_cmp_addr_i;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_cmp_bl_i;
+  (* mark_debug = "TRUE" *) wire          dbg_mcb_cmd_full_i;
+  (* mark_debug = "TRUE" *) wire          dbg_mcb_wr_full_i;
+  (* mark_debug = "TRUE" *) wire          dbg_mcb_rd_empty_i;
+  (* mark_debug = "TRUE" *) wire [1:0]    dbg_ddrx_ila_rdpath_765_764;
+  (* mark_debug = "TRUE" *) wire [31:0]   dbg_axi_cmp_data;
+  (* mark_debug = "TRUE" *) wire [31:0]   dbg_axi_rdata_cmp;
 
   // Write path debug signals
-  (* mark_debug = "TRUE" *) wire [4:0]     dbg_wl_state_r;
-  (* mark_debug = "TRUE" *) wire [3:0]     dbg_dqs_cnt_r;
-  (* mark_debug = "TRUE" *) wire           dbg_wl_edge_detect_valid_r;
-  (* mark_debug = "TRUE" *) wire           dbg_rd_data_edge_detect_r_by_dqs;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_wl_po_fine_cnt_by_dqs;
-  (* mark_debug = "TRUE" *) wire [2:0]     dbg_wl_po_coarse_cnt_by_dqs;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_ocal_tap_cnt_by_dqs;
-  (* mark_debug = "TRUE" *) wire           dbg_ocal_rise_edge1_found;
-  (* mark_debug = "TRUE" *) wire           dbg_ocal_rise_edge2_found;
-  (* mark_debug = "TRUE" *) wire           dbg_ocal_fall_edge1_found;
-  (* mark_debug = "TRUE" *) wire           dbg_ocal_fall_edge2_found;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_ocal_rise_edge1_taps;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_ocal_rise_edge2_taps;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_ocal_fall_edge1_taps;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_ocal_fall_edge2_taps;
-  (* mark_debug = "TRUE" *) wire [4:0]     dbg_ocal_state_r;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_stg2_tap_cnt;
-  (* mark_debug = "TRUE" *) wire           dbg_wrcal_pat_data_match_r;
-  (* mark_debug = "TRUE" *) wire           dbg_wrcal_pat_data_match_valid_r;
-  (* mark_debug = "TRUE" *) wire [3:0]     dbg_wrcal_dqs_cnt_r;
-  (* mark_debug = "TRUE" *) wire [4:0]     cal2_state_r;
-  (* mark_debug = "TRUE" *) wire [4:0]     not_empty_wait_cnt;
-  (* mark_debug = "TRUE" *) wire           dbg_early1_data;
-  (* mark_debug = "TRUE" *) wire           dbg_early2_data;
-  (* mark_debug = "TRUE" *) wire [3:0]     dbg_phy_oclkdelay_cal_57_54;
-  (* mark_debug = "TRUE" *) wire [53:0]    dbg_phy_wrlvl_128_75;
-  (* mark_debug = "TRUE" *) wire [26:0]    dbg_phy_wrlvl_155_129;
+  (* mark_debug = "TRUE" *) wire [4:0]    dbg_wl_state_r;
+  (* mark_debug = "TRUE" *) wire [3:0]    dbg_dqs_cnt_r;
+  (* mark_debug = "TRUE" *) wire          dbg_wl_edge_detect_valid_r;
+  (* mark_debug = "TRUE" *) wire          dbg_rd_data_edge_detect_r_by_dqs;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_wl_po_fine_cnt_by_dqs;
+  (* mark_debug = "TRUE" *) wire [2:0]    dbg_wl_po_coarse_cnt_by_dqs;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_ocal_tap_cnt_by_dqs;
+  (* mark_debug = "TRUE" *) wire          dbg_ocal_rise_edge1_found;
+  (* mark_debug = "TRUE" *) wire          dbg_ocal_rise_edge2_found;
+  (* mark_debug = "TRUE" *) wire          dbg_ocal_fall_edge1_found;
+  (* mark_debug = "TRUE" *) wire          dbg_ocal_fall_edge2_found;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_ocal_rise_edge1_taps;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_ocal_rise_edge2_taps;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_ocal_fall_edge1_taps;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_ocal_fall_edge2_taps;
+  (* mark_debug = "TRUE" *) wire [4:0]    dbg_ocal_state_r;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_stg2_tap_cnt;
+  (* mark_debug = "TRUE" *) wire          dbg_wrcal_pat_data_match_r;
+  (* mark_debug = "TRUE" *) wire          dbg_wrcal_pat_data_match_valid_r;
+  (* mark_debug = "TRUE" *) wire [3:0]    dbg_wrcal_dqs_cnt_r;
+  (* mark_debug = "TRUE" *) wire [4:0]    cal2_state_r;
+  (* mark_debug = "TRUE" *) wire [4:0]    not_empty_wait_cnt;
+  (* mark_debug = "TRUE" *) wire          dbg_early1_data;
+  (* mark_debug = "TRUE" *) wire          dbg_early2_data;
+  (* mark_debug = "TRUE" *) wire          dbg_early1_data_match_r;
+  (* mark_debug = "TRUE" *) wire          dbg_early2_data_match_r;
+  (* mark_debug = "TRUE" *) wire          dbg_wcal_sanity_pat_data_match_valid_r;
+  (* mark_debug = "TRUE" *) wire          dbg_wcal_sanity_chk_start;
+  (* mark_debug = "TRUE" *) wire          dbg_wcal_sanity_chk_done;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_wcal_mux_rd_rise0_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_wcal_mux_rd_fall0_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_wcal_mux_rd_rise1_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_wcal_mux_rd_fall1_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_wcal_mux_rd_rise2_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_wcal_mux_rd_fall2_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_wcal_mux_rd_rise3_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_wcal_mux_rd_fall3_r;
+  (* mark_debug = "TRUE" *) wire [3:0]    dbg_phy_oclkdelay_cal_57_54;
+  (* mark_debug = "TRUE" *) wire [53:0]   dbg_phy_wrlvl_128_75;
+  (* mark_debug = "TRUE" *) wire [26:0]   dbg_phy_wrlvl_155_129;
   // Read path debug signals
 
-  (* mark_debug = "TRUE" *) wire [11:0]    dbg_pi_phase_locked_phy4lanes;
-  (* mark_debug = "TRUE" *) wire [11:0]    dbg_pi_dqs_found_lanes_phy4lanes;
-  (* mark_debug = "TRUE" *) wire [11:0]    dbg_rd_data_offset;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_cal1_state_r;
-  (* mark_debug = "TRUE" *) wire [3:0]     dbg_cal1_cnt_cpt_r;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_mux_rd_rise0_r;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_mux_rd_fall0_r;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_mux_rd_rise1_r;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_mux_rd_fall1_r;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_mux_rd_rise2_r;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_mux_rd_fall2_r;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_mux_rd_rise3_r;
-  (* mark_debug = "TRUE" *) wire [7:0]     dbg_mux_rd_fall3_r;
-  (* mark_debug = "TRUE" *) wire           dbg_rdlvl_pat_data_match_r;
-  (* mark_debug = "TRUE" *) wire           dbg_mux_rd_valid_r;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_cpt_first_edge_cnt_by_dqs;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_cpt_second_edge_cnt_by_dqs;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_cpt_tap_cnt_by_dqs;
-  (* mark_debug = "TRUE" *) wire [4:0]     dbg_dq_idelay_tap_cnt_by_dqs;
-  (* mark_debug = "TRUE" *) wire [11:0]    dbg_dbg_calib_rd_data_offset_1;
-  (* mark_debug = "TRUE" *) wire [11:0]    dbg_dbg_calib_rd_data_offset_2;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_data_offset;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_data_offset_1;
-  (* mark_debug = "TRUE" *) wire [5:0]     dbg_data_offset_2;
-  (* mark_debug = "TRUE" *) wire [107:0]   dbg_cpt_first_edge_cnt;
-  (* mark_debug = "TRUE" *) wire [107:0]   dbg_cpt_second_edge_cnt;
-  (* mark_debug = "TRUE" *) wire [107:0]   dbg_cpt_tap_cnt;
-  (* mark_debug = "TRUE" *) wire [89:0]    dbg_dq_idelay_tap_cnt;
-  (* mark_debug = "TRUE" *) wire [254:0]   dbg_prbs_rdlvl;
+  (* mark_debug = "TRUE" *) wire [11:0]   dbg_pi_phase_locked_phy4lanes;
+  (* mark_debug = "TRUE" *) wire [11:0]   dbg_pi_dqs_found_lanes_phy4lanes;
+  (* mark_debug = "TRUE" *) wire [11:0]   dbg_rd_data_offset;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_cal1_state_r;
+  (* mark_debug = "TRUE" *) wire [3:0]    dbg_cal1_cnt_cpt_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_mux_rd_rise0_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_mux_rd_fall0_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_mux_rd_rise1_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_mux_rd_fall1_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_mux_rd_rise2_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_mux_rd_fall2_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_mux_rd_rise3_r;
+  (* mark_debug = "TRUE" *) wire [7:0]    dbg_mux_rd_fall3_r;
+  (* mark_debug = "TRUE" *) wire          dbg_rdlvl_pat_data_match_r;
+  (* mark_debug = "TRUE" *) wire          dbg_mux_rd_valid_r;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_cpt_first_edge_cnt_by_dqs;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_cpt_second_edge_cnt_by_dqs;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_cpt_tap_cnt_by_dqs;
+  (* mark_debug = "TRUE" *) wire [4:0]    dbg_dq_idelay_tap_cnt_by_dqs;
+  (* mark_debug = "TRUE" *) wire [11:0]   dbg_dbg_calib_rd_data_offset_1;
+  (* mark_debug = "TRUE" *) wire [11:0]   dbg_dbg_calib_rd_data_offset_2;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_data_offset;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_data_offset_1;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_data_offset_2;
+  (* mark_debug = "TRUE" *) wire [107:0]  dbg_cpt_first_edge_cnt;
+  (* mark_debug = "TRUE" *) wire [107:0]  dbg_cpt_second_edge_cnt;
+  (* mark_debug = "TRUE" *) wire [107:0]  dbg_cpt_tap_cnt;
+  (* mark_debug = "TRUE" *) wire [89:0]   dbg_dq_idelay_tap_cnt;
+  (* mark_debug = "TRUE" *) wire [254:0]  dbg_prbs_rdlvl;
 
-  (* mark_debug = "TRUE" *) wire                                  win_start;
-  (* mark_debug = "TRUE" *) wire                                  win_sel_pi_pon;
-  (* mark_debug = "TRUE" *) wire                                  vio_win_byte_select_inc;
-  (* mark_debug = "TRUE" *) wire                                  vio_win_byte_select_dec;
-  (* mark_debug = "TRUE" *) wire [5:0]                            dbg_pi_counter_read_val;
-  (* mark_debug = "TRUE" *) wire [8:0]                            dbg_po_counter_read_val;
-  (* mark_debug = "TRUE" *) wire [5:0]                            pi_win_left_ram_out;
-  (* mark_debug = "TRUE" *) wire [5:0]                            pi_win_right_ram_out;
-  (* mark_debug = "TRUE" *) wire [8:0]                            po_win_left_ram_out;
-  (* mark_debug = "TRUE" *) wire [8:0]                            po_win_right_ram_out;
-  (* mark_debug = "TRUE" *) wire                                  win_clr_error;
-  (* mark_debug = "TRUE" *) wire                                  manual_clear_error;
+  (* mark_debug = "TRUE" *) wire          win_start;
+  (* mark_debug = "TRUE" *) wire          win_sel_pi_pon;
+  (* mark_debug = "TRUE" *) wire          vio_win_byte_select_inc;
+  (* mark_debug = "TRUE" *) wire          vio_win_byte_select_dec;
+  (* mark_debug = "TRUE" *) wire [5:0]    dbg_pi_counter_read_val;
+  (* mark_debug = "TRUE" *) wire [8:0]    dbg_po_counter_read_val;
+  (* mark_debug = "TRUE" *) wire [5:0]    pi_win_left_ram_out;
+  (* mark_debug = "TRUE" *) wire [5:0]    pi_win_right_ram_out;
+  (* mark_debug = "TRUE" *) wire [8:0]    po_win_left_ram_out;
+  (* mark_debug = "TRUE" *) wire [8:0]    po_win_right_ram_out;
+  (* mark_debug = "TRUE" *) wire          win_clr_error;
+  (* mark_debug = "TRUE" *) wire          manual_clear_error;
 
-  (* mark_debug = "TRUE" *) wire                                  win_active;
-  (* mark_debug = "TRUE" *) wire [4:0]                            vio_sel_mux_rdd;
-  (* mark_debug = "TRUE" *) wire [6:0]                            win_current_bit;
-  (* mark_debug = "TRUE" *) wire [4:0]                            win_current_byte;
-  (* mark_debug = "TRUE" *) wire [164:0]                           dbg_win_chk;
-  wire                                  pi_win_up;
-  wire                                  pi_win_down;
-  wire                                  po_win_up;
-  wire                                  po_stg23_sel;
-  wire                                  po_win_down;
-  wire                                  po_win_tg_rst;
+  (* mark_debug = "TRUE" *) wire          win_active;
+  (* mark_debug = "TRUE" *) wire [4:0]    vio_sel_mux_rdd;
+  (* mark_debug = "TRUE" *) wire [6:0]    win_current_bit;
+  (* mark_debug = "TRUE" *) wire [4:0]    win_current_byte;
+  (* mark_debug = "TRUE" *) wire [164:0]  dbg_win_chk;
+  wire                                    pi_win_up;
+  wire                                    pi_win_down;
+  wire                                    po_win_up;
+  wire                                    po_stg23_sel;
+  wire                                    po_win_down;
+  wire                                    po_win_tg_rst;
 
-  reg                                   app_rd_data_valid_r1;
-  reg                                   app_rd_data_valid_r2;
-  reg                                   app_rd_data_valid_r3;
-  (* mark_debug = "TRUE" *) reg [6:0]                             win_byte_select;
-  reg [2*nCK_PER_CLK*PAYLOAD_WIDTH-1:0]      app_rd_data_r1;
-  reg [2*nCK_PER_CLK*PAYLOAD_WIDTH-1:0]      app_rd_data_r2;
-  reg [2*nCK_PER_CLK*PAYLOAD_WIDTH-1:0]      app_rd_data_r3;
-  reg [DQS_CNT_WIDTH:0]                 dbg_byte_sel_r;
-  reg [255:0]                           tg_simple_data;
-  (* mark_debug = "TRUE" *) wire [1:0]                            vio_tg_simple_data_sel;
-  (* mark_debug = "TRUE" *) wire                                  wdt_en_w;
-  wire                                  cmd_wdt_err_w;
-  wire                                  wr_wdt_err_w;
-  wire                                  rd_wdt_err_w;
-  (* mark_debug = "TRUE" *) wire                                  dbg_clear_error;
+  reg                                     app_rd_data_valid_r1;
+  reg                                     app_rd_data_valid_r2;
+  reg                                     app_rd_data_valid_r3;
+  (* mark_debug = "TRUE" *) reg [6:0]     win_byte_select;
+  reg [(2*nCK_PER_CLK*PAYLOAD_WIDTH)-1:0]    app_rd_data_r1;
+  reg [(2*nCK_PER_CLK*PAYLOAD_WIDTH)-1:0]    app_rd_data_r2;
+  reg [(2*nCK_PER_CLK*PAYLOAD_WIDTH)-1:0]    app_rd_data_r3;
+  reg [DQS_CNT_WIDTH:0]                       dbg_byte_sel_r;
+  reg [255:0]                             tg_simple_data;
+  (* mark_debug = "TRUE" *) wire [1:0]    vio_tg_simple_data_sel;
+  (* mark_debug = "TRUE" *) wire          wdt_en_w;
+  wire                                    cmd_wdt_err_w;
+  wire                                    wr_wdt_err_w;
+  wire                                    rd_wdt_err_w;
+  (* mark_debug = "TRUE" *) wire          dbg_clear_error;
 
 //***************************************************************************
 
@@ -888,173 +880,7 @@ function integer clogb2 (input integer size);
 // for connecting the memory controller to system.
 //***************************************************************************
 
-  mig_7series_64bit_800Mhz #
-    (
-     
-     .TCQ                              (TCQ),
-     .ADDR_CMD_MODE                    (ADDR_CMD_MODE),
-     .AL                               (AL),
-     .PAYLOAD_WIDTH                    (PAYLOAD_WIDTH),
-     .BANK_WIDTH                       (BANK_WIDTH),
-     .BURST_MODE                       (BURST_MODE),
-     .BURST_TYPE                       (BURST_TYPE),
-     .CA_MIRROR                        (CA_MIRROR),
-     .VDD_OP_VOLT                      (VDD_OP_VOLT),
-     .CK_WIDTH                         (CK_WIDTH),
-     .COL_WIDTH                        (COL_WIDTH),
-     .CMD_PIPE_PLUS1                   (CMD_PIPE_PLUS1),
-     .CS_WIDTH                         (CS_WIDTH),
-     .nCS_PER_RANK                     (nCS_PER_RANK),
-     .CKE_WIDTH                        (CKE_WIDTH),
-     .DATA_WIDTH                       (DATA_WIDTH),
-     .DATA_BUF_ADDR_WIDTH              (DATA_BUF_ADDR_WIDTH),
-     .DQ_CNT_WIDTH                     (DQ_CNT_WIDTH),
-     .DQ_PER_DM                        (DQ_PER_DM),
-     .DQ_WIDTH                         (DQ_WIDTH),
-     .DQS_CNT_WIDTH                    (DQS_CNT_WIDTH),
-     .DQS_WIDTH                        (DQS_WIDTH),
-     .DRAM_WIDTH                       (DRAM_WIDTH),
-     .ECC                              (ECC),
-     .ECC_TEST                         (ECC_TEST),
-     .nAL                              (nAL),
-     .nBANK_MACHS                      (nBANK_MACHS),
-     .CKE_ODT_AUX                      (CKE_ODT_AUX),
-     .ORDERING                         (ORDERING),
-     .OUTPUT_DRV                       (OUTPUT_DRV),
-     .IBUF_LPWR_MODE                   (IBUF_LPWR_MODE),
-     .DATA_IO_IDLE_PWRDWN              (DATA_IO_IDLE_PWRDWN),
-     .BANK_TYPE                        (BANK_TYPE),
-     .DATA_IO_PRIM_TYPE                (DATA_IO_PRIM_TYPE),
-     .REG_CTRL                         (REG_CTRL),
-     .RTT_NOM                          (RTT_NOM),
-     .RTT_WR                           (RTT_WR),
-     .CL                               (CL),
-     .CWL                              (CWL),
-     .tCKE                             (tCKE),
-     .tFAW                             (tFAW),
-     .tPRDI                            (tPRDI),
-     .tRAS                             (tRAS),
-     .tRCD                             (tRCD),
-     .tREFI                            (tREFI),
-     .tRFC                             (tRFC),
-     .tRP                              (tRP),
-     .tRRD                             (tRRD),
-     .tRTP                             (tRTP),
-     .tWTR                             (tWTR),
-     .tZQI                             (tZQI),
-     .tZQCS                            (tZQCS),
-     .USER_REFRESH                     (USER_REFRESH),
-     .WRLVL                            (WRLVL),
-     .DEBUG_PORT                       (DEBUG_PORT),
-     .RANKS                            (RANKS),
-     .ODT_WIDTH                        (ODT_WIDTH),
-     .ROW_WIDTH                        (ROW_WIDTH),
-     .ADDR_WIDTH                       (ADDR_WIDTH),
-     .SIM_BYPASS_INIT_CAL              (SIM_BYPASS_INIT_CAL),
-     .SIMULATION                       (SIMULATION),
-     .BYTE_LANES_B0                    (BYTE_LANES_B0),
-     .BYTE_LANES_B1                    (BYTE_LANES_B1),
-     .BYTE_LANES_B2                    (BYTE_LANES_B2),
-     .BYTE_LANES_B3                    (BYTE_LANES_B3),
-     .BYTE_LANES_B4                    (BYTE_LANES_B4),
-     .DATA_CTL_B0                      (DATA_CTL_B0),
-     .DATA_CTL_B1                      (DATA_CTL_B1),
-     .DATA_CTL_B2                      (DATA_CTL_B2),
-     .DATA_CTL_B3                      (DATA_CTL_B3),
-     .DATA_CTL_B4                      (DATA_CTL_B4),
-     .PHY_0_BITLANES                   (PHY_0_BITLANES),
-     .PHY_1_BITLANES                   (PHY_1_BITLANES),
-     .PHY_2_BITLANES                   (PHY_2_BITLANES),
-     .CK_BYTE_MAP                      (CK_BYTE_MAP),
-     .ADDR_MAP                         (ADDR_MAP),
-     .BANK_MAP                         (BANK_MAP),
-     .CAS_MAP                          (CAS_MAP),
-     .CKE_ODT_BYTE_MAP                 (CKE_ODT_BYTE_MAP),
-     .CKE_MAP                          (CKE_MAP),
-     .ODT_MAP                          (ODT_MAP),
-     .CS_MAP                           (CS_MAP),
-     .PARITY_MAP                       (PARITY_MAP),
-     .RAS_MAP                          (RAS_MAP),
-     .WE_MAP                           (WE_MAP),
-     .DQS_BYTE_MAP                     (DQS_BYTE_MAP),
-     .DATA0_MAP                        (DATA0_MAP),
-     .DATA1_MAP                        (DATA1_MAP),
-     .DATA2_MAP                        (DATA2_MAP),
-     .DATA3_MAP                        (DATA3_MAP),
-     .DATA4_MAP                        (DATA4_MAP),
-     .DATA5_MAP                        (DATA5_MAP),
-     .DATA6_MAP                        (DATA6_MAP),
-     .DATA7_MAP                        (DATA7_MAP),
-     .DATA8_MAP                        (DATA8_MAP),
-     .DATA9_MAP                        (DATA9_MAP),
-     .DATA10_MAP                       (DATA10_MAP),
-     .DATA11_MAP                       (DATA11_MAP),
-     .DATA12_MAP                       (DATA12_MAP),
-     .DATA13_MAP                       (DATA13_MAP),
-     .DATA14_MAP                       (DATA14_MAP),
-     .DATA15_MAP                       (DATA15_MAP),
-     .DATA16_MAP                       (DATA16_MAP),
-     .DATA17_MAP                       (DATA17_MAP),
-     .MASK0_MAP                        (MASK0_MAP),
-     .MASK1_MAP                        (MASK1_MAP),
-     .CALIB_ROW_ADD                    (CALIB_ROW_ADD),
-     .CALIB_COL_ADD                    (CALIB_COL_ADD),
-     .CALIB_BA_ADD                     (CALIB_BA_ADD),
-     .SLOT_0_CONFIG                    (SLOT_0_CONFIG),
-     .SLOT_1_CONFIG                    (SLOT_1_CONFIG),
-     .MEM_ADDR_ORDER                   (MEM_ADDR_ORDER),
-     .USE_CS_PORT                      (USE_CS_PORT),
-     .USE_DM_PORT                      (USE_DM_PORT),
-     .USE_ODT_PORT                     (USE_ODT_PORT),
-     .PHY_CONTROL_MASTER_BANK          (PHY_CONTROL_MASTER_BANK),
-     .TEMP_MON_CONTROL                 (TEMP_MON_CONTROL),
-      
-     
-     .DM_WIDTH                         (DM_WIDTH),
-     
-     .nCK_PER_CLK                      (nCK_PER_CLK),
-     .tCK                              (tCK),
-     .DIFF_TERM_SYSCLK                 (DIFF_TERM_SYSCLK),
-     .CLKIN_PERIOD                     (CLKIN_PERIOD),
-     .CLKFBOUT_MULT                    (CLKFBOUT_MULT),
-     .DIVCLK_DIVIDE                    (DIVCLK_DIVIDE),
-     .CLKOUT0_PHASE                    (CLKOUT0_PHASE),
-     .CLKOUT0_DIVIDE                   (CLKOUT0_DIVIDE),
-     .CLKOUT1_DIVIDE                   (CLKOUT1_DIVIDE),
-     .CLKOUT2_DIVIDE                   (CLKOUT2_DIVIDE),
-     .CLKOUT3_DIVIDE                   (CLKOUT3_DIVIDE),
-     
-     .UI_EXTRA_CLOCKS                 (UI_EXTRA_CLOCKS),
-     .C_S_AXI_ID_WIDTH                 (C_S_AXI_ID_WIDTH),
-     .C_S_AXI_ADDR_WIDTH               (C_S_AXI_ADDR_WIDTH),
-     .C_S_AXI_DATA_WIDTH               (C_S_AXI_DATA_WIDTH),
-     .C_MC_nCK_PER_CLK                 (C_MC_nCK_PER_CLK),
-     .C_S_AXI_SUPPORTS_NARROW_BURST    (C_S_AXI_SUPPORTS_NARROW_BURST),
-     .C_RD_WR_ARB_ALGORITHM            (C_RD_WR_ARB_ALGORITHM),
-     .C_S_AXI_REG_EN0                  (C_S_AXI_REG_EN0),
-     .C_S_AXI_REG_EN1                  (C_S_AXI_REG_EN1),
-     .C_S_AXI_CTRL_ADDR_WIDTH          (C_S_AXI_CTRL_ADDR_WIDTH),
-     .C_S_AXI_CTRL_DATA_WIDTH          (C_S_AXI_CTRL_DATA_WIDTH),
-     .C_S_AXI_BASEADDR                 (C_S_AXI_BASEADDR),
-     .C_ECC_ONOFF_RESET_VALUE          (C_ECC_ONOFF_RESET_VALUE),
-     .C_ECC_CE_COUNTER_WIDTH           (C_ECC_CE_COUNTER_WIDTH),
-      
-     
-     .SYSCLK_TYPE                      (SYSCLK_TYPE),
-     .REFCLK_TYPE                      (REFCLK_TYPE),
-     .SYS_RST_PORT                     (SYS_RST_PORT),
-     .REFCLK_FREQ                      (REFCLK_FREQ),
-     .DIFF_TERM_REFCLK                 (DIFF_TERM_REFCLK),
-     .IODELAY_GRP                      (IODELAY_GRP),
-      
-     .CAL_WIDTH                        (CAL_WIDTH),
-     .STARVE_LIMIT                     (STARVE_LIMIT),
-     .DRAM_TYPE                        (DRAM_TYPE),
-      
-      
-     .RST_ACT_LOW                      (RST_ACT_LOW)
-     )
-    u_mig_7series_64bit_800Mhz
+  mig_7series_64bit_800Mhz u_mig_7series_64bit_800Mhz
       (
        
        
@@ -1134,11 +960,11 @@ function integer clogb2 (input integer size);
 
       
 // Debug Ports
-       .ddr3_ila_basic                 (ddr3_ila_basic_w[119:0]),
-       .ddr3_ila_wrpath                (ddr3_ila_wrpath_w),
-       .ddr3_ila_rdpath                (ddr3_ila_rdpath_w),
+       .ddr3_ila_basic                           (ddr3_ila_basic_w[119:0]),
+       .ddr3_ila_wrpath                          (ddr3_ila_wrpath_w),
+       .ddr3_ila_rdpath                          (ddr3_ila_rdpath_w),
 
-       .ddr3_vio_sync_out              ({dbg_dqs,dbg_bit}),
+       .ddr3_vio_sync_out                        ({dbg_dqs,dbg_bit}),
 
        .dbg_pi_counter_read_val        (dbg_pi_counter_read_val),
        .dbg_sel_pi_incdec              (dbg_sel_pi_incdec),
@@ -1288,7 +1114,10 @@ function integer clogb2 (input integer size);
             .probe_in9   (po_win_left_ram_out),//9
             .probe_in10  (po_win_right_ram_out),//9
             .probe_in11  (dbg_po_counter_read_val),//9
-            .probe_in12  (mem_pattern_init_done),//1
+            .probe_in12  (dbg_mem_pattern_init_done),//1
+            .probe_in13  (dbg_tg_compare_error),//1
+            .probe_in14  (dbg_tg_wr_data_counts),//48
+            .probe_in15  (dbg_tg_rd_data_counts),//48
             .probe_out0  (dbg_bit),//9
             .probe_out1  (dbg_dqs),//5
             .probe_out2  (vio_modify_enable),//1
@@ -1334,6 +1163,10 @@ function integer clogb2 (input integer size);
               ddr3_ila_wrpath   <= ddr3_ila_wrpath_w;
             end
           end
+
+       assign dbg_mem_pattern_init_done = mem_pattern_init_done;
+       assign dbg_tg_wr_data_counts     = {40'h0, dbg_wr_sts[39:32]};
+       assign dbg_tg_rd_data_counts     = {40'h0, dbg_rd_sts[39:32]};
 
        assign dbg_sel_pi_incdec  = (!win_active) ? vio_dbg_sel_pi_incdec : 1'b1;
        assign dbg_sel_po_incdec  = (!win_active) ? vio_dbg_sel_po_incdec : 1'b1;
@@ -1397,6 +1230,19 @@ function integer clogb2 (input integer size);
         assign not_empty_wait_cnt               = ddr3_ila_wrpath[75+:5];
         assign dbg_early1_data                  = ddr3_ila_wrpath[80];
         assign dbg_early2_data                  = ddr3_ila_wrpath[81];
+        assign dbg_early1_data_match_r          = ddr3_ila_wrpath[82];
+        assign dbg_early2_data_match_r          = ddr3_ila_wrpath[83];
+        assign dbg_wcal_sanity_pat_data_match_valid_r = ddr3_ila_wrpath[84];
+        assign dbg_wcal_sanity_chk_start        = ddr3_ila_wrpath[85];
+        assign dbg_wcal_sanity_chk_done         = ddr3_ila_wrpath[86];
+        assign dbg_wcal_mux_rd_rise0_r          = ddr3_ila_wrpath[177+:8];
+        assign dbg_wcal_mux_rd_fall0_r          = ddr3_ila_wrpath[185+:8];
+        assign dbg_wcal_mux_rd_rise1_r          = ddr3_ila_wrpath[193+:8];
+        assign dbg_wcal_mux_rd_fall1_r          = ddr3_ila_wrpath[201+:8];
+        assign dbg_wcal_mux_rd_rise2_r          = ddr3_ila_wrpath[209+:8];
+        assign dbg_wcal_mux_rd_fall2_r          = ddr3_ila_wrpath[217+:8];
+        assign dbg_wcal_mux_rd_rise3_r          = ddr3_ila_wrpath[225+:8];
+        assign dbg_wcal_mux_rd_fall3_r          = ddr3_ila_wrpath[233+:8];
         assign dbg_phy_oclkdelay_cal_57_54      = ddr3_ila_wrpath[91:88];
         assign dbg_phy_wrlvl_128_75             = ddr3_ila_wrpath[96+:54];
         assign dbg_phy_wrlvl_155_129            = ddr3_ila_wrpath[150+:27];
@@ -1430,92 +1276,112 @@ function integer clogb2 (input integer size);
         assign dbg_dq_idelay_tap_cnt            = ddr3_ila_rdpath[530+:90];
         assign dbg_prbs_rdlvl                   = ddr3_ila_rdpath[620+:255];
 
+        always @(posedge clk)
+        begin
+            dbg_extn_trig_out_ack_r[0]    <= dbg_extn_trig_out;
+            dbg_extn_trig_out_ack_r[7:1]  <= dbg_extn_trig_out_ack_r[6:0];
+        end
+        assign dbg_extn_trig_out_ack            = dbg_extn_trig_out_ack_r[7];
+
         ila_ddrx_axi u_ila_ddrx_axi(
-          .clk     (clk),
-          .probe0  (dbg_init_calib_complete),
-          .probe1  (dbg_wrlvl_start),
-          .probe2  (dbg_wrlvl_done),
-          .probe3  (dbg_wrlvl_err),
-          .probe4  (dbg_pi_phaselock_start),
-          .probe5  (dbg_pi_phaselocked_done),
-          .probe6  (dbg_pi_phaselock_err),
-          .probe7  (dbg_pi_dqsfound_start),
-          .probe8  (dbg_pi_dqsfound_done),
-          .probe9  (dbg_pi_dqsfound_err),
-          .probe10 (dbg_rdlvl_start),
-          .probe11 (dbg_rdlvl_done),
-          .probe12 (dbg_rdlvl_err),
-          .probe13 (dbg_oclkdelay_calib_start),
-          .probe14 (dbg_oclkdelay_calib_done),
-          .probe15 (dbg_wrcal_start),
-          .probe16 (dbg_wrcal_done),
-          .probe17 (dbg_wrcal_err),
-          .probe18 (dbg_phy_init_5_0),
-          .probe19 (dbg_rddata_valid_r),
-          .probe20 (dbg_rddata_r),
-          .probe21 (dbg_fine_adjust_done_r),
-          .probe22 (dbg_cmd_wdt_err_w),
-          .probe23 (dbg_rd_wdt_err_w),
-          .probe24 (dbg_wr_wdt_err_w),
-          .probe25 (dbg_tg_compare_error),
-          .probe26 (dbg_axi_cmp_data),
-          .probe27 (dbg_axi_rdata_cmp),
-          .probe28 (dbg_wl_state_r),
-          .probe29 (dbg_dqs_cnt_r),
-          .probe30 (dbg_wl_edge_detect_valid_r),
-          .probe31 (dbg_rd_data_edge_detect_r_by_dqs),
-          .probe32 (dbg_wl_po_fine_cnt_by_dqs),
-          .probe33 (dbg_wl_po_coarse_cnt_by_dqs),
-          .probe34 (dbg_ocal_tap_cnt_by_dqs),
-          .probe35 (dbg_ocal_rise_edge1_found),
-          .probe36 (dbg_ocal_rise_edge2_found),
-          .probe37 (dbg_ocal_rise_edge1_taps),
-          .probe38 (dbg_ocal_rise_edge2_taps),
-          .probe39 (dbg_ocal_state_r),
-          .probe40 (dbg_stg2_tap_cnt),
-          .probe41 (dbg_wrcal_pat_data_match_r),
-          .probe42 (dbg_wrcal_pat_data_match_valid_r),
-          .probe43 (dbg_wrcal_dqs_cnt_r),
-          .probe44 (cal2_state_r),
-          .probe45 (not_empty_wait_cnt),
-          .probe46 (dbg_early1_data),
-          .probe47 (dbg_early2_data),
-          .probe48 (dbg_phy_oclkdelay_cal_57_54),
-          .probe49 (dbg_phy_wrlvl_128_75),
-          .probe50 (dbg_phy_wrlvl_155_129),
-          .probe51 (dbg_pi_phase_locked_phy4lanes),
-          .probe52 (dbg_pi_dqs_found_lanes_phy4lanes),
-          .probe53 (dbg_rd_data_offset),
-          .probe54 (dbg_cal1_state_r),
-          .probe55 (dbg_cal1_cnt_cpt_r),
-          .probe56 (dbg_mux_rd_rise0_r),
-          .probe57 (dbg_mux_rd_fall0_r),
-          .probe58 (dbg_mux_rd_rise1_r),
-          .probe59 (dbg_mux_rd_fall1_r),
-          .probe60 (dbg_mux_rd_rise2_r),
-          .probe61 (dbg_mux_rd_fall2_r),
-          .probe62 (dbg_mux_rd_rise3_r),
-          .probe63 (dbg_mux_rd_fall3_r),
-          .probe64 (dbg_rdlvl_pat_data_match_r),
-          .probe65 (dbg_mux_rd_valid_r),
-          .probe66 (dbg_cpt_first_edge_cnt_by_dqs),
-          .probe67 (dbg_cpt_second_edge_cnt_by_dqs),
-          .probe68 (dbg_cpt_tap_cnt_by_dqs),
-          .probe69 (dbg_dq_idelay_tap_cnt_by_dqs),
-          .probe70 (dbg_dbg_calib_rd_data_offset_1),
-          .probe71 (dbg_dbg_calib_rd_data_offset_2),
-          .probe72 (dbg_data_offset),
-          .probe73 (dbg_data_offset_1),
-          .probe74 (dbg_data_offset_2),
-          .probe75 (dbg_cpt_first_edge_cnt),
-          .probe76 (dbg_cpt_second_edge_cnt),
-          .probe77 (dbg_cpt_tap_cnt),
-          .probe78 (dbg_dq_idelay_tap_cnt),
-          .probe79 (dbg_prbs_rdlvl),
-          .probe80 (dbg_ocal_fall_edge1_found),
-          .probe81 (dbg_ocal_fall_edge2_found),
-          .probe82 (dbg_ocal_fall_edge1_taps),
-          .probe83 (dbg_ocal_fall_edge2_taps)
+          .clk          (clk),
+          .trig_out     (dbg_extn_trig_out),
+          .trig_out_ack (dbg_extn_trig_out_ack),
+          .probe0       (dbg_init_calib_complete),
+          .probe1       (dbg_wrlvl_start),
+          .probe2       (dbg_wrlvl_done),
+          .probe3       (dbg_wrlvl_err),
+          .probe4       (dbg_pi_phaselock_start),
+          .probe5       (dbg_pi_phaselocked_done),
+          .probe6       (dbg_pi_phaselock_err),
+          .probe7       (dbg_pi_dqsfound_start),
+          .probe8       (dbg_pi_dqsfound_done),
+          .probe9       (dbg_pi_dqsfound_err),
+          .probe10      (dbg_rdlvl_start),
+          .probe11      (dbg_rdlvl_done),
+          .probe12      (dbg_rdlvl_err),
+          .probe13      (dbg_oclkdelay_calib_start),
+          .probe14      (dbg_oclkdelay_calib_done),
+          .probe15      (dbg_wrcal_start),
+          .probe16      (dbg_wrcal_done),
+          .probe17      (dbg_wrcal_err),
+          .probe18      (dbg_phy_init_5_0),
+          .probe19      (dbg_rddata_valid_r),
+          .probe20      (dbg_rddata_r),
+          .probe21      (dbg_fine_adjust_done_r),
+          .probe22      (dbg_cmd_wdt_err_w),
+          .probe23      (dbg_rd_wdt_err_w),
+          .probe24      (dbg_wr_wdt_err_w),
+          .probe25      (dbg_tg_compare_error),
+          .probe26      (dbg_axi_cmp_data),
+          .probe27      (dbg_axi_rdata_cmp),
+          .probe28      (dbg_wl_state_r),
+          .probe29      (dbg_dqs_cnt_r),
+          .probe30      (dbg_wl_edge_detect_valid_r),
+          .probe31      (dbg_rd_data_edge_detect_r_by_dqs),
+          .probe32      (dbg_wl_po_fine_cnt_by_dqs),
+          .probe33      (dbg_wl_po_coarse_cnt_by_dqs),
+          .probe34      (dbg_ocal_tap_cnt_by_dqs),
+          .probe35      (dbg_ocal_rise_edge1_found),
+          .probe36      (dbg_ocal_rise_edge2_found),
+          .probe37      (dbg_ocal_rise_edge1_taps),
+          .probe38      (dbg_ocal_rise_edge2_taps),
+          .probe39      (dbg_ocal_state_r),
+          .probe40      (dbg_stg2_tap_cnt),
+          .probe41      (dbg_wrcal_pat_data_match_r),
+          .probe42      (dbg_wrcal_pat_data_match_valid_r),
+          .probe43      (dbg_wrcal_dqs_cnt_r),
+          .probe44      (cal2_state_r),
+          .probe45      (not_empty_wait_cnt),
+          .probe46      (dbg_early1_data),
+          .probe47      (dbg_early2_data),
+          .probe48      (dbg_phy_oclkdelay_cal_57_54),
+          .probe49      (dbg_phy_wrlvl_128_75),
+          .probe50      (dbg_phy_wrlvl_155_129),
+          .probe51      (dbg_pi_phase_locked_phy4lanes),
+          .probe52      (dbg_pi_dqs_found_lanes_phy4lanes),
+          .probe53      (dbg_rd_data_offset),
+          .probe54      (dbg_cal1_state_r),
+          .probe55      (dbg_cal1_cnt_cpt_r),
+          .probe56      (dbg_mux_rd_rise0_r),
+          .probe57      (dbg_mux_rd_fall0_r),
+          .probe58      (dbg_mux_rd_rise1_r),
+          .probe59      (dbg_mux_rd_fall1_r),
+          .probe60      (dbg_mux_rd_rise2_r),
+          .probe61      (dbg_mux_rd_fall2_r),
+          .probe62      (dbg_mux_rd_rise3_r),
+          .probe63      (dbg_mux_rd_fall3_r),
+          .probe64      (dbg_rdlvl_pat_data_match_r),
+          .probe65      (dbg_mux_rd_valid_r),
+          .probe66      (dbg_cpt_first_edge_cnt_by_dqs),
+          .probe67      (dbg_cpt_second_edge_cnt_by_dqs),
+          .probe68      (dbg_cpt_tap_cnt_by_dqs),
+          .probe69      (dbg_dq_idelay_tap_cnt_by_dqs),
+          .probe70      (dbg_dbg_calib_rd_data_offset_1),
+          .probe71      (dbg_dbg_calib_rd_data_offset_2),
+          .probe72      (dbg_data_offset),
+          .probe73      (dbg_data_offset_1),
+          .probe74      (dbg_data_offset_2),
+          .probe75      (dbg_cpt_first_edge_cnt),
+          .probe76      (dbg_cpt_second_edge_cnt),
+          .probe77      (dbg_cpt_tap_cnt),
+          .probe78      (dbg_dq_idelay_tap_cnt),
+          .probe79      (dbg_prbs_rdlvl),
+          .probe80      (dbg_ocal_fall_edge1_found),
+          .probe81      (dbg_ocal_fall_edge2_found),
+          .probe82      (dbg_ocal_fall_edge1_taps),
+          .probe83      (dbg_ocal_fall_edge2_taps),
+          .probe84      (dbg_wcal_mux_rd_rise0_r),
+          .probe85      (dbg_wcal_mux_rd_fall0_r),
+          .probe86      (dbg_wcal_mux_rd_rise1_r),
+          .probe87      (dbg_wcal_mux_rd_fall1_r),
+          .probe88      (dbg_wcal_mux_rd_rise2_r),
+          .probe89      (dbg_wcal_mux_rd_fall2_r),
+          .probe90      (dbg_wcal_mux_rd_rise3_r),
+          .probe91      (dbg_wcal_mux_rd_fall3_r),
+          .probe92      (dbg_early1_data_match_r),
+          .probe93      (dbg_early2_data_match_r),
+          .probe94      (dbg_wcal_sanity_pat_data_match_valid_r)
         );
 
 

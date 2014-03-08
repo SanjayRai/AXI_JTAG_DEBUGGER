@@ -2,8 +2,8 @@
 proc init_gui { IPINST } {
 	set Page0 [ ipgui::add_page $IPINST  -name "Page 0" -layout vertical]
 	set Component_Name [ ipgui::add_param  $IPINST  -parent  $Page0  -name Component_Name ]
-	set AXI4_MM_DATA_WIDTH [ipgui::add_param $IPINST -parent $Page0 -name AXI4_MM_DATA_WIDTH]
-	set AXI4_LITE_DATA_WIDTH [ipgui::add_param $IPINST -parent $Page0 -name AXI4_LITE_DATA_WIDTH]
+	set AXI4_MM_DATA_WIDTH [ipgui::add_param $IPINST -parent $Page0 -name AXI4_MM_DATA_WIDTH -widget comboBox]
+	set AXI4_LITE_DATA_WIDTH [ipgui::add_param $IPINST -parent $Page0 -name AXI4_LITE_DATA_WIDTH -widget radioGroup]
 }
 
 proc update_PARAM_VALUE.AXI4_MM_DATA_WIDTH { PARAM_VALUE.AXI4_MM_DATA_WIDTH } {

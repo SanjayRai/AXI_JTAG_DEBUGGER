@@ -85,9 +85,9 @@ module mig_7series_v2_0_tg #(
 
    parameter RD_STS_WIDTH         = 16, // Read port status signal width
  
-   parameter DBG_WR_STS_WIDTH     = 32,
+   parameter DBG_WR_STS_WIDTH     = 40,
 
-   parameter DBG_RD_STS_WIDTH     = 32,
+   parameter DBG_RD_STS_WIDTH     = 40,
 
    parameter ENFORCE_RD_WR        = 0,
 
@@ -161,9 +161,9 @@ module mig_7series_v2_0_tg #(
                               TG_WR_CMD     = 8'd2,
                               TG_WR_DATA    = 8'd3,
                               TG_WR_DONE    = 8'd4,
-			      TG_RD_CMD     = 8'd5,
-			      TG_RD_DATA    = 8'd6,
-			      TG_UPDT_CNTR  = 8'd7;
+                              TG_RD_CMD     = 8'd5,
+                              TG_RD_DATA    = 8'd6,
+                              TG_UPDT_CNTR  = 8'd7;
 
 //*****************************************************************************
 // Internal wire and reg declarations
@@ -181,7 +181,12 @@ module mig_7series_v2_0_tg #(
   wire [31:0]                      prbs_addr_mdfy;
   wire                             cmd_gen_csr_sig;
   wire                             rdata_sig_vld;
-  wire [7:0]                       wrd_cntr;
+  wire                             wdata_sig_vld;
+  reg  [7:0]                       rd_mismatch_wrd_cntr_r;
+  wire [7:0]                       rd_wrd_cntr;
+  reg  [7:0]                       wr_wrd_cntr;
+  reg  [7:0]                       rd_wrd_cntr_r;
+  reg  [7:0]                       wr_wrd_cntr_r;
   wire                             wrd_cntr_rst;
   wire                             w_burst_4;
   wire                             w_burst_8;
@@ -226,81 +231,81 @@ module mig_7series_v2_0_tg #(
     next_tg_state = 8'h0;
     case (1'b1)
       tg_state[TG_IDLE]: begin // 8'h01
-	if (init_cmptd) 
-	  next_tg_state[TG_GEN_PRBS] = 1'b1;
+        if (init_cmptd) 
+          next_tg_state[TG_GEN_PRBS] = 1'b1;
         else
-	  next_tg_state[TG_IDLE] = 1'b1;
+          next_tg_state[TG_IDLE] = 1'b1;
       end
       tg_state[TG_GEN_PRBS]: begin // 8'h02
-	if (cmd_vld) begin
+        if (cmd_vld) begin
           if (cmd_gen_csr_sig)
-	    next_tg_state[TG_WR_CMD] = 1'b1;
+            next_tg_state[TG_WR_CMD] = 1'b1;
           else
-	    next_tg_state[TG_RD_CMD] = 1'b1;
+            next_tg_state[TG_RD_CMD] = 1'b1;
         end else
-	  next_tg_state[TG_GEN_PRBS] = 1'b1;
+          next_tg_state[TG_GEN_PRBS] = 1'b1;
       end
       tg_state[TG_WR_CMD]: begin // 8'h04
-	if (wdata_sts_vld) begin
+        if (wdata_sts_vld) begin
           if (&shft_cntr)
-	    next_tg_state[TG_UPDT_CNTR] = 1'b1;
+            next_tg_state[TG_UPDT_CNTR] = 1'b1;
           else
-	    next_tg_state[TG_GEN_PRBS] = 1'b1;
+            next_tg_state[TG_GEN_PRBS] = 1'b1;
         end
-	else if (wdata_rdy)
-	  next_tg_state[TG_WR_DATA] = 1'b1;
-	else
-	  next_tg_state[TG_WR_CMD] = 1'b1;
+        else if (wdata_rdy)
+          next_tg_state[TG_WR_DATA] = 1'b1;
+        else
+          next_tg_state[TG_WR_CMD] = 1'b1;
       end
       tg_state[TG_WR_DATA]: begin // 8'h08
-	if (wdata_sts_vld) begin
+        if (wdata_sts_vld) begin
           if (&shft_cntr)
-	    next_tg_state[TG_UPDT_CNTR] = 1'b1;
+            next_tg_state[TG_UPDT_CNTR] = 1'b1;
           else
-	    next_tg_state[TG_GEN_PRBS] = 1'b1;
-	end
-	else if (blen_cntr == 8'h0 & wdata_rdy)
-	  next_tg_state[TG_WR_DONE] = 1'b1;
-	else
-	  next_tg_state[TG_WR_DATA] = 1'b1;
+            next_tg_state[TG_GEN_PRBS] = 1'b1;
+        end
+        else if (blen_cntr == 8'h0 & wdata_rdy)
+          next_tg_state[TG_WR_DONE] = 1'b1;
+        else
+          next_tg_state[TG_WR_DATA] = 1'b1;
       end
       tg_state[TG_WR_DONE]: begin // 8'h10
         if (wdata_sts_vld) begin
           if (&shft_cntr)
-	    next_tg_state[TG_UPDT_CNTR] = 1'b1;
+            next_tg_state[TG_UPDT_CNTR] = 1'b1;
           else
-	    next_tg_state[TG_GEN_PRBS] = 1'b1;
+            next_tg_state[TG_GEN_PRBS] = 1'b1;
         end
         else
-	  next_tg_state[TG_WR_DONE] = 1'b1;
+          next_tg_state[TG_WR_DONE] = 1'b1;
       end
       tg_state[TG_RD_CMD]: begin // 8'h20
         if (rdata_cmptd) begin
           if (&shft_cntr)
-	    next_tg_state[TG_UPDT_CNTR] = 1'b1;
+            next_tg_state[TG_UPDT_CNTR] = 1'b1;
           else
-	    next_tg_state[TG_GEN_PRBS] = 1'b1;
+            next_tg_state[TG_GEN_PRBS] = 1'b1;
         end
         else if (cmd_ack)
-	  next_tg_state[TG_RD_DATA] = 1'b1;
+          next_tg_state[TG_RD_DATA] = 1'b1;
         else
-	  next_tg_state[TG_RD_CMD] = 1'b1;
+          next_tg_state[TG_RD_CMD] = 1'b1;
       end
       tg_state[TG_RD_DATA]: begin // 8'h040
         if (rdata_cmptd & rdata_vld & rdata_rdy) begin
           if (&shft_cntr)
-	    next_tg_state[TG_UPDT_CNTR] = 1'b1;
+            next_tg_state[TG_UPDT_CNTR] = 1'b1;
           else
-	    next_tg_state[TG_GEN_PRBS] = 1'b1;
+            next_tg_state[TG_GEN_PRBS] = 1'b1;
         end
         else
-	  next_tg_state[TG_RD_DATA] = 1'b1;
+          next_tg_state[TG_RD_DATA] = 1'b1;
       end
       tg_state[TG_UPDT_CNTR]: begin // 8'h80
         if (&seed_cntr)
-	  next_tg_state[TG_IDLE] = 1'b1;
+          next_tg_state[TG_IDLE] = 1'b1;
         else
-	  next_tg_state[TG_GEN_PRBS] = 1'b1;
+          next_tg_state[TG_GEN_PRBS] = 1'b1;
       end
     endcase
   end
@@ -401,13 +406,15 @@ module mig_7series_v2_0_tg #(
      .rdata_vld             (rdata_sig_vld),
      .msmatch_err           (msmatch_err),   
      .wrd_cntr_rst          (wrd_cntr_rst),
-     .wrd_cntr              (wrd_cntr),     
+     .wrd_cntr              (rd_wrd_cntr),
      .data_o                (prbs_data)       
     );
 
   assign rdata_rdy = tg_state[TG_RD_DATA];
 
   assign rdata_sig_vld = wr_proc ? 1'b0 : (rdata_vld & tg_state[TG_RD_DATA]);
+  assign wdata_sig_vld = wr_proc ? (wdata_vld & tg_state[TG_WR_DATA]) : 1'b0;
+
 
 //*****************************************************************************
 // Command generation
@@ -702,8 +709,41 @@ module mig_7series_v2_0_tg #(
     end
   end      
 
-  assign dbg_wr_sts = {11'h0, write_err_dbg, cmd_err_dbg, data_pattern, wdata_sts_r};
-  assign dbg_rd_sts = {2'b00, data_msmatch_err_dbg, read_err_dbg, cmd_err_dbg, data_pattern, wrd_cntr, rdata_sts_r}; 
+  //*****************************************************************************
+  // Data count generation incremented for each burst to indicate activity
+  //*****************************************************************************
+
+  // Write count within a burst
+  always @(posedge clk)
+    if (wrd_cntr_rst)
+      wr_wrd_cntr <= 8'h00;
+    else if (wdata_sig_vld)
+      wr_wrd_cntr <= wr_wrd_cntr + 8'h01;
+
+  // Read count within a burst is implemented inside the data_gen_chk module
+
+  // Storing last burst count for read and write
+  always @(posedge clk)
+    if (!resetn)
+      wr_wrd_cntr_r <= 8'h00;
+    else if (dbg_wr_sts_vld)
+      wr_wrd_cntr_r <= wr_wrd_cntr;
+
+  always @(posedge clk)
+    if (!resetn)
+      rd_wrd_cntr_r <= 8'h00;
+    else if (dbg_rd_sts_vld)
+      rd_wrd_cntr_r <= rd_wrd_cntr;
+
+  // Computing the word count at which first data mismatch occured
+  always @(posedge clk)
+    if (wrd_cntr_rst)
+      rd_mismatch_wrd_cntr_r <= 8'h00;
+    else if (~data_msmatch_err_dbg)
+      rd_mismatch_wrd_cntr_r <= rd_wrd_cntr - 1;
+  
+  assign dbg_wr_sts = {rd_wrd_cntr_r, 11'h0, data_pattern, write_err_dbg, cmd_err_dbg, wdata_sts_r};
+  assign dbg_rd_sts = {wr_wrd_cntr_r, 2'b00, data_pattern, rd_mismatch_wrd_cntr_r, data_msmatch_err_dbg, read_err_dbg, cmd_err_dbg, rdata_sts_r}; 
   assign test_cmptd = tg_state[TG_UPDT_CNTR] & next_tg_state[TG_IDLE];
   assign write_cmptd = (tg_state[TG_WR_DATA] | tg_state[TG_WR_DONE]) & 
                        (next_tg_state[TG_GEN_PRBS] | next_tg_state[TG_UPDT_CNTR]);

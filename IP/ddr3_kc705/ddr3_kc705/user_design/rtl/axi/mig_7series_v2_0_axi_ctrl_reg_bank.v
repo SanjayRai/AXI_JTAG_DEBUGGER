@@ -576,13 +576,13 @@ generate
         assign we_int[j] = 1'b0;
         assign data_in_int[j*C_DATA_WIDTH+:C_DATA_WIDTH] = {C_DATA_WIDTH{1'b0}};
 
-        if (C_ECC_TEST == "ON") begin
+        //if (C_ECC_TEST == "ON") begin
           always @(posedge clk) begin
             fi_xor_we_r[0*C_DATA_WIDTH/8+:C_DATA_WIDTH/8] <= (reg_data_sel == j) ? {C_DATA_WIDTH/8{reg_data_write}} 
                                                                                       : {C_DATA_WIDTH/8{1'b0}};
             fi_xor_wrdata_r[0*C_DATA_WIDTH+:C_DATA_WIDTH] <= reg_data_in[C_DATA_WIDTH-1:0];
           end
-        end
+        //end
       end
       C_REG_FI_D_63_32_INDX: 
       begin
@@ -591,13 +591,13 @@ generate
         assign we_int[j] = 1'b0;
         assign data_in_int[j*C_DATA_WIDTH+:C_DATA_WIDTH] = {C_DATA_WIDTH{1'b0}};
 
-        if (C_ECC_TEST == "ON") begin
+        //if (C_ECC_TEST == "ON") begin
           always @(posedge clk) begin
             fi_xor_we_r[1*C_DATA_WIDTH/8+:C_DATA_WIDTH/8] <= (reg_data_sel == j) ? {C_DATA_WIDTH/8{reg_data_write}} 
                                                                                       : {C_DATA_WIDTH/8{1'b0}};
             fi_xor_wrdata_r[1*C_DATA_WIDTH+:C_DATA_WIDTH] <= reg_data_in[C_DATA_WIDTH-1:0];
           end
-        end
+        //end
       end
       C_REG_FI_D_95_64_INDX: 
       begin
@@ -606,7 +606,7 @@ generate
         assign we_int[j] = 1'b0;
         assign data_in_int[j*C_DATA_WIDTH+:C_DATA_WIDTH] = {C_DATA_WIDTH{1'b0}};
 
-        if (C_DQ_WIDTH == 144 && C_ECC_TEST == "ON") begin
+        if (C_DQ_WIDTH == 144 /*&& C_ECC_TEST == "ON"*/) begin
           always @(posedge clk) begin
             fi_xor_we_r[2*C_DATA_WIDTH/8+:C_DATA_WIDTH/8] <= (reg_data_sel == j) ? {C_DATA_WIDTH/8{reg_data_write}} 
                                                                                     : {C_DATA_WIDTH/8{1'b0}};
@@ -621,7 +621,7 @@ generate
         assign we_int[j] = 1'b0;
         assign data_in_int[j*C_DATA_WIDTH+:C_DATA_WIDTH] = {C_DATA_WIDTH{1'b0}};
 
-        if (C_DQ_WIDTH == 144 && C_ECC_TEST == "ON") begin
+        if (C_DQ_WIDTH == 144 /*&& C_ECC_TEST == "ON"*/) begin
           always @(posedge clk) begin
             fi_xor_we_r[3*C_DATA_WIDTH/8+:C_DATA_WIDTH/8] <= (reg_data_sel == j) ? {C_DATA_WIDTH/8{reg_data_write}} 
                                                                                     : {C_DATA_WIDTH/8{1'b0}};
@@ -637,14 +637,14 @@ generate
         assign we_int[j] = 1'b0;
         assign data_in_int[j*C_DATA_WIDTH+:C_DATA_WIDTH] = {C_DATA_WIDTH{1'b0}};
 
-        if (C_DQ_WIDTH == 72 && C_ECC_TEST == "ON") begin
+        if (C_DQ_WIDTH == 72 /*&& C_ECC_TEST == "ON"*/) begin
           always @(posedge clk) begin
             fi_xor_we_r[2*C_DATA_WIDTH/8+:P_FI_XOR_WE_WIDTH] <= (reg_data_sel == j) ? {P_FI_XOR_WE_WIDTH{reg_data_write}}
                                                                                     : {P_FI_XOR_WE_WIDTH{1'b0}};
             fi_xor_wrdata_r[2*C_DATA_WIDTH+:C_DQ_WIDTH%C_DATA_WIDTH] <= reg_data_in[C_DQ_WIDTH%C_DATA_WIDTH-1:0];
           end
         end
-        if (C_DQ_WIDTH == 144 && C_ECC_TEST == "ON") begin
+        if (C_DQ_WIDTH == 144 /*&& C_ECC_TEST == "ON"*/) begin
           always @(posedge clk) begin
             fi_xor_we_r[4*C_DATA_WIDTH/8+:P_FI_XOR_WE_WIDTH] <= (reg_data_sel == j) ? {P_FI_XOR_WE_WIDTH{reg_data_write}}
                                                                                     : {P_FI_XOR_WE_WIDTH{1'b0}};

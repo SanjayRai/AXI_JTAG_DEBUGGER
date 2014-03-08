@@ -26,7 +26,6 @@ set_property top jtag_axi_debugger [get_filesets sources_1]
 update_compile_order -fileset sources_1
 
 if (1) {
-    generate_target -force all [get_ips]
     launch_runs synth_1
     wait_on_run synth_1
     open_run synth_1 -name synth_netlist_1

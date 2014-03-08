@@ -79,7 +79,8 @@ vlib work
 #Compile all modules#
 vlog  ../../../../../imports/rtl/*.v
 vlog  -incr ../../../../../imports/rtl/traffic_gen/*.v
-vlog  ../../user_design/rtl/*_sim.v
+vlog  ../../user_design/rtl/ddr3_kc705.v
+vlog  ../../user_design/rtl/ddr3_kc705_mig_sim.v
 vlog  -incr ../../user_design/rtl/clocking/*.v
 vlog  -incr ../../user_design/rtl/controller/*.v
 vlog  -incr ../../user_design/rtl/ecc/*.v

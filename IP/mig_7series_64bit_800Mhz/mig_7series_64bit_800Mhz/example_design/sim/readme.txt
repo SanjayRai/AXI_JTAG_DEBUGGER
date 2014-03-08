@@ -58,14 +58,17 @@
 ##
 ## Device          : 7 Series
 ## Design Name     : DDR3 SDRAM
-## Purpose         : Steps to run simulations using Modelsim/Vivado simualtor
-## Assumptions     : Simulations are run in \sim folder of MIG output directory
+## Purpose         : Steps to run simulations using Modelsim, Cadence IES, 
+##                   Synopsys VCS and Vivado Simulator (XSIM)
+## Assumptions     : Simulations are run in \sim folder of MIG output "Open IP
+##                   Example Design" directory
 ## Reference       :
 ## Revision History:
 ###############################################################################
 
-MIG ouputs files (sim.do and other files) required to run the simulations for
-Modelsim and Vivado Simulator.
+MIG outputs script files required to run the simulations forModelsim, IES, VCS 
+and Vivado Simulator (XSIM). These scripts are valid only for running simulations
+for "Open IP Example Design"
 
 1. How to run simulations in Modelsim simulator
 
@@ -81,7 +84,7 @@ Modelsim and Vivado Simulator.
          vmap unisim <unisim lib path>
          vmap secureip  <secureip lib path>
 
-         Also, $XILINX environment variable must be set in order to compile glbl.v file
+         Also, $XILINX_VIVADO environment variable must be set in order to compile glbl.v file
 
       c) Displays the waveforms that are listed with "add wave" command.
 
@@ -103,7 +106,7 @@ Modelsim and Vivado Simulator.
 
       e) Verify the transcript file for the memory transactions.
 
-2. How to run simualtions in Vivado Simulator
+2. How to run Simualtions in Vivado Simulator (XSIM)
 
    A) Following files are provided :
 
@@ -130,12 +133,74 @@ Modelsim and Vivado Simulator.
          and run simulation for specified time using the command
          "run <time>" in Vivado Simulator GUI.
 
-3. SIM_BYPASS_INIT_CAL parameter value of SKIP, skips memory initialization sequence
+3. How to run Cadence IES Simulations
+
+   A) Following files are provided :
+
+      a) The "ies_files.f" file contains the list of the hdl files
+         present in the design. 
+
+      b) The "ies_run.sh" file contains the commands for simulation.
+
+      c) Libraries must be added to the "ies_files.f" file before running 
+	     simulations. Following lines must be added to the file, just below the
+		 comment line #libraries path#
+		 
+		 +libext+.v+.sv+.bv+.vp+.vh
+         -y $XILINX_VIVADO/data/verilog/src/unisims
+         -y $XILINX_VIVADO/data/verilog/src/retarget
+         -f $XILINX_VIVADO/data/secureip/secureip_cell.list.f
+
+         Also, $XILINX_VIVADO environment variable must be set in order to 
+		 compile glbl.v file and the above mentioned library files
+
+   B) Steps to run the Modelsim simulation:
+
+      a) Change the present working directory path to the sim folder of "Open 
+	     IP Example Design" path in the OS terminal.
+		 
+      b) Run the simulation using ies_run.sh file. Type the following command:
+         ./ies_run.sh
+
+      c) Verify the irun.log file for the memory transactions.
+
+4. How to run Synopsys VCS Simulations
+
+   A) Following files are provided :
+
+      a) The "vcs_files.f" file contains the list of the hdl files
+         present in the design. 
+
+      b) The "vcs_run.sh" file contains the commands for simulation.
+
+      c) Libraries must be added to the "vcs_files.f" file before running 
+	     simulations. Following lines must be added to the file, just below the
+		 comment line #libraries path#
+		 
+         +libext+.v+.vh+.sv+.svh+.h 
+         -y $XILINX_VIVADO/data/verilog/src/unisims
+         -y $XILINX_VIVADO/data/verilog/src/retarget
+         -f $XILINX_VIVADO/data/secureip/secureip_cell.list.f -lca
+
+         Also, $XILINX_VIVADO environment variable must be set in order to 
+		 compile glbl.v file and the above mentioned library files
+
+   B) Steps to run the Modelsim simulation:
+
+      a) Change the present working directory path to the sim folder of "Open 
+	     IP Example Design" path in the OS terminal.
+		 
+      b) Run the simulation using vcs_run.sh file. Type the following command:
+         ./vcs_run.sh
+
+      c) Verify the vcs_run.log file for the memory transactions.
+
+5. SIM_BYPASS_INIT_CAL parameter value of SKIP, skips memory initialization sequence
    and calibration sequence. This could lead to simulation errors since design is not
    calibrated at all. Preferred values for parameter SIM_BYPASS_INIT_CAL to run
    simulations are FAST and OFF.
 
-4. Simulations running with parameter MAX_MEM defined uses a temporary directory for model data.
+6. Simulations running with parameter MAX_MEM defined uses a temporary directory for model data.
    The default temporary directory specified in model file is /tmp which doesn't exist for Windows OS.
    Therfore users running on Windows OS should change the ddr3_model.v file as below
 

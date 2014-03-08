@@ -5,7 +5,7 @@
     <File Path="$PSRCDIR/sources_1/ip/jtag_axi_debug_fifo_x64/jtag_axi_debug_fifo_x64.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/jtag_axi_debug_fifo_x64/jtag_axi_debug_fifo_x64.xci"/>
-        <Attr Name="ImportTime" Val="1384721581"/>
+        <Attr Name="ImportTime" Val="1393978304"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -17,7 +17,7 @@
     <File Path="$PSRCDIR/sources_1/ip/vio_axi_jtag_dbg/vio_axi_jtag_dbg.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/vio_axi_jtag_dbg/vio_axi_jtag_dbg.xci"/>
-        <Attr Name="ImportTime" Val="1384721581"/>
+        <Attr Name="ImportTime" Val="1393977997"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -29,7 +29,7 @@
     <File Path="$PSRCDIR/sources_1/imports/src/s2mm_data_gen.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../src/s2mm_data_gen.v"/>
-        <Attr Name="ImportTime" Val="1384721582"/>
+        <Attr Name="ImportTime" Val="1393977736"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -41,7 +41,7 @@
     <File Path="$PSRCDIR/sources_1/imports/src/mm2s_data_consume.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../src/mm2s_data_consume.v"/>
-        <Attr Name="ImportTime" Val="1384721582"/>
+        <Attr Name="ImportTime" Val="1393977736"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -53,7 +53,7 @@
     <File Path="$PSRCDIR/sources_1/ip/axi_mm64_to_axi_lite64/axi_mm64_to_axi_lite64.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_mm64_to_axi_lite64/axi_mm64_to_axi_lite64.xci"/>
-        <Attr Name="ImportTime" Val="1384721581"/>
+        <Attr Name="ImportTime" Val="1393978018"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -65,7 +65,7 @@
     <File Path="$PSRCDIR/sources_1/ip/axi_mm32_to_axi_lite32/axi_mm32_to_axi_lite32.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_mm32_to_axi_lite32/axi_mm32_to_axi_lite32.xci"/>
-        <Attr Name="ImportTime" Val="1384721581"/>
+        <Attr Name="ImportTime" Val="1393977990"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -77,7 +77,7 @@
     <File Path="$PSRCDIR/sources_1/ip/axi_datamover_64MM_32STR/axi_datamover_64MM_32STR.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_64MM_32STR/axi_datamover_64MM_32STR.xci"/>
-        <Attr Name="ImportTime" Val="1384721581"/>
+        <Attr Name="ImportTime" Val="1393977988"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -89,7 +89,7 @@
     <File Path="$PSRCDIR/sources_1/ip/axi_datamover_512MM_32STR/axi_datamover_512MM_32STR.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_512MM_32STR/axi_datamover_512MM_32STR.xci"/>
-        <Attr Name="ImportTime" Val="1384721581"/>
+        <Attr Name="ImportTime" Val="1393978020"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -101,7 +101,7 @@
     <File Path="$PSRCDIR/sources_1/ip/axi_datamover_32MM_32STR/axi_datamover_32MM_32STR.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_32MM_32STR/axi_datamover_32MM_32STR.xci"/>
-        <Attr Name="ImportTime" Val="1384721581"/>
+        <Attr Name="ImportTime" Val="1393977990"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -113,7 +113,7 @@
     <File Path="$PSRCDIR/sources_1/ip/axi_datamover_256MM_32STR/axi_datamover_256MM_32STR.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_256MM_32STR/axi_datamover_256MM_32STR.xci"/>
-        <Attr Name="ImportTime" Val="1384721581"/>
+        <Attr Name="ImportTime" Val="1393977989"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -125,7 +125,7 @@
     <File Path="$PSRCDIR/sources_1/ip/axi_datamover_128MM_32STR/axi_datamover_128MM_32STR.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_128MM_32STR/axi_datamover_128MM_32STR.xci"/>
-        <Attr Name="ImportTime" Val="1384721580"/>
+        <Attr Name="ImportTime" Val="1393978018"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -137,7 +137,7 @@
     <File Path="$PSRCDIR/sources_1/ip/axi_datamover_1024MM_32STR/axi_datamover_1024MM_32STR.xci">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_1024MM_32STR/axi_datamover_1024MM_32STR.xci"/>
-        <Attr Name="ImportTime" Val="1384721580"/>
+        <Attr Name="ImportTime" Val="1393978019"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -149,7 +149,7 @@
     <File Path="$PSRCDIR/sources_1/imports/src/stream_data.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../src/stream_data.v"/>
-        <Attr Name="ImportTime" Val="1384721582"/>
+        <Attr Name="ImportTime" Val="1393977736"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -161,7 +161,7 @@
     <File Path="$PSRCDIR/sources_1/imports/src/jtag_axi_debugger_ip.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../src/jtag_axi_debugger_ip.v"/>
-        <Attr Name="ImportTime" Val="1384721582"/>
+        <Attr Name="ImportTime" Val="1393977736"/>
         <Attr Name="UsedInSynthesis" Val="1"/>
         <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
@@ -176,6 +176,7 @@
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="jtag_axi_debugger_ip"/>
+      <Option Name="IPRepoPath" Val="$PPRDIR/../../vivado_project"/>
     </Config>
   </FileSet>
 </DARoots>

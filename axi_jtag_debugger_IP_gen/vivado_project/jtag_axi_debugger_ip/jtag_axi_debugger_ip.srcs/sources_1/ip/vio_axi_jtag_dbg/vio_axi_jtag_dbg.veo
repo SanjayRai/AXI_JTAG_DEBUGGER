@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2013 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2014 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -47,7 +47,7 @@
 // DO NOT MODIFY THIS FILE.
 
 // IP VLNV: xilinx.com:ip:vio:3.0
-// IP Revision: 0
+// IP Revision: 1
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -55,42 +55,42 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 vio_axi_jtag_dbg your_instance_name (
-  .clk(clk),                  // input clk
-  .probe_in0(probe_in0),      // input [0 : 0] probe_in0
-  .probe_in1(probe_in1),      // input [31 : 0] probe_in1
-  .probe_in2(probe_in2),      // input [3 : 0] probe_in2
-  .probe_in3(probe_in3),      // input [0 : 0] probe_in3
-  .probe_in4(probe_in4),      // input [31 : 0] probe_in4
-  .probe_in5(probe_in5),      // input [3 : 0] probe_in5
-  .probe_in6(probe_in6),      // input [31 : 0] probe_in6
-  .probe_in7(probe_in7),      // input [31 : 0] probe_in7
-  .probe_out0(probe_out0),    // output [0 : 0] probe_out0
-  .probe_out1(probe_out1),    // output [0 : 0] probe_out1
-  .probe_out2(probe_out2),    // output [0 : 0] probe_out2
-  .probe_out3(probe_out3),    // output [0 : 0] probe_out3
-  .probe_out4(probe_out4),    // output [0 : 0] probe_out4
-  .probe_out5(probe_out5),    // output [0 : 0] probe_out5
-  .probe_out6(probe_out6),    // output [15 : 0] probe_out6
-  .probe_out7(probe_out7),    // output [15 : 0] probe_out7
-  .probe_out8(probe_out8),    // output [31 : 0] probe_out8
-  .probe_out9(probe_out9),    // output [31 : 0] probe_out9
-  .probe_out10(probe_out10),  // output [31 : 0] probe_out10
-  .probe_out11(probe_out11),  // output [3 : 0] probe_out11
-  .probe_out12(probe_out12),  // output [0 : 0] probe_out12
-  .probe_out13(probe_out13),  // output [0 : 0] probe_out13
-  .probe_out14(probe_out14),  // output [0 : 0] probe_out14
-  .probe_out15(probe_out15),  // output [0 : 0] probe_out15
-  .probe_out16(probe_out16),  // output [0 : 0] probe_out16
-  .probe_out17(probe_out17),  // output [0 : 0] probe_out17
-  .probe_out18(probe_out18),  // output [15 : 0] probe_out18
-  .probe_out19(probe_out19),  // output [15 : 0] probe_out19
-  .probe_out20(probe_out20),  // output [31 : 0] probe_out20
-  .probe_out21(probe_out21),  // output [31 : 0] probe_out21
-  .probe_out22(probe_out22),  // output [31 : 0] probe_out22
-  .probe_out23(probe_out23),  // output [3 : 0] probe_out23
-  .probe_out24(probe_out24),  // output [0 : 0] probe_out24
-  .probe_out25(probe_out25),  // output [31 : 0] probe_out25
-  .probe_out26(probe_out26)  // output [31 : 0] probe_out26
+  .clk(clk),                  // input wire clk
+  .probe_in0(probe_in0),      // input wire [0 : 0] probe_in0
+  .probe_in1(probe_in1),      // input wire [31 : 0] probe_in1
+  .probe_in2(probe_in2),      // input wire [3 : 0] probe_in2
+  .probe_in3(probe_in3),      // input wire [0 : 0] probe_in3
+  .probe_in4(probe_in4),      // input wire [31 : 0] probe_in4
+  .probe_in5(probe_in5),      // input wire [3 : 0] probe_in5
+  .probe_in6(probe_in6),      // input wire [31 : 0] probe_in6
+  .probe_in7(probe_in7),      // input wire [31 : 0] probe_in7
+  .probe_out0(probe_out0),    // output wire [0 : 0] probe_out0
+  .probe_out1(probe_out1),    // output wire [0 : 0] probe_out1
+  .probe_out2(probe_out2),    // output wire [0 : 0] probe_out2
+  .probe_out3(probe_out3),    // output wire [0 : 0] probe_out3
+  .probe_out4(probe_out4),    // output wire [0 : 0] probe_out4
+  .probe_out5(probe_out5),    // output wire [0 : 0] probe_out5
+  .probe_out6(probe_out6),    // output wire [15 : 0] probe_out6
+  .probe_out7(probe_out7),    // output wire [15 : 0] probe_out7
+  .probe_out8(probe_out8),    // output wire [31 : 0] probe_out8
+  .probe_out9(probe_out9),    // output wire [31 : 0] probe_out9
+  .probe_out10(probe_out10),  // output wire [31 : 0] probe_out10
+  .probe_out11(probe_out11),  // output wire [3 : 0] probe_out11
+  .probe_out12(probe_out12),  // output wire [0 : 0] probe_out12
+  .probe_out13(probe_out13),  // output wire [0 : 0] probe_out13
+  .probe_out14(probe_out14),  // output wire [0 : 0] probe_out14
+  .probe_out15(probe_out15),  // output wire [0 : 0] probe_out15
+  .probe_out16(probe_out16),  // output wire [0 : 0] probe_out16
+  .probe_out17(probe_out17),  // output wire [0 : 0] probe_out17
+  .probe_out18(probe_out18),  // output wire [15 : 0] probe_out18
+  .probe_out19(probe_out19),  // output wire [15 : 0] probe_out19
+  .probe_out20(probe_out20),  // output wire [31 : 0] probe_out20
+  .probe_out21(probe_out21),  // output wire [31 : 0] probe_out21
+  .probe_out22(probe_out22),  // output wire [31 : 0] probe_out22
+  .probe_out23(probe_out23),  // output wire [3 : 0] probe_out23
+  .probe_out24(probe_out24),  // output wire [0 : 0] probe_out24
+  .probe_out25(probe_out25),  // output wire [31 : 0] probe_out25
+  .probe_out26(probe_out26)  // output wire [31 : 0] probe_out26
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

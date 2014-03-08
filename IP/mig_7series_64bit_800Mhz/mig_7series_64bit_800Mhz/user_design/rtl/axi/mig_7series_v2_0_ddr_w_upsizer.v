@@ -1267,7 +1267,7 @@ module mig_7series_v2_0_ddr_w_upsizer #
                 wstrb_wrap_buffer_cmb[word_cnt*C_S_AXI_DATA_WIDTH/8+byte_cnt +: 1] = 1'b0;
               end else if ( current_word_idx[word_cnt] & store_in_wrap_buffer & S_AXI_WSTRB[byte_cnt] ) begin
                 wdata_wrap_buffer_cmb[word_cnt*C_S_AXI_DATA_WIDTH+byte_cnt*8 +: 8] = S_AXI_WDATA[byte_cnt*8 +: 8];
-                wstrb_wrap_buffer_cmb[word_cnt*C_S_AXI_DATA_WIDTH/8+byte_cnt +: 1] = S_AXI_WSTRB[byte_cnt];
+                wstrb_wrap_buffer_cmb[word_cnt*C_S_AXI_DATA_WIDTH/8+byte_cnt +: 1] = 1'b1;
               end else begin
                 wdata_wrap_buffer_cmb[word_cnt*C_S_AXI_DATA_WIDTH+byte_cnt*8 +: 8] = 
                                       wdata_wrap_buffer[word_cnt*C_S_AXI_DATA_WIDTH+byte_cnt*8 +: 8];

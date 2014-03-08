@@ -275,7 +275,8 @@ module mig_7series_v2_0_ddr_phy_prbs_rdlvl #
    //assign dbg_prbs_rdlvl[220+:6]= prbs_final_dqs_tap_cnt_r[47:42];
    //assign dbg_prbs_rdlvl[226+:6]= prbs_final_dqs_tap_cnt_r[53:48];
    
-   assign dbg_prbs_rdlvl[255:232]= 'b0;//reserved
+   assign dbg_prbs_rdlvl[237:232]= prbs_state_r;
+   assign dbg_prbs_rdlvl[255:238]= 'b0;//reserved
 
   //***************************************************************************
   //***************************************************************************
@@ -310,6 +311,10 @@ module mig_7series_v2_0_ddr_phy_prbs_rdlvl #
       assign compare_data_f0 = compare_data[2*PRBS_WIDTH-1:PRBS_WIDTH];
       assign compare_data_r1 = compare_data[3*PRBS_WIDTH-1:2*PRBS_WIDTH];
       assign compare_data_f1 = compare_data[4*PRBS_WIDTH-1:3*PRBS_WIDTH];
+      assign compare_data_r2 = 'h0;
+      assign compare_data_f2 = 'h0;
+      assign compare_data_r3 = 'h0;
+      assign compare_data_f3 = 'h0;
     end
   endgenerate
 
@@ -361,6 +366,10 @@ module mig_7series_v2_0_ddr_phy_prbs_rdlvl #
               mux_rd_fall0_r2[muxr2_i] <= #TCQ mux_rd_fall0_r1[muxr2_i];
               mux_rd_rise1_r2[muxr2_i] <= #TCQ mux_rd_rise1_r1[muxr2_i];
               mux_rd_fall1_r2[muxr2_i] <= #TCQ mux_rd_fall1_r1[muxr2_i];      
+              mux_rd_rise2_r2[muxr2_i] <= 'h0;
+              mux_rd_fall2_r2[muxr2_i] <= 'h0;
+              mux_rd_rise3_r2[muxr2_i] <= 'h0;
+              mux_rd_fall3_r2[muxr2_i] <= 'h0;
             end
                   end
         end

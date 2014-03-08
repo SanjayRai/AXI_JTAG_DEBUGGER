@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2013 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2014 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -47,7 +47,7 @@
 // DO NOT MODIFY THIS FILE.
 
 // IP VLNV: xilinx.com:ip:axi_cdma:4.1
-// IP Revision: 0
+// IP Revision: 1
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -55,56 +55,56 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 axi_cdma_0 your_instance_name (
-  .m_axi_aclk(m_axi_aclk),                  // input m_axi_aclk
-  .s_axi_lite_aclk(s_axi_lite_aclk),        // input s_axi_lite_aclk
-  .s_axi_lite_aresetn(s_axi_lite_aresetn),  // input s_axi_lite_aresetn
-  .cdma_introut(cdma_introut),              // output cdma_introut
-  .s_axi_lite_awready(s_axi_lite_awready),  // output s_axi_lite_awready
-  .s_axi_lite_awvalid(s_axi_lite_awvalid),  // input s_axi_lite_awvalid
-  .s_axi_lite_awaddr(s_axi_lite_awaddr),    // input [5 : 0] s_axi_lite_awaddr
-  .s_axi_lite_wready(s_axi_lite_wready),    // output s_axi_lite_wready
-  .s_axi_lite_wvalid(s_axi_lite_wvalid),    // input s_axi_lite_wvalid
-  .s_axi_lite_wdata(s_axi_lite_wdata),      // input [31 : 0] s_axi_lite_wdata
-  .s_axi_lite_bready(s_axi_lite_bready),    // input s_axi_lite_bready
-  .s_axi_lite_bvalid(s_axi_lite_bvalid),    // output s_axi_lite_bvalid
-  .s_axi_lite_bresp(s_axi_lite_bresp),      // output [1 : 0] s_axi_lite_bresp
-  .s_axi_lite_arready(s_axi_lite_arready),  // output s_axi_lite_arready
-  .s_axi_lite_arvalid(s_axi_lite_arvalid),  // input s_axi_lite_arvalid
-  .s_axi_lite_araddr(s_axi_lite_araddr),    // input [5 : 0] s_axi_lite_araddr
-  .s_axi_lite_rready(s_axi_lite_rready),    // input s_axi_lite_rready
-  .s_axi_lite_rvalid(s_axi_lite_rvalid),    // output s_axi_lite_rvalid
-  .s_axi_lite_rdata(s_axi_lite_rdata),      // output [31 : 0] s_axi_lite_rdata
-  .s_axi_lite_rresp(s_axi_lite_rresp),      // output [1 : 0] s_axi_lite_rresp
-  .m_axi_arready(m_axi_arready),            // input m_axi_arready
-  .m_axi_arvalid(m_axi_arvalid),            // output m_axi_arvalid
-  .m_axi_araddr(m_axi_araddr),              // output [31 : 0] m_axi_araddr
-  .m_axi_arlen(m_axi_arlen),                // output [7 : 0] m_axi_arlen
-  .m_axi_arsize(m_axi_arsize),              // output [2 : 0] m_axi_arsize
-  .m_axi_arburst(m_axi_arburst),            // output [1 : 0] m_axi_arburst
-  .m_axi_arprot(m_axi_arprot),              // output [2 : 0] m_axi_arprot
-  .m_axi_arcache(m_axi_arcache),            // output [3 : 0] m_axi_arcache
-  .m_axi_rready(m_axi_rready),              // output m_axi_rready
-  .m_axi_rvalid(m_axi_rvalid),              // input m_axi_rvalid
-  .m_axi_rdata(m_axi_rdata),                // input [255 : 0] m_axi_rdata
-  .m_axi_rresp(m_axi_rresp),                // input [1 : 0] m_axi_rresp
-  .m_axi_rlast(m_axi_rlast),                // input m_axi_rlast
-  .m_axi_awready(m_axi_awready),            // input m_axi_awready
-  .m_axi_awvalid(m_axi_awvalid),            // output m_axi_awvalid
-  .m_axi_awaddr(m_axi_awaddr),              // output [31 : 0] m_axi_awaddr
-  .m_axi_awlen(m_axi_awlen),                // output [7 : 0] m_axi_awlen
-  .m_axi_awsize(m_axi_awsize),              // output [2 : 0] m_axi_awsize
-  .m_axi_awburst(m_axi_awburst),            // output [1 : 0] m_axi_awburst
-  .m_axi_awprot(m_axi_awprot),              // output [2 : 0] m_axi_awprot
-  .m_axi_awcache(m_axi_awcache),            // output [3 : 0] m_axi_awcache
-  .m_axi_wready(m_axi_wready),              // input m_axi_wready
-  .m_axi_wvalid(m_axi_wvalid),              // output m_axi_wvalid
-  .m_axi_wdata(m_axi_wdata),                // output [255 : 0] m_axi_wdata
-  .m_axi_wstrb(m_axi_wstrb),                // output [31 : 0] m_axi_wstrb
-  .m_axi_wlast(m_axi_wlast),                // output m_axi_wlast
-  .m_axi_bready(m_axi_bready),              // output m_axi_bready
-  .m_axi_bvalid(m_axi_bvalid),              // input m_axi_bvalid
-  .m_axi_bresp(m_axi_bresp),                // input [1 : 0] m_axi_bresp
-  .cdma_tvect_out(cdma_tvect_out)          // output [31 : 0] cdma_tvect_out
+  .m_axi_aclk(m_axi_aclk),                  // input wire m_axi_aclk
+  .s_axi_lite_aclk(s_axi_lite_aclk),        // input wire s_axi_lite_aclk
+  .s_axi_lite_aresetn(s_axi_lite_aresetn),  // input wire s_axi_lite_aresetn
+  .cdma_introut(cdma_introut),              // output wire cdma_introut
+  .s_axi_lite_awready(s_axi_lite_awready),  // output wire s_axi_lite_awready
+  .s_axi_lite_awvalid(s_axi_lite_awvalid),  // input wire s_axi_lite_awvalid
+  .s_axi_lite_awaddr(s_axi_lite_awaddr),    // input wire [5 : 0] s_axi_lite_awaddr
+  .s_axi_lite_wready(s_axi_lite_wready),    // output wire s_axi_lite_wready
+  .s_axi_lite_wvalid(s_axi_lite_wvalid),    // input wire s_axi_lite_wvalid
+  .s_axi_lite_wdata(s_axi_lite_wdata),      // input wire [31 : 0] s_axi_lite_wdata
+  .s_axi_lite_bready(s_axi_lite_bready),    // input wire s_axi_lite_bready
+  .s_axi_lite_bvalid(s_axi_lite_bvalid),    // output wire s_axi_lite_bvalid
+  .s_axi_lite_bresp(s_axi_lite_bresp),      // output wire [1 : 0] s_axi_lite_bresp
+  .s_axi_lite_arready(s_axi_lite_arready),  // output wire s_axi_lite_arready
+  .s_axi_lite_arvalid(s_axi_lite_arvalid),  // input wire s_axi_lite_arvalid
+  .s_axi_lite_araddr(s_axi_lite_araddr),    // input wire [5 : 0] s_axi_lite_araddr
+  .s_axi_lite_rready(s_axi_lite_rready),    // input wire s_axi_lite_rready
+  .s_axi_lite_rvalid(s_axi_lite_rvalid),    // output wire s_axi_lite_rvalid
+  .s_axi_lite_rdata(s_axi_lite_rdata),      // output wire [31 : 0] s_axi_lite_rdata
+  .s_axi_lite_rresp(s_axi_lite_rresp),      // output wire [1 : 0] s_axi_lite_rresp
+  .m_axi_arready(m_axi_arready),            // input wire m_axi_arready
+  .m_axi_arvalid(m_axi_arvalid),            // output wire m_axi_arvalid
+  .m_axi_araddr(m_axi_araddr),              // output wire [31 : 0] m_axi_araddr
+  .m_axi_arlen(m_axi_arlen),                // output wire [7 : 0] m_axi_arlen
+  .m_axi_arsize(m_axi_arsize),              // output wire [2 : 0] m_axi_arsize
+  .m_axi_arburst(m_axi_arburst),            // output wire [1 : 0] m_axi_arburst
+  .m_axi_arprot(m_axi_arprot),              // output wire [2 : 0] m_axi_arprot
+  .m_axi_arcache(m_axi_arcache),            // output wire [3 : 0] m_axi_arcache
+  .m_axi_rready(m_axi_rready),              // output wire m_axi_rready
+  .m_axi_rvalid(m_axi_rvalid),              // input wire m_axi_rvalid
+  .m_axi_rdata(m_axi_rdata),                // input wire [255 : 0] m_axi_rdata
+  .m_axi_rresp(m_axi_rresp),                // input wire [1 : 0] m_axi_rresp
+  .m_axi_rlast(m_axi_rlast),                // input wire m_axi_rlast
+  .m_axi_awready(m_axi_awready),            // input wire m_axi_awready
+  .m_axi_awvalid(m_axi_awvalid),            // output wire m_axi_awvalid
+  .m_axi_awaddr(m_axi_awaddr),              // output wire [31 : 0] m_axi_awaddr
+  .m_axi_awlen(m_axi_awlen),                // output wire [7 : 0] m_axi_awlen
+  .m_axi_awsize(m_axi_awsize),              // output wire [2 : 0] m_axi_awsize
+  .m_axi_awburst(m_axi_awburst),            // output wire [1 : 0] m_axi_awburst
+  .m_axi_awprot(m_axi_awprot),              // output wire [2 : 0] m_axi_awprot
+  .m_axi_awcache(m_axi_awcache),            // output wire [3 : 0] m_axi_awcache
+  .m_axi_wready(m_axi_wready),              // input wire m_axi_wready
+  .m_axi_wvalid(m_axi_wvalid),              // output wire m_axi_wvalid
+  .m_axi_wdata(m_axi_wdata),                // output wire [255 : 0] m_axi_wdata
+  .m_axi_wstrb(m_axi_wstrb),                // output wire [31 : 0] m_axi_wstrb
+  .m_axi_wlast(m_axi_wlast),                // output wire m_axi_wlast
+  .m_axi_bready(m_axi_bready),              // output wire m_axi_bready
+  .m_axi_bvalid(m_axi_bvalid),              // input wire m_axi_bvalid
+  .m_axi_bresp(m_axi_bresp),                // input wire [1 : 0] m_axi_bresp
+  .cdma_tvect_out(cdma_tvect_out)          // output wire [31 : 0] cdma_tvect_out
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

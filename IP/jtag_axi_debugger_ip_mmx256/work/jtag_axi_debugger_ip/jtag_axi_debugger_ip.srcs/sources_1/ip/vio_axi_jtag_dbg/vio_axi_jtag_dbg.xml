@@ -16,7 +16,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>650913858</spirit:value>
+            <spirit:value>2430060594</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -24,7 +24,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Nov 14 17:19:48 UTC 2013</spirit:value>
+            <spirit:value>Thu Mar 06 05:32:09 UTC 2014</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>StaleAtRelink</spirit:name>
@@ -43,7 +43,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>650913858</spirit:value>
+            <spirit:value>2430060594</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -51,7 +51,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Nov 14 17:19:48 UTC 2013</spirit:value>
+            <spirit:value>Thu Mar 06 05:32:09 UTC 2014</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>StaleAtRelink</spirit:name>
@@ -70,7 +70,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>4016949751</spirit:value>
+            <spirit:value>1638316488</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -78,7 +78,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Nov 14 17:19:53 UTC 2013</spirit:value>
+            <spirit:value>Thu Mar 06 05:32:12 UTC 2014</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>StaleAtRelink</spirit:name>
@@ -21204,6 +21204,8 @@
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:supportedFamilies>
+        <xilinx:family xilinx:lifeCycle="Pre-Production">kintex8</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Beta">virtex8</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Pre-Production">qartix7{xq7a100tcs324-2I}</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Pre-Production">qartix7{xq7a100tfg484-2I}</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Pre-Production">qartix7{xq7a200trb484-2I}</xilinx:family>
@@ -21365,14 +21367,14 @@
       </xilinx:taxonomies>
       <xilinx:displayName>VIO (Virtual Input/Output)</xilinx:displayName>
       <xilinx:vendorURL>http://www.xilinx.com</xilinx:vendorURL>
-      <xilinx:coreRevision>0</xilinx:coreRevision>
+      <xilinx:coreRevision>1</xilinx:coreRevision>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>xilinx.com:ip:vio:2.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2013-10-16T14:39:06Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2013-12-02T19:29:23Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2013.3</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2013.4</xilinx:xilinxVersion>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

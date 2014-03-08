@@ -4,18 +4,8 @@
 `timescale 1ns/100fs
 module jtag_axi_debugger # (
 
-   parameter C_S_AXI_ID_WIDTH      = 4,
+   parameter C_S_AXI_ID_WIDTH      = 4
 
-   parameter SIM_BYPASS_INIT_CAL   = "OFF",
-                                     // # = "OFF" -  Complete memory init &
-                                     //              calibration sequence
-                                     // # = "SKIP" - Not supported
-                                     // # = "FAST" - Complete memory init & use
-                                     //              abbreviated calib sequence
-
-   parameter SIMULATION            = "FALSE"
-                                     // Should be TRUE during design simulations and
-                                     // FALSE during implementations
 )
 (
 
@@ -111,14 +101,7 @@ IBUFDS ibufg (
      GP_IN_32_B_reg <= (GP_OUT_32_A - GP_OUT_32_B);
    end
 
-    mig_7series_64bit_800Mhz # (                                                                           
-         .C_S_AXI_ID_WIDTH          (C_S_AXI_ID_WIDTH), 
-         .SIMULATION                (SIMULATION),
-         .SIM_BYPASS_INIT_CAL       (SIM_BYPASS_INIT_CAL),
-         .RST_ACT_LOW                   (0) //__SRAI Carefule with this (Opposite of Default)
-                                            // =1 for active low reset,
-                                            // =0 for active high.
-    ) u_mig_7series_v1_8_a_0 (
+    mig_7series_64bit_800Mhz u_mig_7series_v1_8_a_0 (
     // Memory interface ports                                                                                       
          .ddr3_dq                        (ddr3_dq),                                                           
          .ddr3_dqs_n                     (ddr3_dqs_n),                                                        

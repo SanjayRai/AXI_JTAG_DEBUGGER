@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2013 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2014 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:ip:fifo_generator:11.0
-// IP Revision: 0
+// IP Revision: 1
 
 `timescale 1ns/1ps
 
@@ -66,22 +66,22 @@ module jtag_axi_debug_fifo_x64 (
 );
 
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 slave_aclk CLK" *)
-input s_aclk;
+input wire s_aclk;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 slave_aresetn RST" *)
-input s_aresetn;
+input wire s_aresetn;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TVALID" *)
-input s_axis_tvalid;
+input wire s_axis_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TREADY" *)
-output s_axis_tready;
+output wire s_axis_tready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TDATA" *)
-input [63 : 0] s_axis_tdata;
+input wire [63 : 0] s_axis_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TVALID" *)
-output m_axis_tvalid;
+output wire m_axis_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TREADY" *)
-input m_axis_tready;
+input wire m_axis_tready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TDATA" *)
-output [63 : 0] m_axis_tdata;
-output [8 : 0] axis_data_count;
+output wire [63 : 0] m_axis_tdata;
+output wire [8 : 0] axis_data_count;
 
   fifo_generator_v11_0 #(
     .C_COMMON_CLOCK(1),
@@ -202,6 +202,12 @@ output [8 : 0] axis_data_count;
     .C_APPLICATION_TYPE_RACH(0),
     .C_APPLICATION_TYPE_RDCH(0),
     .C_APPLICATION_TYPE_AXIS(0),
+    .C_PRIM_FIFO_TYPE_WACH("512x36"),
+    .C_PRIM_FIFO_TYPE_WDCH("1kx36"),
+    .C_PRIM_FIFO_TYPE_WRCH("512x36"),
+    .C_PRIM_FIFO_TYPE_RACH("512x36"),
+    .C_PRIM_FIFO_TYPE_RDCH("1kx36"),
+    .C_PRIM_FIFO_TYPE_AXIS("512x72"),
     .C_USE_ECC_WACH(0),
     .C_USE_ECC_WDCH(0),
     .C_USE_ECC_WRCH(0),

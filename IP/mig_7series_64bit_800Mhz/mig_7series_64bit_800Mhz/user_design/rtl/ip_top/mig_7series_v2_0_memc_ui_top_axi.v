@@ -68,11 +68,11 @@
 
 `timescale 1 ps / 1 ps
 
-(* X_CORE_INFO = "mig_7series_v2_0_ddr3_7Series, Coregen 14.7" , CORE_GENERATION_INFO = "ddr3_7Series,mig_7series_v2_0,{LANGUAGE=Verilog, SYNTHESIS_TOOL=Foundation_ISE, LEVEL=CONTROLLER, AXI_ENABLE=1, NO_OF_CONTROLLERS=1, INTERFACE_TYPE=DDR3, AXI_ENABLE=1, CLK_PERIOD=1250, PHY_RATIO=4, CLKIN_PERIOD=5000, VCCAUX_IO=2.0V, MEMORY_TYPE=SODIMM, MEMORY_PART=mt8jtf12864hz-1g6, DQ_WIDTH=64, ECC=OFF, DATA_MASK=1, ORDERING=NORM, BURST_MODE=8, BURST_TYPE=SEQ, CA_MIRROR=OFF, OUTPUT_DRV=HIGH, USE_CS_PORT=1, USE_ODT_PORT=1, RTT_NOM=40, MEMORY_ADDRESS_MAP=BANK_ROW_COLUMN, REFCLK_FREQ=200, DEBUG_PORT=ON, INTERNAL_VREF=0, SYSCLK_TYPE=NO_BUFFER, REFCLK_TYPE=USE_SYSTEM_CLOCK}" *)
+(* X_CORE_INFO = "mig_7series_v2_0_ddr3_7Series, 2013.4" , CORE_GENERATION_INFO = "ddr3_7Series,mig_7series_v2_0,{LANGUAGE=Verilog, SYNTHESIS_TOOL=Vivado, LEVEL=CONTROLLER, AXI_ENABLE=1, NO_OF_CONTROLLERS=1, INTERFACE_TYPE=DDR3, AXI_ENABLE=1, CLK_PERIOD=1250, PHY_RATIO=4, CLKIN_PERIOD=5000, VCCAUX_IO=2.0V, MEMORY_TYPE=SODIMM, MEMORY_PART=mt8jtf12864hz-1g6, DQ_WIDTH=64, ECC=OFF, DATA_MASK=1, ORDERING=NORM, BURST_MODE=8, BURST_TYPE=SEQ, CA_MIRROR=OFF, OUTPUT_DRV=HIGH, USE_CS_PORT=1, USE_ODT_PORT=1, RTT_NOM=40, MEMORY_ADDRESS_MAP=BANK_ROW_COLUMN, REFCLK_FREQ=200, DEBUG_PORT=ON, INTERNAL_VREF=0, SYSCLK_TYPE=NO_BUFFER, REFCLK_TYPE=USE_SYSTEM_CLOCK}" *)
 module mig_7series_v2_0_memc_ui_top_axi #
   (
    parameter TCQ                   = 100,
-   parameter DDR3_VDD_OP_VOLT      = 135,     // Voltage mode used for DDR3
+   parameter DDR3_VDD_OP_VOLT      = "135",     // Voltage mode used for DDR3
    parameter PAYLOAD_WIDTH         = 64,
    parameter ADDR_CMD_MODE         = "UNBUF",
    parameter AL                    = "0",     // Additive Latency option
@@ -145,11 +145,11 @@ module mig_7series_v2_0_memc_ui_top_axi #
    parameter ADDR_WIDTH            = 32,
    parameter APP_MASK_WIDTH        = 8,
    parameter APP_DATA_WIDTH        = 64,
-   parameter [3:0] BYTE_LANES_B0         = 4'hF,
-   parameter [3:0] BYTE_LANES_B1         = 4'hF,
-   parameter [3:0] BYTE_LANES_B2         = 4'hF,
-   parameter [3:0] BYTE_LANES_B3         = 4'hF,
-   parameter [3:0] BYTE_LANES_B4         = 4'hF,
+   parameter [3:0] BYTE_LANES_B0         = 4'b1111,
+   parameter [3:0] BYTE_LANES_B1         = 4'b1111,
+   parameter [3:0] BYTE_LANES_B2         = 4'b1111,
+   parameter [3:0] BYTE_LANES_B3         = 4'b1111,
+   parameter [3:0] BYTE_LANES_B4         = 4'b1111,
    parameter [3:0] DATA_CTL_B0           = 4'hc,
    parameter [3:0] DATA_CTL_B1           = 4'hf,
    parameter [3:0] DATA_CTL_B2           = 4'hf,
@@ -453,12 +453,16 @@ module mig_7series_v2_0_memc_ui_top_axi #
                                            //   = AXI4 - AXI4 Interface.
   localparam C_FAMILY                    = "virtex7";
 
+
+  localparam C_MC_DATA_WIDTH_LCL         = 2*nCK_PER_CLK*DATA_WIDTH ;
+
   wire                                   correct_en;
   wire [2*nCK_PER_CLK-1:0]               raw_not_ecc;
   wire [2*nCK_PER_CLK-1:0]               ecc_single;
   wire [2*nCK_PER_CLK-1:0]               ecc_multiple;
   wire [MC_ERR_ADDR_WIDTH-1:0]           ecc_err_addr;
   wire                                   app_correct_en;
+  wire                                   app_correct_en_i;
   wire [2*nCK_PER_CLK-1:0]               app_raw_not_ecc;
   wire [DQ_WIDTH/8-1:0]                  fi_xor_we;
   wire [DQ_WIDTH-1:0]                    fi_xor_wrdata;
@@ -495,8 +499,13 @@ module mig_7series_v2_0_memc_ui_top_axi #
   wire                                   app_hi_pri;
   wire                                   app_sz;
   wire [APP_DATA_WIDTH-1:0]              app_wdf_data;
+  
+  wire [C_MC_DATA_WIDTH_LCL-1:0]              app_wdf_data_axi_o;
+  
   wire                                   app_wdf_end;
   wire [APP_MASK_WIDTH-1:0]              app_wdf_mask;
+  
+  wire [C_MC_DATA_WIDTH_LCL/8-1:0]              app_wdf_mask_axi_o;
   wire                                   app_wdf_wren;
 
   wire                                   app_sr_req_i;
@@ -721,6 +730,11 @@ module mig_7series_v2_0_memc_ui_top_axi #
       .app_zq_ack                       (app_zq_ack_i),
 
       .device_temp                      (device_temp),
+      
+      .fi_xor_we      			(fi_xor_we),
+      .fi_xor_wrdata  			(fi_xor_wrdata),
+
+
 
       .dbg_idel_up_all                  (dbg_idel_up_all),
       .dbg_idel_down_all                (dbg_idel_down_all),
@@ -791,6 +805,20 @@ module mig_7series_v2_0_memc_ui_top_axi #
 
       );
 
+
+  generate
+    if(ECC_TEST == "ON") begin
+      if(DQ_WIDTH == 72) begin
+        assign app_wdf_data = {app_wdf_data_axi_o[0+:(8*2*nCK_PER_CLK)],app_wdf_data_axi_o} ;
+        assign app_wdf_mask = {app_wdf_mask_axi_o[0+:(2*nCK_PER_CLK)],app_wdf_mask_axi_o} ;
+      end else begin
+      end 
+    end else begin
+      assign app_wdf_data = app_wdf_data_axi_o ;
+      assign app_wdf_mask = app_wdf_mask_axi_o ;
+    end 
+  endgenerate
+
   mig_7series_v2_0_ui_top #
     (
      .TCQ                 (TCQ),
@@ -854,7 +882,7 @@ module mig_7series_v2_0_memc_ui_top_axi #
 // ECC ports
       .app_raw_not_ecc      (app_raw_not_ecc),
       .app_ecc_multiple_err (app_ecc_multiple_err_o),
-      .app_correct_en       (app_correct_en),
+      .app_correct_en       (app_correct_en_i),
       .app_sr_req           (app_sr_req),
       .sr_req               (app_sr_req_i),
       .sr_active            (app_sr_active_i),
@@ -875,7 +903,7 @@ module mig_7series_v2_0_memc_ui_top_axi #
          .C_S_AXI_ID_WIDTH              (C_S_AXI_ID_WIDTH),
          .C_S_AXI_ADDR_WIDTH            (C_S_AXI_ADDR_WIDTH),
          .C_S_AXI_DATA_WIDTH            (C_S_AXI_DATA_WIDTH),
-         .C_MC_DATA_WIDTH               (APP_DATA_WIDTH),
+         .C_MC_DATA_WIDTH               (C_MC_DATA_WIDTH_LCL),
          .C_MC_ADDR_WIDTH               (ADDR_WIDTH),
          .C_MC_BURST_MODE               (BURST_MODE),
          .C_MC_nCK_PER_CLK              (nCK_PER_CLK),
@@ -944,8 +972,8 @@ module mig_7series_v2_0_memc_ui_top_axi #
 
            //DATA PORT
            .mc_app_wdf_wren                        (app_wdf_wren),
-           .mc_app_wdf_mask                        (app_wdf_mask),
-           .mc_app_wdf_data                        (app_wdf_data),
+           .mc_app_wdf_mask                        (app_wdf_mask_axi_o),
+           .mc_app_wdf_data                        (app_wdf_data_axi_o),
            .mc_app_wdf_end                         (app_wdf_end),
            .mc_app_wdf_rdy                         (app_wdf_rdy),
 
@@ -1013,7 +1041,13 @@ module mig_7series_v2_0_memc_ui_top_axi #
       dbg_rddata_r <= dbg_rddata;
     end
 
-    assign app_raw_not_ecc = 4'b0;
+    if(ECC_TEST == "ON") begin
+      assign app_raw_not_ecc = {2*nCK_PER_CLK{1'b1}};
+      assign app_correct_en_i = 'b0 ;
+    end else begin
+      assign app_raw_not_ecc = {2*nCK_PER_CLK{1'b0}};
+      assign app_correct_en_i = app_correct_en ;
+    end 
   end
   else begin : gen_no_axi_ctrl_top
     assign s_axi_ctrl_awready = 1'b0;

@@ -84,7 +84,7 @@ module mig_7series_v2_0_ddr_calib_top #
    parameter TCQ             = 100,
    parameter nCK_PER_CLK     = 2,       // # of memory clocks per CLK
    parameter tCK             = 2500,    // DDR3 SDRAM clock period
-   parameter DDR3_VDD_OP_VOLT = 135,     // Voltage mode used for DDR3
+   parameter DDR3_VDD_OP_VOLT = "135",     // Voltage mode used for DDR3
    parameter CLK_PERIOD      = 3333,    // Internal clock period (in ps)
    parameter N_CTL_LANES     = 3,       // # of control byte lanes in the PHY
    parameter DRAM_TYPE       = "DDR3",  // Memory I/F type: "DDR3", "DDR2"
@@ -1356,8 +1356,20 @@ endgenerate
              .phy_ctl_rdy_dly            (phy_ctl_rdy_dly)
             ); 
 
-      assign wrlvl_done = 1'b1;
-      assign wrlvl_err  = 1'b0;
+      assign wrlvl_byte_done             = 1'b1;
+      assign wrlvl_rank_done             = 1'b1;
+      assign po_stg2_wl_cnt              = 'h0;
+      assign wl_po_coarse_cnt            = 'h0;
+      assign wl_po_fine_cnt              = 'h0;
+      assign dbg_tap_cnt_during_wrlvl    = 'h0;
+      assign dbg_wl_edge_detect_valid    = 'h0;
+      assign dbg_rd_data_edge_detect     = 'h0;
+      assign dbg_wrlvl_fine_tap_cnt      = 'h0;
+      assign dbg_wrlvl_coarse_tap_cnt    = 'h0;
+      assign dbg_phy_wrlvl               = 'h0;
+      
+      assign wrlvl_done   = 1'b1;
+      assign wrlvl_err    = 1'b0;
       assign dqs_po_stg2_f_incdec = 1'b0;
       assign dqs_po_en_stg2_f = 1'b0;
       assign dqs_wl_po_en_stg2_c = 1'b0;
@@ -1410,17 +1422,19 @@ endgenerate
            );
      end else begin : oclk_calib_disabled 
  
-       assign   wrlvl_final = 'b0;
        assign   po_stg3_incdec = 'b0;
        assign   po_en_stg3 = 'b0;
        assign   po_stg23_sel = 'b0;
        assign   po_stg23_incdec = 'b0;
        assign   po_en_stg23 = 'b0; 
-       assign   oclk_init_delay_done = 1'b1;
-       assign   oclkdelay_calib_cnt = 'b0;
+       assign   wrlvl_final = 'b0;
        assign   oclk_prech_req = 'b0;
        assign   oclk_calib_resume = 'b0;
+       assign   oclk_init_delay_done = 1'b1;
+       assign   oclkdelay_calib_cnt = 'b0;
        assign   oclkdelay_calib_done = 1'b1;
+       assign   dbg_phy_oclkdelay_cal = 'h0;
+       assign   dbg_oclkdelay_rd_data = 'h0;
 
      end 
    endgenerate 
@@ -1662,12 +1676,13 @@ if(DRAM_TYPE == "DDR3") begin:ddr_phy_prbs_rdlvl_gen
        );
 end else begin:ddr_phy_prbs_rdlvl_off
 
-     assign prbs_rdlvl_done = rdlvl_stg1_done ;
-     assign prbs_last_byte_done = rdlvl_stg1_rank_done ;
-     assign prbs_rdlvl_prech_req = 1'b0 ;
-     assign prbs_pi_stg2_f_en = 1'b0 ;
-     assign prbs_pi_stg2_f_incdec = 1'b0 ;
-     assign pi_stg2_prbs_rdlvl_cnt = 'b0 ;
+     assign prbs_rdlvl_done         = rdlvl_stg1_done ;
+     assign prbs_last_byte_done     = rdlvl_stg1_rank_done ;
+     assign prbs_rdlvl_prech_req    = 1'b0 ;
+     assign prbs_pi_stg2_f_en       = 1'b0 ;
+     assign prbs_pi_stg2_f_incdec   = 1'b0 ;
+     assign pi_stg2_prbs_rdlvl_cnt  = 'b0 ;
+     assign dbg_prbs_rdlvl          = 'h0 ;
     
 end 
 endgenerate

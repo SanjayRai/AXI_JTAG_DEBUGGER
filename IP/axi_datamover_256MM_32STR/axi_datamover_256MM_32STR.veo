@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2013 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2014 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -47,7 +47,7 @@
 // DO NOT MODIFY THIS FILE.
 
 // IP VLNV: xilinx.com:ip:axi_datamover:5.1
-// IP Revision: 0
+// IP Revision: 1
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -55,75 +55,75 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 axi_datamover_256MM_32STR your_instance_name (
-  .m_axi_mm2s_aclk(m_axi_mm2s_aclk),                        // input m_axi_mm2s_aclk
-  .m_axi_mm2s_aresetn(m_axi_mm2s_aresetn),                  // input m_axi_mm2s_aresetn
-  .mm2s_err(mm2s_err),                                      // output mm2s_err
-  .m_axis_mm2s_cmdsts_aclk(m_axis_mm2s_cmdsts_aclk),        // input m_axis_mm2s_cmdsts_aclk
-  .m_axis_mm2s_cmdsts_aresetn(m_axis_mm2s_cmdsts_aresetn),  // input m_axis_mm2s_cmdsts_aresetn
-  .s_axis_mm2s_cmd_tvalid(s_axis_mm2s_cmd_tvalid),          // input s_axis_mm2s_cmd_tvalid
-  .s_axis_mm2s_cmd_tready(s_axis_mm2s_cmd_tready),          // output s_axis_mm2s_cmd_tready
-  .s_axis_mm2s_cmd_tdata(s_axis_mm2s_cmd_tdata),            // input [71 : 0] s_axis_mm2s_cmd_tdata
-  .m_axis_mm2s_sts_tvalid(m_axis_mm2s_sts_tvalid),          // output m_axis_mm2s_sts_tvalid
-  .m_axis_mm2s_sts_tready(m_axis_mm2s_sts_tready),          // input m_axis_mm2s_sts_tready
-  .m_axis_mm2s_sts_tdata(m_axis_mm2s_sts_tdata),            // output [7 : 0] m_axis_mm2s_sts_tdata
-  .m_axis_mm2s_sts_tkeep(m_axis_mm2s_sts_tkeep),            // output [0 : 0] m_axis_mm2s_sts_tkeep
-  .m_axis_mm2s_sts_tlast(m_axis_mm2s_sts_tlast),            // output m_axis_mm2s_sts_tlast
-  .m_axi_mm2s_arid(m_axi_mm2s_arid),                        // output [3 : 0] m_axi_mm2s_arid
-  .m_axi_mm2s_araddr(m_axi_mm2s_araddr),                    // output [31 : 0] m_axi_mm2s_araddr
-  .m_axi_mm2s_arlen(m_axi_mm2s_arlen),                      // output [7 : 0] m_axi_mm2s_arlen
-  .m_axi_mm2s_arsize(m_axi_mm2s_arsize),                    // output [2 : 0] m_axi_mm2s_arsize
-  .m_axi_mm2s_arburst(m_axi_mm2s_arburst),                  // output [1 : 0] m_axi_mm2s_arburst
-  .m_axi_mm2s_arprot(m_axi_mm2s_arprot),                    // output [2 : 0] m_axi_mm2s_arprot
-  .m_axi_mm2s_arcache(m_axi_mm2s_arcache),                  // output [3 : 0] m_axi_mm2s_arcache
-  .m_axi_mm2s_aruser(m_axi_mm2s_aruser),                    // output [3 : 0] m_axi_mm2s_aruser
-  .m_axi_mm2s_arvalid(m_axi_mm2s_arvalid),                  // output m_axi_mm2s_arvalid
-  .m_axi_mm2s_arready(m_axi_mm2s_arready),                  // input m_axi_mm2s_arready
-  .m_axi_mm2s_rdata(m_axi_mm2s_rdata),                      // input [255 : 0] m_axi_mm2s_rdata
-  .m_axi_mm2s_rresp(m_axi_mm2s_rresp),                      // input [1 : 0] m_axi_mm2s_rresp
-  .m_axi_mm2s_rlast(m_axi_mm2s_rlast),                      // input m_axi_mm2s_rlast
-  .m_axi_mm2s_rvalid(m_axi_mm2s_rvalid),                    // input m_axi_mm2s_rvalid
-  .m_axi_mm2s_rready(m_axi_mm2s_rready),                    // output m_axi_mm2s_rready
-  .m_axis_mm2s_tdata(m_axis_mm2s_tdata),                    // output [31 : 0] m_axis_mm2s_tdata
-  .m_axis_mm2s_tkeep(m_axis_mm2s_tkeep),                    // output [3 : 0] m_axis_mm2s_tkeep
-  .m_axis_mm2s_tlast(m_axis_mm2s_tlast),                    // output m_axis_mm2s_tlast
-  .m_axis_mm2s_tvalid(m_axis_mm2s_tvalid),                  // output m_axis_mm2s_tvalid
-  .m_axis_mm2s_tready(m_axis_mm2s_tready),                  // input m_axis_mm2s_tready
-  .m_axi_s2mm_aclk(m_axi_s2mm_aclk),                        // input m_axi_s2mm_aclk
-  .m_axi_s2mm_aresetn(m_axi_s2mm_aresetn),                  // input m_axi_s2mm_aresetn
-  .s2mm_err(s2mm_err),                                      // output s2mm_err
-  .m_axis_s2mm_cmdsts_awclk(m_axis_s2mm_cmdsts_awclk),      // input m_axis_s2mm_cmdsts_awclk
-  .m_axis_s2mm_cmdsts_aresetn(m_axis_s2mm_cmdsts_aresetn),  // input m_axis_s2mm_cmdsts_aresetn
-  .s_axis_s2mm_cmd_tvalid(s_axis_s2mm_cmd_tvalid),          // input s_axis_s2mm_cmd_tvalid
-  .s_axis_s2mm_cmd_tready(s_axis_s2mm_cmd_tready),          // output s_axis_s2mm_cmd_tready
-  .s_axis_s2mm_cmd_tdata(s_axis_s2mm_cmd_tdata),            // input [71 : 0] s_axis_s2mm_cmd_tdata
-  .m_axis_s2mm_sts_tvalid(m_axis_s2mm_sts_tvalid),          // output m_axis_s2mm_sts_tvalid
-  .m_axis_s2mm_sts_tready(m_axis_s2mm_sts_tready),          // input m_axis_s2mm_sts_tready
-  .m_axis_s2mm_sts_tdata(m_axis_s2mm_sts_tdata),            // output [31 : 0] m_axis_s2mm_sts_tdata
-  .m_axis_s2mm_sts_tkeep(m_axis_s2mm_sts_tkeep),            // output [3 : 0] m_axis_s2mm_sts_tkeep
-  .m_axis_s2mm_sts_tlast(m_axis_s2mm_sts_tlast),            // output m_axis_s2mm_sts_tlast
-  .m_axi_s2mm_awid(m_axi_s2mm_awid),                        // output [3 : 0] m_axi_s2mm_awid
-  .m_axi_s2mm_awaddr(m_axi_s2mm_awaddr),                    // output [31 : 0] m_axi_s2mm_awaddr
-  .m_axi_s2mm_awlen(m_axi_s2mm_awlen),                      // output [7 : 0] m_axi_s2mm_awlen
-  .m_axi_s2mm_awsize(m_axi_s2mm_awsize),                    // output [2 : 0] m_axi_s2mm_awsize
-  .m_axi_s2mm_awburst(m_axi_s2mm_awburst),                  // output [1 : 0] m_axi_s2mm_awburst
-  .m_axi_s2mm_awprot(m_axi_s2mm_awprot),                    // output [2 : 0] m_axi_s2mm_awprot
-  .m_axi_s2mm_awcache(m_axi_s2mm_awcache),                  // output [3 : 0] m_axi_s2mm_awcache
-  .m_axi_s2mm_awuser(m_axi_s2mm_awuser),                    // output [3 : 0] m_axi_s2mm_awuser
-  .m_axi_s2mm_awvalid(m_axi_s2mm_awvalid),                  // output m_axi_s2mm_awvalid
-  .m_axi_s2mm_awready(m_axi_s2mm_awready),                  // input m_axi_s2mm_awready
-  .m_axi_s2mm_wdata(m_axi_s2mm_wdata),                      // output [255 : 0] m_axi_s2mm_wdata
-  .m_axi_s2mm_wstrb(m_axi_s2mm_wstrb),                      // output [31 : 0] m_axi_s2mm_wstrb
-  .m_axi_s2mm_wlast(m_axi_s2mm_wlast),                      // output m_axi_s2mm_wlast
-  .m_axi_s2mm_wvalid(m_axi_s2mm_wvalid),                    // output m_axi_s2mm_wvalid
-  .m_axi_s2mm_wready(m_axi_s2mm_wready),                    // input m_axi_s2mm_wready
-  .m_axi_s2mm_bresp(m_axi_s2mm_bresp),                      // input [1 : 0] m_axi_s2mm_bresp
-  .m_axi_s2mm_bvalid(m_axi_s2mm_bvalid),                    // input m_axi_s2mm_bvalid
-  .m_axi_s2mm_bready(m_axi_s2mm_bready),                    // output m_axi_s2mm_bready
-  .s_axis_s2mm_tdata(s_axis_s2mm_tdata),                    // input [31 : 0] s_axis_s2mm_tdata
-  .s_axis_s2mm_tkeep(s_axis_s2mm_tkeep),                    // input [3 : 0] s_axis_s2mm_tkeep
-  .s_axis_s2mm_tlast(s_axis_s2mm_tlast),                    // input s_axis_s2mm_tlast
-  .s_axis_s2mm_tvalid(s_axis_s2mm_tvalid),                  // input s_axis_s2mm_tvalid
-  .s_axis_s2mm_tready(s_axis_s2mm_tready)                  // output s_axis_s2mm_tready
+  .m_axi_mm2s_aclk(m_axi_mm2s_aclk),                        // input wire m_axi_mm2s_aclk
+  .m_axi_mm2s_aresetn(m_axi_mm2s_aresetn),                  // input wire m_axi_mm2s_aresetn
+  .mm2s_err(mm2s_err),                                      // output wire mm2s_err
+  .m_axis_mm2s_cmdsts_aclk(m_axis_mm2s_cmdsts_aclk),        // input wire m_axis_mm2s_cmdsts_aclk
+  .m_axis_mm2s_cmdsts_aresetn(m_axis_mm2s_cmdsts_aresetn),  // input wire m_axis_mm2s_cmdsts_aresetn
+  .s_axis_mm2s_cmd_tvalid(s_axis_mm2s_cmd_tvalid),          // input wire s_axis_mm2s_cmd_tvalid
+  .s_axis_mm2s_cmd_tready(s_axis_mm2s_cmd_tready),          // output wire s_axis_mm2s_cmd_tready
+  .s_axis_mm2s_cmd_tdata(s_axis_mm2s_cmd_tdata),            // input wire [71 : 0] s_axis_mm2s_cmd_tdata
+  .m_axis_mm2s_sts_tvalid(m_axis_mm2s_sts_tvalid),          // output wire m_axis_mm2s_sts_tvalid
+  .m_axis_mm2s_sts_tready(m_axis_mm2s_sts_tready),          // input wire m_axis_mm2s_sts_tready
+  .m_axis_mm2s_sts_tdata(m_axis_mm2s_sts_tdata),            // output wire [7 : 0] m_axis_mm2s_sts_tdata
+  .m_axis_mm2s_sts_tkeep(m_axis_mm2s_sts_tkeep),            // output wire [0 : 0] m_axis_mm2s_sts_tkeep
+  .m_axis_mm2s_sts_tlast(m_axis_mm2s_sts_tlast),            // output wire m_axis_mm2s_sts_tlast
+  .m_axi_mm2s_arid(m_axi_mm2s_arid),                        // output wire [3 : 0] m_axi_mm2s_arid
+  .m_axi_mm2s_araddr(m_axi_mm2s_araddr),                    // output wire [31 : 0] m_axi_mm2s_araddr
+  .m_axi_mm2s_arlen(m_axi_mm2s_arlen),                      // output wire [7 : 0] m_axi_mm2s_arlen
+  .m_axi_mm2s_arsize(m_axi_mm2s_arsize),                    // output wire [2 : 0] m_axi_mm2s_arsize
+  .m_axi_mm2s_arburst(m_axi_mm2s_arburst),                  // output wire [1 : 0] m_axi_mm2s_arburst
+  .m_axi_mm2s_arprot(m_axi_mm2s_arprot),                    // output wire [2 : 0] m_axi_mm2s_arprot
+  .m_axi_mm2s_arcache(m_axi_mm2s_arcache),                  // output wire [3 : 0] m_axi_mm2s_arcache
+  .m_axi_mm2s_aruser(m_axi_mm2s_aruser),                    // output wire [3 : 0] m_axi_mm2s_aruser
+  .m_axi_mm2s_arvalid(m_axi_mm2s_arvalid),                  // output wire m_axi_mm2s_arvalid
+  .m_axi_mm2s_arready(m_axi_mm2s_arready),                  // input wire m_axi_mm2s_arready
+  .m_axi_mm2s_rdata(m_axi_mm2s_rdata),                      // input wire [255 : 0] m_axi_mm2s_rdata
+  .m_axi_mm2s_rresp(m_axi_mm2s_rresp),                      // input wire [1 : 0] m_axi_mm2s_rresp
+  .m_axi_mm2s_rlast(m_axi_mm2s_rlast),                      // input wire m_axi_mm2s_rlast
+  .m_axi_mm2s_rvalid(m_axi_mm2s_rvalid),                    // input wire m_axi_mm2s_rvalid
+  .m_axi_mm2s_rready(m_axi_mm2s_rready),                    // output wire m_axi_mm2s_rready
+  .m_axis_mm2s_tdata(m_axis_mm2s_tdata),                    // output wire [31 : 0] m_axis_mm2s_tdata
+  .m_axis_mm2s_tkeep(m_axis_mm2s_tkeep),                    // output wire [3 : 0] m_axis_mm2s_tkeep
+  .m_axis_mm2s_tlast(m_axis_mm2s_tlast),                    // output wire m_axis_mm2s_tlast
+  .m_axis_mm2s_tvalid(m_axis_mm2s_tvalid),                  // output wire m_axis_mm2s_tvalid
+  .m_axis_mm2s_tready(m_axis_mm2s_tready),                  // input wire m_axis_mm2s_tready
+  .m_axi_s2mm_aclk(m_axi_s2mm_aclk),                        // input wire m_axi_s2mm_aclk
+  .m_axi_s2mm_aresetn(m_axi_s2mm_aresetn),                  // input wire m_axi_s2mm_aresetn
+  .s2mm_err(s2mm_err),                                      // output wire s2mm_err
+  .m_axis_s2mm_cmdsts_awclk(m_axis_s2mm_cmdsts_awclk),      // input wire m_axis_s2mm_cmdsts_awclk
+  .m_axis_s2mm_cmdsts_aresetn(m_axis_s2mm_cmdsts_aresetn),  // input wire m_axis_s2mm_cmdsts_aresetn
+  .s_axis_s2mm_cmd_tvalid(s_axis_s2mm_cmd_tvalid),          // input wire s_axis_s2mm_cmd_tvalid
+  .s_axis_s2mm_cmd_tready(s_axis_s2mm_cmd_tready),          // output wire s_axis_s2mm_cmd_tready
+  .s_axis_s2mm_cmd_tdata(s_axis_s2mm_cmd_tdata),            // input wire [71 : 0] s_axis_s2mm_cmd_tdata
+  .m_axis_s2mm_sts_tvalid(m_axis_s2mm_sts_tvalid),          // output wire m_axis_s2mm_sts_tvalid
+  .m_axis_s2mm_sts_tready(m_axis_s2mm_sts_tready),          // input wire m_axis_s2mm_sts_tready
+  .m_axis_s2mm_sts_tdata(m_axis_s2mm_sts_tdata),            // output wire [31 : 0] m_axis_s2mm_sts_tdata
+  .m_axis_s2mm_sts_tkeep(m_axis_s2mm_sts_tkeep),            // output wire [3 : 0] m_axis_s2mm_sts_tkeep
+  .m_axis_s2mm_sts_tlast(m_axis_s2mm_sts_tlast),            // output wire m_axis_s2mm_sts_tlast
+  .m_axi_s2mm_awid(m_axi_s2mm_awid),                        // output wire [3 : 0] m_axi_s2mm_awid
+  .m_axi_s2mm_awaddr(m_axi_s2mm_awaddr),                    // output wire [31 : 0] m_axi_s2mm_awaddr
+  .m_axi_s2mm_awlen(m_axi_s2mm_awlen),                      // output wire [7 : 0] m_axi_s2mm_awlen
+  .m_axi_s2mm_awsize(m_axi_s2mm_awsize),                    // output wire [2 : 0] m_axi_s2mm_awsize
+  .m_axi_s2mm_awburst(m_axi_s2mm_awburst),                  // output wire [1 : 0] m_axi_s2mm_awburst
+  .m_axi_s2mm_awprot(m_axi_s2mm_awprot),                    // output wire [2 : 0] m_axi_s2mm_awprot
+  .m_axi_s2mm_awcache(m_axi_s2mm_awcache),                  // output wire [3 : 0] m_axi_s2mm_awcache
+  .m_axi_s2mm_awuser(m_axi_s2mm_awuser),                    // output wire [3 : 0] m_axi_s2mm_awuser
+  .m_axi_s2mm_awvalid(m_axi_s2mm_awvalid),                  // output wire m_axi_s2mm_awvalid
+  .m_axi_s2mm_awready(m_axi_s2mm_awready),                  // input wire m_axi_s2mm_awready
+  .m_axi_s2mm_wdata(m_axi_s2mm_wdata),                      // output wire [255 : 0] m_axi_s2mm_wdata
+  .m_axi_s2mm_wstrb(m_axi_s2mm_wstrb),                      // output wire [31 : 0] m_axi_s2mm_wstrb
+  .m_axi_s2mm_wlast(m_axi_s2mm_wlast),                      // output wire m_axi_s2mm_wlast
+  .m_axi_s2mm_wvalid(m_axi_s2mm_wvalid),                    // output wire m_axi_s2mm_wvalid
+  .m_axi_s2mm_wready(m_axi_s2mm_wready),                    // input wire m_axi_s2mm_wready
+  .m_axi_s2mm_bresp(m_axi_s2mm_bresp),                      // input wire [1 : 0] m_axi_s2mm_bresp
+  .m_axi_s2mm_bvalid(m_axi_s2mm_bvalid),                    // input wire m_axi_s2mm_bvalid
+  .m_axi_s2mm_bready(m_axi_s2mm_bready),                    // output wire m_axi_s2mm_bready
+  .s_axis_s2mm_tdata(s_axis_s2mm_tdata),                    // input wire [31 : 0] s_axis_s2mm_tdata
+  .s_axis_s2mm_tkeep(s_axis_s2mm_tkeep),                    // input wire [3 : 0] s_axis_s2mm_tkeep
+  .s_axis_s2mm_tlast(s_axis_s2mm_tlast),                    // input wire s_axis_s2mm_tlast
+  .s_axis_s2mm_tvalid(s_axis_s2mm_tvalid),                  // input wire s_axis_s2mm_tvalid
+  .s_axis_s2mm_tready(s_axis_s2mm_tready)                  // output wire s_axis_s2mm_tready
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

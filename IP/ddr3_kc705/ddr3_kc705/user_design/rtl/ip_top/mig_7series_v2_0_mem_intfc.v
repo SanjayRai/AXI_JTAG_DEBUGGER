@@ -70,7 +70,7 @@
 module mig_7series_v2_0_mem_intfc #
   (
    parameter TCQ = 100,
-   parameter DDR3_VDD_OP_VOLT = 135,     // Voltage mode used for DDR3
+   parameter DDR3_VDD_OP_VOLT = "135",     // Voltage mode used for DDR3
    parameter PAYLOAD_WIDTH   = 64,
    parameter ADDR_CMD_MODE   = "1T",
    parameter AL              = "0",     // Additive Latency option
@@ -321,6 +321,9 @@ module mig_7series_v2_0_mem_intfc #
    inout [DQS_WIDTH-1:0]     ddr_dqs       // To/From phy_top0 of phy_top.v
 
    ,input [11:0]             device_temp
+
+   ,input [DQ_WIDTH/8-1:0]   fi_xor_we
+   ,input [DQ_WIDTH-1:0]     fi_xor_wrdata
 
    ,input                    dbg_sel_pi_incdec
    ,input                    dbg_sel_po_incdec
@@ -615,6 +618,8 @@ module mig_7series_v2_0_mem_intfc #
       .size                   (size),
       .slot_0_present         (slot_0_present_mc[7:0]),
       .slot_1_present         (slot_1_present_mc[7:0]),
+      .fi_xor_we	      (fi_xor_we),
+      .fi_xor_wrdata	      (fi_xor_wrdata),
       .use_addr               (use_addr));
 
   // following calculations should be moved inside PHY
