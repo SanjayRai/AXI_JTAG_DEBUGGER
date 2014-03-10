@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2013.4 (64-bit)
+# SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
+# IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
+# Start of session at: Sun Mar  9 09:42:16 2014
+# Process ID: 18887
+# Log file: /home/sanjayr/projects/AC701/AXI_JTAG_DEBUGGER/axi_jtag_debugger_IP_gen/vivado_project/vivado.log
+# Journal file: /home/sanjayr/projects/AC701/AXI_JTAG_DEBUGGER/axi_jtag_debugger_IP_gen/vivado_project/vivado.jou
+#-----------------------------------------------------------
+start_gui
+source vivado_project.tcl
+run_rest

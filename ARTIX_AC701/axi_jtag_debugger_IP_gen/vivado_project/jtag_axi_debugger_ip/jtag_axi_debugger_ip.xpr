@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--Product Version: Vivado v2013.4 (64-bit)-->
+<Project Version="6" Minor="14" Path="/home/sanjayr/projects/AC701/AXI_JTAG_DEBUGGER/axi_jtag_debugger_IP_gen/vivado_project/jtag_axi_debugger_ip/jtag_axi_debugger_ip.xpr">
+	<FileSet Dir="sources_1" File="fileset.xml"/>
+	<FileSet Dir="constrs_1" File="fileset.xml"/>
+	<FileSet Dir="sim_1" File="fileset.xml"/>
+	<DefaultLaunch Dir="$PRUNDIR"/>
+	<Config>
+		<Option Name="Id" Val="b411497861c2463b8a866552a8726fa2"/>
+		<Option Name="Part" Val="xc7a200tfbg676-2"/>
+		<Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
+		<Option Name="Board" Val=""/>
+		<Option Name="ActiveSimSet" Val="sim_1"/>
+	</Config>
+</Project>
+
