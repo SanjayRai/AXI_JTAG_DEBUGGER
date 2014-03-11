@@ -1,4 +1,0 @@
-SET_ERROR_CODE 0
-SET_XMDF_PATH ./mig_7series_64bit_800Mhz_xmdf.tcl
-SET_PARAMETER component_name mig_7series_64bit_800Mhz
-SET_PARAMETER xml_input_file ./mig_7series_64bit_800Mhz/mig.prj
