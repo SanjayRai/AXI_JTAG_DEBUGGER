@@ -64,24 +64,6 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:   
-  --              axi_datamover_wr_demux.vhd
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  --
-  -- History:
-  --   DET   02/15/2011       Initial Version for EDK 13.2
-  --
-  --     DET     6/20/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --     - Added 512 and 1024 data width support
-  -- ^^^^^^
-  --
-  --
   -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;

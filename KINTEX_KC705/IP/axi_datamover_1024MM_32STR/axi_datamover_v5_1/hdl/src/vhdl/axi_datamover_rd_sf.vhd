@@ -66,44 +66,14 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:
-  --
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  --
-  -- History:
-  --   DET   04/21/2011       Initial Version for 13.3
-  --
-  --     DET     6/10/2011     Initial Version for 13.3
-  -- ~~~~~~
-  --    -- Per CR613147
-  --     - Added the DRE Flush control input from the RDC. This passes through 
-  --       the Data FIFO (just like sin2sf_tlast) and out the downsizer to
-  --       the sf2dre_flush output.
-  -- ^^^^^^
-  --
-  --     DET     9/1/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --     - Fixed Lint reported excesive line length for lines 1388 and 1564.
-  --     - Removed commented-out code as part of general cleanup. 
-  -- ^^^^^^
-  --
-  --
   -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;
   use IEEE.numeric_std.all;
   
-  library proc_common_v4_0;
-  use proc_common_v4_0.proc_common_pkg.all;
-  use proc_common_v4_0.proc_common_pkg.clog2;
-  use proc_common_v4_0.srl_fifo_f;
-  
- 
+  library lib_pkg_v1_0;
+  use lib_pkg_v1_0.lib_pkg.all;
+  use lib_pkg_v1_0.lib_pkg.clog2;
 
   library axi_datamover_v5_1;
   use axi_datamover_v5_1.axi_datamover_sfifo_autord;

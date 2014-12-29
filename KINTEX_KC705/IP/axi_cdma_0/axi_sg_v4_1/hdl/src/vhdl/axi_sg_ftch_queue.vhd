@@ -63,9 +63,10 @@ library axi_sg_v4_1;
 use axi_sg_v4_1.axi_sg_pkg.all;
 --use axi_sg_v4_1.axi_sg_afifo_autord.all;
 
-library proc_common_v4_0;
-use proc_common_v4_0.sync_fifo_fg;
-use proc_common_v4_0.proc_common_pkg.all;
+library lib_fifo_v1_0;
+use lib_fifo_v1_0.sync_fifo_fg;
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.all;
 
 -------------------------------------------------------------------------------
 entity  axi_sg_ftch_queue is
@@ -503,7 +504,7 @@ MCDMA_MM2S : if C_ENABLE_MULTI_CHANNEL = 1 generate
 begin
 
     -- Generate Synchronous FIFO
-    I_CH1_FTCH_MCDMA_FIFO_NEW : entity proc_common_v4_0.sync_fifo_fg
+    I_CH1_FTCH_MCDMA_FIFO_NEW : entity lib_fifo_v1_0.sync_fifo_fg
     generic map (
         C_FAMILY                =>  C_FAMILY                ,
         C_MEMORY_TYPE           =>  0, --MEMORY_TYPE             ,
@@ -652,7 +653,7 @@ MCDMA_S2MM : if C_ENABLE_MULTI_CHANNEL = 1 generate
 begin
 
     -- Generate Synchronous FIFO
-    I_CH2_FTCH_MCDMA_FIFO_NEW : entity proc_common_v4_0.sync_fifo_fg
+    I_CH2_FTCH_MCDMA_FIFO_NEW : entity lib_fifo_v1_0.sync_fifo_fg
     generic map (
         C_FAMILY                =>  C_FAMILY                ,
         C_MEMORY_TYPE           =>  0, --MEMORY_TYPE             ,

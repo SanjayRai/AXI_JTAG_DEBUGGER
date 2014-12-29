@@ -49,7 +49,7 @@
 //   ____  ____
 //  /   /\/   /
 // /___/  \  /    Vendor             : Xilinx
-// \   \   \/     Version            : 2.0
+// \   \   \/     Version            : 2.3
 //  \   \         Application        : MIG
 //  /   /         Filename           : mig_7series_64bit_800Mhz_mig.v
 // /___/   /\     Date Last Modified : $Date: 2011/06/02 08:35:03 $
@@ -148,7 +148,7 @@ module mig_7series_64bit_800Mhz_mig #
                                      // The user can tie the ODT input of DRAM to HIGH.
    parameter IS_CLK_SHARED          = "FALSE",
                                       // # = "true" when clock is shared
-                                      //   = "false" when clock is not shared 
+                                      //   = "false" when clock is not shared
 
    parameter PHY_CONTROL_MASTER_BANK = 1,
                                      // The bank index where master PHY_CONTROL resides,
@@ -242,6 +242,12 @@ module mig_7series_64bit_800Mhz_mig #
                                      // VCO output divisor for PLL output clock (CLKOUT2)
    parameter CLKOUT3_DIVIDE        = 8,
                                      // VCO output divisor for PLL output clock (CLKOUT3)
+   parameter MMCM_VCO              = 800,
+                                     // Max Freq (MHz) of MMCM VCO
+   parameter MMCM_MULT_F           = 4,
+                                     // write MMCM VCO multiplier
+   parameter MMCM_DIVCLK_DIVIDE    = 1,
+                                     // write MMCM VCO divisor
 
    //***************************************************************************
    // Memory Timing Parameters. These parameters varies based on the selected
@@ -402,10 +408,18 @@ module mig_7series_64bit_800Mhz_mig #
                                      // Calibration bank address will be used for
                                      // calibration read and write operations
    parameter TCQ                   = 100,
-   parameter IODELAY_GRP           = "MIG_7SERIES_64BIT_800MHZ_IODELAY_MIG",
+   parameter IDELAY_ADJ            = "ON",
+   parameter FINE_PER_BIT          = "ON",
+   parameter CENTER_COMP_MODE      = "ON",
+   parameter PI_VAL_ADJ            = "ON",
+   parameter IODELAY_GRP0          = "MIG_7SERIES_64BIT_800MHZ_IODELAY_MIG0",
                                      // It is associated to a set of IODELAYs with
                                      // an IDELAYCTRL that have same IODELAY CONTROLLER
-                                     // clock frequency.
+                                     // clock frequency (200MHz).
+   parameter IODELAY_GRP1          = "MIG_7SERIES_64BIT_800MHZ_IODELAY_MIG1",
+                                     // It is associated to a set of IODELAYs with
+                                     // an IDELAYCTRL that have same IODELAY CONTROLLER
+                                     // clock frequency (300MHz/400MHz).
    parameter SYSCLK_TYPE           = "NO_BUFFER",
                                      // System clock type DIFFERENTIAL, SINGLE_ENDED,
                                      // NO_BUFFER
@@ -416,6 +430,8 @@ module mig_7series_64bit_800Mhz_mig #
                                      // "TRUE" - if pin is selected for sys_rst
                                      //          and IBUF will be instantiated.
                                      // "FALSE" - if pin is not selected for sys_rst
+   parameter FPGA_SPEED_GRADE      = 2,
+                                     // FPGA speed grade
       
    parameter CMD_PIPE_PLUS1        = "ON",
                                      // add pipeline stage between MC and PHY
@@ -423,6 +439,7 @@ module mig_7series_64bit_800Mhz_mig #
    parameter CAL_WIDTH             = "HALF",
    parameter STARVE_LIMIT          = 2,
                                      // # = 2,3,4.
+   parameter REF_CLK_MMCM_IODELAY_CTRL    = "TRUE",
 
    //***************************************************************************
    // Referece clock frequency parameters
@@ -619,7 +636,7 @@ module mig_7series_64bit_800Mhz_mig #
    output                                       s_axi_rlast,
    output                                       s_axi_rvalid,
    // debug signals
-   output reg [255:0]                               ddr3_ila_wrpath,
+   output reg [390:0]                               ddr3_ila_wrpath,
    output reg [1023:0]                              ddr3_ila_rdpath,
    output reg [119:0]                               ddr3_ila_basic,
    input [13:0]                                 ddr3_vio_sync_out, // input from VIO
@@ -634,6 +651,9 @@ module mig_7series_64bit_800Mhz_mig #
    input                                        dbg_po_f_stg23_sel,
    output [5:0]                                 dbg_pi_counter_read_val,
    output [8:0]                                 dbg_po_counter_read_val,
+   output reg [107:0]                           dbg_prbs_final_dqs_tap_cnt_r,
+   output reg [107:0]                           dbg_prbs_first_edge_taps,
+   output reg [107:0]                           dbg_prbs_second_edge_taps,
    output                                       init_calib_complete,
       
 
@@ -675,20 +695,27 @@ module mig_7series_64bit_800Mhz_mig #
   localparam tTEMPSAMPLE           = 10000000;   // sample every 10 us
   localparam XADC_CLK_PERIOD       = 5000;       // Use 200 MHz IODELAYCTRL clock
       
-      
+
+  localparam TAPSPERKCLK = (56*MMCM_MULT_F)/nCK_PER_CLK;
 
   // Wire declarations
       
   wire [BM_CNT_WIDTH-1:0]           bank_mach_next;
   wire                              clk;
-  wire                              clk_ref;
-  wire                              idelay_ctrl_rdy;
+  wire [1:0]                        clk_ref;
+  wire [1:0]                        iodelay_ctrl_rdy;
   wire                              clk_ref_in;
   wire                              sys_rst_o;
   wire                              freq_refclk ;
   wire                              mem_refclk ;
   wire                              pll_lock ;
   wire                              sync_pulse;
+  wire                              mmcm_ps_clk;
+  wire                              poc_sample_pd;
+  wire                              psen;
+  wire                              psincdec;
+  wire                              psdone;
+  wire                              iddr_rst;
   wire                              ref_dll_lock;
   wire                              rst_phaser_ref;
   wire                              pll_locked;
@@ -794,9 +821,12 @@ module mig_7series_64bit_800Mhz_mig #
   wire [5:0]                        dbg_data_offset_1;
   wire [5:0]                        dbg_data_offset_2;
 
-  wire [255:0]                      ddr3_ila_wrpath_int;
+  wire [390:0]                      ddr3_ila_wrpath_int;
   wire [1023:0]                     ddr3_ila_rdpath_int;
   wire [119:0]                      ddr3_ila_basic_int;
+  wire [(6*DQS_WIDTH*RANKS)-1:0] dbg_prbs_final_dqs_tap_cnt_r_int;
+  wire [(6*DQS_WIDTH*RANKS)-1:0] dbg_prbs_first_edge_taps_int;
+  wire [(6*DQS_WIDTH*RANKS)-1:0] dbg_prbs_second_edge_taps_int;
       
 
 //***************************************************************************
@@ -818,15 +848,18 @@ module mig_7series_64bit_800Mhz_mig #
       assign clk_ref_in = clk_ref_i;
   endgenerate
 
-  mig_7series_v2_0_iodelay_ctrl #
+  mig_7series_v2_3_iodelay_ctrl #
     (
-     .TCQ              (TCQ),
-     .IODELAY_GRP      (IODELAY_GRP),
-     .REFCLK_TYPE      (REFCLK_TYPE),
-     .SYSCLK_TYPE      (SYSCLK_TYPE),
-     .SYS_RST_PORT     (SYS_RST_PORT),
-     .RST_ACT_LOW      (RST_ACT_LOW),
-     .DIFF_TERM_REFCLK (DIFF_TERM_REFCLK)
+     .TCQ                       (TCQ),
+     .IODELAY_GRP0              (IODELAY_GRP0),
+     .IODELAY_GRP1              (IODELAY_GRP1),
+     .REFCLK_TYPE               (REFCLK_TYPE),
+     .SYSCLK_TYPE               (SYSCLK_TYPE),
+     .SYS_RST_PORT              (SYS_RST_PORT),
+     .RST_ACT_LOW               (RST_ACT_LOW),
+     .DIFF_TERM_REFCLK          (DIFF_TERM_REFCLK),
+     .FPGA_SPEED_GRADE          (FPGA_SPEED_GRADE),
+     .REF_CLK_MMCM_IODELAY_CTRL (REF_CLK_MMCM_IODELAY_CTRL)
      )
     u_iodelay_ctrl
       (
@@ -840,7 +873,7 @@ module mig_7series_64bit_800Mhz_mig #
        .clk_ref_i        (clk_ref_in),
        .sys_rst          (sys_rst)
        );
-  mig_7series_v2_0_clk_ibuf #
+  mig_7series_v2_3_clk_ibuf #
     (
      .SYSCLK_TYPE      (SYSCLK_TYPE),
      .DIFF_TERM_SYSCLK (DIFF_TERM_SYSCLK)
@@ -857,7 +890,7 @@ module mig_7series_64bit_800Mhz_mig #
   generate
     if (TEMP_MON_EN == "ON") begin: temp_mon_enabled
 
-      mig_7series_v2_0_tempmon #
+      mig_7series_v2_3_tempmon #
         (
          .TCQ              (TCQ),
          .TEMP_MON_CONTROL (TEMP_MON_CONTROL),
@@ -867,7 +900,7 @@ module mig_7series_64bit_800Mhz_mig #
         u_tempmon
           (
            .clk            (clk),
-           .xadc_clk       (clk_ref),
+           .xadc_clk       (clk_ref[0]),
            .rst            (rst),
            .device_temp_i  (device_temp_i),
            .device_temp    (device_temp)
@@ -879,7 +912,7 @@ module mig_7series_64bit_800Mhz_mig #
     end
   endgenerate
          
-  mig_7series_v2_0_infrastructure #
+  mig_7series_v2_3_infrastructure #
     (
      .TCQ                (TCQ),
      .nCK_PER_CLK        (nCK_PER_CLK),
@@ -892,7 +925,12 @@ module mig_7series_64bit_800Mhz_mig #
      .CLKOUT1_DIVIDE     (CLKOUT1_DIVIDE),
      .CLKOUT2_DIVIDE     (CLKOUT2_DIVIDE),
      .CLKOUT3_DIVIDE     (CLKOUT3_DIVIDE),
-     .RST_ACT_LOW        (RST_ACT_LOW)
+     .MMCM_VCO           (MMCM_VCO),
+     .MMCM_MULT_F        (MMCM_MULT_F),
+     .MMCM_DIVCLK_DIVIDE (MMCM_DIVCLK_DIVIDE),
+     .RST_ACT_LOW        (RST_ACT_LOW),
+     .tCK                (tCK),
+     .MEM_TYPE           (DRAM_TYPE)
      )
     u_ddr3_infrastructure
       (
@@ -902,6 +940,10 @@ module mig_7series_64bit_800Mhz_mig #
        .mem_refclk       (mem_refclk),
        .freq_refclk      (freq_refclk),
        .sync_pulse       (sync_pulse),
+       .mmcm_ps_clk      (mmcm_ps_clk),
+       .poc_sample_pd    (poc_sample_pd),
+       .psdone           (psdone),
+       .iddr_rst         (iddr_rst),
        .auxout_clk       (),
        .ui_addn_clk_0    (),
        .ui_addn_clk_1    (),
@@ -912,6 +954,8 @@ module mig_7series_64bit_800Mhz_mig #
        .mmcm_locked      (mmcm_locked),
        .rst_phaser_ref   (rst_phaser_ref),
        // Inputs
+       .psen             (psen),
+       .psincdec         (psincdec),
        .mmcm_clk         (mmcm_clk),
        .sys_rst          (sys_rst_o),
        .iodelay_ctrl_rdy (iodelay_ctrl_rdy),
@@ -919,7 +963,7 @@ module mig_7series_64bit_800Mhz_mig #
        );
       
 
-  mig_7series_v2_0_memc_ui_top_axi #
+  mig_7series_v2_3_memc_ui_top_axi #
     (
      .TCQ                              (TCQ),
      .ADDR_CMD_MODE                    (ADDR_CMD_MODE),
@@ -961,7 +1005,9 @@ module mig_7series_64bit_800Mhz_mig #
      .DATA_IO_IDLE_PWRDWN              (DATA_IO_IDLE_PWRDWN),
      .BANK_TYPE                        (BANK_TYPE),
      .DATA_IO_PRIM_TYPE                (DATA_IO_PRIM_TYPE),
-     .IODELAY_GRP                      (IODELAY_GRP),
+     .IODELAY_GRP0                     (IODELAY_GRP0),
+     .IODELAY_GRP1                     (IODELAY_GRP1),
+     .FPGA_SPEED_GRADE                 (FPGA_SPEED_GRADE),
      .REG_CTRL                         (REG_CTRL),
      .RTT_NOM                          (RTT_NOM),
      .RTT_WR                           (RTT_WR),
@@ -1042,6 +1088,10 @@ module mig_7series_64bit_800Mhz_mig #
      .CALIB_ROW_ADD                    (CALIB_ROW_ADD),
      .CALIB_COL_ADD                    (CALIB_COL_ADD),
      .CALIB_BA_ADD                     (CALIB_BA_ADD),
+     .IDELAY_ADJ                       (IDELAY_ADJ),
+     .FINE_PER_BIT                     (FINE_PER_BIT),
+     .CENTER_COMP_MODE                 (CENTER_COMP_MODE),
+     .PI_VAL_ADJ                       (PI_VAL_ADJ),
      .SLOT_0_CONFIG                    (SLOT_0_CONFIG),
      .SLOT_1_CONFIG                    (SLOT_1_CONFIG),
      .MEM_ADDR_ORDER                   (MEM_ADDR_ORDER),
@@ -1061,7 +1111,8 @@ module mig_7series_64bit_800Mhz_mig #
      .USE_CS_PORT                      (USE_CS_PORT),
      .USE_DM_PORT                      (USE_DM_PORT),
      .USE_ODT_PORT                     (USE_ODT_PORT),
-     .MASTER_PHY_CTL                   (PHY_CONTROL_MASTER_BANK)
+     .MASTER_PHY_CTL                   (PHY_CONTROL_MASTER_BANK),
+     .TAPSPERKCLK                      (TAPSPERKCLK)
      )
     u_memc_ui_top_axi
       (
@@ -1071,6 +1122,12 @@ module mig_7series_64bit_800Mhz_mig #
        .freq_refclk                      (freq_refclk),
        .pll_lock                         (pll_locked),
        .sync_pulse                       (sync_pulse),
+       .mmcm_ps_clk                      (mmcm_ps_clk),
+       .poc_sample_pd                    (poc_sample_pd),
+       .psdone                           (psdone),
+       .iddr_rst                         (iddr_rst),
+       .psen                             (psen),
+       .psincdec                         (psincdec),
        .rst                              (rst),
        .rst_phaser_ref                   (rst_phaser_ref),
        .ref_dll_lock                     (ref_dll_lock),
@@ -1142,6 +1199,9 @@ module mig_7series_64bit_800Mhz_mig #
        .dbg_prbs_rdlvl                   (dbg_prbs_rdlvl),
        .dbg_pi_counter_read_val          (dbg_pi_counter_read_val),
        .dbg_po_counter_read_val          (dbg_po_counter_read_val),
+       .dbg_prbs_final_dqs_tap_cnt_r     (dbg_prbs_final_dqs_tap_cnt_r_int),
+       .dbg_prbs_first_edge_taps         (dbg_prbs_first_edge_taps_int),
+       .dbg_prbs_second_edge_taps        (dbg_prbs_second_edge_taps_int),
        .dbg_pi_phaselock_start           (dbg_pi_phaselock_start),
        .dbg_pi_phaselocked_done          (dbg_pi_phaselocked_done),
        .dbg_pi_phaselock_err             (dbg_pi_phaselock_err),
@@ -1305,7 +1365,7 @@ module mig_7series_64bit_800Mhz_mig #
    assign ddr3_ila_basic_int[28]      = dbg_rddata_valid_r;
    assign ddr3_ila_basic_int[29+:64]  = dbg_rddata_r;
 
-   // additional sigred for debug
+   // additional signals required for debug
    assign ddr3_ila_basic_int[93]      = dbg_dqs_found_cal[14]; // fine_adjust_done_r
    assign ddr3_ila_basic_int[119:94]  = 'b0;
 
@@ -1345,23 +1405,27 @@ module mig_7series_64bit_800Mhz_mig #
    assign ddr3_ila_wrpath_int[12+:6]    = wl_po_fine_cnt[(dbg_dqs*6)+:6];
    assign ddr3_ila_wrpath_int[18+:3]    = wl_po_coarse_cnt[(dbg_dqs*3)+:3];
    assign ddr3_ila_wrpath_int[21+:6]    = dbg_phy_wrlvl[61+:6]; //wl_tap_count_r;
-   assign ddr3_ila_wrpath_int[31:27]    = 'b0; // reserved
+   assign ddr3_ila_wrpath_int[29:27]    = 'b0; // reserved
+   assign ddr3_ila_wrpath_int[336:310]  = dbg_final_po_coarse_tap_cnt[((DQS_WIDTH*3)-1):0];
+   assign ddr3_ila_wrpath_int[390:337]  = dbg_final_po_fine_tap_cnt[((DQS_WIDTH*6)-1):0];
 
    // oclk delay calibration debug data
-   assign ocal_tap_cnt              = dbg_phy_oclkdelay_cal [53:0];
-   assign ddr3_ila_wrpath_int[32+:6]    = ocal_tap_cnt[(dbg_dqs*6)+:6];
-   assign ddr3_ila_wrpath_int[57+:6]    = dbg_phy_oclkdelay_cal[219+:6];  // stg2_tap_cnt
-   assign ddr3_ila_wrpath_int[38]       = dbg_phy_oclkdelay_cal[58];      // ocal_edge1_found_timing 
-   assign ddr3_ila_wrpath_int[39]       = dbg_phy_oclkdelay_cal[59];      // ocal_edge2_found_timing 
-   assign ddr3_ila_wrpath_int[52+:5]    = dbg_phy_oclkdelay_cal[76:72];   // ocal_state_r
-   assign ddr3_ila_wrpath_int[63]       = dbg_phy_oclkdelay_cal[245];     // ocal_rise_edge1_found
-   assign ddr3_ila_wrpath_int[241]      = dbg_phy_oclkdelay_cal[246];     // ocal_rise_edge2_found
-   assign ddr3_ila_wrpath_int[242]      = dbg_phy_oclkdelay_cal[225];     // ocal_fall_edge1_found
-   assign ddr3_ila_wrpath_int[243]      = dbg_phy_oclkdelay_cal[226];     // ocal_fall_edge2_found
-   assign ddr3_ila_wrpath_int[40+:6]    = dbg_phy_oclkdelay_cal[65:60];   // ocal_rise_edge1_taps
-   assign ddr3_ila_wrpath_int[46+:6]    = dbg_phy_oclkdelay_cal[71:66];   // ocal_rise_edge2_taps
-   assign ddr3_ila_wrpath_int[249:244]  = dbg_phy_oclkdelay_cal[232:227]; // ocal_fall_edge1_taps
-   assign ddr3_ila_wrpath_int[255:250]  = dbg_phy_oclkdelay_cal[238:233]; // ocal_fall_edge2_taps
+   assign ocal_tap_cnt              = dbg_phy_oclkdelay_cal [53+:54];       // final_stg3_tap_count // 54
+   assign ddr3_ila_wrpath_int[ 30+: 4]  = dbg_phy_oclkdelay_cal[  0+: 4];  // ocal flag info for edges        // 4
+   assign ddr3_ila_wrpath_int[ 34+: 6]  = dbg_phy_oclkdelay_cal[  4+: 6];  // fuzz2oneeighty                  // 6
+   assign ddr3_ila_wrpath_int[ 40+: 6]  = dbg_phy_oclkdelay_cal[ 10+: 6];  // fuzz2zero                       // 6
+   assign ddr3_ila_wrpath_int[ 46+: 6]  = dbg_phy_oclkdelay_cal[ 16+: 6];  // oneeighty2fuzz                  // 6
+   assign ddr3_ila_wrpath_int[ 52+: 6]  = dbg_phy_oclkdelay_cal[ 22+: 6];  // zero2fuzz                       // 6
+   assign ddr3_ila_wrpath_int[ 58+: 3]  = dbg_phy_oclkdelay_cal[ 28+: 3];  // oclkdelay_calib_cnt             // 3
+   assign ddr3_ila_wrpath_int[ 61+: 1]  = dbg_phy_oclkdelay_cal[107+: 1];  // ocal_scan_win_not_found         // 1
+   assign ddr3_ila_wrpath_int[ 62+: 1]  = dbg_phy_oclkdelay_cal[ 32+: 1];  // lim_done                        // 1
+   assign ddr3_ila_wrpath_int[241+: 6]  = dbg_phy_oclkdelay_cal[ 33+: 6];  // lim2ocal_stg3_left_lim          // 6
+   assign ddr3_ila_wrpath_int[247+: 6]  = dbg_phy_oclkdelay_cal[ 39+: 6];  // lim2ocal_stg3_right_lim         // 6
+   assign ddr3_ila_wrpath_int[253+: 1]  = dbg_phy_oclkdelay_cal[108+: 1];  // oclkdelay_center_calib_start    // 1
+   assign ddr3_ila_wrpath_int[254+: 1]  = dbg_phy_oclkdelay_cal[109+: 1];  // oclkdelay_center_calib_done     // 1
+   assign ddr3_ila_wrpath_int[255+:54]  = dbg_phy_oclkdelay_cal[ 53+:54];  // final_stg3_tap_count            // 54
+   assign ddr3_ila_wrpath_int[ 87+: 6]  = dbg_phy_oclkdelay_cal[110+: 6];  // oclkdelay_calib_stg3            // 6
+   assign ddr3_ila_wrpath_int[309+: 1]  = 'b0; // reserved
 
    // write calibration stage debug signals
    assign ddr3_ila_wrpath_int[64]       = dbg_phy_wrcal[0]; // pat_data_match_r
@@ -1376,10 +1440,7 @@ module mig_7series_64bit_800Mhz_mig #
    assign ddr3_ila_wrpath_int[84]       = dbg_phy_wrcal[90]; // wrcal_sanity_chk_r and pat_data_match_valid_r
    assign ddr3_ila_wrpath_int[85]       = dbg_phy_wrcal[91]; // wrcal_sanity_chk_r
    assign ddr3_ila_wrpath_int[86]       = dbg_phy_wrcal[92]; // wrcal_sanity_chk_done
-   assign ddr3_ila_wrpath_int[87]       = 'b0; // reserved
-
-   assign ddr3_ila_wrpath_int[91:88]    = dbg_phy_oclkdelay_cal[57:54];
-   assign ddr3_ila_wrpath_int[95:92]    = 'b0; //reserved
+   assign ddr3_ila_wrpath_int[93+:3]    = 'b0; // reserved
 
    assign ddr3_ila_wrpath_int[96+:54]   = dbg_phy_wrlvl[76+:54];
    assign ddr3_ila_wrpath_int[150+:27]  = dbg_phy_wrlvl[130+:27];
@@ -1454,6 +1515,22 @@ module mig_7series_64bit_800Mhz_mig #
       ddr3_ila_basic    = 'h0;
       ddr3_ila_basic    = ddr3_ila_basic_int;
    end
-      
+
+   always @ (*) begin
+     dbg_prbs_final_dqs_tap_cnt_r = 'h0;
+     dbg_prbs_final_dqs_tap_cnt_r[(6*DQS_WIDTH*RANKS)-1:0] = dbg_prbs_final_dqs_tap_cnt_r_int;
+   end
+
+   always @ (*) begin
+     dbg_prbs_first_edge_taps = 'h0;
+     dbg_prbs_first_edge_taps[(6*DQS_WIDTH*RANKS)-1:0] = dbg_prbs_first_edge_taps_int;
+   end
+
+   always @ (*) begin
+     dbg_prbs_second_edge_taps = 'h0;
+     dbg_prbs_second_edge_taps[(6*DQS_WIDTH*RANKS)-1:0] = dbg_prbs_second_edge_taps_int;
+   end
+
+   
 
 endmodule

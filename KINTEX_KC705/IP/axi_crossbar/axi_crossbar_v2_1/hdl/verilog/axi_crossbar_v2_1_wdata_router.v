@@ -92,6 +92,8 @@ module axi_crossbar_v2_1_wdata_router #
    output wire                                        S_AREADY
    );
 
+  localparam integer P_FIFO_DEPTH_LOG = (C_FIFO_DEPTH_LOG <= 5) ? C_FIFO_DEPTH_LOG : 5;  // Max depth = 32
+
   // Decode select input to 1-hot
   function [C_NUM_MASTER_SLOTS-1:0] f_decoder (
       input [C_SELECT_WIDTH-1:0] sel
@@ -121,7 +123,7 @@ module axi_crossbar_v2_1_wdata_router #
     (
      .C_FAMILY          (C_FAMILY),
      .C_FIFO_WIDTH      (C_SELECT_WIDTH),
-     .C_FIFO_DEPTH_LOG  (C_FIFO_DEPTH_LOG),
+     .C_FIFO_DEPTH_LOG  (P_FIFO_DEPTH_LOG),
      .C_USE_FULL        (1)
      )
     wrouter_aw_fifo

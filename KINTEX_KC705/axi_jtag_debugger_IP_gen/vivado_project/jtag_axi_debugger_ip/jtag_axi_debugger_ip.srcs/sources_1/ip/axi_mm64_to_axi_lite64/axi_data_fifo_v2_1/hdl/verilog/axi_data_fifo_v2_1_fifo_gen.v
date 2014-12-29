@@ -96,7 +96,7 @@ localparam C_MEMORY_TYPE =  (C_FIFO_TYPE == "bram")? 1 : 2;
 
 localparam C_IMPLEMENTATION_TYPE = (C_COMMON_CLOCK == 1)? 0 : 2;
 
-  fifo_generator_v11_0 #(
+  fifo_generator_v12_0 #(
     .C_COMMON_CLOCK(C_COMMON_CLOCK),
     .C_DIN_WIDTH(C_FIFO_WIDTH),
     .C_DOUT_WIDTH(C_FIFO_WIDTH),
@@ -517,7 +517,10 @@ localparam C_IMPLEMENTATION_TYPE = (C_COMMON_CLOCK == 1)? 0 : 2;
     .valid(),
     .wr_ack(),
     .wr_data_count(),
-    .wr_rst(1'b0)
+    .wr_rst(1'b0),
+    .wr_rst_busy(),
+    .rd_rst_busy(),
+    .sleep(1'b0)
   );
 
 endmodule

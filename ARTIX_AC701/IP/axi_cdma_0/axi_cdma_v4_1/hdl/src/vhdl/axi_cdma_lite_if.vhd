@@ -58,75 +58,6 @@
 --
 -- VHDL-Standard:   VHDL'93
 -------------------------------------------------------------------------------
--- Structure:
---                  axi_dma.vhd
---                   |- axi_dma_pkg.vhd
---                   |- axi_dma_rst_module.vhd
---                   |- axi_dma_reg_module.vhd
---                   |   |- axi_cdma_lite_if.vhd
---                   |   |- axi_dma_register.vhd (mm2s)
---                   |   |- axi_dma_register.vhd (s2mm)
---                   |- axi_dma_mm2s_mngr.vhd
---                   |   |- axi_dma_mm2s_sg_if.vhd
---                   |   |- axi_dma_mm2s_sm.vhd
---                   |   |- axi_dma_mm2s_cmdsts_if.vhd
---                   |   |- axi_dma_mm2s_cntrl_strm.vhd
---                   |       |- axi_dma_skid_buf.vhd
---                   |       |- axi_dma_strm_rst.vhd
---                   |- axi_dma_s2mm_mngr.vhd
---                   |   |- axi_dma_s2mm_sg_if.vhd
---                   |   |- axi_dma_s2mm_sm.vhd
---                   |   |- axi_dma_s2mm_cmdsts_if.vhd
---                   |   |- axi_dma_s2mm_sts_strm.vhd
---                   |       |- axi_dma_skid_buf.vhd
---                   |- axi_datamover_v2_00_a.axi_data_mover.vhd (FULL)
---                   |- axi_dma_strm_rst.vhd
---                   |- axi_dma_skid_buf.vhd
---                   |- axi_sg_v3_00_a.axi_sg.vhd
---
--------------------------------------------------------------------------------
--- Author:      Gary Burch
--- History:
---  GAB     3/19/10    v1_00_a
--- ^^^^^^
---  - Initial Release
--- ~~~~~~
---  GAB     9/03/10    v2_00_a
--- ^^^^^^
---  - Updated libraries to v2_00_a
--- ~~~~~~
---  GAB     9/30/10     v2_00_a
--- ^^^^^^
--- CR576999 - Modified to assert back to back read/write address requests, i.e.
---            requests where arvalid or awvalid do not de-assert between requests
---            and back to back write data valid.
--- ~~~~~~
---  GAB     10/15/10    v3_00_a
--- ^^^^^^
---  - Updated libraries to v3_00_a
---  - Added asynchronous mode
--- ~~~~~~
---  GAB     2/15/11     v4_00_a
--- ^^^^^^
---  Updated libraries to v4_00_a
--- ~~~~~~
---  GAB     4/12/11     v4_00_a
--- ^^^^^^
--- CR605883 (CDC) need to provide pure register output to synchronizers
--- ~~~~~~
---  GAB     4/14/11     v4_00_a
--- ^^^^^^
--- CR606122 - Align awvalid_re pulse and wvalid_re pulse for proper async writes
--- ~~~~~~
---  GAB     4/14/11     v4_00_a
--- ^^^^^^
--- CR607165 - asynch operation allowed acceptance of 2nd read address prior
---          to completion of the previous reads.  CR Fixed.
--- ~~~~~~
---  GAB     6/21/11    v5_00_a
--- ^^^^^^
---  Updated to axi_cdma
--- ~~~~~~
 -------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -139,9 +70,10 @@ use unisim.vcomponents.all;
 library axi_cdma_v4_1;
 use axi_cdma_v4_1.axi_cdma_pkg.all;
 
-library proc_common_v4_0;
-use proc_common_v4_0.proc_common_pkg.clog2;
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.clog2;
 
+library lib_cdc_v1_0;
 
 -------------------------------------------------------------------------------
 entity  axi_cdma_lite_if is
@@ -678,7 +610,7 @@ REG_WVALID : process(s_axi_lite_aclk)
             end if;
         end process AWVLD_CDC_FROM;
 
-AWVLD_CDC_TO : entity  proc_common_v4_0.cdc_sync
+AWVLD_CDC_TO : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -734,7 +666,7 @@ AWVLD_CDC_TO : entity  proc_common_v4_0.cdc_sync
         end process WVLD_CDC_FROM;
 
 
-WVLD_CDC_TO : entity  proc_common_v4_0.cdc_sync
+WVLD_CDC_TO : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -777,7 +709,7 @@ WVLD_CDC_TO : entity  proc_common_v4_0.cdc_sync
                ip_wvalid_re <= wvalid_to and (not wvalid_to2);
 
 
-REG_WADDR_TO_IPCLK : entity  proc_common_v4_0.cdc_sync
+REG_WADDR_TO_IPCLK : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -798,7 +730,7 @@ REG_WADDR_TO_IPCLK : entity  proc_common_v4_0.cdc_sync
     );
 
 
-REG_WADDR_TO_IPCLK1 : entity  proc_common_v4_0.cdc_sync
+REG_WADDR_TO_IPCLK1 : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -858,7 +790,7 @@ REG_WADDR_TO_IPCLK1 : entity  proc_common_v4_0.cdc_sync
         end if;
     end process REG_WREADY;
 
-REG3_WREADY : entity  proc_common_v4_0.cdc_sync
+REG3_WREADY : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -913,7 +845,7 @@ REG3_WREADY : entity  proc_common_v4_0.cdc_sync
     end process REG1_WREADY;
 
 
-REG2_WREADY : entity  proc_common_v4_0.cdc_sync
+REG2_WREADY : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -1323,7 +1255,7 @@ begin
 
 
     -- Double register address in
-REG_RADDR_TO_IPCLK : entity  proc_common_v4_0.cdc_sync
+REG_RADDR_TO_IPCLK : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -1378,7 +1310,7 @@ REG_RADDR_TO_IPCLK : entity  proc_common_v4_0.cdc_sync
     -- arvalid.  This provides a signal that asserts when
     -- araddr is known to be stable.
 
-REG_ARVALID_TO_IPCLK : entity  proc_common_v4_0.cdc_sync
+REG_ARVALID_TO_IPCLK : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -1480,7 +1412,7 @@ REG_ARVALID_TO_IPCLK : entity  proc_common_v4_0.cdc_sync
         end process S_H_READ_DATA;
 
     -- Cross read data to axi_lite clock domain
-REG_DATA2LITE_CLOCK : entity  proc_common_v4_0.cdc_sync
+REG_DATA2LITE_CLOCK : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,

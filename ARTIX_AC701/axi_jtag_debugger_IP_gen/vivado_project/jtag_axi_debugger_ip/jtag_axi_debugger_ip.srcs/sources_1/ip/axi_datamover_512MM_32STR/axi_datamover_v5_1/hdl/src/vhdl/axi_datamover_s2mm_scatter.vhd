@@ -64,37 +64,6 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:   
-  --              axi_datamover_s2mm_scatter.vhd
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  --
-  -- History:
-  --   DET   04/19/2011       Initial Version for EDK 13.3
-  --
-  --     DET     6/20/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --     - Added 512 and 1024 data width support
-  -- ^^^^^^
-  --
-  --     DET     6/29/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --     - Incorporated the Indeterminate BTT mode overflow absorption
-  --       changes needed by AXI VDMA. 
-  -- ^^^^^^
-  --
-  --     DET     7/18/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --    -- Per CR617164
-  --     - Added TSTRB fifo empty qualifier to the overflow absorption logic
-  --       in the IBTT mode case. Also added additional qualification to the 
-  --       sig_gated_fifo_freeze_out signal in the IBTT mode IfGen.
-  -- ^^^^^^
-  --
   -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;
@@ -458,6 +427,10 @@
     signal sig_curr_eof_reg            : std_logic := '0';
     signal sig_btt_cntr                : unsigned(CMD_BTT_WIDTH-1 downto 0) := (others => '0');
     signal sig_btt_cntr_dup                : unsigned(CMD_BTT_WIDTH-1 downto 0) := (others => '0');
+    Attribute KEEP : string; -- declaration
+    Attribute EQUIVALENT_REGISTER_REMOVAL : string; -- declaration
+    Attribute KEEP of sig_btt_cntr_dup : signal is "TRUE"; -- definition
+    Attribute EQUIVALENT_REGISTER_REMOVAL of sig_btt_cntr_dup : signal is "no";
     signal sig_ld_btt_cntr             : std_logic := '0';
     signal sig_decr_btt_cntr           : std_logic := '0';
     signal sig_btt_cntr_decr_value     : unsigned(CMD_BTT_WIDTH-1 downto 0) := (others => '0');
@@ -871,7 +844,7 @@
     
     
     sig_btt_lteq_max_first_incr <= '1'
-      when (sig_btt_cntr <= RESIZE(sig_max_first_increment, CMD_BTT_WIDTH))     -- more timing improv
+      when (sig_btt_cntr_dup <= RESIZE(sig_max_first_increment, CMD_BTT_WIDTH))     -- more timing improv
       Else '0';                                                                 -- more timing improv
                                                                                 -- more timing improv
     
@@ -933,7 +906,7 @@
     sig_btt_cntr_prv <= UNSIGNED(sig_drc2scatter_btt)
       when (sig_ld_btt_cntr = '1')
 --      Else sig_btt_cntr_dup-sig_btt_cntr_decr_value;
-      Else sig_btt_cntr-sig_btt_cntr_decr_value;
+      Else sig_btt_cntr_dup-sig_btt_cntr_decr_value;
     
     
     sig_btt_eq_0_pre_reg <= '1'
@@ -968,14 +941,14 @@
                sig_eop_sent = '1') then
   
              sig_btt_cntr                <= (others => '0');
-           --  sig_btt_cntr_dup                <= (others => '0');
+             sig_btt_cntr_dup                <= (others => '0');
              sig_btt_eq_0                <= '1';
   
            elsif (sig_ld_btt_cntr   = '1' or
                   sig_decr_btt_cntr = '1') then
   
              sig_btt_cntr                <= sig_btt_cntr_prv;
-          --   sig_btt_cntr_dup                <= sig_btt_cntr_prv;
+             sig_btt_cntr_dup                <= sig_btt_cntr_prv;
              sig_btt_eq_0                <= sig_btt_eq_0_pre_reg;
            
            else
@@ -1249,8 +1222,8 @@ end generate GEN_S2MM_TKEEP_DISABLE4;
          end if;       
        end process IMP_FIFO_LD_2; 
 
-HIGHER_DATAWIDTH : if TSTRB_FIFO_DWIDTH > 40 generate
-begin    
+--HIGHER_DATAWIDTH : if TSTRB_FIFO_DWIDTH > 40 generate
+--begin    
     
     SLICE_INSERTION : entity axi_datamover_v5_1.axi_datamover_slice
          generic map (
@@ -1315,11 +1288,11 @@ begin
      
       );
   
-end generate HIGHER_DATAWIDTH;
+--end generate HIGHER_DATAWIDTH;
     
     
-LOWER_DATAWIDTH : if TSTRB_FIFO_DWIDTH <= 40 generate
-begin   
+--LOWER_DATAWIDTH : if TSTRB_FIFO_DWIDTH <= 40 generate
+--begin   
 
     ------------------------------------------------------------
     -- Instance: I_TSTRB_FIFO 
@@ -1328,43 +1301,43 @@ begin
     -- Instance for the TSTRB FIFO
     --
     ------------------------------------------------------------
-    I_TSTRB_FIFO : entity axi_datamover_v5_1.axi_datamover_fifo
-    generic map (
-  
-      C_DWIDTH             =>  TSTRB_FIFO_DWIDTH      , 
-      C_DEPTH              =>  TSTRB_FIFO_DEPTH       , 
-      C_IS_ASYNC           =>  USE_SYNC_FIFO          , 
-      C_PRIM_TYPE          =>  FIFO_PRIM          , 
-      C_FAMILY             =>  C_FAMILY                 
-     
-      )
-    port map (
-      
-      -- Write Clock and reset
-      fifo_wr_reset        =>   sig_clr_tstrb_fifo    , 
-      fifo_wr_clk          =>   primary_aclk          , 
-      
-      -- Write Side
-      fifo_wr_tvalid       =>   sig_tstrb_fifo_valid  , 
-      fifo_wr_tready       =>   sig_tstrb_fifo_rdy    , 
-      fifo_wr_tdata        =>   sig_tstrb_fifo_data_in, 
-      fifo_wr_full         =>   open                  , 
-     
-     
-      -- Read Clock and reset
-      fifo_async_rd_reset  =>   mmap_reset            ,   
-      fifo_async_rd_clk    =>   primary_aclk          , 
-      
-      -- Read Side
-      fifo_rd_tvalid       =>   sig_tstrb_valid         , 
-      fifo_rd_tready       =>   sig_get_tstrb           , 
-      fifo_rd_tdata        =>   sig_tstrb_fifo_data_out , 
-      fifo_rd_empty        =>   sig_tstrb_fifo_empty   
-     
-      );
-
-
-end generate LOWER_DATAWIDTH;
+--    I_TSTRB_FIFO : entity axi_datamover_v5_1.axi_datamover_fifo
+--    generic map (
+--  
+--      C_DWIDTH             =>  TSTRB_FIFO_DWIDTH      , 
+--      C_DEPTH              =>  TSTRB_FIFO_DEPTH       , 
+--      C_IS_ASYNC           =>  USE_SYNC_FIFO          , 
+--      C_PRIM_TYPE          =>  FIFO_PRIM          , 
+--      C_FAMILY             =>  C_FAMILY                 
+--     
+--      )
+--    port map (
+--      
+--      -- Write Clock and reset
+--      fifo_wr_reset        =>   sig_clr_tstrb_fifo    , 
+--      fifo_wr_clk          =>   primary_aclk          , 
+--      
+--     -- Write Side
+--     fifo_wr_tvalid       =>   sig_tstrb_fifo_valid  , 
+--     fifo_wr_tready       =>   sig_tstrb_fifo_rdy    , 
+--     fifo_wr_tdata        =>   sig_tstrb_fifo_data_in, 
+--     fifo_wr_full         =>   open                  , 
+--    
+--    
+--     -- Read Clock and reset
+--     fifo_async_rd_reset  =>   mmap_reset            ,   
+--     fifo_async_rd_clk    =>   primary_aclk          , 
+--     
+--     -- Read Side
+--     fifo_rd_tvalid       =>   sig_tstrb_valid         , 
+--     fifo_rd_tready       =>   sig_get_tstrb           , 
+--     fifo_rd_tdata        =>   sig_tstrb_fifo_data_out , 
+--      fifo_rd_empty        =>   sig_tstrb_fifo_empty   
+--     
+--      );
+--
+--
+--end generate LOWER_DATAWIDTH;
  
     ------------------------------------------------------------
     -- TSTRB FIFO Clear Logic

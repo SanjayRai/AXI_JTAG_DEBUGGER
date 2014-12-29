@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:ip:axi_crossbar:2.1
-// IP Revision: 1
+// IP Revision: 5
 
 `timescale 1ns/1ps
 

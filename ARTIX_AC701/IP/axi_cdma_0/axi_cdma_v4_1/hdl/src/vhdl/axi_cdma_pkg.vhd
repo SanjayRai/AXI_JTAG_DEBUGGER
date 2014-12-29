@@ -59,73 +59,13 @@
 --
 -- VHDL-Standard:   VHDL'93
 -------------------------------------------------------------------------------
--- Structure:   
---
---                  axi_cdma.vhd (v3_01_a)
---                   |
---    (helper lib)   |- proc_common_v4_0
---                   |
---                   |- axi_cdma_pkg.vhd
---                   |
---                   |- axi_cdma_simple_wrap.vhd
---                   |   |- axi_cdma_rst_module.vhd
---                   |   |    |- axi_cdma_pulse_gen.vhd
---                   |   |- axi_cdma_reg_module.vhd
---                   |   |    |- axi_cdma_lite_if.vhd
---                   |   |    |- axi_cdma_register.vhd
---                   |   |- axi_cdma_simple_cntlr.vhd
---                   |   |- axi_cdma_sf.vhd
---                   |   |    |- axi_cdma_sf.vhd
---                   |   |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
---                   |   |    |- proc_common_v4_0.srl_fifo_f.vhd
---   (helper lib)    |   |- axi_datamover_v5_1.axi_datamover.vhd
---                   |
---                   |- axi_cdma_sg_wrap.vhd
---                       |- axi_cdma_rst_module.vhd
---                       |    |- axi_cdma_pulse_gen.vhd
---                       |- axi_cdma_reg_module.vhd
---                       |    |- axi_cdma_lite_if.vhd
---                       |    |- axi_cdma_register.vhd
---                       |- axi_cdma_simple_cntlr.vhd
---                       |- axi_cdma_sg_cntlr.vhd
---                       |    |- axi_cdma_pulse_gen.vhd
---                       |- axi_cdma_sf.vhd
---                       |    |- axi_cdma_sfifo_autord.vhd
---                       |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
---                       |    |- proc_common_v4_0.srl_fifo_f.vhd
---   (helper lib)        |- axi_sg_v4_1.axi_sg.vhd
---   (helper lib)        |- axi_datamover_v5_1.axi_datamover.vhd
---
-------------------------------------------------------------------------------
--- Author:      Gary Burch
--- History:
---  GAB     3/19/10    v1_00_a
--- ^^^^^^
---  - Initial Release
--- ~~~~~~
---     DET     6/5/2010     Initial
--- ~~~~~~
---     - Adapted this package from axi dma package .
--- ^^^^^^
---
---     DET     10/18/2010     V3_00_a for 13.1
--- ~~~~~~
---    -- Per CR578972
---     - Rolled core version to v3_00_a
--- ^^^^^^
---
---     DET     2/16/2011     v3_01_a for EDK 13.2
--- ~~~~~~
---     - Rolled version to v3_01_a.
--- ^^^^^^
---
 -------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-library proc_common_v4_0;
-use proc_common_v4_0.proc_common_pkg.clog2;
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.clog2;
 
 package axi_cdma_pkg is
 

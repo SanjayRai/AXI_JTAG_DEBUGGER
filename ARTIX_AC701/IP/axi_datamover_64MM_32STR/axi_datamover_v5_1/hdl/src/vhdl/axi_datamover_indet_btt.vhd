@@ -65,42 +65,6 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:   
-  --              axi_datamover_indet_btt.vhd
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  --
-  -- History:
-  --   DET   04/19/2011       Initial Version for EDK 13.3
-  -- 
-  --     DET     5/25/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --     - Added upsizer function
-  -- ^^^^^^
-  --
-  --     DET     6/15/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --    -- Per CR613943
-  --     - Fixed an issue with the management of the Data beat counter when 
-  --       upsizer is included.
-  -- ^^^^^^
-  --
-  --     DET     6/20/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --     - Added 512 and 1024 data width support
-  -- ^^^^^^
-  --
-  --     DET     9/1/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --     - Fixed a Lint reported unused bit for lsig_partial_tlast_or[8] on line 906
-  --     - Fixed a Lint reported unused bit for lsig_partial_eop_or[8] on line 907
-  -- ^^^^^^
-  --
-  --
   -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;
@@ -108,8 +72,8 @@
   
 
 
-  library proc_common_v4_0; 
-  Use proc_common_v4_0.proc_common_pkg.clog2;
+  library lib_pkg_v1_0; 
+  Use lib_pkg_v1_0.lib_pkg.clog2;
   
   library axi_datamover_v5_1;
   use axi_datamover_v5_1.axi_datamover_sfifo_autord;

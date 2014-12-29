@@ -69,28 +69,16 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:
-  --
-  --
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  --
-  -- History:
-  --   DET   04/21/2011       Initial Version for 13.3
-  --
   -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;
   use IEEE.numeric_std.all;
   
-  library proc_common_v4_0;
-  use proc_common_v4_0.proc_common_pkg.all;
-  use proc_common_v4_0.proc_common_pkg.clog2;
-  use proc_common_v4_0.srl_fifo_f;
+  library lib_pkg_v1_0;
+  library lib_srl_fifo_v1_0;
+  use lib_pkg_v1_0.lib_pkg.all;
+  use lib_pkg_v1_0.lib_pkg.clog2;
+  use lib_srl_fifo_v1_0.srl_fifo_f;
   
  
 
@@ -1404,7 +1392,7 @@
    -- Implement the LEN FIFO using SRL FIFO elements    
    --
    ------------------------------------------------------------
-   I_WR_LEN_FIFO : entity proc_common_v4_0.srl_fifo_f
+   I_WR_LEN_FIFO : entity lib_srl_fifo_v1_0.srl_fifo_f
    generic map (
 
      C_DWIDTH      =>  WR_LEN_FIFO_DWIDTH   ,  

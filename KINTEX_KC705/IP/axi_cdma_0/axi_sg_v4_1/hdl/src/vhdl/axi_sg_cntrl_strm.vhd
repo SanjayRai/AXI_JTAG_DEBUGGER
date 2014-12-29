@@ -65,9 +65,12 @@ use unisim.vcomponents.all;
 library axi_sg_v4_1;
 use axi_sg_v4_1.axi_sg_pkg.all;
 
-library proc_common_v4_0;
-use proc_common_v4_0.proc_common_pkg.clog2;
-use proc_common_v4_0.proc_common_pkg.max2;
+library lib_fifo_v1_0;
+library lib_cdc_v1_0;
+
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.clog2;
+use lib_pkg_v1_0.lib_pkg.max2;
 
 -------------------------------------------------------------------------------
 entity  axi_sg_cntrl_strm is
@@ -196,7 +199,7 @@ begin
     sinit   <= not m_axi_sg_aresetn or mm2s_stop;
 
     -- Generate Synchronous FIFO
-    I_CNTRL_FIFO : entity proc_common_v4_0.sync_fifo_fg
+    I_CNTRL_FIFO : entity lib_fifo_v1_0.sync_fifo_fg
     generic map (
         C_FAMILY                =>  C_FAMILY                ,
         C_MEMORY_TYPE           =>  USE_LOGIC_FIFOS,
@@ -239,7 +242,7 @@ begin
     );
 
 
---       I_UPDT_DATA_FIFO : entity proc_common_v4_0.srl_fifo_f
+--       I_UPDT_DATA_FIFO : entity proc_common_srl_fifo_v5_0.srl_fifo_f
 --       generic map (
 --         C_DWIDTH            =>  33   ,
 --         C_DEPTH             =>  24   ,
@@ -477,7 +480,7 @@ begin
     -- Triple register to give two versions with min double reg for use
     -- in rising edge detection.
 
-IMP_SYNC_FLOP : entity  proc_common_v4_0.cdc_sync
+IMP_SYNC_FLOP : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,

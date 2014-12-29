@@ -66,10 +66,11 @@ use IEEE.std_logic_unsigned.all;
 
 
 
-library proc_common_v4_0;
-use proc_common_v4_0.proc_common_pkg.all;
-use proc_common_v4_0.proc_common_pkg.clog2;
-use proc_common_v4_0.srl_fifo_f;
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.all;
+use lib_pkg_v1_0.lib_pkg.clog2;
+library lib_srl_fifo_v1_0;
+use lib_srl_fifo_v1_0.srl_fifo_f;
 
 
 library axi_sg_v4_1;
@@ -493,7 +494,7 @@ begin
       -- Implement the synchronous FIFO using SRL FIFO elements    
       --
       ------------------------------------------------------------
-       I_SYNC_FIFO : entity proc_common_v4_0.srl_fifo_f
+       I_SYNC_FIFO : entity lib_srl_fifo_v1_0.srl_fifo_f
        generic map (
 
          C_DWIDTH            =>  C_DWIDTH   ,  

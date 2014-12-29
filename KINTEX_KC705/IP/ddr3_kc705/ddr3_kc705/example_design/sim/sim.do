@@ -49,7 +49,7 @@
 ##   ____  ____
 ##  /   /\/   /
 ## /___/  \  /    Vendor             : Xilinx
-## \   \   \/     Version            : 2.0
+## \   \   \/     Version            : 2.3
 ##  \   \         Application        : MIG
 ##  /   /         Filename           : sim.do
 ## /___/   /\     Date Last Modified : $Date: 2011/06/02 08:31:17 $
@@ -67,8 +67,6 @@
 ## Revision History :
 ###############################################################################
 
-#This design is simulated with ModelSim 6.6d version
-
 vlib work
 
 #Map the required libraries here#
@@ -77,26 +75,26 @@ vlib work
 #vmap secureip <secureip lib path>
 
 #Compile all modules#
-vlog  ../../../../../imports/rtl/*.v
-vlog  -incr ../../../../../imports/rtl/traffic_gen/*.v
-vlog  ../../user_design/rtl/ddr3_kc705.v
-vlog  ../../user_design/rtl/ddr3_kc705_mig_sim.v
-vlog  -incr ../../user_design/rtl/clocking/*.v
-vlog  -incr ../../user_design/rtl/controller/*.v
-vlog  -incr ../../user_design/rtl/ecc/*.v
-vlog  -incr ../../user_design/rtl/ip_top/*.v
-vlog  -incr ../../user_design/rtl/phy/*.v
-vlog  -incr ../../user_design/rtl/ui/*.v
-vlog -incr ../../user_design/rtl/axi/*
+vlog  ../../../sources_1/imports/rtl/*.v
+vlog  -incr ../../../sources_1/imports/rtl/traffic_gen/*.v
+vlog  ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ddr3_kc705.v
+vlog  ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ddr3_kc705_mig_sim.v
+vlog  -incr ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/clocking/*.v
+vlog  -incr ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/controller/*.v
+vlog  -incr ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ecc/*.v
+vlog  -incr ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ip_top/*.v
+vlog  -incr ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/phy/*.v
+vlog  -incr ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ui/*.v
+vlog -incr ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/axi/*
 
 #Compile files in sim folder (excluding model parameter file)#
 #$XILINX variable must be set
 vlog  -incr $env(XILINX_VIVADO)/data/verilog/src/glbl.v
-vlog  -incr ../../../../../../sim_1/imports/sim/wiredly.v
-vlog  -incr ../../../../../../sim_1/imports/sim/sim_tb_top.v
+vlog wiredly.v
+vlog sim_tb_top.v
 
 #Pass the parameters for memory model parameter file#
-vlog -incr +incdir+../../../../../../sim_1/imports/sim +define+x1Gb +define+sg125 +define+x8 ../../../../../../sim_1/imports/sim/ddr3_model.v
+vlog -sv +define+x1Gb +define+sg125 +define+x8 ddr3_model.v
 
 #Load the design. Use required libraries.#
 vsim -t fs -novopt +notimingchecks -L unisims_ver -L secureip work.sim_tb_top glbl

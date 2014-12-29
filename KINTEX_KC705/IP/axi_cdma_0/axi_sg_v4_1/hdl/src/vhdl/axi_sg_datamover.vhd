@@ -65,11 +65,6 @@ use IEEE.numeric_std.all;
 
 
 
-library proc_common_v4_0;
-use proc_common_v4_0.family_support;
-
-
-
 library axi_sg_v4_1;
 use axi_sg_v4_1.axi_sg_mm2s_basic_wrap;
 use axi_sg_v4_1.axi_sg_s2mm_basic_wrap;

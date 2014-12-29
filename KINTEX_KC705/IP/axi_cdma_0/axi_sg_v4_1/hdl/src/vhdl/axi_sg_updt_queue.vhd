@@ -62,10 +62,11 @@ use ieee.std_logic_misc.all;
 library axi_sg_v4_1;
 use axi_sg_v4_1.axi_sg_pkg.all;
 
-library proc_common_v4_0;
-use proc_common_v4_0.sync_fifo_fg;
-use proc_common_v4_0.srl_fifo_f;
-use proc_common_v4_0.proc_common_pkg.all;
+library lib_srl_fifo_v1_0;
+use lib_srl_fifo_v1_0.srl_fifo_f;
+
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.all;
 
 -------------------------------------------------------------------------------
 entity  axi_sg_updt_queue is
@@ -556,7 +557,7 @@ MM2S_CHANNEL : if C_INCLUDE_MM2S = 1 generate
 
     updt_active_re1  <= updt_active and not updt_active_d1;
 
---       I_UPDT_DATA_FIFO : entity proc_common_v4_0.srl_fifo_f
+--       I_UPDT_DATA_FIFO : entity lib_srl_fifo_v1_0.srl_fifo_f
 --       generic map (
 --         C_DWIDTH            =>  32   ,
 --         C_DEPTH             =>  8    ,
@@ -601,7 +602,7 @@ end process;
 
     -- Channel Pointer Queue (Generate Synchronous FIFO)
 
---       I_UPDT_STS_FIFO : entity proc_common_v4_0.srl_fifo_f
+--       I_UPDT_STS_FIFO : entity lib_srl_fifo_v1_0.srl_fifo_f
 --       generic map (
 --         C_DWIDTH            =>  34   ,
 --         C_DEPTH             =>  4    ,
@@ -794,7 +795,7 @@ begin
 
     updt_active_re2  <= updt2_active and not updt_active_d2;
 
---       I_UPDT2_DATA_FIFO : entity proc_common_v4_0.srl_fifo_f
+--       I_UPDT2_DATA_FIFO : entity lib_srl_fifo_v1_0.srl_fifo_f
 --       generic map (
 --         C_DWIDTH            =>  32   ,
 --         C_DEPTH             =>  8    ,
@@ -841,7 +842,7 @@ end process;
 APP_UPDATE: if C_SG2_WORDS_TO_UPDATE /= 1 generate
 begin
 
-       I_UPDT2_STS_FIFO : entity proc_common_v4_0.srl_fifo_f
+       I_UPDT2_STS_FIFO : entity lib_srl_fifo_v1_0.srl_fifo_f
        generic map (
          C_DWIDTH            =>  34   ,
          C_DEPTH             =>  12   ,

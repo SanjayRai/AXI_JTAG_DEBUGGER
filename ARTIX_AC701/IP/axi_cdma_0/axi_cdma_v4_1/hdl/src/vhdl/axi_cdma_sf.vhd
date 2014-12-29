@@ -71,103 +71,16 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:
-  --
-  --                  axi_cdma.vhd (v3_01_a)
-  --                   |
-  --    (helper lib)   |- proc_common_v4_0
-  --                   |
-  --                   |- axi_cdma_pkg.vhd
-  --                   |
-  --                   |- axi_cdma_simple_wrap.vhd
-  --                   |   |- axi_cdma_rst_module.vhd
-  --                   |   |    |- axi_cdma_pulse_gen.vhd
-  --                   |   |- axi_cdma_reg_module.vhd
-  --                   |   |    |- axi_cdma_lite_if.vhd
-  --                   |   |    |- axi_cdma_register.vhd
-  --                   |   |- axi_cdma_simple_cntlr.vhd
-  --                   |   |- axi_cdma_sf.vhd
-  --                   |   |    |- axi_cdma_sf.vhd
-  --                   |   |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
-  --                   |   |    |- proc_common_v4_0.srl_fifo_f.vhd
-  --   (helper lib)    |   |- axi_datamover_v5_1.axi_datamover.vhd
-  --                   |
-  --                   |- axi_cdma_sg_wrap.vhd
-  --                       |- axi_cdma_rst_module.vhd
-  --                       |    |- axi_cdma_pulse_gen.vhd
-  --                       |- axi_cdma_reg_module.vhd
-  --                       |    |- axi_cdma_lite_if.vhd
-  --                       |    |- axi_cdma_register.vhd
-  --                       |- axi_cdma_simple_cntlr.vhd
-  --                       |- axi_cdma_sg_cntlr.vhd
-  --                       |    |- axi_cdma_pulse_gen.vhd
-  --                       |- axi_cdma_sf.vhd
-  --                       |    |- axi_cdma_sfifo_autord.vhd
-  --                       |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
-  --                       |    |- proc_common_v4_0.srl_fifo_f.vhd
-  --   (helper lib)        |- axi_sg_v4_1.axi_sg.vhd
-  --   (helper lib)        |- axi_datamover_v5_1.axi_datamover.vhd
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  -- Revision:        $Revision: 1.1.2.5 $
-  -- Date:            $10/15/2010$
-  --
-  -- History:
-  --   DET   10/15/2010       Initial Version
-  --
-  --
-  --     DET     10/18/2010     V3_00_a for 13.1
-  -- ~~~~~~
-  --    -- Per CR578972
-  --     - Rolled core version to v3_00_a
-  -- ^^^^^^
-  --
-  --     DET     11/22/2010     V3_00_a for 13.1
-  -- ~~~~~~
-  --    -- Per CR583930
-  --     - Changed the name of the C_ADDR_PIPE_DEPTH to C_WR_ADDR_PIPE_DEPTH
-  -- ^^^^^^
-  --
-  --     DET     11/22/2010     Initial
-  -- ~~~~~~
-  --     - Switched to an explicit SRL FIFO for the LEN FIFO.
-  -- ^^^^^^
-  --
-  --     DET     2/16/2011     v3_01_a for EDK 13.2
-  -- ~~~~~~
-  --     - Rolled version to v3_01_a.
-  -- ^^^^^^
-  --
-  --     DET     4/5/2011     EDK 13.2
-  -- ~~~~~~
-  --    -- Per CR604977
-  --     - Fixed the Read Address posting threshold calculation logic. The 
-  --       correction was put in the function funct_get_stall_thresh where the 
-  --       final result (var_stall_thresh) needed to be divided by the max 
-  --       burst length.
-  -- ^^^^^^
-  --
-  --     DET     4/7/2011     EDK 13.2
-  -- ~~~~~~
-  --    -- Per CR605334
-  --     - Modified the Write address posting control logic so that it 
-  --       doesn't throttle the read input side when the LEN fifo goes empty.
-  --       
-  -- ^^^^^^
-  --
   -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;
   use IEEE.numeric_std.all;
   
-  library proc_common_v4_0;
-  use proc_common_v4_0.proc_common_pkg.all;
-  use proc_common_v4_0.proc_common_pkg.clog2;
-  use proc_common_v4_0.srl_fifo_f;
+  library lib_pkg_v1_0;
+  use lib_pkg_v1_0.lib_pkg.all;
+  use lib_pkg_v1_0.lib_pkg.clog2;
+  library lib_srl_fifo_v1_0;
+  use lib_srl_fifo_v1_0.srl_fifo_f;
   
  
 
@@ -1255,7 +1168,7 @@
    -- Implement the LEN FIFO using SRL FIFO elements    
    --
    ------------------------------------------------------------
-   I_WR_LEN_FIFO : entity proc_common_v4_0.srl_fifo_f
+   I_WR_LEN_FIFO : entity lib_srl_fifo_v1_0.srl_fifo_f
    generic map (
 
      C_DWIDTH      =>  WR_LEN_FIFO_DWIDTH   ,  

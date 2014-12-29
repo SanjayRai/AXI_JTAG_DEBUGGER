@@ -1,3 +1,23 @@
+2014.4:
+ * Version 3.0 (Rev. 5)
+ * Internal device family change, no functional changes
+ * Encrypted source files are concatenated together to reduce the number of files and to reduce simulator compile time
+
+2014.3:
+ * Version 3.0 (Rev. 4)
+ * activity generation bug fix
+
+2014.2:
+ * Version 3.0 (Rev. 3)
+ * simplified constraint defination
+ * Improved Distributed RAM usage
+
+2014.1:
+ * Version 3.0 (Rev. 2)
+ * Kintex UltraScale support
+ * xsdb stitching enhancements
+ * Internal device family name change, no functional changes
+
 2013.4:
  * Version 3.0 (Rev. 1)
  * Kintex UltraScale Pre-Production support
@@ -10,14 +30,14 @@
  * Version 2.0 (Rev. 1)
  * Improved support for multiple instances.
  * Improved Timing
- * Made the following package changes for XQ7A200: FB484 to RB484, FB676 to RB676, SB484 to RS484 and XQ7Z030: FB484 to RB484, Removed -2L support from the XQ7V690T and XQ7A, all to match silicon planning changes
+ * Made the following package changes for XQ7A200, 'FB484 to RB484, FB676 to RB676, SB484 to RS484 and XQ7Z030, FB484 to RB484, Removed -2L support from the XQ7V690T and XQ7A, all to match silicon planning changes'
 
 2013.1:
  * Version 2.0
  * Native Vivado Release
  * There have been no functional or interface changes to this IP.  The version number has changed to support unique versioning in Vivado starting with 2013.1.
 
-(c) Copyright 2000 - 2013 Xilinx, Inc. All rights reserved.
+(c) Copyright 2000 - 2014 Xilinx, Inc. All rights reserved.
 
 This file contains confidential and proprietary information
 of Xilinx, Inc. and is protected under U.S. and

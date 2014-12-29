@@ -1,4 +1,4 @@
-SET_FLAG MODE INTERACTIVE
+SET_FLAG MODE BATCH
 SET_FLAG STANDALONE_MODE TRUE
 SET_PREFERENCE ipi_mode no
 SET_PREFERENCE is_ip_locked false
@@ -9,16 +9,16 @@ SET_PREFERENCE package ffg900
 SET_PREFERENCE verilogsim true
 SET_PREFERENCE vhdlsim false
 SET_PREFERENCE designentry Verilog
-SET_PREFERENCE outputdirectory /home/sanjayr/projects/KC705/AXI_JTAG_DEBUGGER/IP/.Xil/Vivado-17672-centosMC/coregen/ddr3_kc705/_tmp/
-SET_PREFERENCE subworkingdirectory /home/sanjayr/projects/KC705/AXI_JTAG_DEBUGGER/IP/.Xil/Vivado-17672-centosMC/coregen/ddr3_kc705/_tmp/
+SET_PREFERENCE outputdirectory /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/_tmp/
+SET_PREFERENCE subworkingdirectory /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/_tmp/
 SET_PREFERENCE flowvendor Other
 SET_PREFERENCE tool vivado
 SET_PREFERENCE compnamestatus 0
 SET_PARAMETER component_name ddr3_kc705
-SET_PARAMETER xml_input_file /home/sanjayr/projects/KC705/AXI_JTAG_DEBUGGER/IP/ddr3_kc705/mig_a.prj
-SET_PARAMETER data_dir_path /home/applications/Xilinx/Vivado/2013.4/data/ip/xilinx/mig_7series_v2_0
+SET_PARAMETER xml_input_file /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/mig_b.prj
+SET_PARAMETER data_dir_path /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3
 SET_CORE_NAME Memory Interface Generator (MIG 7 Series)
-SET_CORE_VERSION 2.0
-SET_CORE_VLNV xilinx.com:ip:mig_7series:2.0
-SET_CORE_PATH /home/applications/Xilinx/Vivado/2013.4/data/ip/xilinx/mig_7series_v2_0
-SET_CORE_DATASHEET /home/applications/Xilinx/Vivado/2013.4/data/ip/xilinx/mig_7series_v2_0/data/docs/ds176_7series_MIS.pdf
+SET_CORE_VERSION 2.3
+SET_CORE_VLNV xilinx.com:ip:mig_7series:2.3
+SET_CORE_PATH /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3
+SET_CORE_DATASHEET /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3/data/docs/ds176_7series_MIS.pdf

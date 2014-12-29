@@ -302,7 +302,7 @@ module axi_data_fifo_v2_1_axi_data_fifo #
       assign m_axi_wid = (C_AXI_PROTOCOL == P_AXI3) ? m_axi_wid_i : {C_AXI_ID_WIDTH{1'b0}};
 
 
-      fifo_generator_v11_0 #(
+      fifo_generator_v12_0 #(
           .C_INTERFACE_TYPE(2),
           .C_AXI_TYPE((C_AXI_PROTOCOL == P_AXI4) ? 1 : 3),
           .C_AXI_DATA_WIDTH(C_AXI_DATA_WIDTH),
@@ -723,7 +723,10 @@ module axi_data_fifo_v2_1_axi_data_fifo #
           .wr_clk(1'b0),
           .wr_data_count(),
           .wr_en(1'b0),
-          .wr_rst(1'b0)
+          .wr_rst(1'b0),
+          .wr_rst_busy(),
+          .rd_rst_busy(),
+          .sleep(1'b0)
         );
     end
   endgenerate

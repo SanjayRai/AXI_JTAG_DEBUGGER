@@ -58,107 +58,6 @@
 --
 -- VHDL-Standard:   VHDL'93
 -------------------------------------------------------------------------------   
--- Structure:
---
---                  axi_cdma.vhd (v3_01_a)
---                   |
---    (helper lib)   |- proc_common_v4_0
---                   |
---                   |- axi_cdma_pkg.vhd
---                   |
---                   |- axi_cdma_simple_wrap.vhd
---                   |   |- axi_cdma_rst_module.vhd
---                   |   |    |- axi_cdma_pulse_gen.vhd
---                   |   |- axi_cdma_reg_module.vhd
---                   |   |    |- axi_cdma_lite_if.vhd
---                   |   |    |- axi_cdma_register.vhd
---                   |   |- axi_cdma_simple_cntlr.vhd
---                   |   |- axi_cdma_sf.vhd
---                   |   |    |- axi_cdma_sf.vhd
---                   |   |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
---                   |   |    |- proc_common_v4_0.srl_fifo_f.vhd
---   (helper lib)    |   |- axi_datamover_v5_1.axi_datamover.vhd
---                   |
---                   |- axi_cdma_sg_wrap.vhd
---                       |- axi_cdma_rst_module.vhd
---                       |    |- axi_cdma_pulse_gen.vhd
---                       |- axi_cdma_reg_module.vhd
---                       |    |- axi_cdma_lite_if.vhd
---                       |    |- axi_cdma_register.vhd
---                       |- axi_cdma_simple_cntlr.vhd
---                       |- axi_cdma_sg_cntlr.vhd
---                       |    |- axi_cdma_pulse_gen.vhd
---                       |- axi_cdma_sf.vhd
---                       |    |- axi_cdma_sfifo_autord.vhd
---                       |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
---                       |    |- proc_common_v4_0.srl_fifo_f.vhd
---   (helper lib)        |- axi_sg_v4_1.axi_sg.vhd
---   (helper lib)        |- axi_datamover_v5_1.axi_datamover.vhd
---
--------------------------------------------------------------------------------
--- Author:      DET
--- History:
---
---  DET     06/23/10    Initial Release
---
---     DET     7/13/2010     Initial
--- ~~~~~~
---    -- Per IR568287
---     - Masked off error assertion from the DataMover when the 
---       DataMover is being halted by the axi_cdma_sg_cntlr module.
--- ^^^^^^
---
---     DET     7/15/2010     Initial
--- ~~~~~~
---    -- Per IR568519
---     - Fixed an issue with premature CDMA Idle bit set assertion.
--- ^^^^^^
---
---     DET     7/19/2010     Initial
--- ~~~~~~
---    -- Per IR568789
---     - Added additional filtering in the SG Update Idle flag deassertion
---       to preclude premature Idle Set (EOF) assertion.
--- ^^^^^^
---
---     DET     7/19/2010     Initial
--- ~~~~~~
---    -- Per IR568796
---     - Added logic to request a SG descriptor queue flush if a SG error
---       occurs during a descriptor fetch or update.
--- ^^^^^^
---
---     DET     7/20/2010     Initial
--- ~~~~~~
---    -- Per IR568909
---     - Added Fetch Limit logic to stall fetches at a fixed limit. This
---       keeps the SG Update Queue from going full and causing a lockup.
--- ^^^^^^
---
---     DET     7/22/2010     Initial
--- ~~~~~~
---    -- Per IR569160
---     - Changed the Shutdown state machine to always issue a SG queue flush
---       on any detected error causing a shutdown.
--- ^^^^^^
---
---     DET     8/25/2010     v2_00_a for 12.4
--- ~~~~~~
---    -- Per IR573598
---     - Moved to v2_00_a version of axi cdma.
--- ^^^^^^
---
---     DET     10/18/2010     V3_00_a for 13.1
--- ~~~~~~
---    -- Per CR578972
---     - Rolled core version to v3_00_a
--- ^^^^^^
---
---     DET     2/16/2011     v3_01_a for EDK 13.2
--- ~~~~~~
---     - Rolled version to v3_01_a.
--- ^^^^^^
---
 -------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -166,8 +65,8 @@ use ieee.numeric_std.all;
 use ieee.std_logic_misc.all;
 
 
-library proc_common_v4_0;
-use proc_common_v4_0.proc_common_pkg.all;
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.all;
 
 
 library axi_cdma_v4_1;

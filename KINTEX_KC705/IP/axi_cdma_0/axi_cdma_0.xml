@@ -824,15 +824,15 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>775079889</spirit:value>
+            <spirit:value>68a96bc6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>3</spirit:value>
+            <spirit:value>4</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 05 00:11:46 UTC 2014</spirit:value>
+            <spirit:value>Mon Dec 29 18:17:15 UTC 2014</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>StaleAtRelink</spirit:name>
@@ -846,20 +846,71 @@
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
         <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_lib_srl_fifo_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_blk_mem_gen_8_2__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_fifo_generator_12_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_lib_fifo_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_axi_datamover_5_1__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_axi_sg_4_1__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>775079889</spirit:value>
+            <spirit:value>68a96bc6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>3</spirit:value>
+            <spirit:value>4</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 05 00:11:47 UTC 2014</spirit:value>
+            <spirit:value>Mon Dec 29 18:22:59 UTC 2014</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>StaleAtRelink</spirit:name>
+            <spirit:value>false</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_vhdlsynthesiswrapper</spirit:name>
+        <spirit:displayName>VHDL Synthesis Wrapper</spirit:displayName>
+        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
+        <spirit:language>vhdl</spirit:language>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>customizationCRC</spirit:name>
+            <spirit:value>68a96bc6</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>customizationCRCversion</spirit:name>
+            <spirit:value>4</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Mon Dec 29 18:22:59 UTC 2014</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>StaleAtRelink</spirit:name>
@@ -873,20 +924,68 @@
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
         <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_srl_fifo_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_fifo_generator_12_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_fifo_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_datamover_5_1__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_sg_4_1__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>70366874</spirit:value>
+            <spirit:value>204e76fc</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>3</spirit:value>
+            <spirit:value>4</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 05 00:11:47 UTC 2014</spirit:value>
+            <spirit:value>Mon Dec 29 18:21:56 UTC 2014</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>StaleAtRelink</spirit:name>
+            <spirit:value>false</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_vhdlsimulationwrapper</spirit:name>
+        <spirit:displayName>VHDL Simulation Wrapper</spirit:displayName>
+        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
+        <spirit:language>vhdl</spirit:language>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsimulationwrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>customizationCRC</spirit:name>
+            <spirit:value>204e76fc</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>customizationCRCversion</spirit:name>
+            <spirit:value>4</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Mon Dec 29 18:23:00 UTC 2014</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>StaleAtRelink</spirit:name>
@@ -904,15 +1003,15 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>775079889</spirit:value>
+            <spirit:value>68a96bc6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
-            <spirit:value>3</spirit:value>
+            <spirit:value>4</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 05 00:11:48 UTC 2014</spirit:value>
+            <spirit:value>Mon Dec 29 18:23:00 UTC 2014</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>StaleAtRelink</spirit:name>
@@ -937,6 +1036,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_aclk</spirit:name>
@@ -953,6 +1059,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_aresetn</spirit:name>
@@ -969,6 +1082,13 @@
             <spirit:defaultValue spirit:format="bitString" spirit:bitStringLength="1">1</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>cdma_introut</spirit:name>
@@ -982,6 +1102,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_awready</spirit:name>
@@ -995,6 +1122,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_awvalid</spirit:name>
@@ -1011,6 +1145,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_awaddr</spirit:name>
@@ -1031,6 +1172,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_wready</spirit:name>
@@ -1044,6 +1192,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_wvalid</spirit:name>
@@ -1060,6 +1215,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_wdata</spirit:name>
@@ -1077,6 +1239,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_bready</spirit:name>
@@ -1093,6 +1262,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_bvalid</spirit:name>
@@ -1106,6 +1282,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_bresp</spirit:name>
@@ -1123,6 +1306,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_arready</spirit:name>
@@ -1136,6 +1326,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_arvalid</spirit:name>
@@ -1152,6 +1349,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_araddr</spirit:name>
@@ -1172,6 +1376,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_rready</spirit:name>
@@ -1188,6 +1399,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_rvalid</spirit:name>
@@ -1201,6 +1419,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_rdata</spirit:name>
@@ -1218,6 +1443,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>s_axi_lite_rresp</spirit:name>
@@ -1235,6 +1467,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_arready</spirit:name>
@@ -1251,6 +1490,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_arvalid</spirit:name>
@@ -1264,6 +1510,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_araddr</spirit:name>
@@ -1281,6 +1534,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_arlen</spirit:name>
@@ -1298,6 +1558,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_arsize</spirit:name>
@@ -1315,6 +1582,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_arburst</spirit:name>
@@ -1332,6 +1606,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_arprot</spirit:name>
@@ -1349,6 +1630,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_arcache</spirit:name>
@@ -1366,6 +1654,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_rready</spirit:name>
@@ -1379,6 +1674,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_rvalid</spirit:name>
@@ -1395,6 +1697,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_rdata</spirit:name>
@@ -1415,6 +1724,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_rresp</spirit:name>
@@ -1435,6 +1751,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_rlast</spirit:name>
@@ -1451,6 +1774,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_awready</spirit:name>
@@ -1467,6 +1797,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_awvalid</spirit:name>
@@ -1480,6 +1817,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_awaddr</spirit:name>
@@ -1497,6 +1841,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_awlen</spirit:name>
@@ -1514,6 +1865,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_awsize</spirit:name>
@@ -1531,6 +1889,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_awburst</spirit:name>
@@ -1548,6 +1913,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_awprot</spirit:name>
@@ -1565,6 +1937,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_awcache</spirit:name>
@@ -1582,6 +1961,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_wready</spirit:name>
@@ -1598,6 +1984,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_wvalid</spirit:name>
@@ -1611,6 +2004,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_wdata</spirit:name>
@@ -1628,6 +2028,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_wstrb</spirit:name>
@@ -1645,6 +2052,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_wlast</spirit:name>
@@ -1658,6 +2072,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_bready</spirit:name>
@@ -1671,6 +2092,13 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_bvalid</spirit:name>
@@ -1687,6 +2115,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_bresp</spirit:name>
@@ -1707,6 +2142,13 @@
             <spirit:defaultValue>0</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled>true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
         <spirit:name>m_axi_sg_awready</spirit:name>
@@ -2448,7 +2890,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="Integer">
         <spirit:name>C_AXI_LITE_IS_ASYNC</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_AXI_LITE_IS_ASYNC" spirit:choiceRef="choices_0">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_AXI_LITE_IS_ASYNC" spirit:choiceRef="choices_7">0</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_M_AXI_ADDR_WIDTH</spirit:name>
@@ -2464,11 +2906,11 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_INCLUDE_DRE</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_INCLUDE_DRE" spirit:choiceRef="choices_1">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_INCLUDE_DRE" spirit:choiceRef="choices_8">0</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_USE_DATAMOVER_LITE</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_DATAMOVER_LITE" spirit:choiceRef="choices_2">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_DATAMOVER_LITE" spirit:choiceRef="choices_9">0</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="Integer">
         <spirit:name>C_READ_ADDR_PIPE_DEPTH</spirit:name>
@@ -2480,11 +2922,11 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_INCLUDE_SF</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_INCLUDE_SF" spirit:choiceRef="choices_3">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_INCLUDE_SF" spirit:choiceRef="choices_10">0</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_INCLUDE_SG</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_INCLUDE_SG" spirit:choiceRef="choices_4">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_INCLUDE_SG" spirit:choiceRef="choices_11">0</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_M_AXI_SG_ADDR_WIDTH</spirit:name>
@@ -2507,36 +2949,11 @@
   <spirit:choices>
     <spirit:choice>
       <spirit:name>choices_0</spirit:name>
-      <spirit:enumeration>0</spirit:enumeration>
-      <spirit:enumeration>1</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choices_1</spirit:name>
-      <spirit:enumeration>0</spirit:enumeration>
-      <spirit:enumeration>1</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choices_2</spirit:name>
-      <spirit:enumeration>0</spirit:enumeration>
-      <spirit:enumeration>1</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choices_3</spirit:name>
-      <spirit:enumeration>0</spirit:enumeration>
-      <spirit:enumeration>1</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choices_4</spirit:name>
-      <spirit:enumeration>0</spirit:enumeration>
-      <spirit:enumeration>1</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choices_5</spirit:name>
       <spirit:enumeration spirit:text="true">1</spirit:enumeration>
       <spirit:enumeration spirit:text="false">0</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
-      <spirit:name>choices_6</spirit:name>
+      <spirit:name>choices_1</spirit:name>
       <spirit:enumeration spirit:text="32">32</spirit:enumeration>
       <spirit:enumeration spirit:text="64">64</spirit:enumeration>
       <spirit:enumeration spirit:text="128">128</spirit:enumeration>
@@ -2545,7 +2962,7 @@
       <spirit:enumeration spirit:text="1024">1024</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
-      <spirit:name>choices_7</spirit:name>
+      <spirit:name>choices_2</spirit:name>
       <spirit:enumeration spirit:text="2">2</spirit:enumeration>
       <spirit:enumeration spirit:text="4">4</spirit:enumeration>
       <spirit:enumeration spirit:text="8">8</spirit:enumeration>
@@ -2555,24 +2972,49 @@
       <spirit:enumeration spirit:text="128">128</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
-      <spirit:name>choices_8</spirit:name>
+      <spirit:name>choices_3</spirit:name>
       <spirit:enumeration spirit:text="true">1</spirit:enumeration>
       <spirit:enumeration spirit:text="false">0</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choices_4</spirit:name>
+      <spirit:enumeration spirit:text="true">1</spirit:enumeration>
+      <spirit:enumeration spirit:text="false">0</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choices_5</spirit:name>
+      <spirit:enumeration spirit:text="true">1</spirit:enumeration>
+      <spirit:enumeration spirit:text="false">0</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choices_6</spirit:name>
+      <spirit:enumeration spirit:text="true">1</spirit:enumeration>
+      <spirit:enumeration spirit:text="false">0</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choices_7</spirit:name>
+      <spirit:enumeration>0</spirit:enumeration>
+      <spirit:enumeration>1</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choices_8</spirit:name>
+      <spirit:enumeration>0</spirit:enumeration>
+      <spirit:enumeration>1</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choices_9</spirit:name>
-      <spirit:enumeration spirit:text="true">1</spirit:enumeration>
-      <spirit:enumeration spirit:text="false">0</spirit:enumeration>
+      <spirit:enumeration>0</spirit:enumeration>
+      <spirit:enumeration>1</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choices_10</spirit:name>
-      <spirit:enumeration spirit:text="true">1</spirit:enumeration>
-      <spirit:enumeration spirit:text="false">0</spirit:enumeration>
+      <spirit:enumeration>0</spirit:enumeration>
+      <spirit:enumeration>1</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choices_11</spirit:name>
-      <spirit:enumeration spirit:text="true">1</spirit:enumeration>
-      <spirit:enumeration spirit:text="false">0</spirit:enumeration>
+      <spirit:enumeration>0</spirit:enumeration>
+      <spirit:enumeration>1</spirit:enumeration>
     </spirit:choice>
   </spirit:choices>
   <spirit:fileSets>
@@ -2585,1116 +3027,6 @@
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlsynthesis_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1_synth_comp.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1_defaults.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_getinit_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_min_area_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_bindec.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_mux.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_prim_wrapper.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_prim_wrapper_init.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_prim_width.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_generic_cstr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_ecc_encoder.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_ecc_decoder.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_input_block.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_output_block.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_axi_read_fsm.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_axi_read_wrapper.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_axi_write_fsm.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_axi_write_wrapper.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_axi_regs_fwd.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_top.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1_synth.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/fifo_generator_v11_0_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/fifo_generator_v11_0_defaults.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/bram_sync_reg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/bram_fifo_rstlogic.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/common/input_blk.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/common/output_blk.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/common/synchronizer_ff.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/common/shft_wrapper.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/common/shft_ram.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/dmem.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/memory.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/compare.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_bin_cntr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_bin_cntr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/updn_cntr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_status_flags_as.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_status_flags_ss.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/common/rd_pe_as.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/common/rd_pe_ss.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_handshaking_flags.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_dc_as.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_dc_fwft_ext_as.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/dc_ss.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/dc_ss_fwft.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_fwft.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_logic.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_logic_pkt_fifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/reset_blk_ramfifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/clk_x_pntrs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_status_flags_as.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_status_flags_ss.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/common/wr_pf_as.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/common/wr_pf_ss.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_handshaking_flags.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_dc_as.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_dc_fwft_ext_as.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_logic.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_logic_pkt_fifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_status_flags_sshft.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_status_flags_sshft.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/wr_pf_sshft.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/rd_pe_sshft.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/logic_sshft.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/async_fifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/fifo_generator_ramfifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/fifo_generator_v11_0_comps_builtin.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/delay.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/clk_x_pntrs_builtin.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/bin_cntr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/logic_builtin.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/reset_builtin.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/builtin_prim.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/builtin_extdepth.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/builtin_top.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/builtin_prim_v6.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/builtin_extdepth_v6.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/builtin_extdepth_low_latency.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/builtin_top_v6.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/builtin/fifo_generator_v11_0_builtin.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/fifo_generator_top.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/ramfifo/axi_reg_slice.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/fifo_generator_v11_0_synth.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>fifo_generator_v11_0/fifo_generator_v11_0.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/family.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/family_support.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/coregen_comp_defs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/common_types_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/proc_common_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/conv_funs_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ipif_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/async_fifo_fg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/sync_fifo_fg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/basic_sfifo_fg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/blk_mem_gen_wrapper.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/addsub.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/counter_bit.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/counter.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/direct_path_cntr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/direct_path_cntr_ai.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/down_counter.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/eval_timer.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/inferred_lut4.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ipif_steer.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ipif_steer128.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ipif_mirror128.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ld_arith_reg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ld_arith_reg2.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/mux_onehot.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_bits.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_muxcy.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_gate.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_gate128.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_adder_bit.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_adder.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_counter_bit.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_counter.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_counter_top.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_occ_counter.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_occ_counter_top.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_dpram_select.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pselect.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pselect_mask.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl16_fifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo2.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo3.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo_rbu.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/valid_be.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_with_enable_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/muxf_struct_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/cntr_incr_decr_addn_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/dynshreg_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/dynshreg_i_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/mux_onehot_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo_rbu_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/compare_vectors_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pselect_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/counter_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_muxcy_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_gate_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/soft_reset.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/cdc_sync.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_reset.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_afifo_autord.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_sfifo_autord.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_fifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_cmd_status.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_scc.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_strb_gen2.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_pcc.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_addr_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_rdmux.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_rddata_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_rd_status_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_wr_demux.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_wrdata_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_wr_status_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_skid2mm_buf.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_skid_buf.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_rd_sf.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_wr_sf.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_stbs_set.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_stbs_set_nodre.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_ibttcc.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_indet_btt.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_dre_mux2_1_x_n.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_dre_mux4_1_x_n.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_dre_mux8_1_x_n.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mm2s_dre.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_dre.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_ms_strb_set.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mssai_skid_buf.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_slice.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_scatter.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_realign.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_basic_wrap.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_omit_wrap.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_full_wrap.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mm2s_basic_wrap.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mm2s_omit_wrap.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mm2s_full_wrap.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_reset.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_sfifo_autord.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_afifo_autord.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_fifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_cmd_status.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_rdmux.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_addr_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_rddata_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_rd_status_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_scc.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_wr_demux.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_scc_wr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_skid2mm_buf.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_wrdata_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_wr_status_cntl.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_skid_buf.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_mm2s_basic_wrap.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_s2mm_basic_wrap.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_datamover.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_sm.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_pntr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_cmdsts_if.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_mngr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_cntrl_strm.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_queue.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_noqueue.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_q_mngr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_cmdsts_if.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_sm.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_mngr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_queue.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_noqueue.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_q_mngr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_intrpt.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
-      </spirit:file>
       <spirit:file>
         <spirit:name>axi_cdma_0_ooc.xdc</spirit:name>
         <spirit:userFileType>xdc</spirit:userFileType>
@@ -3771,324 +3103,129 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>axi_cdma_v4_1</spirit:logicalName>
       </spirit:file>
-      <spirit:file>
-        <spirit:name>synth/axi_cdma_0.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>work</spirit:logicalName>
-      </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
-      <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>blk_mem_gen_v8_1/simulation/blk_mem_gen_v8_1.vhd</spirit:name>
+        <spirit:name>lib_pkg_v1_0/hdl/src/vhdl/lib_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
+        <spirit:logicalName>lib_pkg_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_pkg" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="01a3f573">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_srl_fifo_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>lib_srl_fifo_v1_0/hdl/src/vhdl/cntr_incr_decr_addn_f.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_srl_fifo_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>fifo_generator_v11_0/simulation/fifo_generator_v11_0.vhd</spirit:name>
+        <spirit:name>lib_srl_fifo_v1_0/hdl/src/vhdl/dynshreg_f.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
+        <spirit:logicalName>lib_srl_fifo_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/family.vhd</spirit:name>
+        <spirit:name>lib_srl_fifo_v1_0/hdl/src/vhdl/srl_fifo_rbu_f.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
+        <spirit:logicalName>lib_srl_fifo_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/family_support.vhd</spirit:name>
+        <spirit:name>lib_srl_fifo_v1_0/hdl/src/vhdl/srl_fifo_f.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
+        <spirit:logicalName>lib_srl_fifo_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_srl_fifo" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="b9c355a1">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_blk_mem_gen_8_2__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>blk_mem_gen_v8_2/hdl/blk_mem_gen_v8_2_vhsyn_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>blk_mem_gen_v8_2</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/coregen_comp_defs.vhd</spirit:name>
+        <spirit:name>blk_mem_gen_v8_2/hdl/blk_mem_gen_v8_2.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
+        <spirit:logicalName>blk_mem_gen_v8_2</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="blk_mem_gen" xilinx:version="8.2" xilinx:isGenerated="true" xilinx:checksum="deecd0e3">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_fifo_generator_12_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>fifo_generator_v12_0/hdl/fifo_generator_v12_0_vhsyn_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>fifo_generator_v12_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/common_types_pkg.vhd</spirit:name>
+        <spirit:name>fifo_generator_v12_0/hdl/fifo_generator_v12_0.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
+        <spirit:logicalName>fifo_generator_v12_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="fifo_generator" xilinx:version="12.0" xilinx:isGenerated="true" xilinx:checksum="53715bf2">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_fifo_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>lib_fifo_v1_0/hdl/src/vhdl/async_fifo_fg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_fifo_v1_0</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/proc_common_pkg.vhd</spirit:name>
+        <spirit:name>lib_fifo_v1_0/hdl/src/vhdl/sync_fifo_fg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
+        <spirit:logicalName>lib_fifo_v1_0</spirit:logicalName>
       </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_fifo" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="f4adf60b">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/conv_funs_pkg.vhd</spirit:name>
+        <spirit:name>lib_cdc_v1_0/hdl/src/vhdl/cdc_sync.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
+        <spirit:logicalName>lib_cdc_v1_0</spirit:logicalName>
       </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ipif_pkg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/async_fifo_fg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/sync_fifo_fg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/basic_sfifo_fg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/blk_mem_gen_wrapper.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/addsub.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/counter_bit.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/counter.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/direct_path_cntr.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/direct_path_cntr_ai.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/down_counter.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/eval_timer.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/inferred_lut4.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ipif_steer.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ipif_steer128.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ipif_mirror128.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ld_arith_reg.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/ld_arith_reg2.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/mux_onehot.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_bits.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_muxcy.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_gate.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_gate128.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_adder_bit.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_adder.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_counter_bit.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_counter.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_counter_top.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_occ_counter.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_occ_counter_top.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pf_dpram_select.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pselect.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pselect_mask.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl16_fifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo2.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo3.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo_rbu.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/valid_be.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_with_enable_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/muxf_struct_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/cntr_incr_decr_addn_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/dynshreg_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/dynshreg_i_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/mux_onehot_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo_rbu_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/srl_fifo_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/compare_vectors_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/pselect_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/counter_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_muxcy_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/or_gate_f.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/soft_reset.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>proc_common_v4_0/hdl/src/vhdl/cdc_sync.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>proc_common_v4_0</spirit:logicalName>
-      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_cdc" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="a0892d0e">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_axi_datamover_5_1__ref_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_reset.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
@@ -4289,6 +3426,16 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
       </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_datamover" xilinx:version="5.1" xilinx:isGenerated="true" xilinx:checksum="cbda75e3">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_axi_sg_4_1__ref_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
@@ -4469,6 +3616,24 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
       </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_sg" xilinx:version="4.1" xilinx:isGenerated="true" xilinx:checksum="e0e4067a">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>synth/axi_cdma_0.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>axi_cdma_v4_1/hdl/src/vhdl/axi_cdma_pkg.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
@@ -4534,10 +3699,508 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>axi_cdma_v4_1</spirit:logicalName>
       </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>lib_pkg_v1_0/hdl/src/vhdl/lib_pkg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_pkg_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_pkg" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="01a3f573">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_srl_fifo_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>lib_srl_fifo_v1_0/hdl/src/vhdl/cntr_incr_decr_addn_f.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_srl_fifo_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>lib_srl_fifo_v1_0/hdl/src/vhdl/dynshreg_f.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_srl_fifo_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>lib_srl_fifo_v1_0/hdl/src/vhdl/srl_fifo_rbu_f.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_srl_fifo_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>lib_srl_fifo_v1_0/hdl/src/vhdl/srl_fifo_f.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_srl_fifo_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_srl_fifo" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="b9c355a1">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_fifo_generator_12_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>fifo_generator_v12_0/hdl/fifo_generator_v12_0_vh_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>fifo_generator_v12_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="fifo_generator" xilinx:version="12.0" xilinx:isGenerated="true" xilinx:checksum="c9094e1b">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_fifo_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>lib_fifo_v1_0/hdl/src/vhdl/async_fifo_fg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_fifo_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>lib_fifo_v1_0/hdl/src/vhdl/sync_fifo_fg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_fifo_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_fifo" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="f4adf60b">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>lib_cdc_v1_0/hdl/src/vhdl/cdc_sync.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_cdc_v1_0</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_cdc" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="a0892d0e">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_datamover_5_1__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_reset.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_afifo_autord.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_sfifo_autord.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_fifo.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_cmd_status.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_scc.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_strb_gen2.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_pcc.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_addr_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_rdmux.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_rddata_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_rd_status_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_wr_demux.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_wrdata_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_wr_status_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_skid2mm_buf.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_skid_buf.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_rd_sf.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_wr_sf.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_stbs_set.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_stbs_set_nodre.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_ibttcc.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_indet_btt.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_dre_mux2_1_x_n.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_dre_mux4_1_x_n.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_dre_mux8_1_x_n.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mm2s_dre.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_dre.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_ms_strb_set.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mssai_skid_buf.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_slice.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_scatter.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_realign.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_basic_wrap.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_omit_wrap.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_s2mm_full_wrap.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mm2s_basic_wrap.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mm2s_omit_wrap.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover_mm2s_full_wrap.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_datamover_v5_1/hdl/src/vhdl/axi_datamover.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_datamover" xilinx:version="5.1" xilinx:isGenerated="true" xilinx:checksum="69d32d52">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_sg_4_1__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_pkg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_reset.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_sfifo_autord.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_afifo_autord.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_fifo.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_cmd_status.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_rdmux.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_addr_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_rddata_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_rd_status_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_scc.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_wr_demux.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_scc_wr.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_skid2mm_buf.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_wrdata_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_wr_status_cntl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_skid_buf.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_mm2s_basic_wrap.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_s2mm_basic_wrap.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_datamover.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_sm.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_pntr.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_cmdsts_if.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_mngr.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_cntrl_strm.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_queue.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_noqueue.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_ftch_q_mngr.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_cmdsts_if.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_sm.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_mngr.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_queue.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_noqueue.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_updt_q_mngr.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg_intrpt.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>axi_sg_v4_1/hdl/src/vhdl/axi_sg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_sg" xilinx:version="4.1" xilinx:isGenerated="true" xilinx:checksum="e0e4067a">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsimulationwrapper_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>sim/axi_cdma_0.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>work</spirit:logicalName>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -4557,7 +4220,8 @@
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent">false</xilinx:isEnabled>
+            <xilinx:presence>optional</xilinx:presence>
+            <xilinx:isEnabled xilinx:resolve="dependent">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
@@ -4566,7 +4230,7 @@
       <spirit:name>C_AXI_LITE_IS_ASYNC</spirit:name>
       <spirit:displayName>Enable Asynchronous Clocks</spirit:displayName>
       <spirit:description>Select this checkbox when the clocks are different.</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_AXI_LITE_IS_ASYNC" spirit:choiceRef="choices_5" spirit:order="100">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_AXI_LITE_IS_ASYNC" spirit:choiceRef="choices_0" spirit:order="100">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4580,7 +4244,7 @@
       <spirit:name>C_M_AXI_DATA_WIDTH</spirit:name>
       <spirit:displayName>Data Width</spirit:displayName>
       <spirit:description>Select the width of the data bus.</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_M_AXI_DATA_WIDTH" spirit:choiceRef="choices_6" spirit:order="500">256</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_M_AXI_DATA_WIDTH" spirit:choiceRef="choices_1" spirit:order="500">256</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4594,7 +4258,7 @@
       <spirit:name>C_M_AXI_MAX_BURST_LEN</spirit:name>
       <spirit:displayName>Maximum Burst Length</spirit:displayName>
       <spirit:description>Select the Max Burst Length for read and write operation.</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_M_AXI_MAX_BURST_LEN" spirit:choiceRef="choices_7" spirit:order="600">128</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_M_AXI_MAX_BURST_LEN" spirit:choiceRef="choices_2" spirit:order="600">128</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4608,7 +4272,7 @@
       <spirit:name>C_USE_DATAMOVER_LITE</spirit:name>
       <spirit:displayName>Disable 4K Boundary Check</spirit:displayName>
       <spirit:description>This would deliver a small footprint of CDMA.</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_DATAMOVER_LITE" spirit:choiceRef="choices_8" spirit:order="200">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_DATAMOVER_LITE" spirit:choiceRef="choices_3" spirit:order="200">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4622,7 +4286,7 @@
       <spirit:name>C_INCLUDE_DRE</spirit:name>
       <spirit:displayName>Enable Data Realignment</spirit:displayName>
       <spirit:description>Checking this will enable the user to address the memory with unaligned address. This would infer more logic.</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_INCLUDE_DRE" spirit:choiceRef="choices_9" spirit:order="400">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_INCLUDE_DRE" spirit:choiceRef="choices_4" spirit:order="400">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4661,7 +4325,7 @@
     <spirit:parameter>
       <spirit:name>C_INCLUDE_SF</spirit:name>
       <spirit:displayName>Enable CDMA Store and Forward Functionality</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_INCLUDE_SF" spirit:choiceRef="choices_10" spirit:order="1100">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_INCLUDE_SF" spirit:choiceRef="choices_5" spirit:order="1100">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4675,7 +4339,7 @@
       <spirit:name>C_INCLUDE_SG</spirit:name>
       <spirit:displayName>Enable CDMA Scatter Gather Support</spirit:displayName>
       <spirit:description>Enabling Scatter Gather improves the performance to a large extent by fetching and queuing more descriptors.</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_INCLUDE_SG" spirit:choiceRef="choices_11" spirit:order="70">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_INCLUDE_SG" spirit:choiceRef="choices_6" spirit:order="70">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -4721,14 +4385,14 @@
         <xilinx:family xilinx:lifeCycle="Production">azynq</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">kintex7</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">kintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Pre-Production">kintex8</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Pre-Production">kintexu</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qartix7</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qkintex7</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qkintex7l</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qvirtex7</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qzynq</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">virtex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Beta">virtex8</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Pre-Production">virtexu</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">zynq</xilinx:family>
       </xilinx:supportedFamilies>
       <xilinx:taxonomies>
@@ -4737,7 +4401,7 @@
       </xilinx:taxonomies>
       <xilinx:displayName>AXI Central Direct Memory Access</xilinx:displayName>
       <xilinx:vendorURL>http://www.xilinx.com</xilinx:vendorURL>
-      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:coreRevision>4</xilinx:coreRevision>
       <xilinx:paymentRequired>false</xilinx:paymentRequired>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>xilinx.com:ip:axi_cdma:4.0</xilinx:canUpgradeFrom>
@@ -4745,10 +4409,16 @@
         <xilinx:canUpgradeFrom>xilinx.com:ip:axi_cdma:3.03.a</xilinx:canUpgradeFrom>
         <xilinx:canUpgradeFrom>xilinx.com:ip:axi_cdma:3.02.a</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2013-12-02T19:25:50Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2014-11-18T07:58:54Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2013.4</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2014.4</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="1c3b71e2"/>
+      <xilinx:checksum xilinx:scope="addressSpaces" xilinx:value="52cf1cb9"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d3c614e3"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="f6033961"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="1c88e35f"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="17dd9436"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

@@ -62,9 +62,8 @@ use ieee.std_logic_misc.all;
 library axi_sg_v4_1;
 use axi_sg_v4_1.axi_sg_pkg.all;
 
-library proc_common_v4_0;
-use proc_common_v4_0.sync_fifo_fg;
-use proc_common_v4_0.proc_common_pkg.all;
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.all;
 
 -------------------------------------------------------------------------------
 entity  axi_sg_updt_q_mngr is

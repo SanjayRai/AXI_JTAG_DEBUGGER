@@ -58,102 +58,6 @@
 --
 -- VHDL-Standard:   VHDL'93
 -------------------------------------------------------------------------------
--- Structure:
---
---                  axi_cdma.vhd (v3_01_a)
---                   |
---    (helper lib)   |- proc_common_v4_0
---                   |
---                   |- axi_cdma_pkg.vhd
---                   |
---                   |- axi_cdma_simple_wrap.vhd
---                   |   |- axi_cdma_rst_module.vhd
---                   |   |    |- axi_cdma_pulse_gen.vhd
---                   |   |- axi_cdma_reg_module.vhd
---                   |   |    |- axi_cdma_lite_if.vhd
---                   |   |    |- axi_cdma_register.vhd
---                   |   |- axi_cdma_simple_cntlr.vhd
---                   |   |- axi_cdma_sf.vhd
---                   |   |    |- axi_cdma_sf.vhd
---                   |   |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
---                   |   |    |- proc_common_v4_0.srl_fifo_f.vhd
---   (helper lib)    |   |- axi_datamover_v5_1.axi_datamover.vhd
---                   |
---                   |- axi_cdma_sg_wrap.vhd
---                       |- axi_cdma_rst_module.vhd
---                       |    |- axi_cdma_pulse_gen.vhd
---                       |- axi_cdma_reg_module.vhd
---                       |    |- axi_cdma_lite_if.vhd
---                       |    |- axi_cdma_register.vhd
---                       |- axi_cdma_simple_cntlr.vhd
---                       |- axi_cdma_sg_cntlr.vhd
---                       |    |- axi_cdma_pulse_gen.vhd
---                       |- axi_cdma_sf.vhd
---                       |    |- axi_cdma_sfifo_autord.vhd
---                       |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
---                       |    |- proc_common_v4_0.srl_fifo_f.vhd
---   (helper lib)        |- axi_sg_v4_1.axi_sg.vhd
---   (helper lib)        |- axi_datamover_v5_1.axi_datamover.vhd
---
--------------------------------------------------------------------------------
--- Author:      DET
--- History:
---
---  DET     06/05/10    Initial Release
---
---
---     DET     8/25/2010     v2_00_a for 12.4
--- ~~~~~~
---    -- Per IR573598
---     - Moved to v2_00_a version of axi cdma.
--- ^^^^^^
---
---     DET     11/05/2010     V3_00_a for 13.1
--- ~~~~~~
---    -- Per CR578972
---     - Rolled core version to v3_00_a.
---     - Added the C_AXI_LITE_IS_ASYNC parameter.
---     - Added the axi_lite_aclk and axi_lite_resetn input ports.
---     - Added the Asyn AXI Lite clock and reset logic. 
--- ^^^^^^
---
---     DET     11/16/2010     V3_00_a for 13.1
--- ~~~~~~
---    -- Per CR582962
---     - The signal sig_local_hw_reset_reg was stuck asserted in async mode.
--- ^^^^^^
---
---     DET     11/19/2010     v3_00_a for EDK 13.1
--- ~~~~~~
---    -- Per CR583087
---     - Renamed the rst2lite_reset to rst2lite_bside_reset.
---     - Added the rst2lite_cside_reset port to allow inhibiting the 
---       reset of the core side logic as a result of a soft reset sequence. 
---     - Added logic to generate the signalling for the rst2lite_cside_reset
---       output port. 
--- ^^^^^^
---
---     DET     11/29/2010     V3_00_a for EDK 13.1
--- ~~~~~~
---    -- Per CR584644
---     - Added logic to extend the internal HW reset derived from the async AXI
---       Lite reset to be as long as the reset is asserted but still assure a
---       minimum assertion width internally.  
--- ^^^^^^
---
---     DET     2/16/2011     v3_01_a for EDK 13.2
--- ~~~~~~
---     - Rolled version to v3_01_a.
--- ^^^^^^
---
---     DET     4/8/2011     EDK 13.2
--- ~~~~~~
---    -- Per CR605534
---     - Changed the Async AXI Lite reset logic to ensure that the Bus Side 
---       reset of the AXI Lite interface block always comes out of reset
---       after the internal CDMA side does.
--- ^^^^^^
---
 -------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -165,7 +69,7 @@ library axi_cdma_v4_1;
 use axi_cdma_v4_1.axi_cdma_pulse_gen;
 use axi_cdma_v4_1.axi_cdma_pkg.all;
 
-library proc_common_v4_0;
+library lib_cdc_v1_0;
 
 -------------------------------------------------------------------------------
 entity  axi_cdma_reset is
@@ -704,7 +608,7 @@ begin
        -- AXi clock domain.
        --
        -------------------------------------------------------------
-IMP_ALITE_RST_RESYNC : entity  proc_common_v4_0.cdc_sync
+IMP_ALITE_RST_RESYNC : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -792,7 +696,7 @@ IMP_ALITE_RST_RESYNC : entity  proc_common_v4_0.cdc_sync
        --
        -------------------------------------------------------------
 
-IMP_AXI2LITE_RSYNC : entity  proc_common_v4_0.cdc_sync
+IMP_AXI2LITE_RSYNC : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -845,7 +749,7 @@ IMP_AXI2LITE_RSYNC : entity  proc_common_v4_0.cdc_sync
        --
        -------------------------------------------------------------
 
-IMP_AXI_LITE_DELAY : entity  proc_common_v4_0.cdc_sync
+IMP_AXI_LITE_DELAY : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,

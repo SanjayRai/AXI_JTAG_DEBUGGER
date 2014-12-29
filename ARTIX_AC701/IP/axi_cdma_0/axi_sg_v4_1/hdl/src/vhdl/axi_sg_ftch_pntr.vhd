@@ -142,7 +142,8 @@ entity  axi_sg_ftch_pntr is
         -- Current address of descriptor to fetch                                              --
         ch2_fetch_address           : out std_logic_vector                                     --
                                         (C_M_AXI_SG_ADDR_WIDTH-1 downto 0)  ;                  --
-        ch2_sg_idle                 : out std_logic                                            --
+        ch2_sg_idle                 : out std_logic                         ;                   --
+        bd_eq                       : out std_logic
     );
 
 end axi_sg_ftch_pntr;
@@ -413,6 +414,23 @@ begin
             end if;
         end process TAILUPDT_LATCH;
 
+    EQUAL_BD : process(m_axi_sg_aclk)
+        begin
+            if(m_axi_sg_aclk'EVENT and m_axi_sg_aclk = '1')then
+                if(m_axi_sg_aresetn = '0' or ch2_run_stop = '0' or ch2_desc_flush = '1')then
+                    bd_eq <= '0';
+
+                elsif(ch2_taildesc_wren = '1' or ch2_tailpntr_enabled = '0')then
+                    bd_eq <= '0';
+
+                elsif(ch2_nxtdesc_wren = '1'
+                and ch2_taildesc = ch2_fetch_address_i)then
+                    bd_eq <= '1';
+                end if;
+            end if;
+        end process EQUAL_BD;
+
+
 end generate GEN_PNTR_FOR_CH2;
 
 
@@ -422,6 +440,7 @@ begin
     ch2_fetch_address   <= (others =>'0');
     ch2_sg_idle         <= '0';
     tail_updt_latch <= '0';
+    bd_eq <= '0';
 end generate GEN_NO_PNTR_FOR_CH2;
 
 end implementation;

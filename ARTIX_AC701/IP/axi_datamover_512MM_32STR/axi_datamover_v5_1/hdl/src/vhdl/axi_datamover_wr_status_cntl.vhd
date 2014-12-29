@@ -63,26 +63,6 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:   
-  --              axi_datamover_wr_status_cntl.vhd
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  --
-  -- History:
-  --   DET   04/19/2011       Initial Version for EDK 13.3
-  --
-  --     DET     7/11/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --    -- Per CR616212
-  --     - Changed logic to force a coesc register push when a TLAST error is
-  --       reported by the Write Data Controller.
-  -- ^^^^^^
-  --
-  --
   -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;

@@ -63,30 +63,12 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:   
-  --              axi_datamover_reset.vhd
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  --
-  -- History:
-  --   DET   04/19/2011       Initial Version for EDK 13.3
-  -- 
-  --     DET     9/1/2011     Initial
-  -- ~~~~~~
-  --     - Corrected some CDC reported synchronizer issues for the async clock
-  --       mode of the command/status user interface.
-  -- ^^^^^^
-  --
   -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;
   use IEEE.numeric_std.all;
   
-  library proc_common_v4_0;  
+  library lib_cdc_v1_0;  
   -------------------------------------------------------------------------------
   
   entity axi_datamover_reset is
@@ -369,7 +351,7 @@
         -- the primary clock domain.
         --
         -------------------------------------------------------------
-SEC2PRIM_RST_SYNCRO : entity  proc_common_v4_0.cdc_sync
+SEC2PRIM_RST_SYNCRO : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -449,7 +431,7 @@ SEC2PRIM_RST_SYNCRO : entity  proc_common_v4_0.cdc_sync
 
          sig_secondary_aresetn_reg_tmp <= not(sig_secondary_aresetn_reg);
 
-SEC2PRIM_RST_SYNCRO_2 : entity  proc_common_v4_0.cdc_sync
+SEC2PRIM_RST_SYNCRO_2 : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,
@@ -531,7 +513,7 @@ SEC2PRIM_RST_SYNCRO_2 : entity  proc_common_v4_0.cdc_sync
         --
         -------------------------------------------------------------
 
-SYNC_PRIM2SEC_RST : entity  proc_common_v4_0.cdc_sync
+SYNC_PRIM2SEC_RST : entity  lib_cdc_v1_0.cdc_sync
     generic map (
         C_CDC_TYPE                 => 1,
         C_RESET_STATE              => 0,

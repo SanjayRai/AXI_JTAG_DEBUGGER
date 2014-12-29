@@ -1,16 +1,210 @@
-<?xml version="1.0"?>
-<!--Product Version: Vivado v2013.4 (64-bit)-->
-<Project Version="6" Minor="14" Path="/home/sanjayr/projects/KC705/AXI_JTAG_DEBUGGER/axi_jtag_debugger_IP_gen/vivado_project/jtag_axi_debugger_ip/jtag_axi_debugger_ip.xpr">
-	<FileSet Dir="sources_1" File="fileset.xml"/>
-	<FileSet Dir="constrs_1" File="fileset.xml"/>
-	<FileSet Dir="sim_1" File="fileset.xml"/>
-	<DefaultLaunch Dir="$PRUNDIR"/>
-	<Config>
-		<Option Name="Id" Val="97e76880f95a409e856396901096e384"/>
-		<Option Name="Part" Val="xc7k325tffg900-2"/>
-		<Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
-		<Option Name="Board" Val=""/>
-		<Option Name="ActiveSimSet" Val="sim_1"/>
-	</Config>
-</Project>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Product Version: Vivado v2014.4 (64-bit)              -->
+<!--                                                         -->
+<!-- Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.   -->
 
+<Project Version="7" Minor="2" Path="/mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/axi_jtag_debugger_IP_gen/vivado_project/jtag_axi_debugger_ip/jtag_axi_debugger_ip.xpr">
+  <DefaultLaunch Dir="$PRUNDIR"/>
+  <Configuration>
+    <Option Name="Id" Val="dd3e99af314e45a5aae13f4986c6ac62"/>
+    <Option Name="Part" Val="xc7k325tffg900-2"/>
+    <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
+    <Option Name="BoardPart" Val=""/>
+    <Option Name="ActiveSimSet" Val="sim_1"/>
+    <Option Name="DefaultLib" Val="xil_defaultlib"/>
+  </Configuration>
+  <FileSets Version="1" Minor="31">
+    <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+      <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/ip/jtag_axi_debug_fifo_x64/jtag_axi_debug_fifo_x64.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/jtag_axi_debug_fifo_x64/jtag_axi_debug_fifo_x64.xci"/>
+          <Attr Name="ImportTime" Val="1419877029"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/s2mm_data_gen.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../src/s2mm_data_gen.v"/>
+          <Attr Name="ImportTime" Val="1419806209"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/mm2s_data_consume.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../src/mm2s_data_consume.v"/>
+          <Attr Name="ImportTime" Val="1419806209"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/vio_axi_jtag_dbg/vio_axi_jtag_dbg.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/vio_axi_jtag_dbg/vio_axi_jtag_dbg.xci"/>
+          <Attr Name="ImportTime" Val="1419877057"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/stream_data.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../src/stream_data.v"/>
+          <Attr Name="ImportTime" Val="1419806209"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/axi_datamover_1024MM_32STR/axi_datamover_1024MM_32STR.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_1024MM_32STR/axi_datamover_1024MM_32STR.xci"/>
+          <Attr Name="ImportTime" Val="1419876982"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/axi_datamover_512MM_32STR/axi_datamover_512MM_32STR.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_512MM_32STR/axi_datamover_512MM_32STR.xci"/>
+          <Attr Name="ImportTime" Val="1419876993"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/axi_datamover_256MM_32STR/axi_datamover_256MM_32STR.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_256MM_32STR/axi_datamover_256MM_32STR.xci"/>
+          <Attr Name="ImportTime" Val="1419876989"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/axi_datamover_128MM_32STR/axi_datamover_128MM_32STR.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_128MM_32STR/axi_datamover_128MM_32STR.xci"/>
+          <Attr Name="ImportTime" Val="1419876985"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/axi_datamover_64MM_32STR/axi_datamover_64MM_32STR.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_64MM_32STR/axi_datamover_64MM_32STR.xci"/>
+          <Attr Name="ImportTime" Val="1419876996"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/axi_datamover_32MM_32STR/axi_datamover_32MM_32STR.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_datamover_32MM_32STR/axi_datamover_32MM_32STR.xci"/>
+          <Attr Name="ImportTime" Val="1419876908"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/axi_mm64_to_axi_lite64/axi_mm64_to_axi_lite64.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_mm64_to_axi_lite64/axi_mm64_to_axi_lite64.xci"/>
+          <Attr Name="ImportTime" Val="1419877003"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/axi_mm32_to_axi_lite32/axi_mm32_to_axi_lite32.xci">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../IP/axi_mm32_to_axi_lite32/axi_mm32_to_axi_lite32.xci"/>
+          <Attr Name="ImportTime" Val="1419877000"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/src/jtag_axi_debugger_ip.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../src/jtag_axi_debugger_ip.v"/>
+          <Attr Name="ImportTime" Val="1419806209"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../component.xml">
+        <FileInfo SFType="IPXACT"/>
+      </File>
+      <Config>
+        <Option Name="DesignMode" Val="RTL"/>
+        <Option Name="TopModule" Val="jtag_axi_debugger_ip"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+      <Filter Type="Constrs"/>
+      <Config>
+        <Option Name="ConstrsType" Val="XDC"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
+      <Config>
+        <Option Name="DesignMode" Val="RTL"/>
+        <Option Name="TopModule" Val="jtag_axi_debugger_ip"/>
+        <Option Name="TopLib" Val="xil_defaultlib"/>
+        <Option Name="TopAutoSet" Val="TRUE"/>
+        <Option Name="SrcSet" Val="sources_1"/>
+      </Config>
+    </FileSet>
+  </FileSets>
+  <Simulators>
+    <Simulator Name="XSim">
+      <Option Name="Description" Val="Vivado Simulator"/>
+      <Option Name="CompiledLib" Val="0"/>
+    </Simulator>
+    <Simulator Name="ModelSim">
+      <Option Name="Description" Val="QuestaSim/ModelSim Simulator"/>
+    </Simulator>
+    <Simulator Name="IES">
+      <Option Name="Description" Val="Incisive Enterprise Simulator (IES)"/>
+    </Simulator>
+    <Simulator Name="VCS">
+      <Option Name="Description" Val="Verilog Compiler Simulator (VCS)"/>
+    </Simulator>
+  </Simulators>
+  <Runs Version="1" Minor="9">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7k325tffg900-2" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" State="current">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2014">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+    </Run>
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="constrs_1" Description="Vivado Implementation Defaults" State="current" SynthRun="synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2014">
+          <Desc>Vivado Implementation Defaults</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+    </Run>
+  </Runs>
+</Project>

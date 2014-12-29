@@ -49,7 +49,7 @@
 ##   ____  ____
 ##  /   /\/   /
 ## /___/  \  /    Vendor             : Xilinx
-## \   \   \/     Version            : 2.0
+## \   \   \/     Version            : 2.3
 ##  \   \         Application        : MIG
 ##  /   /         Filename           : ies_run.sh
 ## /___/   /\     Date Last Modified : $Date: 2011/06/02 08:31:17 $
@@ -67,6 +67,35 @@
 ## Revision History :
 ###############################################################################
 
-#This design is simulated with IES 12.20.016 version
+#echo Simulation Tool: IES
 
-irun -sv -vhdlsync -v93 -nettype_port_relax -f ies_files.f -top sim_tb_top -top glbl
+#Compile the required libraries here#
+#libraries path#
+
+#Compile all modules#
+ncvlog -sv -work worklib -messages ../../../sources_1/imports/rtl/*.v >> ies_sim.log
+ncvlog -work worklib -messages -sv ../../../sources_1/imports/rtl/traffic_gen/*.v >> ies_sim.log
+ncvlog -sv -work worklib -messages ../../../sources_1/ip/mig_7series_ddr3_ac701/mig_7series_ddr3_ac701/user_design/rtl/mig_7series_ddr3_ac701.v >> ies_sim.log
+ncvlog -sv -work worklib -messages ../../../sources_1/ip/mig_7series_ddr3_ac701/mig_7series_ddr3_ac701/user_design/rtl/mig_7series_ddr3_ac701_mig_sim.v >> ies_sim.log
+ncvlog -work worklib -messages -sv ../../../sources_1/ip/mig_7series_ddr3_ac701/mig_7series_ddr3_ac701/user_design/rtl/clocking/*.v >> ies_sim.log
+ncvlog -work worklib -messages -sv ../../../sources_1/ip/mig_7series_ddr3_ac701/mig_7series_ddr3_ac701/user_design/rtl/controller/*.v >> ies_sim.log
+ncvlog -work worklib -messages -sv ../../../sources_1/ip/mig_7series_ddr3_ac701/mig_7series_ddr3_ac701/user_design/rtl/ecc/*.v >> ies_sim.log
+ncvlog -work worklib -messages -sv ../../../sources_1/ip/mig_7series_ddr3_ac701/mig_7series_ddr3_ac701/user_design/rtl/ip_top/*.v >> ies_sim.log
+ncvlog -work worklib -messages -sv ../../../sources_1/ip/mig_7series_ddr3_ac701/mig_7series_ddr3_ac701/user_design/rtl/phy/*.v >> ies_sim.log
+ncvlog -work worklib -messages -sv ../../../sources_1/ip/mig_7series_ddr3_ac701/mig_7series_ddr3_ac701/user_design/rtl/ui/*.v >> ies_sim.log
+ncvlog -sv -work worklib -messages ../../../sources_1/ip/mig_7series_ddr3_ac701/mig_7series_ddr3_ac701/user_design/rtl/axi/*.v >> ies_sim.log 
+
+
+#Compile files in sim folder (excluding model parameter file)#
+#$XILINX variable must be set
+ncvlog -work worklib -messages $XILINX_VIVADO/data/verilog/src/glbl.v >> ies_sim.log
+ncvlog -work worklib -messages wiredly.v >> ies_sim.log
+ncvlog -work worklib -messages sim_tb_top.v >> ies_sim.log
+
+#Pass the parameters for memory model parameter file#
+ncvlog -work worklib -messages -sv +define+x1Gb +define+sg125 +define+x8 ddr3_model.v >> ies_sim.log 
+
+#Simulate the design with sim_tb_top as the top module
+ncelab -namemap_mixgen -timescale '1ps/1ps' -vhdlsync -v93 -messages -nettype_port_relax -access +rwc sim_tb_top glbl >> ies_sim.log
+ncsim sim_tb_top >> ies_sim.log
+#echo done

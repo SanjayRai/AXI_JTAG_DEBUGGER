@@ -49,7 +49,7 @@
 ##   ____  ____
 ##  /   /\/   /
 ## /___/  \  /    Vendor             : Xilinx
-## \   \   \/     Version            : 2.0
+## \   \   \/     Version            : 2.3
 ##  \   \         Application	     : MIG
 ##  /   /         Filename           : xsim_options.tcl
 ## /___/   /\     Date Last Modified : $Date: 2011/06/02 08:31:16 $

@@ -49,7 +49,7 @@
 ##   ____  ____
 ##  /   /\/   /
 ## /___/  \  /    Vendor             : Xilinx
-## \   \   \/     Version            : 2.0
+## \   \   \/     Version            : 2.3
 ##  \   \         Application        : MIG
 ##  /   /         Filename           : vcs_run.sh
 ## /___/   /\     Date Last Modified : $Date: 2011/06/02 08:31:17 $
@@ -67,7 +67,35 @@
 ## Revision History :
 ###############################################################################
 
-#This design is simulated with VCS H-2013.06-3 version
 #echo Simulation Tool: VCS
-vcs -R -debug_pp -file vcs_files.f -l vcs_run.log
+
+#Compile the required libraries here#
+#libraries path#
+
+#Compile all modules#
+vlogan -sverilog ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ddr3_kc705.v >> vcs_sim.log
+vlogan -sverilog ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ddr3_kc705_mig_sim.v >> vcs_sim.log
+vlogan -sverilog ../../../sources_1/imports/rtl/*.v >> vcs_sim.log
+vlogan -sverilog ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/clocking/*.v >> vcs_sim.log
+vlogan -sverilog ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/controller/*.v >> vcs_sim.log
+vlogan -sverilog ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ecc/*.v >> vcs_sim.log
+vlogan -sverilog ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ip_top/*.v >> vcs_sim.log
+vlogan -sverilog ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/phy/*.v >> vcs_sim.log
+vlogan -sverilog ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/ui/*.v >> vcs_sim.log
+vlogan -sverilog ../../../sources_1/imports/rtl/traffic_gen/*.v >> vcs_sim.log
+
+vlogan -sverilog ../../../sources_1/ip/ddr3_kc705/ddr3_kc705/user_design/rtl/axi/*.v >> vcs_sim.log
+
+
+#Compile files in sim folder (excluding model parameter file)#
+#$XILINX variable must be set
+vlogan $XILINX_VIVADO/data/verilog/src/glbl.v >> vcs_sim.log
+vlogan -sverilog wiredly.v >> vcs_sim.log
+vlogan -sverilog sim_tb_top.v >> vcs_sim.log
+
+#Pass the parameters for memory model parameter file#
+vlogan -Xcheck_p1800_2009=char -sverilog +define+x1Gb +define+sg125 +define+x8 ddr3_model.v >> vcs_sim.log 
+
+#Simulate the design with sim_tb_top as the top module
+vcs -R -debug_pp -lca sim_tb_top glbl >> vcs_sim.log
 #echo done

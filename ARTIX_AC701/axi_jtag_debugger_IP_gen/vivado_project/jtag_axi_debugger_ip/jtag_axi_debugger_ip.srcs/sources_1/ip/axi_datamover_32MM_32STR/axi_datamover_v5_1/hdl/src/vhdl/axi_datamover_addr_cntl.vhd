@@ -63,34 +63,6 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:   
-  --              axi_datamover_addr_cntl.vhd
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  --
-  -- History:
-  --   DET   04/19/2011       Initial Version for EDK 13.3
-  --  
-  --
-  --     DET     9/1/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --     - Fixed Lint reported excesive line length for line 196. 
-  -- ^^^^^^
-  --
-  --     DET     9/1/2011     Initial Version for EDK 13.3
-  -- ~~~~~~
-  --     - Fixed a Lint reported issue with the vector widths of the addr2axi_aprot
-  --       assignment to the constant APROT_VALUE. The code was ok but Spyglass 
-  --       was not interpreting the vector MS Index correctly, I changed the HDL 
-  --       anyway.
-  -- ^^^^^^
-  --
-  --
-  -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;
   use IEEE.numeric_std.all;

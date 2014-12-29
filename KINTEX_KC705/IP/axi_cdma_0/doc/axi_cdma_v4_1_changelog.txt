@@ -1,3 +1,23 @@
+2014.4:
+ * Version 4.1 (Rev. 4)
+ * No changes
+
+2014.3:
+ * Version 4.1 (Rev. 4)
+ * AXI CDMA modified to use new sub-cores in place of proc_common
+ * No functional changes
+
+2014.2:
+ * Version 4.1 (Rev. 3)
+ * Example design XDC updated to remove the create_clock constraint
+ * No functional changes
+
+2014.1:
+ * Version 4.1 (Rev. 2)
+ * Example design updated to use blk_mem_gen_v8_2 and axi_traffic_gen_v2_0
+ * Internal device family name change, no functional changes
+ * Virtex UltraScale Pre-Production support
+
 2013.4:
  * Version 4.1 (Rev. 1)
  * Example design updated to use blk_mem_gen_v8_1
@@ -23,7 +43,7 @@
  * Native Vivado release
  * There have been no functional or interface changes to this IP.  The version number has changed to support unique versioning in Vivado starting with 2013.1.
 
-(c) Copyright 2011 - 2013 Xilinx, Inc. All rights reserved.
+(c) Copyright 2011 - 2014 Xilinx, Inc. All rights reserved.
 
 This file contains confidential and proprietary information
 of Xilinx, Inc. and is protected under U.S. and

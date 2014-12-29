@@ -65,9 +65,9 @@ use unisim.vcomponents.all;
 library axi_sg_v4_1;
 use axi_sg_v4_1.axi_sg_pkg.all;
 
-library proc_common_v4_0;
-use proc_common_v4_0.proc_common_pkg.clog2;
-use proc_common_v4_0.proc_common_pkg.max2;
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.clog2;
+use lib_pkg_v1_0.lib_pkg.max2;
 
 -------------------------------------------------------------------------------
 entity  axi_sg_intrpt is

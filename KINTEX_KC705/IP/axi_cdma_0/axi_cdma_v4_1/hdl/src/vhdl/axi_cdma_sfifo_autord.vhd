@@ -63,66 +63,6 @@
 --                  
 -- VHDL-Standard:   VHDL'93
 -------------------------------------------------------------------------------
--- Structure:
---
---                  axi_cdma.vhd (v3_01_a)
---                   |
---    (helper lib)   |- proc_common_v4_0
---                   |
---                   |- axi_cdma_pkg.vhd
---                   |
---                   |- axi_cdma_simple_wrap.vhd
---                   |   |- axi_cdma_rst_module.vhd
---                   |   |    |- axi_cdma_pulse_gen.vhd
---                   |   |- axi_cdma_reg_module.vhd
---                   |   |    |- axi_cdma_lite_if.vhd
---                   |   |    |- axi_cdma_register.vhd
---                   |   |- axi_cdma_simple_cntlr.vhd
---                   |   |- axi_cdma_sf.vhd
---                   |   |    |- axi_cdma_sf.vhd
---                   |   |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
---                   |   |    |- proc_common_v4_0.srl_fifo_f.vhd
---   (helper lib)    |   |- axi_datamover_v5_1.axi_datamover.vhd
---                   |
---                   |- axi_cdma_sg_wrap.vhd
---                       |- axi_cdma_rst_module.vhd
---                       |    |- axi_cdma_pulse_gen.vhd
---                       |- axi_cdma_reg_module.vhd
---                       |    |- axi_cdma_lite_if.vhd
---                       |    |- axi_cdma_register.vhd
---                       |- axi_cdma_simple_cntlr.vhd
---                       |- axi_cdma_sg_cntlr.vhd
---                       |    |- axi_cdma_pulse_gen.vhd
---                       |- axi_cdma_sf.vhd
---                       |    |- axi_cdma_sfifo_autord.vhd
---                       |    |    |- proc_common_v4_0.sync_fifo_fg.vhd
---                       |    |- proc_common_v4_0.srl_fifo_f.vhd
---   (helper lib)        |- axi_sg_v4_1.axi_sg.vhd
---   (helper lib)        |- axi_datamover_v5_1.axi_datamover.vhd
---
--------------------------------------------------------------------------------
--- Author:          DET
--- History:
---   DET           10/15/2010    First Version
---
---
---     DET     10/18/2010     V3_00_a for 13.1
--- ~~~~~~
---    -- Per CR578972
---     - Rolled core version to v3_00_a
--- ^^^^^^
---
---     DET     12/17/2010     V3_00_a for 13.1
--- ~~~~~~
---    -- Per CR587654
---     - Removed the range assignment for the raw_data_count_int signal.
--- ^^^^^^
---
---     DET     2/16/2011     v3_01_a for EDK 13.2
--- ~~~~~~
---     - Rolled version to v3_01_a.
--- ^^^^^^
---
 -------------------------------------------------------------------------------
 
 library IEEE;
@@ -130,8 +70,8 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
 
-library proc_common_v4_0;
-use proc_common_v4_0.sync_fifo_fg;
+library lib_fifo_v1_0;
+use lib_fifo_v1_0.sync_fifo_fg;
 
 
 -------------------------------------------------------------------------------
@@ -250,7 +190,7 @@ begin
     --  Instance for the synchronous fifo from proc common.   
     --
     ------------------------------------------------------------
-    I_SYNC_FIFOGEN_FIFO : entity proc_common_v4_0.sync_fifo_fg 
+    I_SYNC_FIFOGEN_FIFO : entity lib_fifo_v1_0.sync_fifo_fg 
       generic map(
          C_FAMILY             =>  C_FAMILY,        -- requred for FIFO Gen       
          C_DCOUNT_WIDTH       =>  C_DATA_CNT_WIDTH,     

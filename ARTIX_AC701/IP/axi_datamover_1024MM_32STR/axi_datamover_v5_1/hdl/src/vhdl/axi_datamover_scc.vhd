@@ -63,25 +63,6 @@
   --                  
   -- VHDL-Standard:   VHDL'93
   -------------------------------------------------------------------------------
-  -- Structure:   
-  --              axi_datamover_scc.vhd
-  --
-  -------------------------------------------------------------------------------
-  -- Revision History:
-  --
-  --
-  -- Author:          DET
-  --
-  -- History:
-  --   DET   04/19/2011       Initial Version for EDK 13.3
-  --  
-  --
-  --   PVK   9/16/2011     
-  --  ~~~~~
-  --     -- Removed unused signals from the sensitivity list and added missing 
-  --        signals to sensitivity list in SCC_SM_COMB process.
-  --  ^^^^^^^
-  --
   -------------------------------------------------------------------------------
   library IEEE;
   use IEEE.std_logic_1164.all;

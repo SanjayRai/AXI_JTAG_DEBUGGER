@@ -1,3 +1,26 @@
+2014.4:
+ * Version 5.1 (Rev. 5)
+ * AXI Datamover example design updated to handle some corner cases
+ * No functional changes
+
+2014.3:
+ * Version 5.1 (Rev. 4)
+ * AXI Datamover modified to use new sub-cores in place of proc_common
+ * GUI updated to fix propagation/update of MM2S and S2MM DRE parameters
+ * No functional changes
+
+2014.2:
+ * Version 5.1 (Rev. 3)
+ * Example design XDC updated to remove the create_clock constraint
+ * No functional changes
+
+2014.1:
+ * Version 5.1 (Rev. 2)
+ * ID Width related parameter have been made available in GUI
+ * Minor RTL update to improve timing
+ * Internal device family name change, no functional changes
+ * Virtex UltraScale Pre-Production support
+
 2013.4:
  * Version 5.1 (Rev. 1)
  * Kintex UltraScale Pre-Production support
@@ -23,7 +46,7 @@
  * Native Vivado release
  * There have been no functional or interface changes to this IP.  The version number has changed to support unique versioning in Vivado starting with 2013.1.
 
-(c) Copyright 2011 - 2013 Xilinx, Inc. All rights reserved.
+(c) Copyright 2011 - 2014 Xilinx, Inc. All rights reserved.
 
 This file contains confidential and proprietary information
 of Xilinx, Inc. and is protected under U.S. and

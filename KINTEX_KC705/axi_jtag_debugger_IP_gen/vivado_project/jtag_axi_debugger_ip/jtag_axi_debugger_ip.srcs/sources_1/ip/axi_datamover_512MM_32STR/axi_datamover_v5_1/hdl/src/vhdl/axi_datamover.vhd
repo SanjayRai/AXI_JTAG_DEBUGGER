@@ -63,53 +63,10 @@
 --                  
 -- VHDL-Standard:   VHDL'93
 -------------------------------------------------------------------------------
--- Structure:   
---              axi_datamover.vhd
---                 |
---                 |- axi_datamover_mm2s_omit_wrap.vhd
---                 |- axi_datamover_mm2s_full_wrap.vhd
---                 |- axi_datamover_mm2s_basic_wrap.vhd
---                 |
---                 |- axi_datamover_s2mm_omit_wrap.vhd
---                 |- axi_datamover_s2mm_full_wrap.vhd
---                 |- axi_datamover_s2mm_basic_wrap.vhd
---
---
--------------------------------------------------------------------------------
--- Revision History:
---
---
--- Author:          DET
---
--- History:
---   DET   04/19/2011       Initial Version for EDK 13.3
---
---     DET     6/2/2011     Initial Version for EDK 13.3
--- ~~~~~~
---     - Updated Burst limit and min BTT used calculations to account for 
---       the inclusion of upsizer/downsizer logic in the datapath.
--- ^^^^^^
---
---     DET     6/20/2011     Initial Version for EDK 13.3
--- ~~~~~~
---     - Added 512 and 1024 data width support
--- ^^^^^^
---
---     DET     9/1/2011     Initial Version for EDK 13.3
--- ~~~~~~
---     - Fixed Lint reported excesive line length for lines 404 and 530. 
--- ^^^^^^
---
---
 -------------------------------------------------------------------------------
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
-
-
-
-library proc_common_v4_0;
-use proc_common_v4_0.family_support;
 
 
 

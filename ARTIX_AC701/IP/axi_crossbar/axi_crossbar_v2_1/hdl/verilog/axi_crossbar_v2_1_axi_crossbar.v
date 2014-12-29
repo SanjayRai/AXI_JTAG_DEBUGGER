@@ -1,4 +1,4 @@
-// -- (c) Copyright 2011-2013 Xilinx, Inc. All rights reserved.
+// -- (c) Copyright 2011-2014 Xilinx, Inc. All rights reserved.
 // --
 // -- This file contains confidential and proprietary information
 // -- of Xilinx, Inc. and is protected under U.S. and 
@@ -309,6 +309,7 @@ module axi_crossbar_v2_1_axi_crossbar # (
                        // Format: C_NUM_MASTER_SLOTS{Bit32};
   localparam integer P_LEN = (C_AXI_PROTOCOL == P_AXI3) ? 4 : 8;
   localparam integer P_LOCK = (C_AXI_PROTOCOL == P_AXI3) ? 2 : 1;
+  localparam P_FAMILY = ((C_FAMILY == "virtex7") || (C_FAMILY == "kintex7") || (C_FAMILY == "artix7") || (C_FAMILY == "zynq")) ? C_FAMILY : "rtl";
 
   function integer f_ceil_log2
     (
@@ -698,7 +699,7 @@ generate
     if ((C_CONNECTIVITY_MODE==0) || (C_AXI_PROTOCOL==P_AXILITE)) begin : gen_sasd
       axi_crossbar_v2_1_crossbar_sasd #
       (
-        .C_FAMILY                         (C_FAMILY),
+        .C_FAMILY                         (P_FAMILY),
         .C_NUM_SLAVE_SLOTS                (C_NUM_SLAVE_SLOTS),
         .C_NUM_MASTER_SLOTS               (C_NUM_MASTER_SLOTS),
         .C_NUM_ADDR_RANGES                (C_NUM_ADDR_RANGES),
@@ -826,7 +827,7 @@ generate
     end else begin : gen_samd
       axi_crossbar_v2_1_crossbar #
       (
-        .C_FAMILY                         (C_FAMILY),
+        .C_FAMILY                         (P_FAMILY),
         .C_NUM_SLAVE_SLOTS                (C_NUM_SLAVE_SLOTS),
         .C_NUM_MASTER_SLOTS               (C_NUM_MASTER_SLOTS),
         .C_NUM_ADDR_RANGES                (C_NUM_ADDR_RANGES),

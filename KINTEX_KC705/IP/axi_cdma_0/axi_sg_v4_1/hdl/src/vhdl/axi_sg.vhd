@@ -55,30 +55,6 @@
 --
 -- VHDL-Standard:   VHDL'93
 -------------------------------------------------------------------------------
--- Structure:
---                  axi_sg.vhd
---                  axi_sg_pkg.vhd
---                   |- axi_sg_ftch_mngr.vhd
---                   |   |- axi_sg_ftch_sm.vhd
---                   |   |- axi_sg_ftch_pntr.vhd
---                   |   |- axi_sg_ftch_cmdsts_if.vhd
---                   |- axi_sg_updt_mngr.vhd
---                   |   |- axi_sg_updt_sm.vhd
---                   |   |- axi_sg_updt_cmdsts_if.vhd
---                   |- axi_sg_ftch_q_mngr.vhd
---                   |   |- axi_sg_ftch_queue.vhd
---                   |   |   |- proc_common_v4_0.sync_fifo_fg.vhd
---                   |   |   |- proc_common_v4_0.axi_sg_afifo_autord.vhd
---                   |   |- axi_sg_ftch_noqueue.vhd
---                   |- axi_sg_updt_q_mngr.vhd
---                   |   |- axi_sg_updt_queue.vhd
---                   |   |   |- proc_common_v4_0.sync_fifo_fg.vhd
---                   |   |- proc_common_v4_0.axi_sg_afifo_autord.vhd
---                   |   |- axi_sg_updt_noqueue.vhd
---                   |- axi_sg_intrpt.vhd
---                   |- axi_datamover_v4_01_a.axi_datamover.vhd
---
--------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -92,8 +68,8 @@ library axi_sg_v4_1;
 use axi_sg_v4_1.axi_sg_pkg.all;
 
 
-library proc_common_v4_0;
-use proc_common_v4_0.proc_common_pkg.max2;
+library lib_pkg_v1_0;
+use lib_pkg_v1_0.lib_pkg.max2;
 
 -------------------------------------------------------------------------------
 entity  axi_sg is
@@ -413,7 +389,8 @@ entity  axi_sg is
                                         (3 downto 0);  --
         m_axis_mm2s_cntrl_tvalid    : out std_logic                         ;              --
         m_axis_mm2s_cntrl_tready    : in  std_logic                         := '0';              --
-        m_axis_mm2s_cntrl_tlast     : out std_logic                   
+        m_axis_mm2s_cntrl_tlast     : out std_logic                         ;
+        bd_eq                       : out std_logic 
     );
 
 end axi_sg;
@@ -692,8 +669,10 @@ EOF_DET : if (C_ENABLE_MULTI_CHANNEL = 1) generate
                                 and s_axis_ch2_updtsts_tready_i 
                                 and s_axis_ch2_updtsts_tvalid 
                                 and s_axis_ch2_updtsts_tlast;
+  --   ch2_eof_detected        <= '0';
 
      ch2_sg_idle_int <= ch2_sg_idle;  
+  --   ch2_sg_idle_int <= '0'; --ch2_sg_idle;  
 
 
     TAILUPDT_LATCH : process(m_axi_sg_aclk)
@@ -708,6 +687,7 @@ EOF_DET : if (C_ENABLE_MULTI_CHANNEL = 1) generate
         end process TAILUPDT_LATCH;
 
 ch2_taildesc_wren_int <= ch2_taildesc_wren or tail_updt;
+--ch2_taildesc_wren_int <= ch2_taildesc_wren;
 
 end generate EOF_DET; 
 
@@ -809,7 +789,8 @@ I_SG_FETCH_MNGR : entity  axi_sg_v4_1.axi_sg_ftch_mngr
         ftch_stale_desc             => ftch_stale_desc                      ,
         updt_error                  => updt_error_i                         ,
         ftch_error                  => ftch_error_i                         ,
-        ftch_error_addr             => ftch_error_addr_1
+        ftch_error_addr             => ftch_error_addr_1                    ,
+        bd_eq                       => bd_eq
     );
 
 -------------------------------------------------------------------------------

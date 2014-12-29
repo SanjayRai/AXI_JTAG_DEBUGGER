@@ -189,7 +189,8 @@ entity  axi_sg_ftch_mngr is
         updt_error                  : in  std_logic                         ;                    --
         ftch_error                  : out std_logic                         ;                    --
         ftch_error_addr             : out std_logic_vector                                       --
-                                        (C_M_AXI_SG_ADDR_WIDTH-1 downto 0)                       --
+                                        (C_M_AXI_SG_ADDR_WIDTH-1 downto 0)  ;                     --
+        bd_eq                       : out std_logic
 
     );
 
@@ -384,7 +385,8 @@ I_FTCH_PNTR_MNGR : entity  axi_sg_v4_1.axi_sg_ftch_pntr
 
         -- Current address of descriptor to fetch
         ch2_fetch_address           => ch2_fetch_address                    ,
-        ch2_sg_idle                 => ch2_sg_idle_int
+        ch2_sg_idle                 => ch2_sg_idle_int                      ,
+        bd_eq                       => bd_eq
     );
 
 -------------------------------------------------------------------------------

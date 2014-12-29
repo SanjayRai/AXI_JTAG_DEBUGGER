@@ -10,7 +10,7 @@
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2013.4
+set scripts_vivado_version 2014.4
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -30,7 +30,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 # If you do not already have a project created,
 # you can create a project using the following command:
 #    create_project project_1 myproj -part xc7a200tfbg676-2
-#    set_property BOARD xilinx.com:artix7:ac701:1.0 [current_project]
+#    set_property BOARD_PART xilinx.com:ac701:part0:1.0 [current_project]
 
 
 # CHANGE DESIGN NAME HERE
@@ -52,30 +52,52 @@ set errMsg ""
 set nRet 0
 
 set cur_design [current_bd_design -quiet]
-if { ${design_name} ne "" && ${cur_design} eq ${design_name} } {
-   # Checks if design is empty or not
-   set list_cells [get_bd_cells -quiet]
+set list_cells [get_bd_cells -quiet]
 
-   if { $list_cells ne "" } {
-      set errMsg "ERROR: Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
-      set nRet 1
-   } else {
-      puts "INFO: Constructing design in IPI design <$design_name>..."
+if { ${design_name} eq "" } {
+   # USE CASES:
+   #    1) Design_name not set
+
+   set errMsg "ERROR: Please set the variable <design_name> to a non-empty value."
+   set nRet 1
+
+} elseif { ${cur_design} ne "" && ${list_cells} eq "" } {
+   # USE CASES:
+   #    2): Current design opened AND is empty AND names same.
+   #    3): Current design opened AND is empty AND names diff; design_name NOT in project.
+   #    4): Current design opened AND is empty AND names diff; design_name exists in project.
+
+   if { $cur_design ne $design_name } {
+      puts "INFO: Changing value of <design_name> from <$design_name> to <$cur_design> since current design is empty."
+      set design_name [get_property NAME $cur_design]
    }
+   puts "INFO: Constructing design in IPI design <$cur_design>..."
+
+} elseif { ${cur_design} ne "" && $list_cells ne "" && $cur_design eq $design_name } {
+   # USE CASES:
+   #    5) Current design opened AND has components AND same names.
+
+   set errMsg "ERROR: Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
+   set nRet 1
+} elseif { [get_files -quiet ${design_name}.bd] ne "" } {
+   # USE CASES: 
+   #    6) Current opened design, has components, but diff names, design_name exists in project.
+   #    7) No opened design, design_name exists in project.
+
+   set errMsg "ERROR: Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
+   set nRet 2
+
 } else {
+   # USE CASES:
+   #    8) No opened design, design_name not in project.
+   #    9) Current opened design, has components, but diff names, design_name not in project.
 
-   if { [get_files -quiet ${design_name}.bd] eq "" } {
-      puts "INFO: Currently there is no design <$design_name> in project, so creating one..."
+   puts "INFO: Currently there is no design <$design_name> in project, so creating one..."
 
-      create_bd_design $design_name
+   create_bd_design $design_name
 
-      puts "INFO: Making design <$design_name> as current_bd_design."
-      current_bd_design $design_name
-
-   } else {
-      set errMsg "ERROR: Design <$design_name> already exists in your project, please set the variable <design_name> to another value."
-      set nRet 3
-   }
+   puts "INFO: Making design <$design_name> as current_bd_design."
+   current_bd_design $design_name
 
 }
 
@@ -355,7 +377,7 @@ proc create_root_design { parentCell } {
   set jtag_axi_debugger_ip_1 [ create_bd_cell -type ip -vlnv sanjayr:user:jtag_axi_debugger_ip:1.0 jtag_axi_debugger_ip_1 ]
 
   # Create instance: mig_7series_0, and set properties
-  set mig_7series_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:2.0 mig_7series_0 ]
+  set mig_7series_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mig_7series:2.3 mig_7series_0 ]
 
   # Generate the PRJ File for MIG
   set str_mig_folder [get_property IP_DIR [ get_ips [ get_property CONFIG.Component_Name $mig_7series_0 ] ] ]

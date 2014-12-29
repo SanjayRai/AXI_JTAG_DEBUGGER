@@ -49,7 +49,7 @@
 //   ____  ____
 //  /   /\/   /
 // /___/  \  /    Vendor             : Xilinx
-// \   \   \/     Version            : 2.0
+// \   \   \/     Version            : 2.3
 //  \   \         Application        : MIG
 //  /   /         Filename           : sim_tb_top.v
 // /___/   /\     Date Last Modified : $Date: 2011/06/07 13:45:16 $
@@ -81,8 +81,6 @@ module sim_tb_top;
    // Traffic Gen related parameters
    //***************************************************************************
    parameter SIMULATION            = "TRUE";
-//   parameter BL_WIDTH              = 10;
-//   parameter ADDR_MODE             = 4'b0011;
    parameter BEGIN_ADDRESS         = 32'h00000000;
    parameter END_ADDRESS           = 32'h00000fff;
    parameter PRBS_EADDR_MASK_POS   = 32'hff000000;
@@ -90,22 +88,10 @@ module sim_tb_top;
    //***************************************************************************
    // The following parameters refer to width of various ports
    //***************************************************************************
-//   parameter BANK_WIDTH            = 3;
-                                     // # of memory Bank Address bits.
-//   parameter CK_WIDTH              = 1;
-                                     // # of CK/CK# outputs to memory.
    parameter COL_WIDTH             = 10;
                                      // # of memory Column Address bits.
    parameter CS_WIDTH              = 1;
                                      // # of unique CS outputs to memory.
-//   parameter nCS_PER_RANK          = 1;
-                                     // # of unique CS outputs per rank for phy
-//   parameter CKE_WIDTH             = 1;
-                                     // # of CKE outputs to memory.
-//   parameter DATA_BUF_ADDR_WIDTH   = 5;
-//   parameter DQ_CNT_WIDTH          = 6;
-                                     // = ceil(log2(DQ_WIDTH))
-//   parameter DQ_PER_DM             = 8;
    parameter DM_WIDTH              = 8;
                                      // # of DM (data mask)
    parameter DQ_WIDTH              = 64;
@@ -116,7 +102,6 @@ module sim_tb_top;
    parameter DRAM_WIDTH            = 8;
                                      // # of DQ per DQS
    parameter ECC                   = "OFF";
-//   parameter nBANK_MACHS           = 4;
    parameter RANKS                 = 1;
                                      // # of Ranks.
    parameter ODT_WIDTH             = 1;
@@ -128,38 +113,9 @@ module sim_tb_top;
                                      //     + ROW_WIDTH + COL_WIDTH;
                                      // Chip Select is always tied to low for
                                      // single rank devices
-//   parameter USE_CS_PORT          = 1;
-                                     // # = 1, When CS output is enabled
-                                     //   = 0, When CS output is disabled
-                                     // If CS_N disabled, user must connect
-                                     // DRAM CS_N input(s) to ground
-//   parameter USE_DM_PORT           = 1;
-                                     // # = 1, When Data Mask option is enabled
-                                     //   = 0, When Data Mask option is disbaled
-                                     // When Data Mask option is disabled in
-                                     // MIG Controller Options page, the logic
-                                     // related to Data Mask should not get
-                                     // synthesized
-//   parameter USE_ODT_PORT          = 1;
-                                     // # = 1, When ODT output is enabled
-                                     //   = 0, When ODT output is disabled
-                                     // Parameter configuration for Dynamic ODT support:
-                                     // USE_ODT_PORT = 0, RTT_NOM = "DISABLED", RTT_WR = "60/120".
-                                     // This configuration allows to save ODT pin mapping from FPGA.
-                                     // The user can tie the ODT input of DRAM to HIGH.
-
    //***************************************************************************
    // The following parameters are mode register settings
    //***************************************************************************
-//   parameter AL                    = "0";
-                                     // DDR3 SDRAM:
-                                     // Additive Latency (Mode Register 1).
-                                     // # = "0", "CL-1", "CL-2".
-                                     // DDR2 SDRAM:
-                                     // Additive Latency (Extended Mode Register).
-//   parameter nAL                   = 0;
-                                     // # Additive Latency in number of clock
-                                     // cycles.
    parameter BURST_MODE            = "8";
                                      // DDR3 SDRAM:
                                      // Burst Length (Mode Register 0).
@@ -167,39 +123,6 @@ module sim_tb_top;
                                      // DDR2 SDRAM:
                                      // Burst Length (Mode Register).
                                      // # = "8", "4".
-//   parameter BURST_TYPE            = "SEQ";
-                                     // DDR3 SDRAM: Burst Type (Mode Register 0).
-                                     // DDR2 SDRAM: Burst Type (Mode Register).
-                                     // # = "SEQ" - (Sequential),
-                                     //   = "INT" - (Interleaved).
-//   parameter CL                    = 11;
-                                     // in number of clock cycles
-                                     // DDR3 SDRAM: CAS Latency (Mode Register 0).
-                                     // DDR2 SDRAM: CAS Latency (Mode Register).
-//   parameter CWL                   = 8;
-                                     // in number of clock cycles
-                                     // DDR3 SDRAM: CAS Write Latency (Mode Register 2).
-                                     // DDR2 SDRAM: Can be ignored
-//   parameter OUTPUT_DRV            = "HIGH";
-                                     // Output Driver Impedance Control (Mode Register 1).
-                                     // # = "HIGH" - RZQ/7,
-                                     //   = "LOW" - RZQ/6.
-//   parameter RTT_NOM               = "40";
-                                     // RTT_NOM (ODT) (Mode Register 1).
-                                     // # = "DISABLED" - RTT_NOM disabled,
-                                     //   = "120" - RZQ/2,
-                                     //   = "60"  - RZQ/4,
-                                     //   = "40"  - RZQ/6.
-//   parameter RTT_WR                = "OFF";
-                                     // RTT_WR (ODT) (Mode Register 2).
-                                     // # = "OFF" - Dynamic ODT off,
-                                     //   = "120" - RZQ/2,
-                                     //   = "60"  - RZQ/4,
-//   parameter ADDR_CMD_MODE         = "1T" ;
-                                     // # = "1T", "2T".
-//   parameter REG_CTRL              = "OFF";
-                                     // # = "ON" - RDIMMs,
-                                     //   = "OFF" - Components, SODIMMs, UDIMMs.
    parameter CA_MIRROR             = "OFF";
                                      // C/A mirror opt for DDR3 dual rank
    
@@ -209,47 +132,7 @@ module sim_tb_top;
    //***************************************************************************
    parameter CLKIN_PERIOD          = 5000;
                                      // Input Clock Period
-//   parameter CLKFBOUT_MULT         = 8;
-                                     // write PLL VCO multiplier
-//   parameter DIVCLK_DIVIDE         = 1;
-                                     // write PLL VCO divisor
-//   parameter CLKOUT0_DIVIDE        = 2;
-                                     // VCO output divisor for PLL output clock (CLKOUT0)
-//   parameter CLKOUT1_DIVIDE        = 2;
-                                     // VCO output divisor for PLL output clock (CLKOUT1)
-//   parameter CLKOUT2_DIVIDE        = 32;
-                                     // VCO output divisor for PLL output clock (CLKOUT2)
-//   parameter CLKOUT3_DIVIDE        = 8;
-                                     // VCO output divisor for PLL output clock (CLKOUT3)
 
-   //***************************************************************************
-   // Memory Timing Parameters. These parameters varies based on the selected
-   // memory part.
-   //***************************************************************************
-//   parameter tCKE                  = 5000;
-                                     // memory tCKE paramter in pS
-//   parameter tFAW                  = 30000;
-                                     // memory tRAW paramter in pS.
-//   parameter tRAS                  = 35000;
-                                     // memory tRAS paramter in pS.
-//   parameter tRCD                  = 13125;
-                                     // memory tRCD paramter in pS.
-//   parameter tREFI                 = 7800000;
-                                     // memory tREFI paramter in pS.
-//   parameter tRFC                  = 110000;
-                                     // memory tRFC paramter in pS.
-//   parameter tRP                   = 13125;
-                                     // memory tRP paramter in pS.
-//   parameter tRRD                  = 6000;
-                                     // memory tRRD paramter in pS.
-//   parameter tRTP                  = 7500;
-                                     // memory tRTP paramter in pS.
-//   parameter tWTR                  = 7500;
-                                     // memory tWTR paramter in pS.
-//   parameter tZQI                  = 128_000_000;
-                                     // memory tZQI paramter in nS.
-//   parameter tZQCS                 = 64;
-                                     // memory tZQCS paramter in clock cycles.
 
    //***************************************************************************
    // Simulation parameters
@@ -263,142 +146,15 @@ module sim_tb_top;
                                      //              abbreviated calib sequence
 
    //***************************************************************************
-   // The following parameters varies based on the pin out entered in MIG GUI.
-   // Do not change any of these parameters directly by editing the RTL.
-   // Any changes required should be done through GUI and the design regenerated.
-   //***************************************************************************
-//   parameter BYTE_LANES_B0         = 4'b1111;
-                                     // Byte lanes used in an IO column.
-//   parameter BYTE_LANES_B1         = 4'b0111;
-                                     // Byte lanes used in an IO column.
-//   parameter BYTE_LANES_B2         = 4'b1111;
-                                     // Byte lanes used in an IO column.
-//   parameter BYTE_LANES_B3         = 4'b0000;
-                                     // Byte lanes used in an IO column.
-//   parameter BYTE_LANES_B4         = 4'b0000;
-                                     // Byte lanes used in an IO column.
-//   parameter DATA_CTL_B0           = 4'b1111;
-                                     // Indicates Byte lane is data byte lane
-                                     // or control Byte lane. '1' in a bit
-                                     // position indicates a data byte lane and
-                                     // a '0' indicates a control byte lane
-//   parameter DATA_CTL_B1           = 4'b0000;
-                                     // Indicates Byte lane is data byte lane
-                                     // or control Byte lane. '1' in a bit
-                                     // position indicates a data byte lane and
-                                     // a '0' indicates a control byte lane
-//   parameter DATA_CTL_B2           = 4'b1111;
-                                     // Indicates Byte lane is data byte lane
-                                     // or control Byte lane. '1' in a bit
-                                     // position indicates a data byte lane and
-                                     // a '0' indicates a control byte lane
-//   parameter DATA_CTL_B3           = 4'b0000;
-                                     // Indicates Byte lane is data byte lane
-                                     // or control Byte lane. '1' in a bit
-                                     // position indicates a data byte lane and
-                                     // a '0' indicates a control byte lane
-//   parameter DATA_CTL_B4           = 4'b0000;
-                                     // Indicates Byte lane is data byte lane
-                                     // or control Byte lane. '1' in a bit
-                                     // position indicates a data byte lane and
-                                     // a '0' indicates a control byte lane
-//   parameter PHY_0_BITLANES        = 48'h3FE_3FE_3FE_2FF;
-//   parameter PHY_1_BITLANES        = 48'h000_CB0_473_FFF;
-//   parameter PHY_2_BITLANES        = 48'h3FE_3FE_3FE_2FF;
-
-   // control/address/data pin mapping parameters
-//   parameter CK_BYTE_MAP
-//     = 144'h00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_11;
-//   parameter ADDR_MAP
-//     = 192'h000_000_111_110_109_108_107_106_10B_10A_105_104_103_102_101_100;
-//   parameter BANK_MAP   = 36'h11A_115_114;
-//   parameter CAS_MAP    = 12'h12A;
-//   parameter CKE_ODT_BYTE_MAP = 8'h00;
-//   parameter CKE_MAP    = 96'h000_000_000_000_000_000_000_116;
-//   parameter ODT_MAP    = 96'h000_000_000_000_000_000_000_127;
-//   parameter CS_MAP     = 120'h000_000_000_000_000_000_000_000_000_12B;
-//   parameter PARITY_MAP = 12'h000;
-//   parameter RAS_MAP    = 12'h125;
-//   parameter WE_MAP     = 12'h124;
-//   parameter DQS_BYTE_MAP
-//     = 144'h00_00_00_00_00_00_00_00_00_00_03_02_01_00_23_22_21_20;
-//   parameter DATA0_MAP  = 96'h200_209_206_203_204_205_202_207;
-//   parameter DATA1_MAP  = 96'h219_218_214_215_217_212_216_213;
-//   parameter DATA2_MAP  = 96'h225_224_229_226_223_222_228_227;
-//   parameter DATA3_MAP  = 96'h238_236_234_233_235_237_232_239;
-//   parameter DATA4_MAP  = 96'h005_003_000_009_007_006_004_002;
-//   parameter DATA5_MAP  = 96'h013_012_018_019_015_014_017_016;
-//   parameter DATA6_MAP  = 96'h023_027_022_029_024_025_028_026;
-//   parameter DATA7_MAP  = 96'h039_037_033_032_035_034_038_036;
-//   parameter DATA8_MAP  = 96'h000_000_000_000_000_000_000_000;
-//   parameter DATA9_MAP  = 96'h000_000_000_000_000_000_000_000;
-//   parameter DATA10_MAP = 96'h000_000_000_000_000_000_000_000;
-//   parameter DATA11_MAP = 96'h000_000_000_000_000_000_000_000;
-//   parameter DATA12_MAP = 96'h000_000_000_000_000_000_000_000;
-//   parameter DATA13_MAP = 96'h000_000_000_000_000_000_000_000;
-//   parameter DATA14_MAP = 96'h000_000_000_000_000_000_000_000;
-//   parameter DATA15_MAP = 96'h000_000_000_000_000_000_000_000;
-//   parameter DATA16_MAP = 96'h000_000_000_000_000_000_000_000;
-//   parameter DATA17_MAP = 96'h000_000_000_000_000_000_000_000;
-//   parameter MASK0_MAP  = 108'h000_031_021_011_001_231_221_211_201;
-//   parameter MASK1_MAP  = 108'h000_000_000_000_000_000_000_000_000;
-
-//   parameter SLOT_0_CONFIG         = 8'b0000_0001;
-                                     // Mapping of Ranks.
-//   parameter SLOT_1_CONFIG         = 8'b0000_0000;
-                                     // Mapping of Ranks.
-//   parameter MEM_ADDR_ORDER        = "BANK_ROW_COLUMN";
-                                      //Possible Parameters
-                                      //1.BANK_ROW_COLUMN : Address mapping is
-                                      //                    in form of Bank Row Column.
-                                      //2.ROW_BANK_COLUMN : Address mapping is
-                                      //                    in the form of Row Bank Column.
-                                      //3.TG_TEST : Scrambles Address bits
-                                      //            for distributed Addressing.
-   //***************************************************************************
    // IODELAY and PHY related parameters
    //***************************************************************************
-//   parameter IBUF_LPWR_MODE        = "OFF";
-                                     // to phy_top
-//   parameter DATA_IO_IDLE_PWRDWN   = "ON";
-                                     // # = "ON", "OFF"
-//   parameter DATA_IO_PRIM_TYPE     = "HP_LP";
-                                     // # = "HP_LP", "HR_LP", "DEFAULT"
-//   parameter USER_REFRESH          = "OFF";
-//   parameter WRLVL                 = "ON";
-                                     // # = "ON" - DDR3 SDRAM
-                                     //   = "OFF" - DDR2 SDRAM.
-//   parameter ORDERING              = "NORM";
-                                     // # = "NORM", "STRICT", "RELAXED".
-//   parameter CALIB_ROW_ADD         = 16'h0000;
-                                     // Calibration row address will be used for
-                                     // calibration read and write operations
-//   parameter CALIB_COL_ADD         = 12'h000;
-                                     // Calibration column address will be used for
-                                     // calibration read and write operations
-//   parameter CALIB_BA_ADD          = 3'h0;
-                                     // Calibration bank address will be used for
-                                     // calibration read and write operations
    parameter TCQ                   = 100;
    //***************************************************************************
    // IODELAY and PHY related parameters
    //***************************************************************************
-//   parameter IODELAY_GRP           = "DDR3_KC705_IODELAY_MIG";
-                                     // It is associated to a set of IODELAYs with
-                                     // an IDELAYCTRL that have same IODELAY CONTROLLER
-                                     // clock frequency.
-//   parameter SYSCLK_TYPE           = "NO_BUFFER";
-                                     // System clock type DIFFERENTIAL, SINGLE_ENDED,
-                                     // NO_BUFFER
-//   parameter REFCLK_TYPE           = "USE_SYSTEM_CLOCK";
-                                     // Reference clock type DIFFERENTIAL, SINGLE_ENDED,
-                                     // NO_BUFFER, USE_SYSTEM_CLOCK
    parameter RST_ACT_LOW           = 0;
                                      // =1 for active low reset,
                                      // =0 for active high.
-//   parameter CAL_WIDTH             = "HALF";
-//   parameter STARVE_LIMIT          = 2;
-                                     // # = 2,3,4.
 
    //***************************************************************************
    // Referece clock frequency parameters
@@ -429,50 +185,10 @@ module sim_tb_top;
                                              // Width of WDATA and RDATA on SI slot.
                                              // Must be <= APP_DATA_WIDTH.
                                              // # = 32, 64, 128, 256.
-//   parameter C_MC_nCK_PER_CLK              = 4;
-                                             // Indicates whether to instatiate upsizer
-                                             // Range: 0, 1
    parameter C_S_AXI_SUPPORTS_NARROW_BURST = 1;
                                              // Indicates whether to instatiate upsizer
                                              // Range: 0, 1
-//   parameter C_RD_WR_ARB_ALGORITHM          = "RD_PRI_REG";
-                                             // Indicates the Arbitration
-                                             // Allowed values - "TDM", "ROUND_ROBIN",
-                                             // "RD_PRI_REG", "RD_PRI_REG_STARVE_LIMIT"
-//   parameter C_S_AXI_REG_EN0               = 20'h00000;
-                                             // C_S_AXI_REG_EN0[00] = Reserved
-                                             // C_S_AXI_REG_EN0[04] = AW CHANNEL REGISTER SLICE
-                                             // C_S_AXI_REG_EN0[05] =  W CHANNEL REGISTER SLICE
-                                             // C_S_AXI_REG_EN0[06] =  B CHANNEL REGISTER SLICE
-                                             // C_S_AXI_REG_EN0[07] =  R CHANNEL REGISTER SLICE
-                                             // C_S_AXI_REG_EN0[08] = AW CHANNEL UPSIZER REGISTER SLICE
-                                             // C_S_AXI_REG_EN0[09] =  W CHANNEL UPSIZER REGISTER SLICE
-                                             // C_S_AXI_REG_EN0[10] = AR CHANNEL UPSIZER REGISTER SLICE
-                                             // C_S_AXI_REG_EN0[11] =  R CHANNEL UPSIZER REGISTER SLICE
-//   parameter C_S_AXI_REG_EN1                 = 20'h00000;
-                                             // Instatiates register slices after the upsizer.
-                                             // The type of register is specified for each channel
-                                             // in a vector. 4 bits per channel are used.
-                                             // C_S_AXI_REG_EN1[03:00] = AW CHANNEL REGISTER SLICE
-                                             // C_S_AXI_REG_EN1[07:04] =  W CHANNEL REGISTER SLICE
-                                             // C_S_AXI_REG_EN1[11:08] =  B CHANNEL REGISTER SLICE
-                                             // C_S_AXI_REG_EN1[15:12] = AR CHANNEL REGISTER SLICE
-                                             // C_S_AXI_REG_EN1[20:16] =  R CHANNEL REGISTER SLICE
-                                             // Possible values for each channel are:
-                                             //
-                                             //   0 => BYPASS    = The channel is just wired through the
-                                             //                    module.
-                                             //   1 => FWD       = The master VALID and payload signals
-                                             //                    are registrated.
-                                             //   2 => REV       = The slave ready signal is registrated
-                                             //   3 => FWD_REV   = Both FWD and REV
-                                             //   4 => SLAVE_FWD = All slave side signals and master
-                                             //                    VALID and payload are registrated.
-                                             //   5 => SLAVE_RDY = All slave side signals and master
-                                             //                    READY are registrated.
-                                             //   6 => INPUTS    = Slave and Master side inputs are
-                                             //                    registrated.
-                                             //   7 => ADDRESS   = Optimized for address channel
+
 
    //***************************************************************************
    // Debug and Internal parameters
@@ -723,160 +439,35 @@ module sim_tb_top;
     (
 
      .SIMULATION                (SIMULATION),
-//     .BL_WIDTH                  (BL_WIDTH),
-//     .ADDR_MODE                 (ADDR_MODE),
      .BEGIN_ADDRESS             (BEGIN_ADDRESS),
      .END_ADDRESS               (END_ADDRESS),
      .PRBS_EADDR_MASK_POS       (PRBS_EADDR_MASK_POS),
 
-//     .BANK_WIDTH                (BANK_WIDTH),
-//     .CK_WIDTH                  (CK_WIDTH),
      .COL_WIDTH                 (COL_WIDTH),
      .CS_WIDTH                  (CS_WIDTH),
-//     .nCS_PER_RANK              (nCS_PER_RANK),
-//     .CKE_WIDTH                 (CKE_WIDTH),
-//     .DATA_BUF_ADDR_WIDTH       (DATA_BUF_ADDR_WIDTH),
-//     .DQ_CNT_WIDTH              (DQ_CNT_WIDTH),
-//     .DQ_PER_DM                 (DQ_PER_DM),
      .DM_WIDTH                  (DM_WIDTH),
     
      .DQ_WIDTH                  (DQ_WIDTH),
-//     .DQS_WIDTH                 (DQS_WIDTH),
      .DQS_CNT_WIDTH             (DQS_CNT_WIDTH),
      .DRAM_WIDTH                (DRAM_WIDTH),
-//     .ECC                       (ECC),
      .ECC_TEST                  (ECC_TEST),
-//     .nBANK_MACHS               (nBANK_MACHS),
      .RANKS                     (RANKS),
-//     .ODT_WIDTH                 (ODT_WIDTH),
      .ROW_WIDTH                 (ROW_WIDTH),
      .ADDR_WIDTH                (ADDR_WIDTH),
-//     .USE_CS_PORT               (USE_CS_PORT),
-//     .USE_DM_PORT               (USE_DM_PORT),
-//     .USE_ODT_PORT              (USE_ODT_PORT),
-
-//     .AL                        (AL),
-//     .nAL                       (nAL),
      .BURST_MODE                (BURST_MODE),
-//     .BURST_TYPE                (BURST_TYPE),
-//     .CL                        (CL),
-//     .CWL                       (CWL),
-//     .OUTPUT_DRV                (OUTPUT_DRV),
-//     .RTT_NOM                   (RTT_NOM),
-//     .RTT_WR                    (RTT_WR),
-//     .ADDR_CMD_MODE             (ADDR_CMD_MODE),
-//     .REG_CTRL                  (REG_CTRL),
-//     .CA_MIRROR                 (CA_MIRROR),
-
-
-//     .CLKIN_PERIOD              (CLKIN_PERIOD),
-//     .CLKFBOUT_MULT             (CLKFBOUT_MULT),
-//     .DIVCLK_DIVIDE             (DIVCLK_DIVIDE),
-//     .CLKOUT0_DIVIDE            (CLKOUT0_DIVIDE),
-//     .CLKOUT1_DIVIDE            (CLKOUT1_DIVIDE),
-//     .CLKOUT2_DIVIDE            (CLKOUT2_DIVIDE),
-//     .CLKOUT3_DIVIDE            (CLKOUT3_DIVIDE),
-    
-
-//     .tCKE                      (tCKE),
-//     .tFAW                      (tFAW),
-//     .tRAS                      (tRAS),
-//     .tRCD                      (tRCD),
-//     .tREFI                     (tREFI),
-//     .tRFC                      (tRFC),
-//     .tRP                       (tRP),
-//     .tRRD                      (tRRD),
-//     .tRTP                      (tRTP),
-//     .tWTR                      (tWTR),
-//     .tZQI                      (tZQI),
-//     .tZQCS                     (tZQCS),
-
-//     .SIM_BYPASS_INIT_CAL       (SIM_BYPASS_INIT_CAL),
-
-//     .BYTE_LANES_B0             (BYTE_LANES_B0),
-//     .BYTE_LANES_B1             (BYTE_LANES_B1),
-//     .BYTE_LANES_B2             (BYTE_LANES_B2),
-//     .BYTE_LANES_B3             (BYTE_LANES_B3),
-//     .BYTE_LANES_B4             (BYTE_LANES_B4),
-//     .DATA_CTL_B0               (DATA_CTL_B0),
-//     .DATA_CTL_B1               (DATA_CTL_B1),
-//     .DATA_CTL_B2               (DATA_CTL_B2),
-//     .DATA_CTL_B3               (DATA_CTL_B3),
-//     .DATA_CTL_B4               (DATA_CTL_B4),
-//     .PHY_0_BITLANES            (PHY_0_BITLANES),
-//     .PHY_1_BITLANES            (PHY_1_BITLANES),
-//     .PHY_2_BITLANES            (PHY_2_BITLANES),
-//     .CK_BYTE_MAP               (CK_BYTE_MAP),
-//     .ADDR_MAP                  (ADDR_MAP),
-//     .BANK_MAP                  (BANK_MAP),
-//     .CAS_MAP                   (CAS_MAP),
-//     .CKE_ODT_BYTE_MAP          (CKE_ODT_BYTE_MAP),
-//     .CKE_MAP                   (CKE_MAP),
-//     .ODT_MAP                   (ODT_MAP),
-//     .CS_MAP                    (CS_MAP),
-//     .PARITY_MAP                (PARITY_MAP),
-//     .RAS_MAP                   (RAS_MAP),
-//     .WE_MAP                    (WE_MAP),
-//     .DQS_BYTE_MAP              (DQS_BYTE_MAP),
-//     .DATA0_MAP                 (DATA0_MAP),
-//     .DATA1_MAP                 (DATA1_MAP),
-//     .DATA2_MAP                 (DATA2_MAP),
-//     .DATA3_MAP                 (DATA3_MAP),
-//     .DATA4_MAP                 (DATA4_MAP),
-//     .DATA5_MAP                 (DATA5_MAP),
-//     .DATA6_MAP                 (DATA6_MAP),
-//     .DATA7_MAP                 (DATA7_MAP),
-//     .DATA8_MAP                 (DATA8_MAP),
-//     .DATA9_MAP                 (DATA9_MAP),
-//     .DATA10_MAP                (DATA10_MAP),
-//     .DATA11_MAP                (DATA11_MAP),
-//     .DATA12_MAP                (DATA12_MAP),
-//     .DATA13_MAP                (DATA13_MAP),
-//     .DATA14_MAP                (DATA14_MAP),
-//     .DATA15_MAP                (DATA15_MAP),
-//     .DATA16_MAP                (DATA16_MAP),
-//     .DATA17_MAP                (DATA17_MAP),
-//     .MASK0_MAP                 (MASK0_MAP),
-//     .MASK1_MAP                 (MASK1_MAP),
-//     .SLOT_0_CONFIG             (SLOT_0_CONFIG),
-//     .SLOT_1_CONFIG             (SLOT_1_CONFIG),
-//     .MEM_ADDR_ORDER            (MEM_ADDR_ORDER),
-
-//     .IBUF_LPWR_MODE            (IBUF_LPWR_MODE),
-//     .DATA_IO_IDLE_PWRDWN       (DATA_IO_IDLE_PWRDWN),
-//     .DATA_IO_PRIM_TYPE         (DATA_IO_PRIM_TYPE),
-//     .USER_REFRESH              (USER_REFRESH),
-//     .WRLVL                     (WRLVL),
-//     .ORDERING                  (ORDERING),
-//     .CALIB_ROW_ADD             (CALIB_ROW_ADD),
-//     .CALIB_COL_ADD             (CALIB_COL_ADD),
-//     .CALIB_BA_ADD              (CALIB_BA_ADD),
      .TCQ                       (TCQ),
 
      
-//    .IODELAY_GRP               (IODELAY_GRP),
-//    .SYSCLK_TYPE               (SYSCLK_TYPE),
-//    .REFCLK_TYPE               (REFCLK_TYPE),
     .DRAM_TYPE                 (DRAM_TYPE),
-//    .CAL_WIDTH                 (CAL_WIDTH),
-//    .STARVE_LIMIT              (STARVE_LIMIT),
     
      
-//    .REFCLK_FREQ               (REFCLK_FREQ),
-    
-     
-//    .tCK                       (tCK),
     .nCK_PER_CLK               (nCK_PER_CLK),
     
      
      .C_S_AXI_ID_WIDTH          (C_S_AXI_ID_WIDTH),
      .C_S_AXI_ADDR_WIDTH        (C_S_AXI_ADDR_WIDTH),
      .C_S_AXI_DATA_WIDTH        (C_S_AXI_DATA_WIDTH),
-//     .C_MC_nCK_PER_CLK          (C_MC_nCK_PER_CLK),
      .C_S_AXI_SUPPORTS_NARROW_BURST (C_S_AXI_SUPPORTS_NARROW_BURST),
-//     .C_RD_WR_ARB_ALGORITHM      (C_RD_WR_ARB_ALGORITHM),
-//     .C_S_AXI_REG_EN0           (C_S_AXI_REG_EN0),
-//     .C_S_AXI_REG_EN1           (C_S_AXI_REG_EN1),
     
      .DEBUG_PORT                (DEBUG_PORT),
     

@@ -1,3 +1,8 @@
+ 
+ 
+ 
+ 
+ 
 ################################################################################
 # (c) Copyright 2009 - 2013 Xilinx, Inc. All rights reserved.
 # 
@@ -46,10 +51,15 @@
 # PART OF THIS FILE AT ALL TIMES.
 #
 ################################################################################
+
+#  CONSTANT C_PRIM_DEPTH    : integer := get_fifo_sizes(c_family, C_PRIM_FIFO_TYPE, C_USE_ECC,0);
+#  CONSTANT C_NUM_PRIM_DEEP  : integer := divroundup(C_WR_DEPTH,C_PRIM_DEPTH);
+
 #------------------------------------------------------------------------------#
 #                             AXI FIFO Constraints                             #
 #------------------------------------------------------------------------------#
 # Set false path on the reset synchronizers
+set_false_path -through [get_ports s_aresetn] -to [get_pins -hierarchical -filter {NAME =~ *rstblk*/*CLR}]  
 set_false_path -through [get_ports s_aresetn] -to [get_pins inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/rstblk/*/PRE]  
 set_false_path -from [get_cells inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[*]]
 set_false_path -from [get_cells inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[*]]

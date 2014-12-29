@@ -1,3 +1,24 @@
+Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2014.4 (lin64) Build 1071353 Tue Nov 18 16:47:07 MST 2014
+| Date         : Sun Dec 28 15:06:56 2014
+| Host         : centosMC running 64-bit CentOS release 6.6 (Final)
+| Command      : upgrade_ip
+| Device       : xc7a200tfbg676-2
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'axi_datamover_1024MM_32STR'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of axi_datamover_1024MM_32STR (xilinx.com:ip:axi_datamover:5.1) from (Rev. 1) to (Rev. 5)
+
+
+
+
+
+
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013

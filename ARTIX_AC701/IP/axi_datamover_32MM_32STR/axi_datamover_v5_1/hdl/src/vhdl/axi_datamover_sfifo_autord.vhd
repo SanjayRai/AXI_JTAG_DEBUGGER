@@ -64,27 +64,6 @@
 --                  
 -- VHDL-Standard:   VHDL'93
 -------------------------------------------------------------------------------
--- Structure:   
---                      -- axi_datamover_sfifo_autord.vhd
---                          |
---                          |--- sync_fifo_fg (FIFO Generator wrapper) 
---
--------------------------------------------------------------------------------
--- Revision History:
---
---
--- Author:          DET
---
--- History:
---   DET   04/19/2011       Initial Version for EDK 13.3
---
---     DET     9/1/2011     Initial
--- ~~~~~~
---     - Per a Lint warning, added the port Almost_full to the sync_fifo_fg
---       instance.
--- ^^^^^^
---
---
 -------------------------------------------------------------------------------
 
 library IEEE;
@@ -92,8 +71,8 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
 
-library proc_common_v4_0;
-use proc_common_v4_0.sync_fifo_fg;
+library lib_fifo_v1_0;
+use lib_fifo_v1_0.sync_fifo_fg;
 
 
 -------------------------------------------------------------------------------
@@ -227,7 +206,7 @@ NON_BLK_MEM : if (C_USE_BLKMEM = 0)
     --  Instance for the synchronous fifo from proc common.   
     --
     ------------------------------------------------------------
-    I_SYNC_FIFOGEN_FIFO : entity proc_common_v4_0.sync_fifo_fg 
+    I_SYNC_FIFOGEN_FIFO : entity lib_fifo_v1_0.sync_fifo_fg 
       generic map(
          C_FAMILY             =>  C_FAMILY,        -- requred for FIFO Gen       
          C_DCOUNT_WIDTH       =>  C_DATA_CNT_WIDTH,     
@@ -281,7 +260,7 @@ BLK_MEM : if (C_USE_BLKMEM = 1)
     --  Instance for the synchronous fifo from proc common.   
     --
     ------------------------------------------------------------
-    I_SYNC_FIFOGEN_FIFO : entity proc_common_v4_0.sync_fifo_fg 
+    I_SYNC_FIFOGEN_FIFO : entity lib_fifo_v1_0.sync_fifo_fg 
       generic map(
          C_FAMILY             =>  C_FAMILY,        -- requred for FIFO Gen       
          C_DCOUNT_WIDTH       =>  C_DATA_CNT_WIDTH,     

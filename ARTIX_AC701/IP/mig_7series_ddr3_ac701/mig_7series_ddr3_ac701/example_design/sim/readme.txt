@@ -49,7 +49,7 @@
 ##   ____  ____
 ##  /   /\/   /
 ## /___/  \  /    Vendor             : Xilinx
-## \   \   \/     Version            : 2.0
+## \   \   \/     Version            : 2.3
 ##  \   \         Application        : MIG
 ##  /   /         Filename           : readme.txt
 ## /___/   /\     Date Last Modified : $Date: 2011/06/02 08:31:16 $
@@ -58,17 +58,17 @@
 ##
 ## Device          : 7 Series
 ## Design Name     : DDR3 SDRAM
-## Purpose         : Steps to run simulations using Modelsim, Cadence IES, 
-##                   Synopsys VCS and Vivado Simulator (XSIM)
+## Purpose         : Steps to run simulations using Modelsim, Cadence IES, and
+##                   Synopsys VCS
 ## Assumptions     : Simulations are run in \sim folder of MIG output "Open IP
 ##                   Example Design" directory
 ## Reference       :
 ## Revision History:
 ###############################################################################
 
-MIG outputs script files required to run the simulations forModelsim, IES, VCS 
-and Vivado Simulator (XSIM). These scripts are valid only for running simulations
-for "Open IP Example Design"
+MIG outputs script files required to run the simulations for Modelsim, 
+Vivado Simulator, IES and VCS. These scripts are valid only for running 
+simulations for "Open IP Example Design"
 
 1. How to run simulations in Modelsim simulator
 
@@ -106,94 +106,92 @@ for "Open IP Example Design"
 
       e) Verify the transcript file for the memory transactions.
 
-2. How to run Simualtions in Vivado Simulator (XSIM)
+2. How to run simulations in Vivado simulator
 
    A) Following files are provided :
 
-      a) The "xsim_files.prj" file contains the list of the hdl files
-         present in the design. It also contains the hdl, library and
-         the source file names.
+      a) The 'xsim_run.bat' is the executable file for Vivado simulator under
+	     MicroSoft Windows environment.
+		 
+      b) The 'xsim_run.sh' is the executable file for Vivado simulator under
+	     Linux environment.
+		 
+	  c) The 'xsim_run.bat'/'xsim_run.sh' file has commands to compile and 
+	     simulate memory interface design and run the simulation for specified 
+		 period of time.
 
-      b) The "xsim_options.tcl" file contains the TCL commands for simulation
-         and resume on error.
+	  d) xsim_options.tcl file has commands to add waveforms and simulation 
+	     period.
+		 
+	  e) xsim_files.prj file has list of rtl files for simulating the design.
+		 
+      f) $XILINX_VIVADO environment variable must be set in order to compile 
+	     glbl.v file
 
-      c) The "xsim_run.sh/xsim_run.bat" has commands which use "xsim_files.prj" and
-         "xsim_options.tcl" files.
+   B) Steps to run the Vivado Simulator simulation:
 
-   B) Steps to run the simulations with Vivado Simulator:
+      a) Change the present working directory path to the sim folder of "Open
+         IP Example Design" path in the OS terminal.
 
-      The user should execute the file xsim_run.sh/xsim_run.bat, which does the 
-      following steps:
-      a) Compiles, elaborates the design and generates the simulation executable
-         using the fuse command in "xsim_run.sh/xsim_run.bat" file.
+      b) Run the simulation using xsim_run.sh file under Linux environment and
+	     xsim_run.bat under MicroSoft Windows environment.
 
-      b) Invokes the Vivado Simulator GUI.
-
-      c) User can add required signals from objects window to the waveform viewer
-         and run simulation for specified time using the command
-         "run <time>" in Vivado Simulator GUI.
+      c) Verify the transcript file for the memory transactions.
 
 3. How to run Cadence IES Simulations
 
-   A) Following files are provided :
+   A) ies_run.sh File :
 
-      a) The "ies_files.f" file contains the list of the hdl files
-         present in the design. 
+      a) The "ies_run.sh" file contains the commands for simulation of the
+         hdl files.
 
-      b) The "ies_run.sh" file contains the commands for simulation.
+      b) Libraries must be added to the "ies_run.sh" file before running
+         simulations. Following lines must be added to the file, just below the
+         comment line #libraries path#
 
-      c) Libraries must be added to the "ies_files.f" file before running 
-	     simulations. Following lines must be added to the file, just below the
-		 comment line #libraries path#
-		 
-		 +libext+.v+.sv+.bv+.vp+.vh
-         -y $XILINX_VIVADO/data/verilog/src/unisims
-         -y $XILINX_VIVADO/data/verilog/src/retarget
-         -f $XILINX_VIVADO/data/secureip/secureip_cell.list.f
+         ncvlog -work worklib -messages $XILINX_VIVADO/data/verilog/src/unisims/*.v >> ies_sim.log
+         ncvlog -work worklib -messages $XILINX_VIVADO/data/verilog/src/retarget/*.v >> ies_sim.log
+         ncvlog -work worklib -messages -file $XILINX_VIVADO/data/secureip/secureip_cell.list.f >> ies_sim.log
 
-         Also, $XILINX_VIVADO environment variable must be set in order to 
-		 compile glbl.v file and the above mentioned library files
+         Also, $XILINX_VIVADO environment variable must be set in order to
+         compile glbl.v file and the above mentioned library files
 
-   B) Steps to run the Modelsim simulation:
+   B) Steps to run the IES simulation:
 
-      a) Change the present working directory path to the sim folder of "Open 
-	     IP Example Design" path in the OS terminal.
-		 
+      a) Change the present working directory path to the sim folder of "Open
+         IP Example Design" path in the OS terminal.
+
       b) Run the simulation using ies_run.sh file. Type the following command:
          ./ies_run.sh
 
-      c) Verify the irun.log file for the memory transactions.
+      c) Verify the ies_sim.log file for the memory transactions.
 
 4. How to run Synopsys VCS Simulations
 
-   A) Following files are provided :
+   A) vcs_run.sh File :
 
-      a) The "vcs_files.f" file contains the list of the hdl files
-         present in the design. 
+      a) The "vcs_run.sh" file contains the commands for simulation of hdl files.
 
-      b) The "vcs_run.sh" file contains the commands for simulation.
+      b) Libraries must be added to the "vcs_run.sh" file before running
+         simulations. Following lines must be added to the file, just below the
+         comment line #libraries path#
 
-      c) Libraries must be added to the "vcs_files.f" file before running 
-	     simulations. Following lines must be added to the file, just below the
-		 comment line #libraries path#
-		 
-         +libext+.v+.vh+.sv+.svh+.h 
-         -y $XILINX_VIVADO/data/verilog/src/unisims
-         -y $XILINX_VIVADO/data/verilog/src/retarget
-         -f $XILINX_VIVADO/data/secureip/secureip_cell.list.f -lca
+         vlogan $XILINX_VIVADO/data/verilog/src/unisims/*.v >> vcs_sim.log
+         vlogan $XILINX_VIVADO/data/verilog/src/retarget/*.v >> vcs_sim.log
+         vlogan -f $XILINX_VIVADO/data/secureip/secureip_cell.list.f >> vcs_sim.log
 
-         Also, $XILINX_VIVADO environment variable must be set in order to 
-		 compile glbl.v file and the above mentioned library files
+         Also, $XILINX_VIVADO environment variable must be set in order to
+         compile glbl.v file and the above mentioned library files
 
-   B) Steps to run the Modelsim simulation:
+   B) Steps to run the VCS simulation:
 
-      a) Change the present working directory path to the sim folder of "Open 
-	     IP Example Design" path in the OS terminal.
-		 
+      a) Change the present working directory path to the sim folder of "Open
+         IP Example Design" path in the OS terminal.
+
       b) Run the simulation using vcs_run.sh file. Type the following command:
          ./vcs_run.sh
 
-      c) Verify the vcs_run.log file for the memory transactions.
+      c) Verify the vcs_sim.log file for the memory transactions.
 
 5. SIM_BYPASS_INIT_CAL parameter value of SKIP, skips memory initialization sequence
    and calibration sequence. This could lead to simulation errors since design is not
