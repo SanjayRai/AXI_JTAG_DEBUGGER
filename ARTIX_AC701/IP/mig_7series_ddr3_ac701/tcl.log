@@ -954,3 +954,67 @@ MIG: 15:11:57 : Component_Name: mig_7series_ddr3_ac701
 MIG: 15:11:57 : Moving mig_7series_ddr3_ac701_xmdf.tcl ...
 MIG: 15:11:57 : Moving mig_7series_ddr3_ac701 ...
 MIG: 15:11:58 : Moving mig_7series_ddr3_ac701.veo ...
+MIG: 08:55:20 : Running synthesis.xit
+MIG: 08:55:20 : ################# RUNNING MIG BATCH ###################
+MIG: 08:55:20 : Writing IN file for 'mig_7series_ddr3_ac701'...compDirPath: /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3... instDirPath: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701
+MIG: 08:55:20 : synp_flow:  -- synthesis_mode: Other
+MIG: 08:55:20 : outputDirectory: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/_tmp/
+MIG: 08:55:20 : vivado_mode: xpg_pa
+MIG: 08:55:20 :  locked false  
+MIG: 08:55:20 : HDL Language: Verilog
+MIG: 08:55:20 : compInfo: false
+MIG: 08:55:20 : Vivado Options xc7a200t fbg676 -2
+MIG: 08:55:20 : 1: xc7a200t 2: fbg676 3: -2
+MIG: 08:55:20 : relative mig path: coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig
+MIG: 08:55:20 : xilinx_path: /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE
+MIG: 08:55:20 : I am in catch area
+MIG: 08:55:20 : Running /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE/coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig -cg_exc_inp /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/xil_txt.in -cg_exc_out /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/xil_txt.out ... 
+MIG: 08:55:32 : XML_INPUT_FILE: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/mig_a.prj
+MIG: 08:55:32 : Component_Name: mig_7series_ddr3_ac701
+MIG: 08:55:32 : Moving mig_7series_ddr3_ac701_xmdf.tcl ...
+MIG: 08:55:32 : Moving mig_7series_ddr3_ac701 ...
+MIG: 08:55:33 : Moving mig_7series_ddr3_ac701.veo ...
+MIG: 08:55:33 : Running vlog_synth_rpr.xit
+MIG: 08:55:33 : IGN:     <ModuleName>mig_7series_ddr3_ac701</ModuleName> <==>     <ModuleName>mig_7series_ddr3_ac701</ModuleName> 
+MIG: 08:55:33 : ERR:     <Version>2.0</Version> <==>     <Version>2.3</Version> 
+MIG: 08:55:33 : ################# RUNNING MIG BATCH ###################
+MIG: 08:55:34 : Writing IN file for 'mig_7series_ddr3_ac701'...compDirPath: /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3... instDirPath: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701
+MIG: 08:55:34 : synp_flow:  -- synthesis_mode: Other
+MIG: 08:55:34 : outputDirectory: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/_tmp/
+MIG: 08:55:34 : vivado_mode: xpg_pa
+MIG: 08:55:34 :  locked false  
+MIG: 08:55:34 : HDL Language: Verilog
+MIG: 08:55:34 : compInfo: false
+MIG: 08:55:34 : Vivado Options xc7a200t fbg676 -2
+MIG: 08:55:34 : 1: xc7a200t 2: fbg676 3: -2
+MIG: 08:55:34 : relative mig path: coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig
+MIG: 08:55:34 : xilinx_path: /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE
+MIG: 08:55:34 : I am in catch area
+MIG: 08:55:34 : Running /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE/coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig -cg_exc_inp /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/xil_txt.in -cg_exc_out /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/xil_txt.out ... 
+MIG: 08:55:45 : XML_INPUT_FILE: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/mig_a.prj
+MIG: 08:55:45 : Component_Name: mig_7series_ddr3_ac701
+MIG: 08:55:45 : Moving mig_7series_ddr3_ac701_xmdf.tcl ...
+MIG: 08:55:45 : Moving mig_7series_ddr3_ac701 ...
+MIG: 08:55:46 : Moving mig_7series_ddr3_ac701.veo ...
+MIG: 08:55:46 : Running implementation.xit
+MIG: 08:55:46 : IGN:     <ModuleName>mig_7series_ddr3_ac701</ModuleName> <==>     <ModuleName>mig_7series_ddr3_ac701</ModuleName> 
+MIG: 08:55:46 : ERR:     <Version>2.0</Version> <==>     <Version>2.3</Version> 
+MIG: 08:55:46 : ################# RUNNING MIG BATCH ###################
+MIG: 08:55:46 : Writing IN file for 'mig_7series_ddr3_ac701'...compDirPath: /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3... instDirPath: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701
+MIG: 08:55:46 : synp_flow:  -- synthesis_mode: Other
+MIG: 08:55:46 : outputDirectory: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/_tmp/
+MIG: 08:55:46 : vivado_mode: xpg_pa
+MIG: 08:55:47 :  locked false  
+MIG: 08:55:47 : HDL Language: Verilog
+MIG: 08:55:47 : compInfo: false
+MIG: 08:55:47 : Vivado Options xc7a200t fbg676 -2
+MIG: 08:55:47 : 1: xc7a200t 2: fbg676 3: -2
+MIG: 08:55:47 : relative mig path: coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig
+MIG: 08:55:47 : xilinx_path: /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE
+MIG: 08:55:47 : I am in catch area
+MIG: 08:55:47 : Running /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE/coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig -cg_exc_inp /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/xil_txt.in -cg_exc_out /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/xil_txt.out ... 
+MIG: 08:55:57 : XML_INPUT_FILE: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/ARTIX_AC701/IP/mig_7series_ddr3_ac701/mig_a.prj
+MIG: 08:55:57 : Component_Name: mig_7series_ddr3_ac701
+MIG: 08:55:57 : Moving mig_7series_ddr3_ac701_xmdf.tcl ...
+MIG: 08:55:57 : Moving mig_7series_ddr3_ac701 ...
+MIG: 08:55:58 : Moving mig_7series_ddr3_ac701.veo ...

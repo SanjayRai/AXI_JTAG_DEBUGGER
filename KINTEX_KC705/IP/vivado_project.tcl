@@ -18,3 +18,4 @@ add_files -fileset sources_1 -norecurse {
     ./axi_mm64_to_axi_lite64/axi_mm64_to_axi_lite64.xci
 }
 
+report_ip_status -name ip_status -file ip_status.txt

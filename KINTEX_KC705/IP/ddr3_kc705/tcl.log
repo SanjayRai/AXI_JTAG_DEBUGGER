@@ -2867,3 +2867,67 @@ MIG: 10:23:43 : Component_Name: ddr3_kc705
 MIG: 10:23:43 : Moving ddr3_kc705_xmdf.tcl ...
 MIG: 10:23:43 : Moving ddr3_kc705 ...
 MIG: 10:23:44 : Moving ddr3_kc705.veo ...
+MIG: 16:48:47 : Running synthesis.xit
+MIG: 16:48:47 : ################# RUNNING MIG BATCH ###################
+MIG: 16:48:47 : Writing IN file for 'ddr3_kc705'...compDirPath: /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3... instDirPath: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705
+MIG: 16:48:47 : synp_flow:  -- synthesis_mode: Other
+MIG: 16:48:47 : outputDirectory: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/_tmp/
+MIG: 16:48:47 : vivado_mode: xpg_pa
+MIG: 16:48:47 :  locked false  
+MIG: 16:48:47 : HDL Language: Verilog
+MIG: 16:48:47 : compInfo: false
+MIG: 16:48:47 : Vivado Options xc7k325t ffg900 -2
+MIG: 16:48:47 : 1: xc7k325t 2: ffg900 3: -2
+MIG: 16:48:47 : relative mig path: coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig
+MIG: 16:48:47 : xilinx_path: /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE
+MIG: 16:48:47 : I am in catch area
+MIG: 16:48:47 : Running /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE/coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig -cg_exc_inp /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/xil_txt.in -cg_exc_out /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/xil_txt.out ... 
+MIG: 16:49:00 : XML_INPUT_FILE: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/mig_b.prj
+MIG: 16:49:00 : Component_Name: ddr3_kc705
+MIG: 16:49:00 : Moving ddr3_kc705_xmdf.tcl ...
+MIG: 16:49:00 : Moving ddr3_kc705 ...
+MIG: 16:49:00 : Moving ddr3_kc705.veo ...
+MIG: 16:49:01 : Running vlog_synth_rpr.xit
+MIG: 16:49:01 : IGN:     <ModuleName>ddr3_kc705</ModuleName> <==>     <ModuleName>ddr3_kc705</ModuleName> 
+MIG: 16:49:01 : ERR:     <Version>2.0</Version> <==>     <Version>2.3</Version> 
+MIG: 16:49:01 : ################# RUNNING MIG BATCH ###################
+MIG: 16:49:01 : Writing IN file for 'ddr3_kc705'...compDirPath: /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3... instDirPath: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705
+MIG: 16:49:01 : synp_flow:  -- synthesis_mode: Other
+MIG: 16:49:01 : outputDirectory: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/_tmp/
+MIG: 16:49:01 : vivado_mode: xpg_pa
+MIG: 16:49:01 :  locked false  
+MIG: 16:49:01 : HDL Language: Verilog
+MIG: 16:49:01 : compInfo: false
+MIG: 16:49:01 : Vivado Options xc7k325t ffg900 -2
+MIG: 16:49:01 : 1: xc7k325t 2: ffg900 3: -2
+MIG: 16:49:01 : relative mig path: coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig
+MIG: 16:49:01 : xilinx_path: /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE
+MIG: 16:49:01 : I am in catch area
+MIG: 16:49:01 : Running /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE/coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig -cg_exc_inp /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/xil_txt.in -cg_exc_out /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/xil_txt.out ... 
+MIG: 16:49:13 : XML_INPUT_FILE: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/mig_b.prj
+MIG: 16:49:13 : Component_Name: ddr3_kc705
+MIG: 16:49:13 : Moving ddr3_kc705_xmdf.tcl ...
+MIG: 16:49:13 : Moving ddr3_kc705 ...
+MIG: 16:49:15 : Moving ddr3_kc705.veo ...
+MIG: 16:49:15 : Running implementation.xit
+MIG: 16:49:15 : IGN:     <ModuleName>ddr3_kc705</ModuleName> <==>     <ModuleName>ddr3_kc705</ModuleName> 
+MIG: 16:49:15 : ERR:     <Version>2.0</Version> <==>     <Version>2.3</Version> 
+MIG: 16:49:15 : ################# RUNNING MIG BATCH ###################
+MIG: 16:49:15 : Writing IN file for 'ddr3_kc705'...compDirPath: /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3... instDirPath: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705
+MIG: 16:49:15 : synp_flow:  -- synthesis_mode: Other
+MIG: 16:49:15 : outputDirectory: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/_tmp/
+MIG: 16:49:15 : vivado_mode: xpg_pa
+MIG: 16:49:15 :  locked false  
+MIG: 16:49:15 : HDL Language: Verilog
+MIG: 16:49:15 : compInfo: false
+MIG: 16:49:15 : Vivado Options xc7k325t ffg900 -2
+MIG: 16:49:15 : 1: xc7k325t 2: ffg900 3: -2
+MIG: 16:49:15 : relative mig path: coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig
+MIG: 16:49:15 : xilinx_path: /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE
+MIG: 16:49:15 : I am in catch area
+MIG: 16:49:15 : Running /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE/coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig -cg_exc_inp /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/xil_txt.in -cg_exc_out /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/xil_txt.out ... 
+MIG: 16:49:27 : XML_INPUT_FILE: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/ddr3_kc705/mig_b.prj
+MIG: 16:49:27 : Component_Name: ddr3_kc705
+MIG: 16:49:27 : Moving ddr3_kc705_xmdf.tcl ...
+MIG: 16:49:27 : Moving ddr3_kc705 ...
+MIG: 16:49:28 : Moving ddr3_kc705.veo ...

@@ -2941,3 +2941,67 @@ MIG: 10:24:59 : Component_Name: mig_7series_64bit_800Mhz
 MIG: 10:24:59 : Moving mig_7series_64bit_800Mhz_xmdf.tcl ...
 MIG: 10:24:59 : Moving mig_7series_64bit_800Mhz.veo ...
 MIG: 10:24:59 : Moving mig_7series_64bit_800Mhz ...
+MIG: 16:13:32 : Running synthesis.xit
+MIG: 16:13:32 : ################# RUNNING MIG BATCH ###################
+MIG: 16:13:32 : Writing IN file for 'mig_7series_64bit_800Mhz'...compDirPath: /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3... instDirPath: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz
+MIG: 16:13:32 : synp_flow:  -- synthesis_mode: Other
+MIG: 16:13:32 : outputDirectory: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/_tmp/
+MIG: 16:13:32 : vivado_mode: xpg_pa
+MIG: 16:13:32 :  locked false  
+MIG: 16:13:32 : HDL Language: Verilog
+MIG: 16:13:32 : compInfo: false
+MIG: 16:13:32 : Vivado Options xc7k325t ffg900 -2
+MIG: 16:13:32 : 1: xc7k325t 2: ffg900 3: -2
+MIG: 16:13:32 : relative mig path: coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig
+MIG: 16:13:32 : xilinx_path: /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE
+MIG: 16:13:32 : I am in catch area
+MIG: 16:13:32 : Running /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE/coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig -cg_exc_inp /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/xil_txt.in -cg_exc_out /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/xil_txt.out ... 
+MIG: 16:13:46 : XML_INPUT_FILE: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/mig_b.prj
+MIG: 16:13:46 : Component_Name: mig_7series_64bit_800Mhz
+MIG: 16:13:46 : Moving mig_7series_64bit_800Mhz_xmdf.tcl ...
+MIG: 16:13:46 : Moving mig_7series_64bit_800Mhz.veo ...
+MIG: 16:13:46 : Moving mig_7series_64bit_800Mhz ...
+MIG: 16:13:46 : Running vlog_synth_rpr.xit
+MIG: 16:13:46 : IGN:     <ModuleName>mig_7series_64bit_800Mhz</ModuleName> <==>     <ModuleName>mig_7series_64bit_800Mhz</ModuleName> 
+MIG: 16:13:46 : ERR:     <Version>2.0</Version> <==>     <Version>2.3</Version> 
+MIG: 16:13:46 : ################# RUNNING MIG BATCH ###################
+MIG: 16:13:46 : Writing IN file for 'mig_7series_64bit_800Mhz'...compDirPath: /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3... instDirPath: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz
+MIG: 16:13:46 : synp_flow:  -- synthesis_mode: Other
+MIG: 16:13:46 : outputDirectory: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/_tmp/
+MIG: 16:13:46 : vivado_mode: xpg_pa
+MIG: 16:13:46 :  locked false  
+MIG: 16:13:46 : HDL Language: Verilog
+MIG: 16:13:46 : compInfo: false
+MIG: 16:13:46 : Vivado Options xc7k325t ffg900 -2
+MIG: 16:13:46 : 1: xc7k325t 2: ffg900 3: -2
+MIG: 16:13:46 : relative mig path: coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig
+MIG: 16:13:46 : xilinx_path: /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE
+MIG: 16:13:46 : I am in catch area
+MIG: 16:13:47 : Running /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE/coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig -cg_exc_inp /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/xil_txt.in -cg_exc_out /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/xil_txt.out ... 
+MIG: 16:13:59 : XML_INPUT_FILE: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/mig_b.prj
+MIG: 16:13:59 : Component_Name: mig_7series_64bit_800Mhz
+MIG: 16:13:59 : Moving mig_7series_64bit_800Mhz_xmdf.tcl ...
+MIG: 16:13:59 : Moving mig_7series_64bit_800Mhz.veo ...
+MIG: 16:13:59 : Moving mig_7series_64bit_800Mhz ...
+MIG: 16:14:00 : Running implementation.xit
+MIG: 16:14:00 : IGN:     <ModuleName>mig_7series_64bit_800Mhz</ModuleName> <==>     <ModuleName>mig_7series_64bit_800Mhz</ModuleName> 
+MIG: 16:14:00 : ERR:     <Version>2.0</Version> <==>     <Version>2.3</Version> 
+MIG: 16:14:00 : ################# RUNNING MIG BATCH ###################
+MIG: 16:14:00 : Writing IN file for 'mig_7series_64bit_800Mhz'...compDirPath: /home/applications/Xilinx/Vivado/2014.4/data/ip/xilinx/mig_7series_v2_3... instDirPath: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz
+MIG: 16:14:01 : synp_flow:  -- synthesis_mode: Other
+MIG: 16:14:01 : outputDirectory: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/_tmp/
+MIG: 16:14:01 : vivado_mode: xpg_pa
+MIG: 16:14:01 :  locked false  
+MIG: 16:14:01 : HDL Language: Verilog
+MIG: 16:14:01 : compInfo: false
+MIG: 16:14:01 : Vivado Options xc7k325t ffg900 -2
+MIG: 16:14:01 : 1: xc7k325t 2: ffg900 3: -2
+MIG: 16:14:01 : relative mig path: coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig
+MIG: 16:14:01 : xilinx_path: /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE
+MIG: 16:14:01 : I am in catch area
+MIG: 16:14:01 : Running /home/applications/Xilinx/Vivado/2014.4/ids_lite/ISE/coregen/ip/xilinx/other/com/xilinx/ip/mig_7series_v2_3/bin/lin64/mig -cg_exc_inp /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/xil_txt.in -cg_exc_out /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/xil_txt.out ... 
+MIG: 16:14:13 : XML_INPUT_FILE: /mnt/projects_MCshare/GIT_HUB_UPDATE_2014_4/AXI_JTAG_DEBUGGER/KINTEX_KC705/IP/mig_7series_64bit_800Mhz/mig_b.prj
+MIG: 16:14:13 : Component_Name: mig_7series_64bit_800Mhz
+MIG: 16:14:13 : Moving mig_7series_64bit_800Mhz_xmdf.tcl ...
+MIG: 16:14:13 : Moving mig_7series_64bit_800Mhz.veo ...
+MIG: 16:14:13 : Moving mig_7series_64bit_800Mhz ...
